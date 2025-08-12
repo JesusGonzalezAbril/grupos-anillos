@@ -1,0 +1,66 @@
+\chapter{Anillos}
+
+\section{Operaciones binarias}
+
+\defn{Operación binaria}{op-bin}{
+    Sea \(X\) un conjunto. Una operación binaria en \(X\) es una aplicación \(*:X\times X\to X\). Por lo general escribimos \( * (a,b) = a * b\).
+}
+
+\rmk{En general si por el contexto se sobreentiende que una operación es binaria se simplifica el lenguaje hablando simplemente de operaciones. De igual manera normalmente se omite el conjunto sobre el que está definida la operación.}
+
+\defn{Tipos de operaciones}{tipos-op}{
+    Una operación $*$ se dice
+    \begin{itemize}
+        \item \textbf{Conmutativa} si $x * y = y * x$ para todo $x,y\in X$.
+        \item \textbf{Asociativa} si $x * (y * z) = (x * y) * z$ para todo $x,y,z \in X$.
+    \end{itemize}
+}
+
+\defn{Terminología sobre elementos}{term-elem}{
+    Un elemento \(x\in X\) se dice que es:
+    \begin{itemize}
+        \item \textbf{Neutro por la izquierda (neutro por la derecha)} si \(x*y=y\) para todo \(y\in X\) (\(y*x=y\) para todo \(y\in X\)).
+        
+        \item \textbf{Cancelable por la izquierda (cancelable por la derecha)} si para cada dos elementos distintos \(a \neq b\) de \(X\) se verifica \(x*a\neq x*b\) (\(a*x\neq b*x\)).
+        
+        \item \textbf{Neutro} si es neutro por la derecha y por la izquierda.
+
+        \item \textbf{Cancelable} si es cancelable por la izquierda y por la derecha.
+    \end{itemize}
+
+    Supongamos que \(e\) es un elemento neutro de \(X\) con respecto a \(*\). Sean \(x\) e \(y\) elementos de \(X\). Decimos que \(x\) es simétrico de \(y\) por la izquierda y que \(y\) es simétrico de \(x\) por la derecha con respecto a \(*\) si se verifica \(x*y=e\). En este contexto decimos que $x$ es:
+    \begin{itemize}
+        \item \textbf{Simétrico} de $y$ si lo es por ambos lados. En tal caso decimos que $x$ es invertible, siendo $y$ su inverso ($y = x^{-1}$).
+    \end{itemize}
+}
+
+\ex{
+    Si $x$ es cancelable por la izquierda entonces para cualesquiera $a,b \in X$ se tiene
+    \[
+    x * a = x * b \implies a = b
+    \]
+}
+
+\pf{
+    Supongamos que $x * a = x * b$, si $a = b$ ya hemos terminado. En caso contrario $a$ y $b$ son elementos distintos, y como $x$ es cancelable por la izquierda entonces debe ser $x * a \neq x * b$, pero eso contradice la suposición inicial, luego ha de ser $a = b$.
+}
+
+\exer{
+Probar que si $x$ es cancelable por la derecha entonces para cualesquiera $a,b \in X$ se tiene
+    \[
+    a * x = b * x \implies a = b
+    \]
+}
+
+\defn{Tipos de conjuntos con operaciones}{tipos-conj-op}{
+    Un par \((X,*)\) formado por un conjunto y una operación \(*\) decimos que es un:
+    \begin{itemize}
+        \item \textbf{Semigrupo} si \(*\) es asociativa.
+        
+        \item \textbf{Monoide} si es un semigrupo que tiene un elemento neutro con respecto a \(*\).
+        
+        \item \textbf{Grupo} si es un monoide y todo elemento de \(X\) es invertible con respecto a \(*\).
+        
+        \item \textbf{Grupo abeliano} si es un grupo y \(*\) es conmutativa.
+    \end{itemize}
+}

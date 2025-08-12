@@ -1,0 +1,58 @@
+\documentclass[oneside]{book}
+
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{graphicx}
+
+% Custom color boxes
+\usepackage{framed}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems,skins,breakable}
+
+% References and bibliography
+\usepackage{hyperref}
+\usepackage[backend=biber,style=alphabetic,sorting=ynt]{biblatex}
+\addbibresource{src/bibliography.bib}
+
+% Variables
+\def\notetitle{Infierno\\ Saga de la Divina comedia}
+\def\noteauthor{
+    \textbf{Jesús González Abril}
+}
+\def\notedate{Curso 2025-2026}
+
+% The theorem system and user-defined commands
+\input{src/theorems.tex}
+\input{src/commands.tex}
+
+% Document
+
+\begin{document}
+
+% Title page
+\title{
+    \textbf{\LARGE{\notetitle}} \vspace*{10\baselineskip}
+    }
+\author{\noteauthor}
+\date{\notedate}
+
+\maketitle
+\clearpage
+
+% Table of contents
+\tableofcontents
+\clearpage
+
+% Chapters
+\input{src/chapters/anillos}
+
+% Bibliography
+\nocite{*}
+\printbibliography[
+    heading=bibintoc
+]
+
+\end{document}
