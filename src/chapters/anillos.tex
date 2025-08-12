@@ -64,3 +64,34 @@ Probar que si $x$ es cancelable por la derecha entonces para cualesquiera $a,b \
         \item \textbf{Grupo abeliano} si es un grupo y \(*\) es conmutativa.
     \end{itemize}
 }
+
+\ex{
+    Si tomamos la suma de elementos sobre distintos conjuntos de números obtenemos un ejemplo de cada uno de los tipos de conjuntos con operaciones:
+    \begin{enumerate}
+        \item $(\N,+)$ es un semigrupo.
+        \item $(\Z_{\geq 0},+)$ es un monoide.
+        \item $(\Z,+)$ es un grupo abeliano.
+    \end{enumerate}
+}
+
+\ex{
+    Un ejemplo de grupo no abeliano es $GL_n(\R)$ si $n \geq 2$. $GL_n(\R)$ es el grupo de las matrices invertibles $n\times n$ con entradas reales, donde la operación es la multiplicación de matrices.
+}
+
+\pf{
+    En primer lugar es inmediato que la operación es asociativa. También es fácil ver que tiene elemento neutro, la matriz identidad $I_n$. Si tomamos una matriz cualquiera $A\in GL_n(\R)$ entonces ha de ser invertible, por lo que su elemento inverso es $A^{-1}$ que claramente pertenece a $GL_n(\R)$.
+
+    Finalmente, para ver que el grupo no es conmutativo notemos que para $n=2$ podemos tomar las matrices
+    \[
+    A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}, B = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}
+    \]
+    ambas invertibles por tener determinante no nulo, que verifican
+    \[
+    AB = \begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix} \neq BA = \begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}.
+    \]
+    En el caso de que sea $n > 2$ podemos tomar matrices de la forma
+    \[
+    A' = \begin{pmatrix} A & 0 \\ 0 & I_{n-2} \end{pmatrix}, B' = \begin{pmatrix} B & 0 \\ 0 & I_{n-2} \end{pmatrix}
+    \]
+    cuyo producto no conmuta por las propiedades de la multiplicación de matrices por bloques.
+}
