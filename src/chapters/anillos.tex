@@ -30,7 +30,7 @@
 
     Supongamos que \(e\) es un elemento neutro de \(X\) con respecto a \(*\). Sean \(x\) e \(y\) elementos de \(X\). Decimos que \(x\) es simétrico de \(y\) por la izquierda y que \(y\) es simétrico de \(x\) por la derecha con respecto a \(*\) si se verifica \(x*y=e\). En este contexto decimos que $x$ es:
     \begin{itemize}
-        \item \textbf{Simétrico} de $y$ si lo es por ambos lados. En tal caso decimos que $x$ es invertible, siendo $y$ su inverso ($y = x^{-1}$).
+        \item \textbf{Simétrico} de $y$ si lo es por ambos lados. En tal caso decimos que $x$ es invertible, siendo $y$ su inverso ($y = x^{-1}$ si el inverso es único).
     \end{itemize}
 }
 
@@ -50,6 +50,10 @@ Probar que si $x$ es cancelable por la derecha entonces para cualesquiera $a,b \
     \[
     a * x = b * x \implies a = b
     \]
+}
+
+\rmk{
+    Notemos que esta caracterización no es más que el contrarrecíproco de la primera definición que hemos dado de elemento cancelable. 
 }
 
 \defn{Tipos de conjuntos con operaciones}{tipos-conj-op}{
@@ -94,4 +98,185 @@ Probar que si $x$ es cancelable por la derecha entonces para cualesquiera $a,b \
     A' = \begin{pmatrix} A & 0 \\ 0 & I_{n-2} \end{pmatrix}, B' = \begin{pmatrix} B & 0 \\ 0 & I_{n-2} \end{pmatrix}
     \]
     cuyo producto no conmuta por las propiedades de la multiplicación de matrices por bloques.
+}
+
+\exer{
+    Sean $A$ un conjunto y sea $X=A^{A}$, el conjunto de las aplicaciones de $A$ en $A$. Probar que la composición de aplicaciones define una operación asociativa en $X$ para la que la identidad $1_{X}$ es neutro. Por tanto $(A^{A},\circ)$ es un monoide.
+}
+
+\prop{}{propiedades-op-conm}{
+    Sea $*$ una operación en un conjunto $X$.
+
+    \begin{enumerate}
+    
+    \item Si $e$ es un neutro por la izquierda y $f$ es un neutro por la derecha de $X$ con respecto a $*$, entonces $e = f$. En particular, $X$ tiene a lo sumo un neutro.
+    
+    \item Supongamos que $(X, *)$ es un monoide y sea $a \in X$.
+    \begin{enumerate}
+        \item Si $x$ es un simétrico por la izquierda de $a$ e $y$ es un simétrico por la derecha de $a$, entonces $x = y$. Por tanto, en tal caso $a$ es invertible y tiene a lo sumo un simétrico.
+        
+        \item Si $a$ tiene un simétrico por un lado entonces es cancelable por ese mismo lado. En particular, todo elemento invertible es cancelable.
+    \end{enumerate}
+    \end{enumerate}
+}{
+    (1) Como $e$ es neutro por la izquierda y $f$ es neutro por la derecha tenemos
+    \[
+    f = e * f = e.
+    \]
+    (2a) Ahora suponemos que $(X, *)$ es un monoide. Por (1), $(X, *)$ tiene un único neutro que vamos a denotar por $e$. Como $x$ es inverso por la izquierda de $a$ e $y$ es inverso por la derecha de $a$, usando la propiedad asociativa, tenemos que
+    \[
+    y = e * y = (x * a) * y = x * (a * y) = x * e = x.
+    \]
+    (2b) Supongamos que $a$ es un elemento de $X$ que tiene un inverso por la izquierda $b$ y que $a * x = a * y$ para $x, y \in X$. Usando la asociatividad una vez más concluimos que
+    \[
+    x = e * x = (b * a) * x = b * (a * x) = b * (a * y) = (b * a) * y = e * y = y.
+    \]
+}
+
+\rmk{
+    Por la proposición anterior si $X$ es un monoide cada elemento invertible $a$ tiene un único inverso que denotaremos $a^{-1}$. 
+}
+
+\clearpage
+\section{Anillos}
+
+\defn{Anillo}{anillo}{
+    Un anillo es una terna \((A, +, \cdot)\) formada por un conjunto no vacío \(A\) y dos operaciones \(+\) (suma) y \(\cdot\) (producto) en \(A\) que verifican:
+    \begin{enumerate}
+        \item \((A, +)\) es un grupo abeliano.
+        \item \((A, \cdot)\) es un monoide.
+        \item Distributiva del producto respecto de la suma: \(a \cdot (b + c) = (a \cdot b) + (a \cdot c)\) para todo \(a, b, c \in A\).
+    \end{enumerate}
+    
+    Si además \(\cdot\) es conmutativo en \(A\), decimos que \((A, +, \cdot)\) es un anillo conmutativo.
+}
+
+\rmk{
+    \begin{itemize}
+        \item El neutro de \(A\) con respecto a \(+\) se llama \textbf{cero} y se denota \(0\).
+        \item El neutro de \(A\) con respecto a \(\cdot\) se llama \textbf{uno} y se denota \(1\).
+        \item El simétrico de un elemento \(a\) con respecto a \(+\) se llama \textbf{opuesto} y se denota \(-a\).
+        \item Si \(a\) es invertible con respecto a \(\cdot\), su simétrico se llama \textbf{inverso} y se denota \(a^{-1}\).
+        \item En general para $+$ y $\cdot$ usamos la notación usual para sumas y productos
+        \[
+        a \cdot (b + c) = a(b+c)=ab+ac.
+        \] 
+    \end{itemize}
+}
+
+\rmk{
+    Como $(A, +)$ es un grupo, todo elemento de A es invertible respecto de la suma y por tanto cancelable. Diremos que un elemento de $A$ es regular en $A$ si es cancelable con respecto al producto. En caso contrario decimos que el elemento es singular en $A$ o divisor de cero.
+}
+
+\subsection{Ejemplos de anillo}
+\ex{
+    Los conjuntos $\Z$, $\Q$, $\R$ y $\C$ son anillos conmutativos con la suma y el producto usuales. Notemos que todo elemento no nulo de $\Q$, $\R$ o $\C$ es invertible. Sin embargo en $\Z$ solo hay dos elementos invertibles (1 y -1) aunque todos los elementos son regulares menos el 0.
+}
+\pf{
+    Probaremos que en $\C$ todos los elementos salvo el 0 son invertibles. Sea $z = a + bi$ un número complejo cualquiera no nulo, en tal caso el número $w = \frac{a-bi}{a^2+b^2}$ verifica
+    \[
+    zw = \frac{(a+bi)(a-bi)}{a^2+b^2} = \frac{a^2 -abi +abi -b(-1)}{a^2+b^2} = \frac{a^2+b^2}{a^2+b^2} = 1
+    \]
+    luego $w = z^{-1}$.
+}
+
+\ex{
+    Sean $A$ y $B$ dos anillos. Entonces el producto cartesiano $A \times B$ tiene una estructura de anillo con las operaciones definidas componente a componente:
+    \[
+    (a_1, b_1) + (a_2, b_2) = (a_1 + a_2, b_1 + b_2)
+    \]
+    \[
+    (a_1, b_1) \cdot (a_2, b_2) = (a_1 \cdot a_2, b_1 \cdot b_2)
+    \]
+    Obsérvese que $A \times B$ es conmutativo si y solo si lo son $A$ y $B$, y que esta construcción se puede generalizar a productos cartesianos de cualquier familia (finita o no) de anillos.
+}
+
+\ex{
+    Dados un anillo $A$ y un conjunto $X$, el conjunto $A^X$ de las aplicaciones de $X$ en $A$ es un anillo con las siguientes operaciones:
+    \[
+    (f + g)(x) = f(x) + g(x)
+    \]
+    \[
+    (f \cdot g)(x) = f(x) \cdot g(x)
+    \]
+    Si definimos la familia de conjuntos $\{A_i = A : i \in X\}$ entonces es inmediato que $\cup_{i\in X} A_i = A$. Recordemos ahora que el producto $\prod_{i \in X} A_i$ es el conjunto de funciones $f: X \to \cup_{i\in X} A_i$, es decir, el conjunto de funciones $f : X \to A$, luego $A^X$ es un anillo correspondiente a un producto <<infinito>> del anillo $A$ consigo mismo.
+}
+
+\clearpage
+\section{Subanillos}
+
+\defn{Subanillo}{subanillo}{
+    Un subconjunto \(B\) de un anillo \(A\) es un \textbf{subanillo} de \(A\) si:
+    \begin{enumerate}
+        \item \(B\) contiene al \(1\).
+        \item \(B\) es cerrado para sumas, productos y opuestos.
+    \end{enumerate}
+    
+    Equivalentemente, \(B\) es un subanillo si contiene al \(1\) y es cerrado para restas y productos.
+}
+
+\clearpage\section{Homomorfismos de anillos}
+
+\defn{Homomorfismo de anillos}{hom-anillo}{
+    Sean \(A\) y \(B\) dos anillos. Un \textbf{homomorfismo de anillos} entre \(A\) y \(B\) es una aplicación \(f: A \to B\) que satisface:
+    \begin{enumerate}
+        \item \(f(x + y) = f(x) + f(y)\)
+        \item \(f(x \cdot y) = f(x) \cdot f(y)\)
+        \item \(f(1) = 1\)
+    \end{enumerate}
+    
+    Un \textbf{isomorfismo} es un homomorfismo biyectivo. Dos anillos \(A\) y \(B\) son \textbf{isomorfos} (\(A \cong B\)) si existe un isomorfismo entre ellos.
+}
+
+\clearpage\section{Ideales y anillos cociente}
+
+\defn{Ideal}{ideal}{
+    Un subconjunto \(I\) de un anillo \(A\) es un \textbf{ideal} si:
+    \begin{enumerate}
+        \item \(I \neq \emptyset\)
+        \item Para todo \(x, y \in I\) y \(a \in A\), se verifica que \(x + y \in I\) y \(a \cdot x \in I\).
+    \end{enumerate}
+}
+
+\defn{Congruencia módulo un ideal}{congruencia}{
+    Sea \(I\) un ideal de un anillo \(A\). Decimos que \(a, b \in A\) son \textbf{congruentes módulo} \(I\) (\(a \equiv b \mod I\)) si \(b - a \in I\).
+}
+
+\defn{Anillo cociente}{anillo-cociente}{
+    Dado un anillo \(A\) y un ideal \(I\), el conjunto \(A/I = \{a + I : a \in A\}\) con las operaciones:
+    \begin{align*}
+        (a + I) + (b + I) &= (a + b) + I \\
+        (a + I) \cdot (b + I) &= (a \cdot b) + I
+    \end{align*}
+    es un anillo llamado \textbf{anillo cociente} de \(A\) módulo \(I\).
+}
+
+\clearpage\section{Teoremas de isomorfía}
+
+\thmp{Primer teorema de isomorfía}{iso1}{
+    Sea \(f: A \to B\) un homomorfismo de anillos. Entonces existe un isomorfismo:
+    \[
+    A/\ker f \cong \operatorname{Im} f
+    \]
+}
+
+\thmp{Segundo teorema de isomorfía}{iso2}{
+    Sea \(A\) un anillo y \(I \subseteq J\) ideales de \(A\). Entonces:
+    \[
+    \frac{A/I}{J/I} \cong \frac{A}{J}
+    \]
+}
+
+\thmp{Tercer teorema de isomorfía}{iso3}{
+    Sea \(A\) un anillo, \(B\) un subanillo de \(A\) e \(I\) un ideal de \(A\). Entonces:
+    \[
+    \frac{B}{B \cap I} \cong \frac{B + I}{I}
+    \]
+}
+
+\thmp{Teorema chino de los restos}{chino}{
+    Sea \(A\) un anillo y \(I_1, \ldots, I_n\) ideales de \(A\) tales que \(I_i + I_j = A\) para todo \(i \neq j\). Entonces:
+    \[
+    \frac{A}{I_1 \cap \cdots \cap I_n} \cong \frac{A}{I_1} \times \cdots \times \frac{A}{I_n}
+    \]
 }
