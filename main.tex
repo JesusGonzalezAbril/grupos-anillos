@@ -1,7 +1,7 @@
 \documentclass[oneside]{book}
 
 \usepackage[spanish]{babel}
-\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{amsmath, amsthm, amssymb, amsfonts,tikz-cd}
 
 \usepackage{geometry}
 \usepackage{float}
@@ -18,7 +18,7 @@
 \addbibresource{src/bibliography.bib}
 
 % Variables
-\def\notetitle{Infierno\\ Saga de la Divina comedia}
+\def\notetitle{Infierno y Purgatorio\\ Saga de la Divina comedia}
 \def\noteauthor{
     \textbf{Jesús González Abril}
 }
@@ -48,6 +48,7 @@
 
 % Chapters
 \input{src/chapters/anillos}
+\input{src/chapters/appendixA}
 
 % Bibliography
 \nocite{*}

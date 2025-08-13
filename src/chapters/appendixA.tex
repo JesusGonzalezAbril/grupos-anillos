@@ -1,6 +1,202 @@
 \appendix
-\chapter{Chapter name}
+\chapter{Teoría de conjuntos}
 
-\section{Section name}
+\section{Conjuntos y clases}
 
-Example
+Introducimos de manera informal en esta sección la teoría de conjuntos de von Neumann-Bernays-Gödel (denotada NBG). Las nociones primitivas en esta teoría son las de clase, pertenencia e igualdad. Intuitivamente consideramos que una clase es una colección $A$ de objetos tal que dado un objeto cualquiera $x$ podemos determinar si este pertenece a la clase $(x \in A)$ o no $(x \notin A)$.
+
+Los axiomas de la teoría se formulan en terminos de estas nociones primitivas y del cálculo de predicados lógicos de primer orden (es decir, las afirmaciones construidas usando conectores de tipo \textit{y, o, negación, implica}, y cuantificadores $\forall, \exists$). Por ejemplo, se asume que la igualdad tiene las siguientes propiedades para cualesquiera clases $A,B,C$:
+\[
+A=A,\quad A=B \implies B=A,\quad (A=B) \land (B=C) \implies A=C,\quad (A=B) \land (x \in A) \implies x \in B.
+\]
+Por otro lado, el \textbf{axioma de extensionalidad} afirma que dos clases con los mismos elementos son iguales:
+\[
+(x \in A \iff x \in B) \implies A = B.
+\]
+
+Una clase $A$ es un conjunto si y solo si existe una clase $B$ tal que $A \in B$. Por tanto, un conjunto es un tipo particular de clase. Una clase que no es un conjunto se llama una clase propia. Informalmente un conjunto es una clase <<pequeña>>, mientras que una clase propia es <<grande>>. El \textbf{axioma de formación} de clases asegura que para cualquier enunciado $P(y)$ de primer orden involucrando a la variable $y$ existe una clase $A$ tal que
+\[
+x \in A \iff (x \text{ es un conjunto} \land x \text{ es verdadero})
+\]
+en tal caso denotamos a la clase $A$ como $\{x : P(x)\}$, llamada clase de todos los $x$ tal que se cumple $P(x)$. En ocasiones podemos describir una clase listando sus elementos: $\{a,b,c\}$.
+
+\ex{
+    Consideremos la clase \( M = \{X : X \text{ es un conjunto y } X \notin X\} \). La afirmación \( X \notin X \) tiene sentido como predicado, de hecho muchos conjuntos la satisfacen (por ejemplo, el conjunto de todos los libros no es un libro). Veamos que \( M \) es una clase propia. En efecto, si \( M \) fuera un conjunto, entonces tendríamos que \( M \in M \) o \( M \notin M \). Pero por la definición de \( M \), \( M \in M \) implica \( M \notin M \) y \( M \notin M \) implica \( M \in M \). Así, en ambos casos, la suposición de que \( M \) es un conjunto lleva a una contradicción: \( M \in M \) y \( M \notin M \).
+}
+
+Una clase $A$ es una subclase de una clase $B$, $A \subset B$ si 
+\[
+\forall x \in A, x \in A \implies x \in B
+\]
+por el axioma de extensionalidad y las propiedades de la igualdad tenemos
+\[
+A=B \iff (A \subset B) \land (B \subset A).
+\] 
+Una subclase $A$ de un conjunto $B$ es un conjunto en sí misma, y en tal caso decimos que es un subconjunto.
+
+El conjunto vacío $\emptyset$ es el conjunto sin elementos, es decir, $\forall x, x \notin \emptyset$. Como la afirmación $x\in\emptyset$ es siempre falsa tenemos de manera trivial que $\emptyset \subset B$ para cualquier clase $B$. Se dice entonces que $A$ es una subclase propia de $B$ si $A\subset B$ pero $A\neq\emptyset, A \neq B$.
+
+El \textbf{axioma de partes} establece que para cualquier conjunto $A$ la clase $\mathcal{P}(A)$ de todos sus subconjuntos es ella misma un conjunto, que usualmente llamamos las partes de $A$.
+
+\section{Uniones, intersecciones, complementos}
+
+Una familia de conjuntos indexada por una clase (no vacía) $I$ es una colección de conjuntos $\{A_i : i \in I\}$. Dada una familia su unión e intersección son las clases:
+\begin{align*}
+\cup_{i\in I} A_i = \{x : x\in A_i \text{ para algún } i\in I \}\\
+\cap_{i\in I} A_i = \{x : x\in A_i \text{ para todo } i\in I \}
+\end{align*}
+Si $I$ es un conjunto entonces las construcciones anteriores son conjuntos.
+
+Si $A$ y $B$ son clases su diferencia es la subclase de $B$
+\[
+B \setminus A = \{x : x \in B, x \notin A\}.
+\]
+
+\section{Aplicaciones}
+
+Dadas dos clases $A,B$ la definición de aplicación es idéntica a la ya conocida para conjuntos. Se dan por conocidos los conceptos ya conocidos de dominio, rango, restricciones, etc. Dos aplicaciones son iguales si tienen el mismo dominio, rango y asignan el mismo valor a cada elemento de su dominio común.
+
+Dada una clase $A$ la aplicación identidad en \( A \) (denotada \( 1_A: A \to A \)) es la aplicación dada por \( a \mapsto a \). Si \( S \subseteq A \), la aplicación \( 1_A|_S: S \to A \) se llama la aplicación inclusión de \( S \) en \( A \).
+
+Sean \( f: A \to B \) y \( g: B \to C \) aplicaciones. La {composición} de \( f \) y \( g \) es la aplicación \( A \to C \) dada por
+\[
+a \mapsto g(f(a)), \quad a \in A.
+\]
+La aplicación compuesta se denota \( g \circ f \) o simplemente \( gf \). Si \( h: C \to D \) es una tercera aplicación, es fácil verificar que \( h(gf) = (hg)f \). Si \( f: A \to B \), entonces \( f \circ 1_A = f = 1_B \circ f: A \to B \).
+
+Un diagrama:
+\[
+    \begin{tikzcd}
+    A \arrow{r}{f} \arrow[swap]{d}{h} & B \arrow{dl}{g} \\
+    C
+  \end{tikzcd}
+\]
+se dice que es conmutativo si \( gf = h \). De manera similar, el diagrama:
+\[
+\begin{tikzcd}
+    A \arrow{r}{f} \arrow[swap]{d}{h} & B \arrow{d}{g} \\
+    C \arrow[swap]{r}{k} & D 
+  \end{tikzcd}
+\]
+es conmutativo si \( kh = gf \). Frecuentemente se trabaja con diagramas más complicados compuestos por varios triángulos y cuadrados como los anteriores. Tal diagrama se dice conmutativo si todo triángulo y cuadrado en él es conmutativo.
+
+Las nociones de inyectividad y sobreyectividad son las usuales. Una aplicación \( f: A \to B \) se dice inyectiva si
+\[
+\forall a, a' \in A, \quad a \neq a' \implies f(a) \neq f(a').
+\]
+
+Una aplicación \( f \) es sobreyectiva si \( f(A) = B \); es decir,
+\[
+\forall b \in B, \quad b = f(a) \text{ para algún } a \in A.
+\]
+
+Una aplicación \( f \) se dice biyectiva si es a la vez inyectiva y sobreyectiva. Se sigue inmediatamente de estas definiciones que, para cualquier clase \( A \), la aplicación identidad \( 1_A: A \to A \) es biyectiva.
+
+Enunciamos ahora el siguiente teorema que permite caracterizar las nociones anteriores en aplicación de inversas por la derecha e izquierda.
+
+\thm{}{inversas-aplicaciones}{
+    Sea \( f: A \to B \) una aplicación, con \( A \neq \emptyset \).
+    \begin{enumerate}
+        \item \( f \) es inyectiva si y solo si existe una aplicación \( g: B \to A \) tal que \( gf = 1_A \).
+
+        \item Si \( A \) es un conjunto, entonces \( f \) es sobreyectiva si y solo si existe una aplicación \( h: B \to A \) tal que \( fh = 1_B \).
+    \end{enumerate}
+}
+
+La aplicación \( g \) del teorema anterior se llama una {inversa por la izquierda} de \( f \), y \( h \) se llama una {inversa por la derecha} de \( f \). Si una aplicación \( f: A \to B \) tiene inversas por ambos lados entonces
+\[
+g = g1_B = g(fh) = (gf)h = 1_A h = h
+\]
+y la aplicación \( g = h \) se llama la {inversa} de \( f \). Este argumento también muestra que la inversa de una aplicación (si existe) es única. Por el Teorema \ref{thm:inversas-aplicaciones}, si \( A \) es un conjunto y \( f: A \to B \) una aplicación, entonces
+\[
+f \text{ es biyectiva} \iff f \text{ tiene inversa por ambos lados}
+\]
+
+La única inversa de una biyección \( f \) se denota \( f^{-1} \); claramente \( f \) es una inversa de \( f^{-1} \), por lo que \( f^{-1} \) también es una biyección.
+
+\rmk{La caracterización de biyectividad como existencia de una inversa es válida incluso cuando \( A \) es una clase propia}
+
+\section{Relaciones}
+
+El \textbf{axioma de formación de pares} establece que para dos conjuntos (elementos) \( a, b \), existe un conjunto \( P = \{a, b\} \) tal que \( x \in P \) si y solo si \( x = a \) o \( x = b \); si \( a = b \), entonces \( P \) es el {conjunto unitario} \( \{a\} \). El {par ordenado} \( (a, b) \) se define como el conjunto \( \{\{a\}, \{a, b\}\} \); su {primera componente} es \( a \) y su {segunda componente} es \( b \). Es fácil verificar que \( (a, b) = (a', b') \) si y solo si \( a = a' \) y \( b = b' \). El {producto cartesiano} de las clases \( A \) y \( B \) es la clase
+\[
+A \times B = \{(a, b) : a \in A, b \in B\}.
+\]
+Nótese que \( A \times \emptyset = \emptyset = \emptyset \times B \).
+
+Una subclase \( R \) de \( A \times B \) se llama una {relación} en \( A \times B \). Por ejemplo, si \( f: A \to B \) es una aplicación, el grafo de \( f \) es la relación \( R = \{(a, f(a)) : a \in A\} \). Como \( f \) es una aplicación, \( R \) tiene la propiedad especial:
+\[
+\text{cada elemento de } A \text{ es la primera componente de uno y solo un par ordenado en } R. \tag{$*$}
+\]
+Recíprocamente, cualquier relación \( R \) en \( A \times B \) que satisfaga $(*)$ determina una única aplicación \( f: A \to B \) cuyo grafo es \( R \) (definiendo \( f(a) = b \), donde \( (a, b) \) es el único par ordenado en \( R \) con primera componente \( a \)). Por esta razón es habitual identificar una aplicación con su grafo, es decir, definir una aplicación como una relación que satisface $(*)$.
+
+Otra ventaja de este enfoque es que permite definir funciones con dominio vacío. Dado que \( \emptyset \times B = \emptyset \) es el único subconjunto de \( \emptyset \times B \) y satisface trivialmente $(*)$, existe una única aplicación \( \emptyset \to B \). También es claro por $(*)$ que solo puede haber una aplicación con rango vacío si el dominio también es vacío.
+
+\clearpage
+\section{Productos}
+
+\textit{En esta sección solo tratamos con conjuntos. No hay clases propias involucradas.}
+\vspace{0.5cm}
+
+Consideremos el producto cartesiano de dos conjuntos \( A_1 \times A_2 \). Un elemento de \( A_1 \times A_2 \) es un par \( (a_1, a_2) \) con \( a_i \in A_i \), \( i = 1, 2 \). Así, el par \( (a_1, a_2) \) determina una aplicación \( f: \{1, 2\} \to A_1 \cup A_2 \) mediante: \( f(1) = a_1 \), \( f(2) = a_2 \). Recíprocamente, toda aplicación \( f: \{1, 2\} \to A_1 \cup A_2 \) con la propiedad de que \( f(1) \in A_1 \) y \( f(2) \in A_2 \) determina un elemento \( (a_1, a_2) = (f(1), f(2)) \) de \( A_1 \times A_2 \). Por lo tanto, no es difícil ver que hay una correspondencia biyectiva entre el conjunto de todas las aplicaciones de este tipo y el conjunto \( A_1 \times A_2 \). Este hecho nos lleva a generalizar la noción de producto cartesiano como sigue.
+
+\defn{Producto}{producto-cartesiano}{
+    Sea \( \{A_i : i \in I\} \) una familia de conjuntos indexada por un conjunto (no vacío) \( I \). El producto (cartesiano) de los conjuntos \( A_i \) es el conjunto de todas las aplicaciones \( f: I \to \bigcup_{i \in I} A_i \) tales que \( f(i) \in A_i \) para todo \( i \in I \). Se denota \( \prod_{i \in I} A_i \).
+}
+
+Si \( I = \{1, 2, \ldots, n\} \), el producto \( \prod_{i \in I} A_i \) a menudo se denota por \( A_1 \times A_2 \times \cdots \times A_n \) y se identifica con el conjunto de todas las \( n \)-tuplas ordenadas \( (a_1, a_2, \ldots, a_n) \), donde \( a_i \in A_i \) para \( i = 1, 2, \ldots, n \), como en el caso mencionado anteriormente donde \( I = \{1, 2\} \). Una notación similar es a menudo conveniente cuando \( I \) es infinito. A veces denotaremos la aplicación \( f \in \prod_{i \in I} A_i \) por \( (a_i)_{i \in I} \) o simplemente \( (a_i) \), donde \( f(i) = a_i \in A_i \) para cada \( i \in I \).
+
+Si algún \( A_i = \emptyset \), entonces \( \prod_{i \in I} A_i = \emptyset \), ya que no puede haber una aplicación \( f: I \to \bigcup A_i \) tal que \( f(i) \in A_i \). Si \( \{A_i : i \in I\} \) y \( \{B_i : i \in I\} \) son familias de conjuntos tales que \( B_i \subset A_i \) para cada \( i \in I \), entonces toda aplicación \( I \to \bigcup B_i \) puede considerarse como una aplicación \( I \to \bigcup_{i \in I} A_i \). Por lo tanto, consideramos \( \prod_{i \in I} B_i \) como un subconjunto de \( \prod_{i \in I} A_i \).
+
+\subsection{Caracterización del producto}
+
+Sea \( \prod_{i \in I} A_i \) un producto cartesiano. Para cada \( k \in I \), definamos una aplicación \( \pi_k: \prod_{i \in I} A_i \to A_k \) mediante \( f \mapsto f(k) \), o en la otra notación, \( (a_i) \mapsto a_k \). \( \pi_k \) se llama la {proyección canónica} del producto sobre su \( k \)-ésima componente. Se deja como ejercicio probar que si cada \( A_i \) es no vacío, entonces cada \( \pi_k \) es sobreyectiva.
+
+
+El producto \( \prod_{i \in I} A_i \) y sus proyecciones son precisamente lo que necesitamos para el siguiente teorema
+
+\thm{Propiedad universal del producto}{prop-universal-producto}{
+    Sea \( \{A_i : i \in I\} \) una familia de conjuntos indexada por \( I \). Entonces existe un conjunto \( D \), junto con una familia de aplicaciones \( \{\pi_i: D \to A_i : i \in I\} \), con la siguiente propiedad: para cualquier conjunto \( C \) y familia de aplicaciones \( \{\varphi_i: C \to A_i : i \in I\} \), existe una única aplicación \( \varphi: C \to D \) tal que \( \pi_i \varphi = \varphi_i \) para todo \( i \in I \). Además, \( D \) está determinado de manera única salvo biyección.
+}
+La última frase significa que si \( D' \) es un conjunto y \( \{\pi_i': D' \to A_i : i \in I\} \) una familia de aplicaciones que tienen la misma propiedad que \( D \) y \( \{\pi_i\} \), entonces existe una biyección \( D \to D' \).
+
+% (Existencia) Sea \( D = \prod_{i \in I} A_i \) y sean las aplicaciones \( \pi_i \) las proyecciones sobre las \( i \)-ésimas componentes. Dado \( C \) y las aplicaciones \( \varphi_i \), definamos \( \varphi: C \to \prod_{i \in I} A_i \) por \( c \mapsto f_c \), donde \( f_c(i) = \varphi_i(c) \in A_i \). Se sigue inmediatamente que \( \pi_i \varphi = \varphi_i \) para todo \( i \in I \). Para mostrar que \( \varphi \) es única, supongamos que \( \varphi': C \to \prod_{i \in I} A_i \) es otra aplicación tal que \( \pi_i \varphi' = \varphi_i \) para todo \( i \in I \) y demostremos que \( \varphi = \varphi' \). Para ello, debemos mostrar que para cada \( c \in C \), \( \varphi(c) \) y \( \varphi'(c) \) son el mismo elemento de \( \prod_{i \in I} A_i \), es decir, \( \varphi(c) \) y \( \varphi'(c) \) coinciden como funciones en \( I \): \( (\varphi(c))(i) = (\varphi'(c))(i) \) para todo \( i \in I \). Pero por hipótesis y la definición de \( \pi_i \), tenemos para todo \( i \in I \):
+% \[
+% (\varphi'(c))(i) = \pi_i \varphi'(c) = \varphi_i(c) = f_c(i) = (\varphi(c))(i).
+% \]
+
+% (Unicidad) Supongamos que \( D' \) (con aplicaciones \( \pi_i': D' \to A_i \)) tiene la misma propiedad que \( D = \prod_{i \in I} A_i \). Si aplicamos esta propiedad (para \( D \)) a la familia de aplicaciones \( \{\pi_i': D' \to A_i\} \) y también la aplicamos (para \( D' \)) a la familia \( \{\pi_i: D \to A_i\} \), obtenemos (únicas) aplicaciones \( \varphi: D' \to D \) y \( \psi: D \to D' \) tales que los siguientes diagramas son conmutativos para cada \( i \in I \):
+
+% \[
+%     \begin{tikzcd}
+%     D \arrow[swap]{dr}{\pi_i} \arrow[dashed]{r}{\psi} & D' \arrow{d}{\pi_i'} \\
+%     & A_i
+%     \end{tikzcd}
+% \]
+
+% \[
+%     \begin{tikzcd}
+%     D' \arrow[swap]{d}{\pi_i'} \arrow[dashed]{r}{\varphi} & D \arrow{dl}{\pi_i} \\
+%     A_i
+%     \end{tikzcd}
+% \]
+
+% Combinando estos, obtenemos para cada \( i \in I \) un diagrama conmutativo:
+
+% \[
+%     \begin{tikzcd}
+%     D \arrow[swap]{d}{\varphi_i} \arrow{r}{\varphi \psi} & D \arrow{dl}{\pi_i} \\
+%     A_i
+%     \end{tikzcd}
+% \]
+
+% Así, \( \varphi \psi: D \to D \) es una aplicación tal que \( \pi_i (\varphi \psi) = \pi_i \) para todo \( i \in I \). Pero por la demostración anterior, hay una única aplicación con esta propiedad. Como la aplicación \( 1_D: D \to D \) también satisface \( \pi_i 1_D = \pi_i \) para todo \( i \in I \), debemos tener \( \varphi \psi = 1_D \) por unicidad. Un argumento similar muestra que \( \psi \varphi = 1_D \). Por lo tanto, \( \varphi \) es una biyección por (13), y \( D = \prod_{i \in I} A_i \) está determinado de manera única salvo biyección.
+
+Nótese que el enunciado del Teorema \ref{thm:prop-universal-producto} no menciona elementos; involucra solo conjuntos y aplicaciones. Establece que el producto \( \prod_{i \in I} A_i \) se caracteriza por una cierta propiedad universal que cumplen todas las aplicaciones. Esta propiedad se resume en el siguiente diagrama conmutativo:
+
+\[
+    \begin{tikzcd}
+    C \arrow[swap]{dr}{\varphi_i} \arrow[dashed]{r}{\varphi} & D \arrow{d}{\pi_i} \\
+    & A_i
+    \end{tikzcd}
+\]

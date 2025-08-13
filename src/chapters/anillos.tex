@@ -199,7 +199,7 @@ Probar que si $x$ es cancelable por la derecha entonces para cualesquiera $a,b \
     \[
     (f \cdot g)(x) = f(x) \cdot g(x)
     \]
-    Si definimos la familia de conjuntos $\{A_i = A : i \in X\}$ entonces es inmediato que $\cup_{i\in X} A_i = A$. Recordemos ahora que el producto $\prod_{i \in X} A_i$ es el conjunto de funciones $f: X \to \cup_{i\in X} A_i$, es decir, el conjunto de funciones $f : X \to A$, luego $A^X$ es un anillo correspondiente a un producto <<infinito>> del anillo $A$ consigo mismo.
+    Si definimos la familia de conjuntos $\{A_i = A : i \in X\}$ entonces es inmediato que $\cup_{i\in X} A_i = A$. Recordemos ahora que el producto $\prod_{i \in X} A_i$ es el conjunto de funciones $f: X \to \cup_{i\in X} A_i$, es decir, el conjunto de funciones $f : X \to A$, luego $A^X$ es un anillo correspondiente a un producto <<infinito>> del anillo $A$ consigo mismo. Para más información ver la Definición \ref{defn:producto-cartesiano}.
 }
 
 \clearpage
@@ -228,7 +228,8 @@ Probar que si $x$ es cancelable por la derecha entonces para cualesquiera $a,b \
     Un \textbf{isomorfismo} es un homomorfismo biyectivo. Dos anillos \(A\) y \(B\) son \textbf{isomorfos} (\(A \cong B\)) si existe un isomorfismo entre ellos.
 }
 
-\clearpage\section{Ideales y anillos cociente}
+\clearpage
+\section{Ideales y anillos cociente}
 
 \defn{Ideal}{ideal}{
     Un subconjunto \(I\) de un anillo \(A\) es un \textbf{ideal} si:
@@ -251,32 +252,33 @@ Probar que si $x$ es cancelable por la derecha entonces para cualesquiera $a,b \
     es un anillo llamado \textbf{anillo cociente} de \(A\) módulo \(I\).
 }
 
-\clearpage\section{Teoremas de isomorfía}
+\clearpage
+\section{Teoremas de isomorfía}
 
 \thmp{Primer teorema de isomorfía}{iso1}{
     Sea \(f: A \to B\) un homomorfismo de anillos. Entonces existe un isomorfismo:
     \[
     A/\ker f \cong \operatorname{Im} f
     \]
-}
+}{}
 
 \thmp{Segundo teorema de isomorfía}{iso2}{
     Sea \(A\) un anillo y \(I \subseteq J\) ideales de \(A\). Entonces:
     \[
     \frac{A/I}{J/I} \cong \frac{A}{J}
     \]
-}
+}{}
 
 \thmp{Tercer teorema de isomorfía}{iso3}{
     Sea \(A\) un anillo, \(B\) un subanillo de \(A\) e \(I\) un ideal de \(A\). Entonces:
     \[
     \frac{B}{B \cap I} \cong \frac{B + I}{I}
     \]
-}
+}{}
 
 \thmp{Teorema chino de los restos}{chino}{
     Sea \(A\) un anillo y \(I_1, \ldots, I_n\) ideales de \(A\) tales que \(I_i + I_j = A\) para todo \(i \neq j\). Entonces:
     \[
     \frac{A}{I_1 \cap \cdots \cap I_n} \cong \frac{A}{I_1} \times \cdots \times \frac{A}{I_n}
     \]
-}
+}{}
