@@ -104,7 +104,7 @@ Probar que si $x$ es cancelable por la derecha entonces para cualesquiera $a,b \
     Sean $A$ un conjunto y sea $X=A^{A}$, el conjunto de las aplicaciones de $A$ en $A$. Probar que la composición de aplicaciones define una operación asociativa en $X$ para la que la identidad $1_{X}$ es neutro. Por tanto $(A^{A},\circ)$ es un monoide.
 }
 
-\prop{}{propiedades-op-conm}{
+\prop{}{prop-operaciones}{
     Sea $*$ una operación en un conjunto $X$.
 
     \begin{enumerate}
@@ -164,16 +164,20 @@ Probar que si $x$ es cancelable por la derecha entonces para cualesquiera $a,b \
     \end{itemize}
 }
 
-\rmk{
-    Como $(A, +)$ es un grupo, todo elemento de A es invertible respecto de la suma y por tanto cancelable. Diremos que un elemento de $A$ es regular en $A$ si es cancelable con respecto al producto. En caso contrario decimos que el elemento es singular en $A$ o divisor de cero.
-}
+Como $(A, +)$ es un grupo, todo elemento de A es invertible respecto de la suma y por tanto cancelable. Diremos que un elemento de $A$ es regular en $A$ si es cancelable con respecto al producto. En caso contrario decimos que el elemento es singular en $A$ o divisor de cero. El termino divisor de cero se justifica por lo siguiente. Supongamos que $x \in A$ no es cancelable respecto al producto, en tal caso existen dos elementos distintos $a \neq b$ tales que $ax = bx$. Pero entonces es inmediato que
+\[
+(a-b)x = 0
+\]
+sin embargo, ni $(a-b)$ ni $x$ son cero, por lo que podemos interpretar que ambos son <<divisores del cero>>.
 
 \subsection{Ejemplos de anillo}
 \ex{
     Los conjuntos $\Z$, $\Q$, $\R$ y $\C$ son anillos conmutativos con la suma y el producto usuales. Notemos que todo elemento no nulo de $\Q$, $\R$ o $\C$ es invertible. Sin embargo en $\Z$ solo hay dos elementos invertibles (1 y -1) aunque todos los elementos son regulares menos el 0.
 }
 \pf{
-    Probaremos que en $\C$ todos los elementos salvo el 0 son invertibles. Sea $z = a + bi$ un número complejo cualquiera no nulo, en tal caso el número $w = \frac{a-bi}{a^2+b^2}$ verifica
+    Demostrar que se trata de anillos conmutativos es muy sencillo, basta comprobar que se verifican todas las propiedades pertinentes.
+    
+    Probaremos que en $\C$ todos los elementos salvo el 0 son invertibles, el resto de afirmaciones quedan como ejercicio. Sea $z = a + bi$ un número complejo cualquiera no nulo, en tal caso el número $w = \frac{a-bi}{a^2+b^2}$ verifica
     \[
     zw = \frac{(a+bi)(a-bi)}{a^2+b^2} = \frac{a^2 -abi +abi -b(-1)}{a^2+b^2} = \frac{a^2+b^2}{a^2+b^2} = 1
     \]
@@ -202,17 +206,135 @@ Probar que si $x$ es cancelable por la derecha entonces para cualesquiera $a,b \
     Si definimos la familia de conjuntos $\{A_i = A : i \in X\}$ entonces es inmediato que $\cup_{i\in X} A_i = A$. Recordemos ahora que el producto $\prod_{i \in X} A_i$ es el conjunto de funciones $f: X \to \cup_{i\in X} A_i$, es decir, el conjunto de funciones $f : X \to A$, luego $A^X$ es un anillo correspondiente a un producto <<infinito>> del anillo $A$ consigo mismo. Para más información ver la Definición \ref{defn:producto-cartesiano}.
 }
 
+\ex{
+    Dado un anillo \( A \), un polinomio en una indeterminada es una expresión:
+    \[
+    P = a_0 + a_1 X + a_2 X^2 + \cdots + a_n X^n,
+    \]
+    donde \( n \geq 0 \) y \( a_i \in A \) para todo \( i \). El conjunto de polinomios con coeficientes en \( A \) se denota \( A[X] \). La suma y producto en \( A[X] \) se definen de la forma usual.
+}
+
+\ex{
+    Dado un anillo \( A \), denotamos por \( A[[X]] \) el conjunto de sucesiones \((a_0, a_1, a_2, \ldots)\) de elementos de \( A \). Con las operaciones:
+    \[
+    (a_0, a_1, \ldots) + (b_0, b_1, \ldots) = (a_0 + b_0, a_1 + b_1, \ldots),
+    \]
+    \[
+    (a_0, a_1, \ldots)(b_0, b_1, \ldots) = (a_0 b_0, a_0 b_1 + a_1 b_0, \ldots),
+    \]
+    \( A[[X]] \) es un anillo llamado anillo de series de potencias con coeficientes en \( A \).
+}
+
+\clearpage
+\subsection{Propiedades de los anillos}
+
+\lemp{}{prop-anillos}{
+    Sea $A$ un anillo y sean $a,b,c \in A$. Se verifican las siguientes propiedades
+    \begin{enumerate}
+        \item Todo elemento de $A$ es cancelable respecto de la suma.
+        \item Todo elemento invertible de $A$ es regular en $A$.
+        \item Si $b + a = a$ entonces $b=0$. Si $ba=a$ para todo $a$, entonces $b=1$. En particular, el cero y uno son únicos.
+        \item El opuesto de $a$ es único y si $a$ es invertible, entonces $a$ tiene un único inverso.
+        \item $0a=0=a0$.
+        \item $a(-b)=(-a)b=-(ab)$.
+        \item $a(b-c)=ab-ac$.
+        \item $a$ y $b$ son invertibles si y solo si $ab$ y $ba$ son invertibles. En tal caso $(ab)^{-1}=b^{-1}a^{-1}$.
+        \item Si $0=1$ entonces $A=\{0\}$.
+    \end{enumerate}
+}{
+    \begin{enumerate}
+        \item Como $A$ es un grupo respecto de la suma todo elemento tiene inverso, y por la Proposición \ref{prop:prop-operaciones} todo elemento invertible (respecto a la suma) es cancelable (respecto a la suma).
+        \item De nuevo por la Proposición \ref{prop:prop-operaciones} todo elemento invertible (respecto al producto) es cancelable (respecto al producto).
+        \item Si $b + a = a$ entonces como $a$ es cancelable por el apartado 1, tenemos $b=0$. Si $ba=a$ para todo $a$, entonces como el neutro es único $b=1$.
+        \item De nuevo se sigue de la Proposición \ref{prop:prop-operaciones}.
+        \item Basta aplicar un pequeño truco
+        \[
+        0a=(0+0)a = 0a + 0a \implies 0 = 0a
+        \]
+        para el caso $a0$ se procede igual.
+        \item Basta notar que
+        \[
+        ab + a(-b) = a(b-b) = 0, ab + (-a)b = (a-a)b = 0 \implies -(ab)=a(-b) = (-a)b 
+        \]
+        ya que los opuestos son únicos.
+        \item $a(b-c)=a(b+(-c))=ab+a(-c)=ab+(-ac)=ab-ac$.
+        \item En primer lugar si $a,b$ son invertibles entonces existen $a^{-1},b^{-1}$ y es fácil ver que
+        \[
+        ab(b^{-1}a^{-1})=e=(b^{-1}a^{-1})ab, ba(a^{-1}b^{-1})=e=(a^{-1}b^{-1})ba
+        \]
+        luego $ab,ba$ son invertibles. Para el recíproco, si $ab,ba$ son invertibles entonces
+        \[
+        a(b(ab)^{-1})=ab(ab)^{-1}=e, ((ba)^{-1}b)a=(ba)^{-1}ba=e
+        \]
+        por tanto, por la Proposición \ref{prop:prop-operaciones} ambos simétricos $b(ab)^{-1},(ba)^{-1}b$ son iguales (ambos son $a^{-1}$) y $a$ es invertible. Para ver que $b$ es invertible se procede igual.
+        \item Si $0=1$ entonces dado $x \in A$ tenemos
+        \[
+        x = x1 = x0 = 0 \implies A=\{0\}.
+        \]
+    \end{enumerate}
+}
+
+Dados un anillo $A$, un elemento $a \in A$ y un entero positivo $n$, la notación $na$ (respectivamente $a^n$) representa el resultado de sumar (respectivamente multiplicar) a consigo mismo $n$ veces, y si $n = 0$ convenimos que $0a = 0$ y $a^0 = 1$. Más rigurosamente, a partir de estas últimas igualdades se definen $na$ y $a^n$ de forma recurrente poniendo $(n + 1)a = a + na$ y $a^{n+1} = aa^n$ para $n \geq 0$. Por último, si $n \geq 1$ se define $(-n)a = -(na)$, y si además $a$ es invertible se define $a^{-n} = (a^{-1})^n$.
+
+\lemp{}{multiplicacion-anillos}{
+    Sea \( A \) un anillo, \( a, b \in A \), y \( m, n \in \mathbb{Z} \). Se verifican:
+    \begin{enumerate}
+        \item \( n (a + b) = n a + n b \).
+        \item \( (n + m) a = n a + m a \).
+        \item Si \( n, m \geq 0 \), entonces \( a^{n + m} = a^n a^m \). Si \( a \) es invertible, la igualdad vale para \( n, m \) arbitrarios.
+        \item Si \( A \) es conmutativo y \( n \geq 0 \), entonces \( (a b)^n = a^n b^n \). Si \( a \) y \( b \) son invertibles, la igualdad vale para todo \( n \).
+    \end{enumerate}
+}{
+    \begin{enumerate}
+        \item Por inducción: el caso base $n=0$ es inmediato, si lo suponemos para $n$ entonces
+        \[
+        (n+1) (a + b) = (a+b)+ n a + n b = (n+1) a + (n+1) b.
+        \]
+        \item Basta aplicar recursivamente que $(n+1)a = a + na$.
+        %%%% Faltan casos < 0 en los dos primeros apartados
+        \item Basta aplicar recursivamente que $a^{n+1} = a a^n$. Si $a$ es invertible entonces podemos usar que $a^{-n}=(a^{-1})^n$ distinguiendo casos. Por ejemplo si $n>0,m<0, n>m$ entonces
+        \[
+        a^{n}a^{m}=a^n(a^{-1})^{-m}=a^{n+m}a^{-m}(a^{-1})^{-m}=a^{n+m}.
+        \]
+        \item Por inducción: el caso base $n=0$ es inmediato, si lo suponemos para $n$ entonces
+        \[
+        (ab)^{n+1}=ab(ab)^n=aba^nb^n=aa^nbb^n=a^{n+1}b^{n+1}.
+        \]
+        Cuando \( a \) y \( b \) son invertibles, si $n<0$
+        \[
+        (ab)^n=((ab)^{-1})^{-n}=(b^{-1}a^{-1})^{-n}=(b^{-1})^{-n}(a^{-1})^{-n}=b^n a^n.
+        \]
+    \end{enumerate}
+}
+
 \clearpage
 \section{Subanillos}
 
+\rmk{A partir de ahora supondremos que todos los anillos serán conmutativos, con lo que por defecto
+cada vez que digamos anillo estaremos suponiendo que se trata de un anillo conmutativo.}
+
+Sea $∗$ una operación en un conjunto $A$ y sea $B$ un subconjunto de $A$. Decimos que $B$ es cerrado con respecto a $∗$ si para todo $a, b \in B$ se verifica que $a ∗ b \in B$. En tal caso podemos
+considerar $∗$ como una operación en $B$ que se dice inducida por la operación en $A$.
+
+Un subsemigrupo de un semigrupo es un subconjunto suyo que con la misma operación es un semigrupo. Un subgrupo de un grupo es un subconjunto suyo que con la misma operación es un grupo. Un submonoide de un monoide es un subconjunto suyo que con la misma operación es un monoide con el mismo neutro.
+
 \defn{Subanillo}{subanillo}{
-    Un subconjunto \(B\) de un anillo \(A\) es un \textbf{subanillo} de \(A\) si:
+    Un subanillo de un anillo es un subconjunto suyo que con la misma suma y producto es un anillo con el mismo uno.
+}
+
+\prop{Caracterización de subanillos}{carac-subanillos}{
+    Las siguientes condiciones son equivalentes para \( B \subseteq A \):
     \begin{enumerate}
-        \item \(B\) contiene al \(1\).
-        \item \(B\) es cerrado para sumas, productos y opuestos.
+    \item \( B \) es un subanillo de \( A \).
+    \item \( B \) contiene al 1 y es un anillo, luego es cerrado para sumas, productos y opuestos.
+    \item \( B \) contiene al 1 y es cerrado para restas y productos.
     \end{enumerate}
-    
-    Equivalentemente, \(B\) es un subanillo si contiene al \(1\) y es cerrado para restas y productos.
+}{
+    $(1) \implies (2)$: Si \( B \) es un subanillo, contiene al 1 y es cerrado para sumas y productos. Además, el cero de \( B \) coincide con el de \( A \), y los opuestos en \( B \) coinciden con los de \( A \).
+
+    \noindent$(2) \implies (3)$: Inmediato.
+
+    \noindent$(3) \implies (1)$: Si \( B \) contiene al 1 y es cerrado para restas, entonces \( 0 = 1 - 1 \in B \), y para \( b \in B \), \(-b = 0 - b \in B \). Además, \( a + b = a - (-b) \in B \), luego \( B \) es cerrado para sumas.
 }
 
 \clearpage\section{Homomorfismos de anillos}
