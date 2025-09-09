@@ -6,7 +6,7 @@
     Sea \(X\) un conjunto. Una operación binaria en \(X\) es una aplicación \(*:X\times X\to X\). Por lo general escribimos \( * (a,b) = a * b\).
 }
 
-\rmk{En general si por el contexto se sobreentiende que una operación es binaria se simplifica el lenguaje hablando simplemente de operaciones. De igual manera normalmente se omite el conjunto sobre el que está definida la operación.}
+\rmk{En general, si por el contexto se sobreentiende que una operación es binaria, se simplifica el lenguaje hablando simplemente de operaciones. De igual manera, normalmente se omite el conjunto sobre el que está definida la operación.}
 
 \defn{Tipos de operaciones}{tipos-op}{
     Una operación $*$ se dice
@@ -35,18 +35,18 @@
 }
 
 \ex{
-    Si $x$ es cancelable por la izquierda entonces para cualesquiera $a,b \in X$ se tiene
+    Si $x$ es cancelable por la izquierda, entonces para cualesquiera $a,b \in X$ se tiene
     \[
     x * a = x * b \implies a = b
     \]
 }
 
 \pf{
-    Supongamos que $x * a = x * b$, si $a = b$ ya hemos terminado. En caso contrario $a$ y $b$ son elementos distintos, y como $x$ es cancelable por la izquierda entonces debe ser $x * a \neq x * b$, pero eso contradice la suposición inicial, luego ha de ser $a = b$.
+    Supongamos que $x * a = x * b$, si $a = b$ ya hemos terminado. En caso contrario, $a$ y $b$ son elementos distintos, y, como $x$ es cancelable por la izquierda, entonces debe ser $x * a \neq x * b$, pero eso contradice la suposición inicial, luego ha de ser $a = b$.
 }
 
 \exer{
-Probar que si $x$ es cancelable por la derecha entonces para cualesquiera $a,b \in X$ se tiene
+Probar que si $x$ es cancelable por la derecha entonces, para cualesquiera $a,b \in X$ se tiene
     \[
     a * x = b * x \implies a = b
     \]
@@ -72,20 +72,18 @@ Probar que si $x$ es cancelable por la derecha entonces para cualesquiera $a,b \
 \ex{
     Si tomamos la suma de elementos sobre distintos conjuntos de números obtenemos un ejemplo de cada uno de los tipos de conjuntos con operaciones:
     \begin{enumerate}
-        \item $(\N,+)$ es un semigrupo.
-        \item $(\Z_{\geq 0},+)$ es un monoide.
-        \item $(\Z,+)$ es un grupo abeliano.
+        \item $(\N \setminus \{ 0 \},+)$ es un semigrupo, ya que la suma es asociativa, pero no tiene neutro.
+        \item $(\N,+)$ es un monoide, ya que la suma es asociativa y tiene el 0 como neutro.
+        \item $(\Z,+)$ es un grupo, ya que la suma es asociativa, tiene neutro y todos los elementos tienen inverso. De hecho, como la suma es conmutativa es un grupo abeliano.
     \end{enumerate}
 }
-
-\clearpage
 
 \ex{
     Un ejemplo de grupo no abeliano es $GL_n(\R)$ si $n \geq 2$. $GL_n(\R)$ es el grupo de las matrices invertibles $n\times n$ con entradas reales, donde la operación es la multiplicación de matrices.
 }
 
 \pf{
-    En primer lugar es inmediato que la operación es asociativa. También es fácil ver que tiene elemento neutro, la matriz identidad $I_n$. Si tomamos una matriz cualquiera $A\in GL_n(\R)$ entonces ha de ser invertible, por lo que su elemento inverso es $A^{-1}$ que claramente pertenece a $GL_n(\R)$.
+    En primer lugar, es inmediato que la operación es asociativa. También es fácil ver que tiene elemento neutro, la matriz identidad $I_n$. Si tomamos una matriz cualquiera $A\in GL_n(\R)$ esta ha de tener inversa, por lo que su elemento inverso es $A^{-1}$ que claramente pertenece a $GL_n(\R)$.
 
     Finalmente, para ver que el grupo no es conmutativo notemos que para $n=2$ podemos tomar las matrices
     \[
@@ -103,7 +101,7 @@ Probar que si $x$ es cancelable por la derecha entonces para cualesquiera $a,b \
 }
 
 \exer{
-    Sean $A$ un conjunto y sea $X=A^{A}$, el conjunto de las aplicaciones de $A$ en $A$. Probar que la composición de aplicaciones define una operación asociativa en $X$ para la que la identidad $1_{X}$ es neutro. Por tanto $(A^{A},\circ)$ es un monoide.
+    Sean $A$ un conjunto y sea $X=A^{A}$ el conjunto de las aplicaciones de $A$ en $A$. Probar que la composición de aplicaciones define una operación asociativa en $X$ para la que la identidad $1_{X}$ es neutro. Esto prueba que $(A^{A},\circ)$ es un monoide.
 }
 
 \prop{}{prop-operaciones}{
@@ -272,6 +270,8 @@ En términos de grupos de transformaciones, el grupo trivial de $X$ es el grupo 
 }
 
 En términos de grupos de transformaciones, el grupo de permutaciones de $X$ es el grupo de transformaciones más grande que podemos construir. Probemos ahora que en efecto es un grupo.
+
+\vspace{10pt}
 
 \pf{
     Prescindiremos del uso de $\circ$ para simplificar la notación.
