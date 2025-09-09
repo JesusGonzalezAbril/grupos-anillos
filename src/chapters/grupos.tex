@@ -175,7 +175,11 @@ Una colección de transformaciones de un conjunto se llama \textit{grupo de tran
 
 El concepto de grupo de transformaciones es uno de los más fundamentales en toda la matemática y al mismo tiempo uno de los más simples: la mente humana piensa naturalmente en términos de invariantes de grupos de transformaciones (esto está conectado tanto con el aparato visual como con nuestro poder de abstracción).
 
-Sea $A$ un grupo de transformaciones en el conjunto $X$. La multiplicación y la inversión definen aplicaciones $A\times A\to A$ y $A\to A$ (el par $(f,g)$ va a $fg$, y el elemento $g$ a $g^{-1}$). Un conjunto $A$ dotado de estas dos aplicaciones se llama \textit{grupo}. Así, un \textit{grupo} se obtiene de un \textit{grupo de transformaciones} simplemente ignorando el conjunto que se transforma.
+Sea $A$ un grupo de transformaciones en el conjunto $X$. La multiplicación y la inversión definen dos aplicaciones
+\[
+* : A \times A \to A, \qquad (\cdot)^{-1} : A\to A
+\]
+(el par $(f,g)$ va a $fg$, y el elemento $g$ a $g^{-1}$). Un conjunto $A$ dotado de estas dos aplicaciones se llama \textit{grupo}. Así, un \textit{grupo} se obtiene de un \textit{grupo de transformaciones} simplemente ignorando el conjunto que se transforma.
 
 \clearpage
 \section{Definiciones y ejemplos}
@@ -258,7 +262,7 @@ Demostraremos ahora algunas propiedades de los grupos.
 % }
 
 \ex{
-    Sea \(X\) un conjunto y consideremos la aplicación identidad $id: X \to X$ tal que $id(x) = x$ para todo $x \in X$. Entonces el conjunto $T = \{id\}$ con la operación de composición es un grupo $(T, \circ)$ que llamaremos el grupo trivial (lo denotaremos $1$).
+    Sea \(X\) un conjunto y consideremos la aplicación identidad $1_X: X \to X$ tal que $1_X(x) = x$ para todo $x \in X$. Entonces el conjunto $T = \{1_X\}$ con la operación de composición es un grupo $(T, \circ)$ que llamaremos el grupo trivial (lo denotaremos $1$).
     
     En general, podríamos haber definido este grupo como un único elemento $\{x\}$ con la operación descrita por $x \cdot x = x$.
 }
@@ -302,6 +306,8 @@ En términos de grupos de transformaciones, el grupo de permutaciones de $X$ es 
 }
 
 Probemos que el producto directo de dos grupos es un grupo:
+
+\vspace{10pt}
 
 \pf{
     \begin{enumerate}
