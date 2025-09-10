@@ -261,6 +261,8 @@ Demostraremos ahora algunas propiedades de los grupos.
 %     \]
 % }
 
+\subsection{Ejemplos}
+
 \ex{
     Sea \(X\) un conjunto y consideremos la aplicación identidad $1_X: X \to X$ tal que $1_X(x) = x$ para todo $x \in X$. Entonces el conjunto $T = \{1_X\}$ con la operación de composición es un grupo $(T, \circ)$ que llamaremos el grupo trivial (lo denotaremos $1$).
     
@@ -356,6 +358,8 @@ Probemos que el producto directo de dos grupos es un grupo:
     \end{center}
 }
 
+\subsection{El grupo diédrico}
+
 Veamos ahora un grupo con especial significado geométrico. Consideremos un polígono regular de \(n\) lados y las transformaciones que lo dejan invariantes (rotaciones y reflexiones), a las que llamaremos simetrías. La composición de dos simetrías de un polígono regular es nuevamente una simetría de este objeto. Considerando la composición de simetrías como operación binaria, esto le da a las simetrías la estructura algebraica de un grupo finito.
 
 La siguiente tabla de Cayley muestra el efecto de la composición en el grupo diédrico de orden 6, \(D_3\) -- las simetrías de un triángulo equilátero. Aquí, \(r_0\) denota la identidad, \(r_1\) y \(r_2\) denotan rotaciones en sentido antihorario de \(120^\circ\) y \(240^\circ\) respectivamente, mientras que \(s_0\), \(s_1\) y \(s_2\) denotan reflexiones a través de las tres líneas mostradas en la imagen adyacente.
@@ -377,8 +381,6 @@ s_2 & s_2 & s_1 & s_0 & r_2 & r_1 & r_0 \\
 \end{array}
 \]
 
-
-
 Por ejemplo, \(s_2 s_1 = r_1\), porque la reflexión \(s_1\) seguida de la reflexión \(s_2\) resulta en una rotación de \(120^\circ\). El orden de los elementos que denotan la composición es de derecha a izquierda, reflejando la convención de que el elemento actúa sobre la expresión a su derecha. La operación de composición no es conmutativa.
 
 \clearpage
@@ -398,6 +400,8 @@ El siguiente ejemplo abstrae y generaliza el concepto de grupo diédrico prescin
 
     El {grupo diédrico infinito} \(D_\infty\) está formado por elementos de la forma \(a^n b^m\), con \(n \in \mathbb{Z}\) y \(m = 0, 1\) con el producto \((a^{i_1} b^{j_1})(a^{i_2} b^{j_2}) = a^{i_1 + (-1)^{j_1} i_2} b^{[j_1 + j_2]_2}\).
 }
+
+Si ahora consideramos únicamente las rotaciones que dejan invariante un polígono de \(n\) lados obtenemos otro grupo, en este caso con \(n\) elementos, cada uno de ellos correspondiente a rotar por un múltiplo de $\frac{360^\circ}{n}$. El siguiente ejemplo abstrae este grupo de rotaciones.
 
 \ex{
     Para cada número natural positivo \(n\) definimos un grupo \(C_n\) formado por \(n\) elementos
