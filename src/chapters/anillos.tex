@@ -34,7 +34,7 @@ sin embargo, ni $(a-b)$ ni $x$ son cero, por lo que podemos interpretar que ambo
 
 \subsection{Ejemplos de anillo}
 \ex{
-    Los conjuntos $\Z$, $\Q$, $\R$ y $\C$ son anillos conmutativos con la suma y el producto usuales. Notemos que todo elemento no nulo de $\Q$, $\R$ o $\C$ es invertible. Sin embargo en $\Z$ solo hay dos elementos invertibles (1 y -1) aunque todos los elementos son regulares menos el 0.
+    Los conjuntos $\Z$, $\Q$, $\R$ y $\C$ son anillos conmutativos con la suma y el producto usuales. Notemos que todo elemento no nulo de $\Q$, $\R$ o $\C$ es invertible. Sin embargo, en $\Z$ solo hay dos elementos invertibles (1 y -1) aunque todos los elementos son regulares menos el 0.
 }
 \pf{
     Demostrar que se trata de anillos conmutativos es muy sencillo, basta comprobar que se verifican todas las propiedades pertinentes.
@@ -43,7 +43,7 @@ sin embargo, ni $(a-b)$ ni $x$ son cero, por lo que podemos interpretar que ambo
     \[
     zw = \frac{(a+bi)(a-bi)}{a^2+b^2} = \frac{a^2 -abi +abi -b(-1)}{a^2+b^2} = \frac{a^2+b^2}{a^2+b^2} = 1
     \]
-    luego $w = z^{-1}$.
+    luego $w = z^{-1}$ y por tanto $z$ tiene inverso.
 }
 
 \ex{
@@ -56,6 +56,8 @@ sin embargo, ni $(a-b)$ ni $x$ son cero, por lo que podemos interpretar que ambo
     \]
     Obsérvese que $A \times B$ es conmutativo si y solo si lo son $A$ y $B$, y que esta construcción se puede generalizar a productos cartesianos de cualquier familia (finita o no) de anillos.
 }
+
+\clearpage
 
 \ex{
     Dados un anillo $A$ y un conjunto $X$, el conjunto $A^X$ de las aplicaciones de $X$ en $A$ es un anillo con las siguientes operaciones:
@@ -172,13 +174,10 @@ Dados un anillo $A$, un elemento $a \in A$ y un entero positivo $n$, la notació
 \clearpage
 \section{Subanillos}
 
-\rmk{A partir de ahora supondremos que todos los anillos serán conmutativos, con lo que por defecto
-cada vez que digamos anillo estaremos suponiendo que se trata de un anillo conmutativo.}
+\rmk{A partir de ahora supondremos que todos los anillos que aparecen son conmutativos.}
 
-Sea $∗$ una operación en un conjunto $A$ y sea $B$ un subconjunto de $A$. Decimos que $B$ es cerrado con respecto a $∗$ si para todo $a, b \in B$ se verifica que $a ∗ b \in B$. En tal caso podemos
-considerar $∗$ como una operación en $B$ que se dice inducida por la operación en $A$.
-
-Un subsemigrupo de un semigrupo es un subconjunto suyo que con la misma operación es un semigrupo. Un subgrupo de un grupo es un subconjunto suyo que con la misma operación es un grupo. Un submonoide de un monoide es un subconjunto suyo que con la misma operación es un monoide con el mismo neutro.
+Sea $*$ una operación en un conjunto $A$ y sea $B$ un subconjunto de $A$. Decimos que $B$ es cerrado con respecto a $*$ si para todo $a, b \in B$ se verifica que $a * b \in B$. En tal caso podemos
+considerar $*$ como una operación en $B$ que se dice inducida por la operación en $A$.
 
 \defn{Subanillo}{subanillo}{
     Un subanillo de un anillo es un subconjunto suyo que con la misma suma y producto es un anillo con el mismo uno.
@@ -192,12 +191,21 @@ Un subsemigrupo de un semigrupo es un subconjunto suyo que con la misma operaci�
     \item \( B \) contiene al 1 y es cerrado para restas y productos.
     \end{enumerate}
 }{
-    $(1) \implies (2)$: Si \( B \) es un subanillo, contiene al 1 y es cerrado para sumas y productos. Además, el cero de \( B \) coincide con el de \( A \), y los opuestos en \( B \) coinciden con los de \( A \).
+    $(1) \implies (2)$: Si \( B \) es un subanillo de \(A\) entonces contiene al 1 y es cerrado para sumas y productos. Por otro lado, como $B$ es un anillo, tiene un cero, que de momento denotamos $0_B$ y cada elemento $b \in B$ tiene un opuesto en $B$. En realidad $0_B + 0_B = 0_B = 0 + 0_B$, con lo que aplicando la propiedad cancelativa de la suma deducimos que $0_B = 0$, o sea, el cero de $A$ está en $B$ y por tanto es el cero de B (el único que puede tener). Por la unicidad del opuesto, el opuesto de $b$ ha de ser el de $A$, con lo que $B$ es cerrado para opuestos.
 
     \noindent$(2) \implies (3)$: Inmediato.
 
-    \noindent$(3) \implies (1)$: Si \( B \) contiene al 1 y es cerrado para restas, entonces \( 0 = 1 - 1 \in B \), y para \( b \in B \), \(-b = 0 - b \in B \). Además, \( a + b = a - (-b) \in B \), luego \( B \) es cerrado para sumas.
+    \noindent$(3) \implies (1)$: Si \( B \) contiene al 1 y es cerrado para restas, entonces \( 0 = 1 - 1 \in B \), y para \( b \in B \), \(-b = 0 - b \in B \). Además, \( a + b = a - (-b) \in B \), luego \( B \) es cerrado para sumas, por tanto, es un subanillo de $A$.
 }
+
+\ex{
+    Todo anillo $A$ es un subanillo de si mismo, al que llamamos impropio por oposición al resto de subanillos, que se dicen propios.
+}
+
+\ex{
+    En la cadena de contenciones $\Z \subset \Q \subset \R \subset \C$ cada uno es un subanillo de los posteriores.
+}
+
 
 \clearpage\section{Homomorfismos de anillos}
 
