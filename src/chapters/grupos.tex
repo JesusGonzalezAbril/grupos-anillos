@@ -328,6 +328,78 @@ Probemos que el producto directo de dos grupos es un grupo:
 \clearpage
 
 \ex{
+    Dado un grupo finito podemos construir lo que llamaremos su tabla de Cayley (también llamada tabla de multiplicación o de suma, dependiendo del nombre que le demos a la operación del grupo). Esta tabla se obtiene disponiendo cada uno de los elementos del grupo tanto por columnas como por filas y calculando sus productos. Si el grupo tiene 2 elementos $a,b$ la tabla será de la forma:
+    \begin{center}
+        \begin{tabular}{c | c | c}
+            $\cdot$ & $a$ & $b$ \\
+            \hline
+            $a$ & $a \cdot a$ & $a \cdot b$  \\ 
+            \hline
+            $b$ & $b \cdot a$ & $b \cdot b$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    Como ejemplo concreto, la tabla del grupo $\Z_3$ (enteros módulo 3) es la siguiente:
+    \vspace{10pt}
+    \begin{center}
+        \begin{tabular}{c | c | c | c}
+            $+$ & $0$ & $1$ & $2$ \\
+            \hline
+            $0$ & $0$ & $1$ & $2$ \\ 
+            \hline
+            $1$ & $1$ & $2$ & $0$ \\ 
+            \hline
+            $2$ & $2$ & $0$ & $1$ \\ 
+            \hline
+        \end{tabular}
+    \end{center}
+}
+
+Veamos ahora un grupo con especial significado geométrico. Consideremos un polígono regular de \(n\) lados y las transformaciones que lo dejan invariantes (rotaciones y reflexiones), a las que llamaremos simetrías. La composición de dos simetrías de un polígono regular es nuevamente una simetría de este objeto. Considerando la composición de simetrías como operación binaria, esto le da a las simetrías la estructura algebraica de un grupo finito.
+
+La siguiente tabla de Cayley muestra el efecto de la composición en el grupo diédrico de orden 6, \(D_3\) -- las simetrías de un triángulo equilátero. Aquí, \(r_0\) denota la identidad, \(r_1\) y \(r_2\) denotan rotaciones en sentido antihorario de \(120^\circ\) y \(240^\circ\) respectivamente, mientras que \(s_0\), \(s_1\) y \(s_2\) denotan reflexiones a través de las tres líneas mostradas en la imagen adyacente.
+
+\begin{wrapfigure}{R}{5cm}
+    \includegraphics[width=5cm]{src/img/diedrico.png}
+\end{wrapfigure}
+
+\[
+\begin{array}{c|cccccc}
+\circ & r_0 & r_1 & r_2 & s_0 & s_1 & s_2 \\
+\hline
+r_0 & r_0 & r_1 & r_2 & s_0 & s_1 & s_2 \\
+r_1 & r_1 & r_2 & r_0 & s_1 & s_2 & s_0 \\
+r_2 & r_2 & r_0 & r_1 & s_2 & s_0 & s_1 \\
+s_0 & s_0 & s_2 & s_1 & r_0 & r_2 & r_1 \\
+s_1 & s_1 & s_0 & s_2 & r_1 & r_0 & r_2 \\
+s_2 & s_2 & s_1 & s_0 & r_2 & r_1 & r_0 \\
+\end{array}
+\]
+
+
+
+Por ejemplo, \(s_2 s_1 = r_1\), porque la reflexión \(s_1\) seguida de la reflexión \(s_2\) resulta en una rotación de \(120^\circ\). El orden de los elementos que denotan la composición es de derecha a izquierda, reflejando la convención de que el elemento actúa sobre la expresión a su derecha. La operación de composición no es conmutativa.
+
+\clearpage
+
+El siguiente ejemplo abstrae y generaliza el concepto de grupo diédrico prescindiendo de la interpretación geométrica.
+
+\ex{
+    Para cada número natural positivo \(n\) definimos un grupo formado por \(2n\) elementos
+    \[
+    D_n = \{1, a, a^2, \ldots, a^{n-1}, b, ab, a^2b, \ldots, a^{n-1}b\}
+    \]
+    en el que la multiplicación viene dada por la siguiente regla:
+    \[
+    (a^{i_1} b^{j_1})(a^{i_2} b^{j_2}) = a^{[i_1 + (-1)^{j_1} i_2]_n} b^{[j_1 + j_2]_2}
+    \]
+    con notación como en el ejemplo anterior. Este grupo se llama {grupo diédrico de orden \(2n\)}.
+
+    El {grupo diédrico infinito} \(D_\infty\) está formado por elementos de la forma \(a^n b^m\), con \(n \in \mathbb{Z}\) y \(m = 0, 1\) con el producto \((a^{i_1} b^{j_1})(a^{i_2} b^{j_2}) = a^{i_1 + (-1)^{j_1} i_2} b^{[j_1 + j_2]_2}\).
+}
+
+\ex{
     Para cada número natural positivo \(n\) definimos un grupo \(C_n\) formado por \(n\) elementos
     \[
     C_n = \{1, a, a^2, \ldots, a^{n-1}\},
@@ -345,16 +417,6 @@ Probemos que el producto directo de dos grupos es un grupo:
     Es fácil notar la similitud entre $C_n$ y $\Z_n$, así como entre $C_\infty$ y $\Z$. Más tarde formalizaremos esta intuición probando que estos grupos son equivalentes (isomorfos).
 }
 
-\ex{
-    Para cada número natural positivo \(n\) definimos un grupo formado por \(2n\) elementos
-    \[
-    D_n = \{1, a, a^2, \ldots, a^{n-1}, b, ab, a^2b, \ldots, a^{n-1}b\}
-    \]
-    en el que la multiplicación viene dada por la siguiente regla:
-    \[
-    (a^{i_1} b^{j_1})(a^{i_2} b^{j_2}) = a^{[i_1 + (-1)^{j_1} i_2]_n} b^{[j_1 + j_2]_2}
-    \]
-    con notación como en el ejemplo anterior. Este grupo se llama {grupo diédrico de orden \(2n\)}.
-
-    El {grupo diédrico infinito} \(D_\infty\) está formado por elementos de la forma \(a^n b^m\), con \(n \in \mathbb{Z}\) y \(m = 0, 1\) con el producto \((a^{i_1} b^{j_1})(a^{i_2} b^{j_2}) = a^{i_1 + (-1)^{j_1} i_2} b^{[j_1 + j_2]_2}\).
+\exer{
+    Construir la tabla de Cayley de $C_5$.
 }
