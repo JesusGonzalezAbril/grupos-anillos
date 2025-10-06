@@ -1,62 +1,52 @@
-\documentclass[oneside]{book}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Modern Notes Template
+% Author: Jesús González Abril
+%
+% Custom environments:
+%   definition, theorem, lemma, corollary
+%     - All share a common numbering scheme, reset by section.
+%     - Styled with upright body text (definition style).
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage[spanish]{babel}
-\usepackage{amsmath, amsthm, amssymb, amsfonts, tikz-cd, tikz, wrapfig}
+\documentclass{report}
 
-\usepackage{geometry}
-\usepackage{float}
-\usepackage{graphicx}
+\usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm,marginparwidth=2cm]{geometry} % Page dimensions
 
-% Custom color boxes
-\usepackage{framed}
-\usepackage{tcolorbox}
-\tcbuselibrary{theorems,skins,breakable}
-
-% References and bibliography
+\usepackage[english]{babel}
+\usepackage{amsmath} 
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage[backend=biber,style=alphabetic,sorting=ynt]{biblatex}
-\addbibresource{src/bibliography.bib}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz-cd, tikz}
 
-% Variables
-\def\notetitle{Infierno y Purgatorio\\ Saga de la Divina comedia}
-\def\noteauthor{
-    \textbf{Jesús González Abril}
+\usepackage[T1]{fontenc}
+\usepackage{palatino}
+\usepackage{euler} % Custom math font
+
+\input{theorems.tex}
+\input{commands.tex}
+
+\title{
+    Infierno y Purgatorio\\ Saga de la Divina Comedia \\
+    \vspace{1cm} \large Universidad de Murcia
 }
-\def\notedate{Curso 2025-2026}
 
-% The theorem system and user-defined commands
-\input{src/theorems.tex}
-\input{src/commands.tex}
-
-% Document
+\author{Jesús González Abril}
+\date{\today}
 
 \begin{document}
 
-% Title page
-\title{
-    \textbf{\LARGE{\notetitle}} \vspace*{10\baselineskip}
-    }
-\author{\noteauthor}
-\date{\notedate}
-
 \maketitle
-\clearpage
 
-% Table of contents
 \tableofcontents
-\clearpage
 
-% Chapters
+\input{chapters/1_grupos}
 
-\input{src/chapters/grupos}
+\input{chapters/2_anillos}
 
-\input{src/chapters/anillos}
-\input{src/chapters/appendixA}
-
-% Bibliography
-\nocite{*}
-\printbibliography[
-    heading=bibintoc
-]
+\input{chapters/appendixA}
 
 \end{document}

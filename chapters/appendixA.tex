@@ -20,9 +20,9 @@ x \in A \iff (x \text{ es un conjunto} \land x \text{ es verdadero})
 \]
 en tal caso denotamos a la clase $A$ como $\{x : P(x)\}$, llamada clase de todos los $x$ tal que se cumple $P(x)$. En ocasiones podemos describir una clase listando sus elementos: $\{a,b,c\}$.
 
-\ex{
+\begin{example}
     Consideremos la clase \( M = \{X : X \text{ es un conjunto y } X \notin X\} \). La afirmación \( X \notin X \) tiene sentido como predicado, de hecho muchos conjuntos la satisfacen (por ejemplo, el conjunto de todos los libros no es un libro). Veamos que \( M \) es una clase propia. En efecto, si \( M \) fuera un conjunto, entonces tendríamos que \( M \in M \) o \( M \notin M \). Pero por la definición de \( M \), \( M \in M \) implica \( M \notin M \) y \( M \notin M \) implica \( M \in M \). Así, en ambos casos, la suposición de que \( M \) es un conjunto lleva a una contradicción: \( M \in M \) y \( M \notin M \).
-}
+\end{example}
 
 Una clase $A$ es una subclase de una clase $B$, $A \subset B$ si 
 \[
@@ -94,14 +94,14 @@ Una aplicación \( f \) se dice biyectiva si es a la vez inyectiva y sobreyectiv
 
 Enunciamos ahora el siguiente teorema que permite caracterizar las nociones anteriores en aplicación de inversas por la derecha e izquierda.
 
-\thm{}{inversas-aplicaciones}{
+\begin{theorem}{}{inversas-aplicaciones}
     Sea \( f: A \to B \) una aplicación, con \( A \neq \emptyset \).
     \begin{enumerate}
         \item \( f \) es inyectiva si y solo si existe una aplicación \( g: B \to A \) tal que \( gf = 1_A \).
 
         \item Si \( A \) es un conjunto, entonces \( f \) es sobreyectiva si y solo si existe una aplicación \( h: B \to A \) tal que \( fh = 1_B \).
     \end{enumerate}
-}
+\end{theorem}
 
 La aplicación \( g \) del teorema anterior se llama una {inversa por la izquierda} de \( f \), y \( h \) se llama una {inversa por la derecha} de \( f \). Si una aplicación \( f: A \to B \) tiene inversas por ambos lados entonces
 \[
@@ -114,7 +114,9 @@ f \text{ es biyectiva} \iff f \text{ tiene inversa por ambos lados}
 
 La única inversa de una biyección \( f \) se denota \( f^{-1} \); claramente \( f \) es una inversa de \( f^{-1} \), por lo que \( f^{-1} \) también es una biyección.
 
-\rmk{La caracterización de biyectividad como existencia de una inversa es válida incluso cuando \( A \) es una clase propia}
+\begin{remark}
+    La caracterización de biyectividad como existencia de una inversa es válida incluso cuando \( A \) es una clase propia
+\end{remark}
 
 \section{Relaciones}
 
@@ -140,59 +142,59 @@ Otra ventaja de este enfoque es que permite definir funciones con dominio vacío
 
 Consideremos el producto cartesiano de dos conjuntos \( A_1 \times A_2 \). Un elemento de \( A_1 \times A_2 \) es un par \( (a_1, a_2) \) con \( a_i \in A_i \), \( i = 1, 2 \). Así, el par \( (a_1, a_2) \) determina una aplicación \( f: \{1, 2\} \to A_1 \cup A_2 \) mediante: \( f(1) = a_1 \), \( f(2) = a_2 \). Recíprocamente, toda aplicación \( f: \{1, 2\} \to A_1 \cup A_2 \) con la propiedad de que \( f(1) \in A_1 \) y \( f(2) \in A_2 \) determina un elemento \( (a_1, a_2) = (f(1), f(2)) \) de \( A_1 \times A_2 \). Por lo tanto, no es difícil ver que hay una correspondencia biyectiva entre el conjunto de todas las aplicaciones de este tipo y el conjunto \( A_1 \times A_2 \). Este hecho nos lleva a generalizar la noción de producto cartesiano como sigue.
 
-\defn{Producto}{producto-cartesiano}{
+\begin{definition}{Producto}{producto-cartesiano}
     Sea \( \{A_i : i \in I\} \) una familia de conjuntos indexada por un conjunto (no vacío) \( I \). El producto (cartesiano) de los conjuntos \( A_i \) es el conjunto de todas las aplicaciones \( f: I \to \bigcup_{i \in I} A_i \) tales que \( f(i) \in A_i \) para todo \( i \in I \). Se denota \( \prod_{i \in I} A_i \).
-}
+\end{definition}
 
-Si \( I = \{1, 2, \ldots, n\} \), el producto \( \prod_{i \in I} A_i \) a menudo se denota por \( A_1 \times A_2 \times \cdots \times A_n \) y se identifica con el conjunto de todas las \( n \)-tuplas ordenadas \( (a_1, a_2, \ldots, a_n) \), donde \( a_i \in A_i \) para \( i = 1, 2, \ldots, n \), como en el caso mencionado anteriormente donde \( I = \{1, 2\} \). Una notación similar es a menudo conveniente cuando \( I \) es infinito. A veces denotaremos la aplicación \( f \in \prod_{i \in I} A_i \) por \( (a_i)_{i \in I} \) o simplemente \( (a_i) \), donde \( f(i) = a_i \in A_i \) para cada \( i \in I \).
+Si \( I = \{1, 2, \ldots, n\} \), el producto \( \prod_{i \in I} A_i \) a menudo se denota por \( A_1 \times A_2 \times \cdots \times A_n \) y se identifica con el conjunto de todas las \( n \)-tuplas ordenadas \( (a_1, a_2, \ldots, a_n) \), donde \( a_i \in A_i \) para $i = 1, 2, \ldots, n$, como en el caso mencionado anteriormente donde $I = \{1, 2\}$. Una notación similar es a menudo conveniente cuando $I$ es infinito. A veces denotaremos la aplicación $f \in \prod_{i \in I} A_i$ por $(a_i)_{i \in I}$ o simplemente $(a_i)$, donde $f(i) = a_i \in A_i$ para cada $i \in I$.
 
-Si algún \( A_i = \emptyset \), entonces \( \prod_{i \in I} A_i = \emptyset \), ya que no puede haber una aplicación \( f: I \to \bigcup A_i \) tal que \( f(i) \in A_i \). Si \( \{A_i : i \in I\} \) y \( \{B_i : i \in I\} \) son familias de conjuntos tales que \( B_i \subset A_i \) para cada \( i \in I \), entonces toda aplicación \( I \to \bigcup B_i \) puede considerarse como una aplicación \( I \to \bigcup_{i \in I} A_i \). Por lo tanto, consideramos \( \prod_{i \in I} B_i \) como un subconjunto de \( \prod_{i \in I} A_i \).
+Si algún $A_i = \emptyset$, entonces $\prod_{i \in I} A_i = \emptyset$, ya que no puede haber una aplicación $f: I \to \bigcup A_i$ tal que $f(i) \in A_i$. Si $\{A_i : i \in I\}$ y $\{B_i : i \in I\}$ son familias de conjuntos tales que $B_i \subset A_i$ para cada $i \in I$, entonces toda aplicación $I \to \bigcup B_i$ puede considerarse como una aplicación $I \to \bigcup_{i \in I} A_i$. Por lo tanto, consideramos $\prod_{i \in I} B_i$ como un subconjunto de $\prod_{i \in I} A_i$.
 
 \subsection{Caracterización del producto}
 
-Sea \( \prod_{i \in I} A_i \) un producto cartesiano. Para cada \( k \in I \), definamos una aplicación \( \pi_k: \prod_{i \in I} A_i \to A_k \) mediante \( f \mapsto f(k) \), o en la otra notación, \( (a_i) \mapsto a_k \). \( \pi_k \) se llama la {proyección canónica} del producto sobre su \( k \)-ésima componente. Se deja como ejercicio probar que si cada \( A_i \) es no vacío, entonces cada \( \pi_k \) es sobreyectiva.
+Sea $\prod_{i \in I} A_i$ un producto cartesiano. Para cada $k \in I$, definamos una aplicación $\pi_k: \prod_{i \in I} A_i \to A_k$ mediante $f \mapsto f(k)$, o en la otra notación, $(a_i) \mapsto a_k$. $\pi_k$ se llama la {proyección canónica} del producto sobre su $k$-ésima componente. Se deja como ejercicio probar que si cada $A_i$ es no vacío, entonces cada $\pi_k$ es sobreyectiva.
 
+El producto $\prod_{i \in I} A_i$ y sus proyecciones son precisamente lo que necesitamos para el siguiente teorema
 
-El producto \( \prod_{i \in I} A_i \) y sus proyecciones son precisamente lo que necesitamos para el siguiente teorema
+\begin{theorem}{Propiedad universal del producto}{prop-universal-producto}
+    Sea $\{A_i : i \in I\}$ una familia de conjuntos indexada por $I$. Entonces existe un conjunto $D$, junto con una familia de aplicaciones $\{\pi_i: D \to A_i : i \in I\}$, con la siguiente propiedad: para cualquier conjunto $C$ y familia de aplicaciones $\{\varphi_i: C \to A_i : i \in I\}$, existe una única aplicación $\varphi: C \to D$ tal que $\pi_i \varphi = \varphi_i$ para todo $i \in I$. Además, $D$ está determinado de manera única salvo biyección.
+\end{theorem}
 
-\thm{Propiedad universal del producto}{prop-universal-producto}{
-    Sea \( \{A_i : i \in I\} \) una familia de conjuntos indexada por \( I \). Entonces existe un conjunto \( D \), junto con una familia de aplicaciones \( \{\pi_i: D \to A_i : i \in I\} \), con la siguiente propiedad: para cualquier conjunto \( C \) y familia de aplicaciones \( \{\varphi_i: C \to A_i : i \in I\} \), existe una única aplicación \( \varphi: C \to D \) tal que \( \pi_i \varphi = \varphi_i \) para todo \( i \in I \). Además, \( D \) está determinado de manera única salvo biyección.
-}
-La última frase significa que si \( D' \) es un conjunto y \( \{\pi_i': D' \to A_i : i \in I\} \) una familia de aplicaciones que tienen la misma propiedad que \( D \) y \( \{\pi_i\} \), entonces existe una biyección \( D \to D' \).
+La última frase significa que si $D'$ es un conjunto y $\{\pi_i': D' \to A_i : i \in I\}$ una familia de aplicaciones que tienen la misma propiedad que $D$ y $\{\pi_i\}$, entonces existe una biyección $D \to D'$.
 
-% (Existencia) Sea \( D = \prod_{i \in I} A_i \) y sean las aplicaciones \( \pi_i \) las proyecciones sobre las \( i \)-ésimas componentes. Dado \( C \) y las aplicaciones \( \varphi_i \), definamos \( \varphi: C \to \prod_{i \in I} A_i \) por \( c \mapsto f_c \), donde \( f_c(i) = \varphi_i(c) \in A_i \). Se sigue inmediatamente que \( \pi_i \varphi = \varphi_i \) para todo \( i \in I \). Para mostrar que \( \varphi \) es única, supongamos que \( \varphi': C \to \prod_{i \in I} A_i \) es otra aplicación tal que \( \pi_i \varphi' = \varphi_i \) para todo \( i \in I \) y demostremos que \( \varphi = \varphi' \). Para ello, debemos mostrar que para cada \( c \in C \), \( \varphi(c) \) y \( \varphi'(c) \) son el mismo elemento de \( \prod_{i \in I} A_i \), es decir, \( \varphi(c) \) y \( \varphi'(c) \) coinciden como funciones en \( I \): \( (\varphi(c))(i) = (\varphi'(c))(i) \) para todo \( i \in I \). Pero por hipótesis y la definición de \( \pi_i \), tenemos para todo \( i \in I \):
-% \[
-% (\varphi'(c))(i) = \pi_i \varphi'(c) = \varphi_i(c) = f_c(i) = (\varphi(c))(i).
-% \]
+(Existencia) Sea $D = \prod_{i \in I} A_i$ y sean las aplicaciones $\pi_i$ las proyecciones sobre las $i$-ésimas componentes. Dado $C$ y las aplicaciones $\varphi_i$, definamos $\varphi: C \to \prod_{i \in I} A_i$ por $c \mapsto f_c$, donde $f_c(i) = \varphi_i(c) \in A_i$. Se sigue inmediatamente que $\pi_i \varphi = \varphi_i$ para todo $i \in I$. Para mostrar que $\varphi$ es única, supongamos que $\varphi': C \to \prod_{i \in I} A_i$ es otra aplicación tal que $\pi_i \varphi' = \varphi_i$ para todo $i \in I$ y demostremos que $\varphi = \varphi'$. Para ello, debemos mostrar que para cada $c \in C$, $\varphi(c)$ y $\varphi'(c)$ son el mismo elemento de $\prod_{i \in I} A_i$, es decir, $\varphi(c)$ y $\varphi'(c)$ coinciden como funciones en $I$: $(\varphi(c))(i) = (\varphi'(c))(i)$ para todo $i \in I$. Pero por hipótesis y la definición de $\pi_i$, tenemos para todo $i \in I$:
+\[
+(\varphi'(c))(i) = \pi_i \varphi'(c) = \varphi_i(c) = f_c(i) = (\varphi(c))(i).
+\]
 
-% (Unicidad) Supongamos que \( D' \) (con aplicaciones \( \pi_i': D' \to A_i \)) tiene la misma propiedad que \( D = \prod_{i \in I} A_i \). Si aplicamos esta propiedad (para \( D \)) a la familia de aplicaciones \( \{\pi_i': D' \to A_i\} \) y también la aplicamos (para \( D' \)) a la familia \( \{\pi_i: D \to A_i\} \), obtenemos (únicas) aplicaciones \( \varphi: D' \to D \) y \( \psi: D \to D' \) tales que los siguientes diagramas son conmutativos para cada \( i \in I \):
+(Unicidad) Supongamos que $D'$ (con aplicaciones $\pi_i': D' \to A_i$) tiene la misma propiedad que $D = \prod_{i \in I} A_i$. Si aplicamos esta propiedad (para $D$) a la familia de aplicaciones $\{\pi_i': D' \to A_i\}$ y también la aplicamos (para $D'$) a la familia $\{\pi_i: D \to A_i\}$, obtenemos (únicas) aplicaciones $\varphi: D' \to D$ y $\psi: D \to D'$ tales que los siguientes diagramas son conmutativos para cada $i \in I$:
 
-% \[
-%     \begin{tikzcd}
-%     D \arrow[swap]{dr}{\pi_i} \arrow[dashed]{r}{\psi} & D' \arrow{d}{\pi_i'} \\
-%     & A_i
-%     \end{tikzcd}
-% \]
+\[
+    \begin{tikzcd}
+    D \arrow[swap]{dr}{\pi_i} \arrow[dashed]{r}{\psi} & D' \arrow{d}{\pi_i'} \\
+    & A_i
+    \end{tikzcd}
+\]
 
-% \[
-%     \begin{tikzcd}
-%     D' \arrow[swap]{d}{\pi_i'} \arrow[dashed]{r}{\varphi} & D \arrow{dl}{\pi_i} \\
-%     A_i
-%     \end{tikzcd}
-% \]
+\[
+    \begin{tikzcd}
+    D' \arrow[swap]{d}{\pi_i'} \arrow[dashed]{r}{\varphi} & D \arrow{dl}{\pi_i} \\
+    A_i
+    \end{tikzcd}
+\]
 
-% Combinando estos, obtenemos para cada \( i \in I \) un diagrama conmutativo:
+Combinando estos, obtenemos para cada $i \in I$ un diagrama conmutativo:
 
-% \[
-%     \begin{tikzcd}
-%     D \arrow[swap]{d}{\varphi_i} \arrow{r}{\varphi \psi} & D \arrow{dl}{\pi_i} \\
-%     A_i
-%     \end{tikzcd}
-% \]
+\[
+    \begin{tikzcd}
+    D \arrow[swap]{d}{\varphi_i} \arrow{r}{\varphi \psi} & D \arrow{dl}{\pi_i} \\
+    A_i
+    \end{tikzcd}
+\]
 
-% Así, \( \varphi \psi: D \to D \) es una aplicación tal que \( \pi_i (\varphi \psi) = \pi_i \) para todo \( i \in I \). Pero por la demostración anterior, hay una única aplicación con esta propiedad. Como la aplicación \( 1_D: D \to D \) también satisface \( \pi_i 1_D = \pi_i \) para todo \( i \in I \), debemos tener \( \varphi \psi = 1_D \) por unicidad. Un argumento similar muestra que \( \psi \varphi = 1_D \). Por lo tanto, \( \varphi \) es una biyección por (13), y \( D = \prod_{i \in I} A_i \) está determinado de manera única salvo biyección.
+Así, $\varphi \psi: D \to D$ es una aplicación tal que $\pi_i (\varphi \psi) = \pi_i$ para todo $i \in I$. Pero por la demostración anterior, hay una única aplicación con esta propiedad. Como la aplicación $1_D: D \to D$ también satisface $\pi_i 1_D = \pi_i$ para todo $i \in I$, debemos tener $\varphi \psi = 1_D$ por unicidad. Un argumento similar muestra que $\psi \varphi = 1_D$. Por lo tanto, $\varphi$ es una biyección por (13), y $D = \prod_{i \in I} A_i$ está determinado de manera única salvo biyección.
 
-Nótese que el enunciado del Teorema \ref{thm:prop-universal-producto} no menciona elementos; involucra solo conjuntos y aplicaciones. Establece que el producto \( \prod_{i \in I} A_i \) se caracteriza por una cierta propiedad universal que cumplen todas las aplicaciones. Esta propiedad se resume en el siguiente diagrama conmutativo:
+Nótese que el enunciado del Teorema \ref{thm:prop-universal-producto} no menciona elementos; involucra solo conjuntos y aplicaciones. Establece que el producto $\prod_{i \in I} A_i$ se caracteriza por una cierta propiedad universal que cumplen todas las aplicaciones. Esta propiedad se resume en el siguiente diagrama conmutativo:
 
 \[
     \begin{tikzcd}

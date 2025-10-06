@@ -2,21 +2,23 @@
 
 \section{Operaciones binarias}
 
-\defn{Operación binaria}{op-bin}{
+\begin{definition}{Operación binaria}{op-bin}
     Sea \(X\) un conjunto. Una operación binaria en \(X\) es una aplicación \(*:X\times X\to X\). Por lo general escribimos \( * (a,b) = a * b\).
-}
+\end{definition}
 
-\rmk{En general, si por el contexto se sobreentiende que una operación es binaria, se simplifica el lenguaje hablando simplemente de operaciones. De igual manera, normalmente se omite el conjunto sobre el que está definida la operación.}
+\begin{remark}
+    En general, si por el contexto se sobreentiende que una operación es binaria, se simplifica el lenguaje hablando simplemente de operaciones. De igual manera, normalmente se omite el conjunto sobre el que está definida la operación.
+\end{remark}
 
-\defn{Tipos de operaciones}{tipos-op}{
+\begin{definition}{Tipos de operaciones}{tipos-op}
     Una operación $*$ se dice
     \begin{itemize}
         \item \textbf{Conmutativa} si $x * y = y * x$ para todo $x,y\in X$.
         \item \textbf{Asociativa} si $x * (y * z) = (x * y) * z$ para todo $x,y,z \in X$.
     \end{itemize}
-}
+\end{definition}
 
-\defn{Terminología sobre elementos}{term-elem}{
+\begin{definition}{Terminología sobre elementos}{term-elem}
     Un elemento \(x\in X\) se dice que es:
     \begin{itemize}
         \item \textbf{Neutro por la izquierda (neutro por la derecha)} si \(x*y=y\) para todo \(y\in X\) (\(y*x=y\) para todo \(y\in X\)).
@@ -32,31 +34,31 @@
     \begin{itemize}
         \item \textbf{Simétrico} de $y$ si lo es por ambos lados. En tal caso decimos que $x$ es invertible, siendo $y$ su inverso ($y = x^{-1}$ si el inverso es único).
     \end{itemize}
-}
+\end{definition}
 
-\ex{
+\begin{example}{}{}
     Si $x$ es cancelable por la izquierda, entonces para cualesquiera $a,b \in X$ se tiene
     \[
     x * a = x * b \implies a = b
     \]
-}
+\end{example}
 
-\pf{
+\begin{proofbox}
     Supongamos que $x * a = x * b$, si $a = b$ ya hemos terminado. En caso contrario, $a$ y $b$ son elementos distintos, y, como $x$ es cancelable por la izquierda, entonces debe ser $x * a \neq x * b$, pero eso contradice la suposición inicial, luego ha de ser $a = b$.
-}
+\end{proofbox}
 
-\exer{
-Probar que si $x$ es cancelable por la derecha entonces, para cualesquiera $a,b \in X$ se tiene
+\begin{example}{}{}
+Si $x$ es cancelable por la derecha entonces, para cualesquiera $a,b \in X$ se tiene
     \[
     a * x = b * x \implies a = b
     \]
-}
+\end{example}
 
-\rmk{
+\begin{remark}
     Notemos que esta caracterización no es más que el contrarrecíproco de la primera definición que hemos dado de elemento cancelable. 
-}
+\end{remark}
 
-\defn{Tipos de conjuntos con operaciones}{tipos-conj-op}{
+\begin{definition}{Tipos de conjuntos con operaciones}{tipos-conj-op}
     Un par \((X,*)\) formado por un conjunto y una operación \(*\) decimos que es un:
     \begin{itemize}
         \item \textbf{Semigrupo} si \(*\) es asociativa.
@@ -67,22 +69,22 @@ Probar que si $x$ es cancelable por la derecha entonces, para cualesquiera $a,b 
         
         \item \textbf{Grupo abeliano} si es un grupo y \(*\) es conmutativa.
     \end{itemize}
-}
+\end{definition}
 
-\ex{
+\begin{example}{}{conjuntos-op-binarias}
     Si tomamos la suma de elementos sobre distintos conjuntos de números obtenemos un ejemplo de cada uno de los tipos de conjuntos con operaciones:
     \begin{enumerate}
         \item $(\N \setminus \{ 0 \},+)$ es un semigrupo, ya que la suma es asociativa, pero no tiene neutro.
         \item $(\N,+)$ es un monoide, ya que la suma es asociativa y tiene el 0 como neutro.
         \item $(\Z,+)$ es un grupo, ya que la suma es asociativa, tiene neutro y todos los elementos tienen inverso. De hecho, como la suma es conmutativa es un grupo abeliano.
     \end{enumerate}
-}
+\end{example}
 
-\ex{
+\begin{example}{Grupo no abeliano}{grupo-no-abeliano}
     Un ejemplo de grupo no abeliano es $GL_n(\R)$ si $n \geq 2$. $GL_n(\R)$ es el grupo de las matrices invertibles $n\times n$ con entradas reales, donde la operación es la multiplicación de matrices.
-}
+\end{example}
 
-\pf{
+\begin{proofbox}
     En primer lugar, es inmediato que la operación es asociativa. También es fácil ver que tiene elemento neutro, la matriz identidad $I_n$. Si tomamos una matriz cualquiera $A\in GL_n(\R)$ esta ha de tener inversa, por lo que su elemento inverso es $A^{-1}$ que claramente pertenece a $GL_n(\R)$.
 
     Finalmente, para ver que el grupo no es conmutativo notemos que para $n=2$ podemos tomar las matrices
@@ -98,13 +100,13 @@ Probar que si $x$ es cancelable por la derecha entonces, para cualesquiera $a,b 
     A' = \begin{pmatrix} A & 0 \\ 0 & I_{n-2} \end{pmatrix}, B' = \begin{pmatrix} B & 0 \\ 0 & I_{n-2} \end{pmatrix}
     \]
     cuyo producto no conmuta por las propiedades de la multiplicación de matrices por bloques.
-}
+\end{proofbox}
 
-\exer{
+\begin{example}{}{}
     Sean $A$ un conjunto y sea $X=A^{A}$ el conjunto de las aplicaciones de $A$ en $A$. Probar que la composición de aplicaciones define una operación asociativa en $X$ para la que la identidad $1_{X}$ es neutro. Esto prueba que $(A^{A},\circ)$ es un monoide.
-}
+\end{example}
 
-\prop{}{prop-operaciones}{
+\begin{proposition}{}{prop-operaciones}
     Sea $*$ una operación en un conjunto $X$.
 
     \begin{enumerate}
@@ -118,7 +120,9 @@ Probar que si $x$ es cancelable por la derecha entonces, para cualesquiera $a,b 
         \item Si $a$ tiene un simétrico por un lado entonces es cancelable por ese mismo lado. En particular, todo elemento invertible es cancelable.
     \end{enumerate}
     \end{enumerate}
-}{
+\end{proposition}
+
+\begin{proofbox}
     (1) Como $e$ es neutro por la izquierda y $f$ es neutro por la derecha tenemos
     \[
     f = e * f = e.
@@ -131,13 +135,12 @@ Probar que si $x$ es cancelable por la derecha entonces, para cualesquiera $a,b 
     \[
     x = e * x = (b * a) * x = b * (a * x) = b * (a * y) = (b * a) * y = e * y = y.
     \]
-}
+\end{proofbox}
 
-\rmk{
+\begin{remark}
     Por la proposición anterior si $X$ es un monoide cada elemento invertible $a$ tiene un único inverso que denotaremos $a^{-1}$. 
-}
+\end{remark}
 
-\clearpage
 \subsection{Subconjuntos y operaciones}
 
 Sea $*$ una operación en un conjunto $A$ y sea $B$ un subconjunto de $A$. Decimos que $B$ es cerrado con respecto a $*$ si para todo $a, b \in B$ se verifica que $a * b \in B$. En tal caso podemos
@@ -152,53 +155,9 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
 \end{itemize}
 
 \clearpage
-\section{Motivación del concepto de grupo}
-
-\noindent\textbf{Sección sacada de \cite{arnold:odes}.}
-\vspace{0.4cm}
-
-Una \textit{transformación} de un conjunto es una aplicación biyectiva del conjunto sobre sí mismo.
-
-\exer{
-    ¿Cuál de las tres siguientes aplicaciones es una transformación?
-
-    \[1)\;\;\R\rightarrow\R,\;\;x\mapsto e^{x};\quad 2) \;\;\R\rightarrow\R,\;\;x\mapsto x^{3};\quad 3) \;\;\C\to\C,\;\;z\mapsto z^{2}.\]
-}
-
-\noindent\textbf{Respuesta:} Solo la segunda.
-\vspace{0.4cm}
-
-
-El \textit{producto} $fg$ de las transformaciones $f$ y $g$ de un conjunto es la transformación obtenida aplicando primero $g$, luego $f$, es decir, $(fg)(x)=f(g(x))$.
-
-\exer{
-    Dar un ejemplo en el que $fg$ no sea igual a $gf$.
-}
-
-La transformación $f^{-1}$ \textit{inversa} de $f$ se define por la condición de que si $f$ lleva $x$ a $y$, entonces $f^{-1}$ lleva $y$ a $x$.
-
-Una colección de transformaciones de un conjunto se llama \textit{grupo de transformaciones} si contiene la inversa de cada una de sus transformaciones y el producto de cualesquiera dos de sus transformaciones.
-
-\exer{
-    ¿Es el conjunto de las tres reflexiones sobre los vértices de un triángulo equilátero un grupo de transformaciones? ¿Cuántos elementos hay en el grupo de isometrías de un triángulo equilátero? ¿Y en el grupo de rotaciones de un tetraedro?
-}
-
-\noindent\textbf{Respuesta:} No, 6, 12.
-
-\vspace{0.4cm}
-
-El concepto de grupo de transformaciones es uno de los más fundamentales en toda la matemática y al mismo tiempo uno de los más simples: la mente humana piensa naturalmente en términos de invariantes de grupos de transformaciones (esto está conectado tanto con el aparato visual como con nuestro poder de abstracción).
-
-Sea $A$ un grupo de transformaciones en el conjunto $X$. La multiplicación y la inversión definen dos aplicaciones
-\[
-* : A \times A \to A, \qquad (\cdot)^{-1} : A\to A
-\]
-(el par $(f,g)$ va a $fg$, y el elemento $g$ a $g^{-1}$). Un conjunto $A$ dotado de estas dos aplicaciones se llama \textit{grupo}. Así, un \textit{grupo} se obtiene de un \textit{grupo de transformaciones} simplemente ignorando el conjunto que se transforma.
-
-\clearpage
 \section{Definiciones y ejemplos}
 
-\defn{Grupo}{grupo}{
+\begin{definition}{Grupo}{grupo}
     Un grupo es una pareja \((G,\cdot)\), formada por un conjunto no vacío \(G\) junto con una operación binaria, que denotaremos por \(\cdot\), que satisface los siguientes axiomas:
     \begin{enumerate}
     \item {(Asociativa)} \((a\cdot b)\cdot c = a\cdot(b\cdot c)\), para todo \(a,b,c\in G\).
@@ -212,11 +171,11 @@ Sea $A$ un grupo de transformaciones en el conjunto $X$. La multiplicación y la
     \setcounter{enumi}{3}
     \item {(Conmutativa)} \(a\cdot b = b\cdot a\), para todo \(a,b\in G\).
     \end{enumerate}
-}
+\end{definition}
 
 Demostraremos ahora algunas propiedades de los grupos.
 
-\lemp{Propiedades básicas de grupos}{prop-grupos}{
+\begin{lemma}{Propiedades básicas de grupos}{prop-grupos}
     Sea \((G,\cdot)\) un grupo.
     \begin{enumerate}
     \item {(Unicidad del neutro)} El neutro de \(G\) es único y lo denotaremos \(e\). De hecho, si \(a,b\in G\) satisfacen que \(a\cdot b = a\) ó \(b\cdot a = a\) entonces \(b = e\).
@@ -225,7 +184,9 @@ Demostraremos ahora algunas propiedades de los grupos.
     \item Para todo \(a,b\in G\), las ecuaciones \(a\cdot X = b\) y \(X\cdot a = b\) tienen una única solución en \(G\).
     \item \((a\cdot b)^{-1} = b^{-1}\cdot a^{-1}\).
     \end{enumerate}
-}{
+\end{lemma}
+
+\begin{proofbox}
     \begin{enumerate}
     \item
         Haremos solo el caso por la derecha, en efecto, si $a \cdot b = a$ entonces
@@ -264,36 +225,25 @@ Demostraremos ahora algunas propiedades de los grupos.
         \]
 
     \end{enumerate}
-}
-
-% \ex{
-%     Si \(A\) es un anillo, entonces \((A, +)\) y \((A^*, \cdot)\) son dos grupos llamados respectivamente {grupo aditivo} y {grupo de unidades} de \(A\). El grupo aditivo siempre es abeliano y si el anillo es conmutativo, entonces el grupo de unidades del anillo también es abeliano.
-
-%     Por ejemplo, \((\mathbb{Z}, +)\), \((\mathbb{Q}, +)\), \((\mathbb{R}, +)\), \((\mathbb{C}, +)\) y \((\mathbb{Z}_n, +)\) son grupos aditivos y los grupos de unidades de los correspondientes anillos son \(\mathbb{Z}^* = \{\pm 1\}\), \(\mathbb{Q}^* = \mathbb{Q} \setminus \{0\}\), \(\mathbb{R}^* = \mathbb{R} \setminus \{0\}\), \(\mathbb{C}^* = \mathbb{C} \setminus \{0\}\) y
-%     \[
-%     \mathbb{Z}_n^* = \{i : 1 \leq i \leq n, \gcd(i, n) = 1\}.
-%     \]
-% }
+\end{proofbox}
 
 \subsection{Ejemplos}
 
-\ex{
+\begin{example}{Grupo trivial}{grupo-trivial}
     Sea \(X\) un conjunto y consideremos la aplicación identidad $1_X: X \to X$ tal que $1_X(x) = x$ para todo $x \in X$. Entonces el conjunto $T = \{1_X\}$ con la operación de composición es un grupo $(T, \circ)$ que llamaremos el grupo trivial (lo denotaremos $1$).
     
     En general, podríamos haber definido este grupo como un único elemento $\{x\}$ con la operación descrita por $x \cdot x = x$.
-}
+\end{example}
 
 En términos de grupos de transformaciones, el grupo trivial de $X$ es el grupo de transformaciones más pequeño que podemos construir. Que en efecto se trata de un grupo es inmediato.
 
-\ex{
+\begin{example}{Grupo simétrico}{grupo-simetrico}
     Sean \(X\) un conjunto y \(S_X\) el conjunto de todas las biyecciones de \(X\) en sí mismo. Entonces \((S_X, \circ)\) es un grupo, llamado {grupo simétrico} o {grupo de las permutaciones} de \(X\).
-}
+\end{example}
 
 En términos de grupos de transformaciones, el grupo de permutaciones de $X$ es el grupo de transformaciones más grande que podemos construir. Probemos ahora que en efecto es un grupo.
 
-\vspace{10pt}
-
-\pf{
+\begin{proofbox}
     Prescindiremos del uso de $\circ$ para simplificar la notación.
     \begin{enumerate}
         \item Asociativa: sean $f,g,h$ biyecciones, dado $x \in X$ cualquiera
@@ -307,25 +257,23 @@ En términos de grupos de transformaciones, el grupo de permutaciones de $X$ es 
         \]
         luego $ff^{-1} = id$.
     \end{enumerate}
-}
+\end{proofbox}
 
-\rmk{
+\begin{remark}
     En general $S_X$ no es un grupo abeliano.
-}
+\end{remark}
 
-\ex{
+\begin{example}{Producto de grupos}{prod-grupos}
     Si \((G, *)\) y \((H, *)\) son dos grupos, entonces el {producto directo} \(G \times H\) es un grupo en el que la operación viene dada componente a componente:
     \[
     (g_1, h_1) \cdot (g_2, h_2) = (g_1 * g_2, h_1 * h_2).
     \]
     Más generalmente, si \((G_i)_{i\in I}\) es una familia arbitraria de grupos, entonces el producto directo \(\prod_{i\in I} G_i\) tiene una estructura de grupo en el que el producto se realiza componente a componente. Para más información ver la Definición \ref{defn:producto-cartesiano}.
-}
+\end{example}
 
 Probemos que el producto directo de dos grupos es un grupo:
 
-\vspace{10pt}
-
-\pf{
+\begin{proofbox}
     \begin{enumerate}
         \item Asociativa:
         \begin{align*}
@@ -339,11 +287,9 @@ Probemos que el producto directo de dos grupos es un grupo:
         (g_1, h_1) \cdot (g_1^{-1}, h_1^{-1}) = (g_1 * g_1^{-1}, h_1 * h_1^{-1}) = (e_G, e_H).
         \]
     \end{enumerate}
-}
+\end{proofbox}
 
-\clearpage
-
-\ex{
+\begin{example}{Tabla de Cayley}{tabla-cayley}
     Dado un grupo finito podemos construir lo que llamaremos su tabla de Cayley (también llamada tabla de multiplicación o de suma, dependiendo del nombre que le demos a la operación del grupo). Esta tabla se obtiene disponiendo cada uno de los elementos del grupo tanto por columnas como por filas y calculando sus productos. Si el grupo tiene 2 elementos $a,b$ la tabla será de la forma:
     \begin{center}
         \begin{tabular}{c | c | c}
@@ -370,7 +316,7 @@ Probemos que el producto directo de dos grupos es un grupo:
             \hline
         \end{tabular}
     \end{center}
-}
+\end{example}
 
 \subsection{El grupo diédrico}
 
@@ -378,9 +324,10 @@ Veamos ahora un grupo con especial significado geométrico. Consideremos un pol�
 
 La siguiente tabla de Cayley muestra el efecto de la composición en el grupo diédrico de orden 6, \(D_3\) -- las simetrías de un triángulo equilátero. Aquí, \(r_0\) denota la identidad, \(r_1\) y \(r_2\) denotan rotaciones en sentido antihorario de \(120^\circ\) y \(240^\circ\) respectivamente, mientras que \(s_0\), \(s_1\) y \(s_2\) denotan reflexiones a través de las tres líneas mostradas en la imagen adyacente.
 
-\begin{wrapfigure}{R}{5cm}
-    \includegraphics[width=5cm]{src/img/diedrico.png}
-\end{wrapfigure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=5cm]{img/diedrico.png}
+\end{figure}
 
 \[
 \begin{array}{c|cccccc}
@@ -397,11 +344,9 @@ s_2 & s_2 & s_1 & s_0 & r_2 & r_1 & r_0 \\
 
 Por ejemplo, \(s_2 s_1 = r_1\), porque la reflexión \(s_1\) seguida de la reflexión \(s_2\) resulta en una rotación de \(120^\circ\). El orden de los elementos que denotan la composición es de derecha a izquierda, reflejando la convención de que el elemento actúa sobre la expresión a su derecha. La operación de composición no es conmutativa.
 
-\clearpage
-
 El siguiente ejemplo abstrae y generaliza el concepto de grupo diédrico prescindiendo de la interpretación geométrica.
 
-\ex{
+\begin{example}{Grupo diédrico}{diedrico}
     Para cada número natural positivo \(n\) definimos un grupo formado por \(2n\) elementos
     \[
     D_n = \{1, a, a^2, \ldots, a^{n-1}, b, ab, a^2b, \ldots, a^{n-1}b\}
@@ -412,12 +357,12 @@ El siguiente ejemplo abstrae y generaliza el concepto de grupo diédrico prescin
     \]
     con notación como en el ejemplo anterior. Este grupo se llama {grupo diédrico de orden \(2n\)}.
 
-    El {grupo diédrico infinito} \(D_\infty\) está formado por elementos de la forma \(a^n b^m\), con \(n \in \mathbb{Z}\) y \(m = 0, 1\) con el producto \((a^{i_1} b^{j_1})(a^{i_2} b^{j_2}) = a^{i_1 + (-1)^{j_1} i_2} b^{[j_1 + j_2]_2}\).
-}
+    El grupo diédrico infinito \(D_\infty\) está formado por elementos de la forma \(a^n b^m\), con \(n \in \mathbb{Z}\) y \(m = 0, 1\) con el producto \((a^{i_1} b^{j_1})(a^{i_2} b^{j_2}) = a^{i_1 + (-1)^{j_1} i_2} b^{[j_1 + j_2]_2}\).
+\end{example}
 
 Si ahora consideramos únicamente las rotaciones que dejan invariante un polígono de \(n\) lados obtenemos otro grupo, en este caso con \(n\) elementos, cada uno de ellos correspondiente a rotar por un múltiplo de $\frac{360^\circ}{n}$. El siguiente ejemplo abstrae este grupo de rotaciones.
 
-\ex{
+\begin{example}{Grupo cíclico}{ciclico}
     Para cada número natural positivo \(n\) definimos un grupo \(C_n\) formado por \(n\) elementos
     \[
     C_n = \{1, a, a^2, \ldots, a^{n-1}\},
@@ -429,12 +374,8 @@ Si ahora consideramos únicamente las rotaciones que dejan invariante un polígo
     donde \([x]_n\) denota el resto de dividir \(x\) entre \(n\). Este grupo se llama {cíclico de orden \(n\)}.
 
     También definimos el {grupo cíclico infinito} como el conjunto \(C_\infty = \{a^n : n \in \mathbb{Z}\}\), donde \(a\) es un símbolo y consideramos \(a^n = a^m\) si y solo si \(n = m\), y en el que el producto viene dado por \(a^n \cdot a^m = a^{n+m}\).
-}
+\end{example}
 
-\rmk{
+\begin{remark}
     Es fácil notar la similitud entre $C_n$ y $\Z_n$, así como entre $C_\infty$ y $\Z$. Más tarde formalizaremos esta intuición probando que estos grupos son equivalentes (isomorfos).
-}
-
-\exer{
-    Construir la tabla de Cayley de $C_5$.
-}
+\end{remark}

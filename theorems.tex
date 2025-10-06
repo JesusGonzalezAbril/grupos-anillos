@@ -1,0 +1,125 @@
+%% Theorem macros %%
+\theoremstyle{definition}
+
+% Words to be shown in each box title
+\newcommand{\defnword}{Definition}
+\newcommand{\thmword}{Theorem}
+\newcommand{\lemword}{Lemma}
+\newcommand{\propword}{Proposition}
+\newcommand{\corword}{Corollary}
+\newcommand{\proofword}{Proof}
+\newcommand{\exampleword}{Example}
+
+% Define custom colors
+\definecolor{definitioncolor}{RGB}{154, 210, 201}
+\definecolor{theoremcolor}{RGB}{179, 200, 113}
+\definecolor{lemmacolor}{RGB}{241, 194, 125}
+\definecolor{propositioncolor}{RGB}{239, 136, 98}
+\definecolor{corollarycolor}{RGB}{92, 105, 174}
+\definecolor{proofcolor}{gray}{0.6}
+\definecolor{examplecolor}{RGB}{210, 99, 78}
+
+
+% Definition
+\newtcbtheorem[number within=section]{definition}{\defnword}{
+    enhanced,
+    frame hidden,
+    titlerule=0mm,
+    toptitle=1mm,
+    bottomtitle=1mm,
+    fonttitle=\bfseries,
+    coltitle=black,
+    colbacktitle=definitioncolor!50!white,
+    colback=definitioncolor!20!white,
+}{defn}
+
+% Theorem
+\newtcbtheorem[use counter from=definition]{theorem}{\thmword}{
+    enhanced,
+    frame hidden,
+    titlerule=0mm,
+    toptitle=1mm,
+    bottomtitle=1mm,
+    fonttitle=\bfseries,
+    coltitle=black,
+    colbacktitle=theoremcolor!50!white,
+    colback=theoremcolor!20!white,
+}{thm}
+
+% Lemma
+\newtcbtheorem[use counter from=definition]{lemma}{\lemword}{
+    enhanced,
+    frame hidden,
+    titlerule=0mm,
+    toptitle=1mm,
+    bottomtitle=1mm,
+    fonttitle=\bfseries,
+    coltitle=black,
+    colbacktitle=lemmacolor!50!white,
+    colback=lemmacolor!20!white,
+}{lem}
+
+% Proposition
+\newtcbtheorem[use counter from=definition]{proposition}{\propword}{
+    enhanced,
+    frame hidden,
+    titlerule=0mm,
+    toptitle=1mm,
+    bottomtitle=1mm,
+    fonttitle=\bfseries,
+    coltitle=black,
+    colbacktitle=propositioncolor!50!white,
+    colback=propositioncolor!20!white,
+}{prop}
+
+% Corollary
+\newtcbtheorem[use counter from=definition]{corollary}{\corword}{
+    enhanced,
+    breakable,
+    frame hidden,
+    titlerule=0mm,
+    toptitle=1mm,
+    bottomtitle=1mm,
+    fonttitle=\bfseries,
+    coltitle=black,
+    colbacktitle=corollarycolor!50!white,
+    colback=corollarycolor!20!white,
+}{cor}
+
+% Proof
+\newtcolorbox{proofbox}[1][]{
+    enhanced,
+    breakable,
+    titlerule=0mm,
+    toptitle=1mm,
+    bottomtitle=1mm,
+    colback=proofcolor!10!white,
+    colframe=proofcolor!50!white,
+    coltitle=black,
+    fonttitle=\bfseries,
+    title=\proofword,
+    #1
+}
+
+% Example
+\newtcbtheorem[use counter from=definition]{example}{\exampleword}{
+    enhanced,
+    frame hidden,
+    titlerule=0mm,
+    toptitle=1mm,
+    bottomtitle=1mm,
+    fonttitle=\bfseries,
+    coltitle=black,
+    colbacktitle=examplecolor!50!white,
+    colback=examplecolor!20!white,
+}{ex}
+
+\newenvironment{remark}{%
+  \par\smallskip
+  \noindent\textit{Remark.}\,%
+  \itshape
+}{%
+  \par\smallskip
+}
+
+% TODO: Remarks
