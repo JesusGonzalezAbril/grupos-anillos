@@ -229,6 +229,14 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
     es un anillo, pero no es subanillo de $A \times B$ porque las operaciones no son las inducidas por la operaciones de $A \times B$.
 \end{example}
 
+\begin{proofbox}
+    Veamos que $A \times \{1_B\}$ es un anillo con las operaciones indicadas. Claramente es un grupo abeliano para la suma con $-(a,1_B) = (-a, 1_B)$. También es un monoide para el producto con neutro $(1_A, 1_B)$ ya que $(1_A, 1_B) (a, 1_B) = (a, 1_B)$. Finalmente la conmutatividad es fácil de comprobar gracias a que $A$ es un anillo
+    \begin{align*}
+        (a, 1_B)[(b, 1_B) + (c, 1_B)] = (a, 1_B)(b+c, 1_B) = (ab + ac, 1_B) \\
+        = (ab, 1_B) + (ac, 1_B) = (a, 1_B)(b, 1_B) + (a, 1_B)(c, 1_B).
+    \end{align*}
+\end{proofbox}
+
 \begin{example}{Subanillo primo}{subanillo-primo}
     Si \(A\) es un anillo entonces el conjunto:
     \[
@@ -237,13 +245,11 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
     es un subanillo de \(A\) contenido en cualquier otro subanillo de \(A\). 
     
     Este se conoce como el subanillo primo de \(A\). 
-    
-    Observaciones:
-    \begin{itemize}
-        \item \(\mathbb{Z}\) y los \(\mathbb{Z}_n\) son sus propios subanillos primos
-        \item Por tanto, no tienen subanillos propios
-    \end{itemize}
 \end{example}
+
+\begin{remark}
+    \(\mathbb{Z}\) y los \(\mathbb{Z}_n\) son sus propios subanillos primos, por tanto, no tienen subanillos propios.
+\end{remark}
 
 \begin{example}{}{}
     Dado un número entero \(m\), los conjuntos:
@@ -278,6 +284,18 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
     (es decir, el conjunto de las {aplicaciones constantes} de \(X\) en \(A\)) es un subanillo de \(A^X\).
 \end{example}
 
+\begin{proofbox}
+    Claramente $B$ contiene a la aplicación $1 : A \to X$ dada por $1(x) = 1_A,\ \forall x \in X$. Es fácil notar que esta aplicación es el elemento neutro del producto en $A^X$. Sean $f,g \in B$, entonces $h = f - g$ está en $B$ ya que
+    \[
+    \forall x,y \in X \quad h(x)= f(x) - g(x) = f(y) - g(y) = h(y)
+    \]
+    luego $B$ es cerrado para restas, de igual manera sea $H = fg$, entonces
+    \[
+    \forall x,y \in X \quad H(x)= f(x)g(x) = f(y)g(y) = H(y)
+    \]
+    lo que prueba que $B$ es cerrado para productos. Por tanto, por \ref{prop:carac-subanillos} $B$ es un subanillo de $A^X$.
+\end{proofbox}
+
 \begin{example}{}{}
     Sea \(A = M_n(B)\), donde \(B\) es un anillo. Son subanillos:
     \begin{itemize}
@@ -301,39 +319,6 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
     A_1 = \{a_0 + a_1\alpha + a_2\alpha^2 + \cdots + a_n\alpha^n : n \geq 0, a_0, a_1, \ldots, a_n \in B\}
     \]
     es un subanillo de \(A\) llamado {subanillo generado por \(B\) y \(\alpha\)}.
-\end{example}
-
-\begin{example}{}{}
-    Sea \(A = B[X]\), donde \(B\) es un anillo. Son subanillos:
-    \begin{itemize}
-        \item \(A_1 = B_1[X]\), donde \(B_1\) es un subanillo de \(B\)
-        \item El conjunto de polinomios de grado menor o igual que un número dado \(n\) (¡cuidado! este no siempre es subanillo, ya que el producto puede aumentar el grado)
-    \end{itemize}
-\end{example}
-
-\begin{example}{}{}
-    Sea \(A = \mathbb{C}\). Son subanillos:
-    \begin{itemize}
-        \item \(A_1 = \{a + bi : a = b\} = \{(1+i)a : a \in \mathbb{R}\}\)
-        \item \(A_2 = \{ai : a \in \mathbb{R}\}\) (solo contiene a los imaginarios puros, pero ¡cuidado! verificar que contiene al 1)
-        \item \(A_3 = \{a_1 + a_2\sqrt{2} + a_3i + a_4\sqrt{2}i : a_1, a_2, a_3, a_4 \in \mathbb{Z}\}\)
-    \end{itemize}
-    
-    No es subanillo:
-    \begin{itemize}
-        \item \(A_4 = \{a + bi : b \geq 0\}\) (no cerrado para opuestos)
-    \end{itemize}
-\end{example}
-
-\begin{example}{}{}
-    Decimos que un entero \(d\) es libre de cuadrados si \(p^2\) no divide a \(d\) para ningún número primo \(p\) (en particular \(1\) es libre de cuadrados).
-    
-    Para todo \(m \in \mathbb{Z}\) existe un \(d \in \mathbb{Z}\) libre de cuadrados tal que:
-    \[
-    \mathbb{Q}[\sqrt{m}] = \mathbb{Q}[\sqrt{d}]
-    \]
-    
-    Esto no ocurre en general si cambiamos \(\mathbb{Q}\) por \(\mathbb{Z}\).
 \end{example}
 
 \clearpage
@@ -368,7 +353,7 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
 \end{definition}
 
 \begin{example}{}{}
-    Si $B = \{0\}$ entonces la aplicación $f(a) = 0_B, \forall a \in A$ es un homomorfismo.
+    Si $B = \{0\}$ entonces la aplicación $f(a) = 0_B, \forall a \in A$ es un homomorfismo. Si $B \neq \{0\}$ entonces $f$ no es un homomorfismo ya que $f(1) = 0_B \neq 1_B$.
 \end{example}
 
 \begin{proposition}{Propiedades básicas}{prop-hom-basicas}
@@ -385,14 +370,31 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
 \end{proposition}
 
 \begin{proofbox}
-    Demostremos algunas de estas propiedades:
-    \begin{itemize}
-        \item Para (1): \(f(0_A) = f(0_A + 0_A) = f(0_A) + f(0_A)\), luego por cancelación en \(B\), \(f(0_A) = 0_B\).
+    En la mayoría de apartados usaremos los anteriores.
+    \begin{enumerate}
+        \item \(f(0_A) = f(0_A + 0_A) = f(0_A) + f(0_A)\), luego por cancelación en \(B\), \(f(0_A) = 0_B\).
         
-        \item Para (2): \(f(a) + f(-a) = f(a + (-a)) = f(0_A) = 0_B\), luego \(f(-a) = -f(a)\).
+        \item \(f(a) + f(-a) = f(a + (-a)) = f(0_A) = 0_B\), luego \(f(-a) = -f(a)\).
+
+        \item \(f(a - b) = f(a + (-b)) = f(a) + f(-b) = f(a) - f(b)\).
+
+        \item Por inducción, el caso $n = 2$ es inmediato. Si lo suponemos cierto para $n$ entonces
+        \[
+        f(a_1 + \cdots + a_{n+1}) = f(a_1 + \cdots a_n) + f(a_{n+1}) = f(a_1) + \cdots + f(a_n) + f(a_{n+1}).
+        \]
         
-        \item Para (6): Si \(a\) es invertible, \(aa^{-1} = 1_A\), luego \(f(a)f(a^{-1}) = f(aa^{-1}) = f(1_A) = 1_B\), por tanto \(f(a^{-1}) = f(a)^{-1}\).
-    \end{itemize}
+        \item Por inducción, el caso $n = 1$ es inmediato. Si lo suponemos cierto para $n$ entonces
+        \[
+        f((n+1) a) = f(na + a) = f(na) + f(a) = nf(a) + f(a) = (n+1) f(a).
+        \]
+
+        \item Si \(a\) es invertible \(aa^{-1} = 1_A\), luego \(f(a)f(a^{-1}) = f(aa^{-1}) = f(1_A) = 1_B\), por tanto \(f(a^{-1}) = f(a)^{-1}\).
+
+        \item Por inducción, el caso $n = 1$ es inmediato. Si lo suponemos cierto para $n$ entonces
+        \[
+        f(a_1 \cdots a_{n+1}) = f(a_1 \cdots a_n)f(a_{n+1}) = f(a_1) \cdots f(a_n) f(a_{n+1}).
+        \]
+    \end{enumerate}
 \end{proofbox}
 
 \begin{definition}{Núcleo e imagen}{nucleo-imagen}
@@ -403,13 +405,15 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
     \end{itemize}
 \end{definition}
 
+Resulta interesante ahora estudiar algunas propiedades del núcleo y la imagen, en concreto, su relación con los ideales (ver \ref{defn:ideal}).
+
 \begin{proposition}{Propiedades del núcleo e imagen}{prop-nucleo-imagen}
     Sea \(f: A \to B\) un homomorfismo de anillos. Entonces:
     \begin{enumerate}
         \item \(\ker f\) es un ideal de \(A\)
         \item \(\operatorname{Im} f\) es un subanillo de \(B\)
         \item \(f\) es inyectivo si y solo si \(\ker f = \{0_A\}\)
-        \item \(f\) es suprayectivo si y solo si \(\operatorname{Im} f = B\)
+        \item \(f\) es sobreyectivo si y solo si \(\operatorname{Im} f = B\)
     \end{enumerate}
 \end{proposition}
 
@@ -417,23 +421,33 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
     \begin{enumerate}
         \item Para ver que \(\ker f\) es un ideal:
         \begin{itemize}
-            \item \(0_A \in \ker f\) pues \(f(0_A) = 0_B\)
-            \item Si \(x, y \in \ker f\), entonces \(f(x + y) = f(x) + f(y) = 0_B + 0_B = 0_B\), luego \(x + y \in \ker f\)
-            \item Si \(x \in \ker f\) y \(a \in A\), entonces \(f(ax) = f(a)f(x) = f(a) \cdot 0_B = 0_B\), luego \(ax \in \ker f\)
+            \item \(0_A \in \ker f\) pues \(f(0_A) = 0_B\), luego $\ker f$ es no vacío.
+            \item Si \(x, y \in \ker f\), entonces \(f(x + y) = f(x) + f(y) = 0_B + 0_B = 0_B\), luego \(x + y \in \ker f\).
+            \item Si \(x \in \ker f\) y \(a \in A\), entonces \(f(ax) = f(a)f(x) = f(a) 0_B = 0_B\), luego \(ax \in \ker f\)
         \end{itemize}
         
-        \item Para la inyectividad: si \(f\) es inyectivo y \(x \in \ker f\), entonces \(f(x) = 0_B = f(0_A)\), luego \(x = 0_A\). Recíprocamente, si \(\ker f = \{0_A\}\) y \(f(a) = f(b)\), entonces \(f(a - b) = 0_B\), luego \(a - b \in \ker f = \{0_A\}\), por tanto \(a = b\).
+        \item Basta notar lo siguiente:
+        \begin{itemize}
+            \item \(1_B = f(1_A) \in \operatorname{Im} f\).
+            \item Si \(a, b \in \operatorname{Im} f\), entonces \(f(x) = a, f(y) = b\) para ciertos $x,y \in A$, luego \(a - b = f(x) - f(y) = f(x - y) \in \operatorname{Im} f\).
+            \item Si \(a, b \in \operatorname{Im} f\), entonces \(f(x) = a, f(y) = b\) para ciertos $x,y \in A$, luego \(ab = f(x)f(y) = f(xy) \in \operatorname{Im} f\).
+        \end{itemize}
+
+        \item Si \(f\) es inyectivo y \(x \in \ker f\), entonces \(f(x) = 0_B = f(0_A)\), luego \(x = 0_A\). Recíprocamente, si \(\ker f = \{0_A\}\) y \(f(a) = f(b)\), entonces \(f(a - b) = 0_B\), luego \(a - b \in \ker f = \{0_A\}\), por tanto \(a = b\).
+
+        \item Es inmediato.
     \end{enumerate}
 \end{proofbox}
 
-\subsection{Ejemplos importantes de homomorfismos}
+\subsection{Ejemplos de homomorfismos}
 
 \begin{example}{Homomorfismo inclusión}{}
-    Si \(B\) es un subanillo de \(A\), la aplicación inclusión \(i: B \hookrightarrow A\) dada por \(i(b) = b\) es un homomorfismo inyectivo.
+    Si \(B\) es un subanillo de \(A\), la aplicación inclusión \(i: B \hookrightarrow A\) dada por \(i(b) = b\) es un homomorfismo inyectivo ya que $\ker i = \{0\}$.
 \end{example}
 
+
 \begin{example}{Homomorfismo proyección}{}
-    Si \(I\) es un ideal de \(A\), la proyección canónica \(\pi: A \to A/I\) dada por \(\pi(a) = a + I\) es un homomorfismo suprayectivo con \(\ker \pi = I\).
+    Si \(I\) es un ideal de \(A\), la proyección canónica \(\eta: A \to A/I\) dada por \(\pi(a) = a + I\) es un homomorfismo suprayectivo con \(\ker \eta = I\).
 \end{example}
 
 \begin{example}{Homomorfismo de sustitución}{}
@@ -441,44 +455,33 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
     \[
     \varphi_b(a_0 + a_1X + \cdots + a_nX^n) = a_0 + a_1b + \cdots + a_nb^n
     \]
-    es un homomorfismo suprayectivo llamado {homomorfismo de sustitución} en \(b\).
+    es un homomorfismo suprayectivo llamado homomorfismo de sustitución en \(b\). Para ver que es suprayectivo notemos que dado $a \in A$ el polinomio $a = aX^0 \in A[X]$, luego $\eta(aX^0) = a$.
 \end{example}
 
 \begin{example}{Homomorfismo único \(\mathbb{Z} \to A\)}{}
-    Para cualquier anillo \(A\), existe un único homomorfismo \(f: \mathbb{Z} \to A\) dado por \(f(n) = n \cdot 1_A\). Este homomorfismo está determinado por la característica del anillo \(A\).
+    Para cualquier anillo \(A\), existe un único homomorfismo \(f: \mathbb{Z} \to A\) dado por \(f(n) = n 1_A\).
 \end{example}
 
 \begin{example}{Conjugación en \(\mathbb{C}\)}{}
-    La conjugación compleja \(f: \mathbb{C} \to \mathbb{C}\) dada por \(f(a + bi) = a - bi\) es un automorfismo de \(\mathbb{C}\).
+    La conjugación compleja \(f: \mathbb{C} \to \mathbb{C}\) dada por \(f(a + bi) = a - bi\) es un automorfismo de \(\mathbb{C}\). Claramente es inyectivo ($f(z) = 0 \iff z = 0 \implies \ker f = \{0\}$) y también sobreyectivo.
 \end{example}
 
-\subsection{Propiedades de preservación}
+\subsection{Propiedades de los homomorfismos}
 
-\begin{proposition}{Preservación de subestructuras}{preservacion-subestructuras}
-    Sea \(f: A \to B\) un homomorfismo de anillos.
-    \begin{enumerate}
-        \item Si \(A_1\) es un subanillo de \(A\), entonces \(f(A_1)\) es un subanillo de \(B\)
-        \item Si \(B_1\) es un subanillo de \(B\), entonces \(f^{-1}(B_1)\) es un subanillo de \(A\)
-        \item Si \(I\) es un ideal de \(B\), entonces \(f^{-1}(I)\) es un ideal de \(A\)
-    \end{enumerate}
-\end{proposition}
-
-\begin{remark}
-    {¡Cuidado!} La imagen de un ideal por un homomorfismo no necesariamente es un ideal, a menos que el homomorfismo sea suprayectivo.
-\end{remark}
-
-\begin{example}{Contraejemplo}{}
-    Sea \(i: \mathbb{Z} \hookrightarrow \mathbb{Q}\) la inclusión. El conjunto \(2\mathbb{Z}\) es un ideal de \(\mathbb{Z}\), pero \(i(2\mathbb{Z}) = 2\mathbb{Z}\) no es un ideal de \(\mathbb{Q}\), pues por ejemplo \(1 \in \mathbb{Q}\) y \(2 \in 2\mathbb{Z}\), pero \(1 \cdot 2 = 2 \notin 2\mathbb{Z}\) en \(\mathbb{Q}\).
-\end{example}
-
-\subsection{Composición y propiedades funtoriales}
 
 \begin{proposition}{Composición de homomorfismos}{comp-hom}
     Si \(f: A \to B\) y \(g: B \to C\) son homomorfismos de anillos, entonces la composición \(g \circ f: A \to C\) es un homomorfismo de anillos.
 \end{proposition}
 
 \begin{proofbox}
-    Queda como ejercicio.
+    Claramente $g \circ f (1) = g(f(1)) = g(1) = 1$. Para la suma
+    \[
+    g \circ f (x + y) = g(f(x + y)) = g(f(x) + f(y)) = g(f(x)) + g(f(y)) = g \circ f (x) + g \circ f (y)
+    \]
+    y para el producto
+    \[
+    g \circ f (xy) = g(f(xy)) = g(f(x)f(y)) = g(f(x))g(f(y)) = g \circ f (x) g \circ f (y).
+    \]
 \end{proofbox}
 
 \begin{proposition}{Propiedades de isomorfismos}{prop-iso}
@@ -490,10 +493,73 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
 \end{proposition}
 
 \begin{proofbox}
-    Queda como ejercicio.
+    \begin{enumerate}
+        \item La composición de homomorfismos es homomorfismo y la composición de aplicaciones biyectivas es biyectiva.
+
+        \item Claramente $f^{-1}(1) = 1$. Para la suma
+        \[
+        f(f^{-1}(x + y)) = x + y = f(f^{-1}(x)) + f(f^{-1}(y)) = f(f^{-1}(x) + f^{-1}(y))
+        \]
+        luego por la inyectividad de $f$ debe ser $f^{-1}(x + y) = f^{-1}(x) + f^{-1}(y)$.
+        Para el producto hacemos el mismo truco
+        \[
+        f(f^{-1}(xy)) = xy = f(f^{-1}(x))f(f^{-1}(y)) = f(f^{-1}(x)f^{-1}(y))
+        \]
+        luego por la inyectividad de $f$ tenemos $f^{-1}(xy) = f^{-1}(x) f^{-1}(y)$.
+        \item Resumidamente
+        \begin{itemize}
+            \item Reflexividad: basta considerar la identidad $id$ que es isomorfismo.
+
+            \item Simetría: si $A \cong B$ entonces existe $f: A \to B$ isomorfismo, luego $f^{-1} : B \to A$ es isomorfismo y, por tanto, $B \cong A$.
+
+            \item Transitividad: se sigue de que la composición de isomorfismos es isomorfismo.
+        \end{itemize}
+    \end{enumerate}
 \end{proofbox}
 
-\subsection{Homomorfismos y productos}
+\begin{proposition}{Preservación de subestructuras}{preservacion-subestructuras}
+    Sea \(f: A \to B\) un homomorfismo de anillos.
+    \begin{enumerate}
+        \item Si \(A_1\) es un subanillo de \(A\), entonces \(f(A_1)\) es un subanillo de \(B\)
+        \item Si \(B_1\) es un subanillo de \(B\), entonces \(f^{-1}(B_1)\) es un subanillo de \(A\)
+        \item Si \(I\) es un ideal de \(B\), entonces \(f^{-1}(I)\) es un ideal de \(A\)
+        \item Si \(f\) es sobreyectivo e \(I\) es un ideal de \(A\), entonces \(f(I)\) es un ideal de \(B\).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+    \begin{enumerate}
+        \item Como $A_1$ es subanillo contiene al uno, luego $f(A_1)$ también, que es cerrado para restas y productos es inmediato.
+        \item Como $B_1$ es subanillo contiene al uno, luego $f^{-1}(B_1)$ también. Sean $x, y \in f^{-1}(B_1)$, es cerrado para restas ya que
+        \[
+            f(x - y) = f(x) - f(y) \in B_1 \implies x - y \in f^{-1}(B_1)
+        \]
+        al ser $B_1$ cerrado para restas. Para el producto se razona igual.
+        \item Si \(I\) es un ideal contiene al $0$, luego \(f^{-1}(I)\) es no vacío. Si $x,y \in f^{-1}(I)$ entonces $f(x),f(y) \in I$, por tanto, $f(x + y) = f(x) + f(y) \in I$ y finalmente $x + y \in f^{-1}(I)$. De igual manera, sea $a \in A$, entonces
+        \[
+        f(ax) = f(a)f(x) \in I \implies ax \in f^{-1}(I)
+        \]
+        ya que $f(a) \in B$ e $I$ es un ideal.
+        \item Claramente $f(I)$ es no vacío (de hecho es todo $B$). Si $x,y \in f(I)$, entonces, $x = f(a), y = f(b)$ y 
+        \[
+        x + y = f(a) + f(b) = f(a + b) \in f(I)
+        \]
+        ya que $a + b \in I$ al ser ideal. Para el producto necesitaremos la sobreyectividad, dado $z \in B$ entonces existe $c\in A$ tal que $z = f(c)$, luego
+        \[
+        zx = f(c)f(a) = f(ca) \in f(I)
+        \]
+        porque $ca \in I$ al ser ideal.
+
+    \end{enumerate}
+\end{proofbox}
+
+\begin{remark}
+    La imagen de un ideal por un homomorfismo no necesariamente es un ideal si el homomorfismo no es suprayectivo.
+\end{remark}
+
+\begin{example}{Contraejemplo}{}
+    Sea \(i: \mathbb{Z} \hookrightarrow \mathbb{Q}\) la inclusión. El conjunto \(2\mathbb{Z}\) es un ideal de \(\mathbb{Z}\), pero \(i(2\mathbb{Z}) = 2\mathbb{Z}\) no es un ideal de \(\mathbb{Q}\), pues por ejemplo \(\frac{1}{2} \in \mathbb{Q}\) y \(2 \in 2\mathbb{Z}\), pero \(\frac{1}{2} \cdot 2 = 1 \notin 2\mathbb{Z}\) en \(\mathbb{Q}\).
+\end{example}
 
 \begin{theorem}{Homomorfismos en productos}{hom-productos}
     Sean \(A, B, C\) anillos. Existe una biyección natural:

@@ -162,37 +162,39 @@ El producto $\prod_{i \in I} A_i$ y sus proyecciones son precisamente lo que nec
 
 La última frase significa que si $D'$ es un conjunto y $\{\pi_i': D' \to A_i : i \in I\}$ una familia de aplicaciones que tienen la misma propiedad que $D$ y $\{\pi_i\}$, entonces existe una biyección $D \to D'$.
 
-(Existencia) Sea $D = \prod_{i \in I} A_i$ y sean las aplicaciones $\pi_i$ las proyecciones sobre las $i$-ésimas componentes. Dado $C$ y las aplicaciones $\varphi_i$, definamos $\varphi: C \to \prod_{i \in I} A_i$ por $c \mapsto f_c$, donde $f_c(i) = \varphi_i(c) \in A_i$. Se sigue inmediatamente que $\pi_i \varphi = \varphi_i$ para todo $i \in I$. Para mostrar que $\varphi$ es única, supongamos que $\varphi': C \to \prod_{i \in I} A_i$ es otra aplicación tal que $\pi_i \varphi' = \varphi_i$ para todo $i \in I$ y demostremos que $\varphi = \varphi'$. Para ello, debemos mostrar que para cada $c \in C$, $\varphi(c)$ y $\varphi'(c)$ son el mismo elemento de $\prod_{i \in I} A_i$, es decir, $\varphi(c)$ y $\varphi'(c)$ coinciden como funciones en $I$: $(\varphi(c))(i) = (\varphi'(c))(i)$ para todo $i \in I$. Pero por hipótesis y la definición de $\pi_i$, tenemos para todo $i \in I$:
-\[
-(\varphi'(c))(i) = \pi_i \varphi'(c) = \varphi_i(c) = f_c(i) = (\varphi(c))(i).
-\]
+\begin{proofbox}
+    (Existencia) Sea $D = \prod_{i \in I} A_i$ y sean las aplicaciones $\pi_i$ las proyecciones sobre las $i$-ésimas componentes. Dado $C$ y las aplicaciones $\varphi_i$, definamos $\varphi: C \to \prod_{i \in I} A_i$ por $c \mapsto f_c$, donde $f_c(i) = \varphi_i(c) \in A_i$. Se sigue inmediatamente que $\pi_i \varphi = \varphi_i$ para todo $i \in I$. Para mostrar que $\varphi$ es única, supongamos que $\varphi': C \to \prod_{i \in I} A_i$ es otra aplicación tal que $\pi_i \varphi' = \varphi_i$ para todo $i \in I$ y demostremos que $\varphi = \varphi'$. Para ello, debemos mostrar que para cada $c \in C$, $\varphi(c)$ y $\varphi'(c)$ son el mismo elemento de $\prod_{i \in I} A_i$, es decir, $\varphi(c)$ y $\varphi'(c)$ coinciden como funciones en $I$: $(\varphi(c))(i) = (\varphi'(c))(i)$ para todo $i \in I$. Pero por hipótesis y la definición de $\pi_i$, tenemos para todo $i \in I$:
+    \[
+    (\varphi'(c))(i) = \pi_i \varphi'(c) = \varphi_i(c) = f_c(i) = (\varphi(c))(i).
+    \]
 
-(Unicidad) Supongamos que $D'$ (con aplicaciones $\pi_i': D' \to A_i$) tiene la misma propiedad que $D = \prod_{i \in I} A_i$. Si aplicamos esta propiedad (para $D$) a la familia de aplicaciones $\{\pi_i': D' \to A_i\}$ y también la aplicamos (para $D'$) a la familia $\{\pi_i: D \to A_i\}$, obtenemos (únicas) aplicaciones $\varphi: D' \to D$ y $\psi: D \to D'$ tales que los siguientes diagramas son conmutativos para cada $i \in I$:
+    (Unicidad) Supongamos que $D'$ (con aplicaciones $\pi_i': D' \to A_i$) tiene la misma propiedad que $D = \prod_{i \in I} A_i$. Si aplicamos esta propiedad (para $D$) a la familia de aplicaciones $\{\pi_i': D' \to A_i\}$ y también la aplicamos (para $D'$) a la familia $\{\pi_i: D \to A_i\}$, obtenemos (únicas) aplicaciones $\varphi: D' \to D$ y $\psi: D \to D'$ tales que los siguientes diagramas son conmutativos para cada $i \in I$:
 
-\[
-    \begin{tikzcd}
-    D \arrow[swap]{dr}{\pi_i} \arrow[dashed]{r}{\psi} & D' \arrow{d}{\pi_i'} \\
-    & A_i
-    \end{tikzcd}
-\]
+    \[
+        \begin{tikzcd}
+        D \arrow[swap]{dr}{\pi_i} \arrow[dashed]{r}{\psi} & D' \arrow{d}{\pi_i'} \\
+        & A_i
+        \end{tikzcd}
+    \]
 
-\[
-    \begin{tikzcd}
-    D' \arrow[swap]{d}{\pi_i'} \arrow[dashed]{r}{\varphi} & D \arrow{dl}{\pi_i} \\
-    A_i
-    \end{tikzcd}
-\]
+    \[
+        \begin{tikzcd}
+        D' \arrow[swap]{d}{\pi_i'} \arrow[dashed]{r}{\varphi} & D \arrow{dl}{\pi_i} \\
+        A_i
+        \end{tikzcd}
+    \]
 
-Combinando estos, obtenemos para cada $i \in I$ un diagrama conmutativo:
+    Combinando estos, obtenemos para cada $i \in I$ un diagrama conmutativo:
 
-\[
-    \begin{tikzcd}
-    D \arrow[swap]{d}{\varphi_i} \arrow{r}{\varphi \psi} & D \arrow{dl}{\pi_i} \\
-    A_i
-    \end{tikzcd}
-\]
+    \[
+        \begin{tikzcd}
+        D \arrow[swap]{d}{\varphi_i} \arrow{r}{\varphi \psi} & D \arrow{dl}{\pi_i} \\
+        A_i
+        \end{tikzcd}
+    \]
 
-Así, $\varphi \psi: D \to D$ es una aplicación tal que $\pi_i (\varphi \psi) = \pi_i$ para todo $i \in I$. Pero por la demostración anterior, hay una única aplicación con esta propiedad. Como la aplicación $1_D: D \to D$ también satisface $\pi_i 1_D = \pi_i$ para todo $i \in I$, debemos tener $\varphi \psi = 1_D$ por unicidad. Un argumento similar muestra que $\psi \varphi = 1_D$. Por lo tanto, $\varphi$ es una biyección por (13), y $D = \prod_{i \in I} A_i$ está determinado de manera única salvo biyección.
+    Así, $\varphi \psi: D \to D$ es una aplicación tal que $\pi_i (\varphi \psi) = \pi_i$ para todo $i \in I$. Pero por la demostración anterior, hay una única aplicación con esta propiedad. Como la aplicación $1_D: D \to D$ también satisface $\pi_i 1_D = \pi_i$ para todo $i \in I$, debemos tener $\varphi \psi = 1_D$ por unicidad. Un argumento similar muestra que $\psi \varphi = 1_D$. Por lo tanto, $\varphi$ es una biyección por (13), y $D = \prod_{i \in I} A_i$ está determinado de manera única salvo biyección.
+\end{proofbox}
 
 Nótese que el enunciado del Teorema \ref{thm:prop-universal-producto} no menciona elementos; involucra solo conjuntos y aplicaciones. Establece que el producto $\prod_{i \in I} A_i$ se caracteriza por una cierta propiedad universal que cumplen todas las aplicaciones. Esta propiedad se resume en el siguiente diagrama conmutativo:
 
