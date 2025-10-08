@@ -540,7 +540,7 @@ Resulta interesante ahora estudiar algunas propiedades del núcleo y la imagen, 
         f(ax) = f(a)f(x) \in I \implies ax \in f^{-1}(I)
         \]
         ya que $f(a) \in B$ e $I$ es un ideal.
-        \item Claramente $f(I)$ es no vacío (de hecho es todo $B$). Si $x,y \in f(I)$, entonces, $x = f(a), y = f(b)$ y 
+        \item Claramente $f(I)$ es no vacío ya que $0\in I \implies f(0)\in f(I)$. Si $x,y \in f(I)$, entonces, $x = f(a), y = f(b)$ y 
         \[
         x + y = f(a) + f(b) = f(a + b) \in f(I)
         \]
@@ -892,30 +892,117 @@ Recordemos algunas definiciones y caracterizaciones útiles.
     \end{itemize}
 \end{proofbox}
 
+El siguiente resultado describe los ideales de un anillo cociente. Consideremos la proyección canónica $\eta : A \to A / I$. La imagen de un subconjunto $J \subset A$ es 
+\[
+\eta(J) = \{a + I : a \in J\}
+\]
+si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
+
 \begin{theorem}{Teorema de correspondencia}{teorema-correspondencia}
-    Sea \(I\) un ideal de un anillo \(A\). Las asignaciones:
+    Sea \(I\) un ideal de un anillo \(A\). Sea $\mathcal{A}$ el conjunto de ideales de \(A\) que contienen a \(I\)
+    \[
+    \mathcal{A} = \{J \leq A : I \subseteq J\}.
+    \]
+    Sea $\mathcal{K}$ el conjunto de todos los ideales de \(A/I\)
+    \[
+    \mathcal{K} = \{ K \leq A/I \}.
+    \]
+    Entonces las asignaciones
     \begin{align*}
-        J &\mapsto J/I \\
-        X &\mapsto \pi^{-1}(X)
+    &\Phi : \mathcal{A} \to \mathcal{K},\ \Phi(J) = J/I \\
+    &\Psi : \mathcal{K} \to \mathcal{A},\ \Psi(K) = \eta^{-1}(K)
     \end{align*}
-    definen biyecciones (una inversa de la otra) que preservan la inclusión entre:
-    \begin{itemize}
-        \item El conjunto de ideales de \(A\) que contienen a \(I\)
-        \item El conjunto de todos los ideales de \(A/I\)
-    \end{itemize}
+    definen aplicaciones biyectivas, una inversa de la otra, que conservan la inclusión en $\mathcal{A}$ y $\mathcal{K}$.
 \end{theorem}
 
 \begin{proofbox}
-    Basta verificar:
+    En primer lugar, veamos que son aplicaciones, para ello necesitamos que se cumpla
     \begin{itemize}
-        \item Si \(J\) es ideal de \(A\) con \(I \subseteq J\), entonces \(J/I\) es ideal de \(A/I\) y \(\pi^{-1}(J/I) = J\)
-        \item Si \(X\) es ideal de \(A/I\), entonces \(\pi^{-1}(X)\) es ideal de \(A\) que contiene a \(I\) y \(\pi^{-1}(X)/I = X\)
-        \item Las asignaciones preservan inclusiones
+        \item Si $J$ es un ideal que contiene a $I$ entonces $\eta(J) = J/I$ es un ideal.
+        \begin{itemize}
+            \item Como $J$ es un ideal $0 \in J$, luego $0 + I = \eta(0) \in \eta(J) = J/I \neq \emptyset$.
+            \item Sean $x + I, y + I \in J/I$ (es decir, $x, y \in J$ tales que $\eta(x) = x + I, \eta(y) = y + I$). Es claro que
+            \[
+            \eta(x + y) = (x + y) + I = (x + I) + (y + I) \in J/I
+            \]
+            como necesitamos.
+            \item Sea $x + I \in J/I$, $a + I \in A/I$ entonces
+            \[
+            (a + I)(x + I) = ax + I = \eta(ax) \in J/I
+            \]
+            ya que $ax \in J$ al ser $J$ ideal.
+        \end{itemize}
+
+        \item Si $K$ es un ideal de $A/I$ entonces $\eta^{-1}(K)$ es un ideal que contiene a $I$.
+        \begin{itemize}
+            \item Como $K$ es un ideal $0 + I \in K$, y al ser $0 + I = \eta(0) \implies 0 \in \eta^{-1}(K) \neq \emptyset$.
+            
+            \item Sean $x,y \in \eta^{-1}(K)$, entonces $x + I, y + I \in K \implies (x+y) + I \in K$. Finalmente
+            \[
+            \eta(x + y) = (x + y) + I = \in K \implies (x + y) \in \eta^{-1}(K)
+            \]
+            como necesitamos.
+            \item Sean $x \in \eta{-1}(K)$, $a \in A$ entonces
+            \[
+            \eta(ax) = ax + I = (a + I)(x + I) \in K
+            \]
+            ya que $a + I \in A/I$ y $K$ es un ideal, pero entonces $ax \in \eta^{-1}(K)$ como queríamos ver.
+
+            \item Sea $x \in I$, entonces
+            \[
+            \eta(x) = 0 + I \in K \implies x \in \eta^{-1}(K).
+            \]
+        \end{itemize}
+    \end{itemize}
+
+    Veamos ahora que una es inversa de la otra, lo cual implica directamente que son biyectivas.
+    \begin{itemize}
+        \item Dado $J \in \mathcal{A}$
+        \[
+        \Psi(\Phi(J)) = \eta^{-1}(\eta(J)) \supseteq J
+        \]
+        por las propiedades de conjuntos. Para la otra inclusión, si $x \in \eta^{-1}(\eta(J))$ entonces $\eta(x) \in \eta(J)$, luego existe $y\in J$ tal que 
+        \[
+        x + I = \eta(y) = y + I \implies x - y \in I \subseteq J \implies x = (x - y) + y \in J
+        \] 
+        usando que $J$ es ideal.
+
+        \item Sea ahora $K \in \mathcal{K}$, entonces 
+        \[
+        \Phi(\Psi(K)) = \eta(\eta^{-1}(K)) \subseteq K
+        \]
+        por conjuntos. Por otro lado, si $x + I \in K$ entonces, al ser $\eta$ sobreyectiva existe $y \in \eta^{-1}(K)$ tal que $\eta(y) = x + I \in K$. Por tanto $x + I \in \eta(\eta^{-1}(K))$ 
+    \end{itemize}
+
+    Finalmente veamos que respetan las inclusiones.
+    \begin{itemize}
+        \item Si $J,J' \in \mathcal{A}, J \subseteq J'$ entonces
+        \[
+        \Phi(J) \subset \Phi(J')
+        \]
+        por las propiedades de conjuntos.
+        \item Si $K, K' \in \mathcal{K}, K \subseteq K'$ entonces
+        \[
+        \Psi(K) \subset \Psi(K')
+        \]
+        por las propiedades de conjuntos.
     \end{itemize}
 \end{proofbox}
 
+\begin{remark}
+    En \ref{prop:preservacion-subestructuras} ya habíamos probado casi todo lo que necesitabamos para ver que $\Phi, \Psi$ son aplicaciones.
+\end{remark}
+
+\begin{remark}
+    Recordemos que
+    \[
+    \eta(\eta^{-1}(K)) = K
+    \]
+    es una de las caracterizaciones vista en conjuntos para que una aplicación $\eta$ sea sobreyectiva.
+\end{remark}
+
 \begin{example}{Aplicación del teorema de correspondencia}{}
-    En \(\mathbb{Z}_n = \mathbb{Z}/(n)\), los ideales son de la forma \(d\mathbb{Z}_n = (d)/(n)\) donde \(d \mid n\). Además, \(d\mathbb{Z}_n \subseteq d'\mathbb{Z}_n\) si y solo si \(d' \mid d\).
+    En \(\mathbb{Z}_n = \mathbb{Z}/(n)\), los ideales son de la forma \(d\mathbb{Z}_n = (d)/(n)\) donde \(d \mid n\). Además, \(d\mathbb{Z}_n \leq d'\mathbb{Z}_n\) si y solo si \(d' \mid d\).
 \end{example}
 
 \clearpage
