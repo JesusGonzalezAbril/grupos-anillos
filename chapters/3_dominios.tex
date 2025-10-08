@@ -1,0 +1,33 @@
+\clearpage
+
+\chapter{Divisibilidad en dominios}
+
+\section{Cuerpos y dominios}
+
+\section{Ideales primos y maximales}
+
+\begin{definition}{Ideal primo}{ideal-primo}
+    Un ideal propio \(P \leq A, P \neq A\) es primo si para todo \(a, b \in A\):
+    \[
+    ab \in P \Rightarrow a \in P \text{ o } b \in P
+    \]
+\end{definition}
+
+\begin{definition}{Ideal maximal}{ideal-maximal}
+    Un ideal propio \(M \leq A, M \neq A\) es maximal si no existe ningún ideal \(I\) tal que \(M \subsetneq I \subsetneq A\).
+\end{definition}
+
+\begin{lemma}{Caracterizaciones}{caract-primos-maximales}
+    \begin{enumerate}
+        \item \(P\) es primo si y solo si \(A/P\) es un dominio de integridad
+        \item \(M\) es maximal si y solo si \(A/M\) es un cuerpo
+        \item Todo ideal maximal es primo
+    \end{enumerate}
+\end{lemma}
+
+\begin{example}{Ejemplos en \(\mathbb{Z}\)}{}
+    \begin{itemize}
+        \item Los ideales primos de \(\mathbb{Z}\) son \((0)\) y \((p)\) con \(p\) primo
+        \item Los ideales maximales de \(\mathbb{Z}\) son \((p)\) con \(p\) primo
+    \end{itemize}
+\end{example}

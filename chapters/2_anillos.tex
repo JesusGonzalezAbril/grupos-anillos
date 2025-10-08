@@ -1002,7 +1002,7 @@ si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
 \end{remark}
 
 \begin{example}{Aplicación del teorema de correspondencia}{}
-    En \(\mathbb{Z}_n = \mathbb{Z}/(n)\), los ideales son de la forma \(d\mathbb{Z}_n = (d)/(n)\) donde \(d \mid n\). Además, \(d\mathbb{Z}_n \leq d'\mathbb{Z}_n\) si y solo si \(d' \mid d\).
+    En \(\mathbb{Z}_n = \mathbb{Z}/(n)\), los ideales son de la forma \(d\mathbb{Z}_n = (d)/(n)\) donde \(d \mid n\). Además, \(d\mathbb{Z}_n \subseteq d'\mathbb{Z}_n\) si y solo si \(d' \mid d\).
 \end{example}
 
 \clearpage
@@ -1012,14 +1012,14 @@ si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
 \begin{definition}{Suma de ideales}{suma-ideales}
     Si \(I\) y \(J\) son ideales de \(A\), su {suma} es:
     \[
-    I + J = \{x + y : x \in I, y \in J\}
+    I + J = \{x + y : x \in I, y \in J\} = (I \cup J)
     \]
 \end{definition}
 
 \begin{definition}{Producto de ideales}{producto-ideales}
     Si \(I\) y \(J\) son ideales de \(A\), su {producto} es:
     \[
-    IJ = \left\{\sum_{i=1}^n x_i y_i : x_i \in I, y_i \in J, n \geq 0\right\}
+    IJ = \left\{\sum_{i=1}^n x_i y_i : x_i \in I, y_i \in J, n \geq 0\right\} = \Big(\{xy : x \in I, y \in J\}\Big)
     \]
 \end{definition}
 
@@ -1043,7 +1043,61 @@ si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
 \end{proposition}
 
 \begin{proofbox}
-    Ejercicio.
+    \begin{enumerate}
+        \item Sea \(x \in IJ\), entonces \(x = \sum_{i=1}^n x_i y_i\) con cada $x_i \in I, y_i \in J$. Por tanto $x_iy_i \in I$ al ser $I$ un ideal, de hecho $\sum_{i=1}^n x_i y_i \in I$ al ser suma de elementos de $I$. Para $J$ ocurre igual ya que los $y_i \in J$, luego \(\sum_{i=1}^n x_i y_i \in J\) y finalmente \(x \in I \cap J\).
+
+        \item Sea \( x \in I(J \cap K)\), entonces $x = \sum_{i=1}^n x_i y_i$ con cada $x_i \in I, y_i \in J \cap K$. En concreto $x \in IJ$ ya que cada $y_i \in J$, de igual manera $x \in IK$, por tanto \(x \in IJ \cap IK\).
+        
+        \item Sea \( x \in I(JK)\), entonces $x = \sum_{i=1}^n x_i y_i$ con cada $x_i \in I, y_i \in JK$, en concreto cada $y_i = \sum_{k=1}^m a_k b_k$ con $a_k \in J, b_k \in K$. Entonces
+        \[
+        x = \sum_{i=1}^n \left( x_i \left[ \sum_{k=1}^m a_k b_k \right]\right) = \sum_{k=1}^m \left( a_k b_k \left[ \sum_{i=1}^n x_i\right] \right) = \sum_{k=1}^m \left( b_k \left[ \sum_{i=1}^n x_i a_k \right] \right)
+        \]
+        sea $c_k = \sum_{i=1}^n x_i a_k$, entonces cada $c_k \in IJ$ ya que $x_i \in J, a_k \in J$, por tanto 
+        \[
+        x = \sum_{k=1}^m \left( b_k c_k \right) \in (IJ)K
+        \]
+        ya que cada $c_k \in IJ, b_k \in K$. Esto prueba que $I(JK) \subseteq (IJ)K$.
+
+        El otro contenido es inmediato ya que $IJ = JI$, luego $(IJ)K = K(IJ) \subseteq (KI)J = J(KI) \subseteq (JK)I = I(JK)$ usando lo anterior.
+
+        \item Sea \(x \in I(J + K)\), entonces
+        \[
+        x = \sum_{i=1}^n x_i y_i = \sum_{i=1}^n x_i (a_i + b_i)
+        \]
+        con $a_i \in J, b_i \in K$ ya que cada $y_i \in J + K$. Finalmente
+        \[
+        x = \sum_{i=1}^n x_i a_i + \sum_{i=1}^n x_i b_i \in IJ + IK
+        \]
+        ya que $\sum_{i=1}^n x_i a_i \in IJ, \sum_{i=1}^n x_i b_i \in IK$.
+
+        Para la otra inclusión, si \(x \in IJ + IK\) entonces \(x = a + b\) con \(a \in IJ, b \in IK\), luego 
+        \[
+        a = \sum_{i=1}^n x_i a_i,\ b = \sum_{k=1}^m y_k b_k; \quad x_i, y_k \in I, a_i \in J, b_k \in K 
+        \]
+        pero notemos que $a_i = a_i + 0 \in J + K$ ya que $0 \in K$, de igual manera $b_k = 0 + b_k \in J + K$, luego definiendo
+        \begin{align*}
+        c_l =
+            \begin{cases} 
+                x_l, & 1 \leq l \leq n \\
+                y_{n-l}, & n < l \leq n+m
+            \end{cases} \\
+        d_l = 
+            \begin{cases} 
+                a_l, & 1 \leq l \leq n \\
+                b_{n-l}, & n < l \leq n+m
+            \end{cases}
+        \end{align*}
+        tenemos que $c_l \in I, d_l \in J + K$ y 
+        \[
+        x = \sum_{l=1}^{n+m} c_l d_l
+        \]
+        luego \(x \in I(J + K)\).
+
+        \item Por $1.$ tenemos que $IA \subseteq I \cap A = I$. Por otro lado, si $x \in I$ entonces definiendo $x_1 = x, a_1 = 1_A$ tenemos
+        \[
+        x = x 1_A = \sum_{i=1}^1 x_i a_i \implies x \in IA.
+        \]
+    \end{enumerate}
 \end{proofbox}
 
 \begin{example}{Operaciones en \(\mathbb{Z}\)}{}
@@ -1062,39 +1116,11 @@ si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
 \begin{proofbox}
     Supongamos que \((2) + (X) = (a)\) para algún \(a \in \mathbb{Z}[X]\). Entonces:
     \begin{itemize}
-        \item \(2 = ab\) para algún \(b\), luego \(a \in \mathbb{Z}\)
-        \item Como \(a \in (2, X)\), debe ser \(a\) par
-        \item Pero entonces \(X \notin (a)\), contradicción
+        \item \(2 = aP\) para algún \(P \in \Z[X]\), pero entonces $P$ ha de ser un polinomio solo con término independiente y \(a\) también.
+        \item Como $a \in (2) + (X)$, $a$ debe ser par. 
+        \item Si suponemos \(X \in (a)\) debe ser $X = aP$ para algún \(P \in \Z[X]\), pero $aP$ tiene coeficiente par en la $X$ porque $a$ es par, luego $X \notin (a) = (2) + (X)$ lo cual es contradictorio.
     \end{itemize}
 \end{proofbox}
-
-\subsection{Ideales primos y maximales}
-
-\begin{definition}{Ideal primo}{ideal-primo}
-    Un ideal \(P \subsetneq A\) es {primo} si para todo \(a, b \in A\):
-    \[
-    ab \in P \Rightarrow a \in P \text{ o } b \in P
-    \]
-\end{definition}
-
-\begin{definition}{Ideal maximal}{ideal-maximal}
-    Un ideal \(M \subsetneq A\) es {maximal} si no existe ningún ideal \(I\) tal que \(M \subsetneq I \subsetneq A\).
-\end{definition}
-
-\begin{lemma}{Caracterizaciones}{caract-primos-maximales}
-    \begin{enumerate}
-        \item \(P\) es primo si y solo si \(A/P\) es un dominio de integridad
-        \item \(M\) es maximal si y solo si \(A/M\) es un cuerpo
-        \item Todo ideal maximal es primo
-    \end{enumerate}
-\end{lemma}
-
-\begin{example}{Ejemplos en \(\mathbb{Z}\)}{}
-    \begin{itemize}
-        \item Los ideales primos de \(\mathbb{Z}\) son \((0)\) y \((p)\) con \(p\) primo
-        \item Los ideales maximales de \(\mathbb{Z}\) son \((p)\) con \(p\) primo
-    \end{itemize}
-\end{example}
 
 \clearpage
 \section{Teoremas de isomorfía}
