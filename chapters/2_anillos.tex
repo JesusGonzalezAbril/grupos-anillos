@@ -562,7 +562,7 @@ Resulta interesante ahora estudiar algunas propiedades del núcleo y la imagen, 
 \end{example}
 
 \begin{theorem}{Homomorfismos en productos}{hom-productos}
-    Sean \(A, B, C\) anillos. Existe una biyección natural:
+    Sean \(A, B, C\) anillos. Existe una biyección natural $\Phi$ tal que
     \[
     \operatorname{Hom}(A, B \times C) \cong \operatorname{Hom}(A, B) \times \operatorname{Hom}(A, C)
     \]
@@ -572,6 +572,25 @@ Resulta interesante ahora estudiar algunas propiedades del núcleo y la imagen, 
 \begin{example}{Aplicación}{}
     Para determinar todos los homomorfismos \(f: \mathbb{Z} \to \mathbb{Z}_2 \times \mathbb{Z}_3\), basta determinar los homomorfismos \(\mathbb{Z} \to \mathbb{Z}_2\) y \(\mathbb{Z} \to \mathbb{Z}_3\) por separado.
 \end{example}
+
+\begin{proofbox}
+    Si $f : \Z \to \Z_2$ es un homomorfismo entonces
+    \[
+    f(1) = [1]_2, f(n) = nf(1) = n[1]_2 = [n]_2
+    \]
+    luego solo existe un homomorfismo de ese tipo.
+
+    Similarmente, si $f : \Z \to \Z_3$ es un homomorfismo entonces
+    \[
+    f(1) = [1]_3, f(n) = nf(1) = n[1]_3 = [n]_3
+    \]
+    por tanto este homomorfismo también esta totalmente determinado.
+
+    Finalmente deducimos que el único homomorfismo de $\Z$ a $\Z_2 \times \Z_3$ es 
+    \[
+    g(n) = ([n]_2, [n]_3).
+    \]
+\end{proofbox}
 
 \clearpage
 \section{Ideales y anillos cociente}
@@ -585,10 +604,13 @@ Resulta interesante ahora estudiar algunas propiedades del núcleo y la imagen, 
     \end{enumerate}
 \end{definition}
 
+Si $I$ es un ideal de $A$ escribiremos $I \leq A$.
+
 \begin{remark}
     \begin{itemize}
-        \item La condición \(I \neq \emptyset\) puede sustituirse por \(0 \in I\), ya que si \(a \in I\) entonces \(0 = a + (-1)a \in I\)
-        \item Si \(I\) es un ideal de \(A\), entonces para todo \(a_1, \ldots, a_n \in A\) y \(x_1, \ldots, x_n \in I\) se tiene que \(\sum_{i=1}^n a_i x_i \in I\)
+        \item La condición \(I \neq \emptyset\) puede sustituirse por \(0 \in I\), ya que si \(a \in I\) entonces \(0 = a + (-1)a \in I\).
+        \item Si \(I\) es un ideal de \(A\), entonces para todo \(a_1, \ldots, a_n \in A\) y \(x_1, \ldots, x_n \in I\) se tiene que \(\sum_{i=1}^n a_i x_i \in I\).
+        \item Todo ideal es un grupo respecto de la suma.
     \end{itemize}
 \end{remark}
 
@@ -598,6 +620,27 @@ Resulta interesante ahora estudiar algunas propiedades del núcleo y la imagen, 
         \item El {ideal impropio}: \(A\)
     \end{itemize}
 \end{example}
+
+Todo aquel ideal que no sea impropio, es decir, que verifique $I \leq A, I \neq A$ se llama ideal propio. En ocasiones nos interesará trabajar solo con ideales que sean propios, por lo que resulta muy útil caracterizar aquellos que no lo son.
+
+\begin{lemma}{Caracterización de ideales impropios}{caract-ideales-impropios}
+    Sea \(A\) un anillo. Para un ideal \(I \leq A\), las siguientes condiciones son equivalentes:
+    \begin{enumerate}
+        \item \(I = A\), es decir, $I$ es un ideal impropio.
+        \item \(1 \in I\)
+        \item \(I\) contiene una unidad de \(A\) (i.e., \(I \cap A^* \neq \emptyset\))
+    \end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+    \begin{itemize}
+        \item (1) \(\implies\) (2): si \(I = A\), entonces \(1 \in I\)
+        \item (2) \(\implies\) (3): \(1\) es una unidad
+        \item (3) \(\implies\) (1): si \(u \in I \cap A^*\), entonces \(1 = uu^{-1} \in I\), luego \(I = A\)
+    \end{itemize}
+\end{proofbox}
+
+\subsection{Ejemplos de ideales}
 
 \begin{example}{Ideales principales}{}
     Sea \(A\) un anillo y \(b \in A\). El conjunto:
@@ -613,10 +656,6 @@ Resulta interesante ahora estudiar algunas propiedades del núcleo y la imagen, 
         \item \((b)\) es el menor ideal de \(A\) que contiene a \(b\)
     \end{itemize}
 \end{example}
-
-Para probar esta última afirmación supongamos que $I$ es otro ideal de $A$ tal que $b \in I$. Entonces si $(b) \subset I$ ya que $b \in I$ e $I$ es un ideal, luego $x \in (b) \implies x = ba,\ a \in A \implies x \in I$.
-
-\clearpage
 
 \begin{example}{Ideal generado por un conjunto}{}
     Sea \(T \subseteq A\). El {ideal generado por \(T\)} es:
@@ -637,31 +676,56 @@ Para probar esta última afirmación supongamos que $I$ es otro ideal de $A$ tal
     \]
     Si $(a',b') \in A \times B$ entonces 
     \[
-    (a',b')x = (aa',0) \in A \times \{0\}.
+    (a',b')x = (a',b')(a,0) = (aa',0) \in A \times \{0\}.
     \]
 \end{proofbox}
 
 \begin{example}{Ideales en anillos de polinomios}{}
     Sea \(A[X]\) el anillo de polinomios.
     \begin{itemize}
-        \item \(I = \{a_1X + \cdots + a_nX^n : a_i \in A\}\) (polinomios sin término constante) es un ideal
+        \item \(I = \{a_1X + \cdots + a_nX^n : a_i \in A\}\) (polinomios sin coeficiente independiente) es un ideal
         \item Si \(I\) es ideal de \(A\), entonces \(J = \{a_0 + a_1X + \cdots + a_nX^n : a_0 \in I\}\) es un ideal de \(A[X]\)
         \item \(I[X] = \{a_0 + a_1X + \cdots + a_nX^n : a_i \in I\}\) es un ideal de \(A[X]\)
     \end{itemize}
 \end{example}
+
+\begin{proofbox}
+    \begin{itemize}
+        \item Que \(I\) es no vacío es inmediato. Si $P,Q \in I$ entonces son de la forma
+        \[
+        P = a_1X + \cdots + a_nX^n,\ Q = b_1X + \cdots + b_mX^m
+        \]
+        donde podemos suponer sin pérdida de generalidad que $m \geq n$, luego definiendo $c_k = a_k + b_k$ (tomando $a_k = 0$ si $k > n$) tenemos
+        \[
+        P + Q = c_1 X + \cdots + c_mX^m \in I.
+        \]
+        De igual manera, el producto de polinomios sin término independiente es un polinomio sin término independiente. Sea $d_0, d_1 = 0, d_k = \sum_{i + j = k} a_{i} b_{j}$
+        \[
+        PQ = a_1b_1 X^2 + \cdots + a_nb_m X^{n + m} = d_2 X^2 + \cdots + d_{n + m} X^{n + m} \in I.
+        \]
+
+        \item Como $I$ es no vacío existe $y \in I$, luego el polinomio $y = yX^0 \in J$ y $J$ es no vacío. Dados $P,Q \in J$ su suma es el polinomio con coeficientes obtenidos sumando los de $P$ y $Q$, como ambos coeficientes independiente están en $I$, que es un ideal, su suma también está en $I$, luego $P + Q \in J$. Para el producto, notemos que el coeficiente independiente de $PQ$ es el producto de dos elementos de $I$, luego está en $I$ y por tanto $PQ \in J$. 
+
+        \item Como $I$ es no vacío existe $y \in I$, luego el polinomio $y = yX^0 \in I[X]$ e $I[X]$ es no vacío. Dados $P,Q \in I[X]$ su suma es el polinomio con coeficientes obtenidos sumando los de $P$ y $Q$, como estos coeficientes están en $I$, que es un ideal, su suma también está en $I$, luego $P + Q \in I[X]$. Para el producto, notemos que los coeficientes de $PQ$ son combinaciones de elementos obtenidos como producto de dos elementos de $I$, luego los coeficientes de $PQ$ están en $I$ y por tanto $PQ \in I[X]$.
+    \end{itemize}
+\end{proofbox}
 
 \begin{proposition}{Intersección de ideales}{interseccion-ideales}
     La intersección de cualquier familia de ideales de \(A\) es un ideal de \(A\).
 \end{proposition}
 
 \begin{proofbox}
-    Si $I_\alpha$ es una familia de ideales y $J = \cap_{\alpha \in X} I_\alpha$ entonces $0 \in J \implies J \neq \emptyset$. Además, para todo indice $\alpha$
+    Si $I_\alpha$ es una familia de ideales indexada por $X$ y $J = \cap_{\alpha \in X} I_\alpha$ entonces
     \[
-    x,y \in J \implies x+y \in I_\alpha \implies x+y \in J
+    0 \in I_\alpha \ \forall \alpha \in X \implies 0 \in J \implies J \neq \emptyset
+    \]
+    Además, 
+    \[
+    x,y \in J \implies x,y \in I_\alpha \ \forall \alpha \in X \implies x+y \in I_\alpha \ \forall \alpha \in X \implies x+y \in J
     \]
     y para cualquier $a \in A$
     \[
-    x \in J \implies ax \in I_\alpha \implies ax \in J.
+    x \in J \implies x \in I_\alpha \ \forall \alpha \in X \implies ax \in I_\alpha \ \forall \alpha \in X \implies ax \in J.
     \]
 \end{proofbox}
 
@@ -674,6 +738,8 @@ Para probar esta última afirmación supongamos que $I$ es otro ideal de $A$ tal
     
     Para ver que se da la igualdad tomamos \(b\in I\) y sean \(q\) y \(r\) el cociente y el resto de la división entera de \(b\) entre \(a\). Entonces \(b=qa+r\) y \(0\leq r<a\). Pero \(r=b-qa\in I\), por que \(I\) es un ideal de \(\mathbb{Z}\) que contiene a \(a\) y \(b\) y \(q\in\mathbb{Z}\). Como \(r\) es estrictamente menor que \(a\) y \(a\) es mínimo en \(I\cap\mathbb{N}\), necesariamente \(r\not\in\mathbb{N}\), es decir \(r\) no es positivo. Luego \(r=0\), con lo que \(b=qa\in(a)\).
 \end{proofbox}
+
+\subsection{Anillos cociente}
 
 \begin{definition}{Congruencia módulo un ideal}{congruencia-ideal}
     Sea \(I\) un ideal de un anillo \(A\). Decimos que \(a, b \in A\) son {congruentes módulo \(I\)}, y escribimos \(a \equiv b \pmod{I}\), si \(b - a \in I\).
@@ -743,12 +809,20 @@ A/I = \frac{A}{I} = \{a + I : a \in A\}.
 \end{proposition}
 
 \begin{proofbox}
-    Sean \(a + I = a' + I\) y \(b + I = b' + I\). Entonces \(a - a', b - b' \in I\). Luego:
+    Sean \(a + I = a' + I\) y \(b + I = b' + I\). Entonces \(a - a', b - b' \in I\). Luego
     \begin{itemize}
-        \item \((a + b) - (a' + b') = (a - a') + (b - b') \in I\)
-        \item \(ab - a'b' = ab - ab' + ab' - a'b' = a(b - b') + (a - a')b' \in I\)
+        \item La suma está bien definida, para ello veamos que $(a+b) + I = (a' + b') + I$, o equivalentemente, $(a + b) - (a' + b') \in I$, en efecto
+        \[
+        (a + b) - (a' + b') = (a - a') + (b - b') \in I
+        \]
+        ya que $a - a', b - b' \in I$.
+        \item El producto está bien definido, para ello veamos que $(ab) + I = (a'b') + I$, es decir, $(ab) - (a'b') \in I$
+        \[
+        ab - a'b' = ab - ab' + ab' - a'b' = a(b - b') + (a - a')b' \in I
+        \]
+        de nuevo porque $a - a', b - b' \in I$.
     \end{itemize}
-    Por tanto las operaciones están bien definidas.
+    Por tanto las operaciones están bien definidas. La comprobación del cero y el uno son inmediatas.
 \end{proofbox}
 
 \begin{definition}{Proyección canónica}{proyeccion-canonica}
@@ -756,11 +830,11 @@ A/I = \frac{A}{I} = \{a + I : a \in A\}.
 \end{definition}
 
 \begin{proofbox}
-    Que la proyección es sobreyectiva es inmediato, dado $a + I \in A/I$ es inmediato que $\eta(a) = a + I$.
+    Que la proyección es sobreyectiva es inmediato, dado $a + I \in A/I$ es inmediato que $\eta(a) = a + I$. Comprobar que es un homomorfismo es trivial por la manera en que hemos definido las operaciones en $A/I$.
 \end{proofbox}
 
 \begin{example}{Anillos \(\mathbb{Z}_n\)}{}
-    Para \(n > 0\), \(\mathbb{Z}_n = \mathbb{Z}/(n)\) es el anillo cociente. Tiene exactamente \(n\) elementos: \(0 + (n), 1 + (n), \ldots, (n-1) + (n)\).
+    Para \(n > 0\), \(\mathbb{Z}_n\)  es el anillo cociente \(\mathbb{Z}/(n)\). Tiene exactamente \(n\) elementos: \(0 + (n), 1 + (n), \ldots, n-1 + (n)\).
 \end{example}
 
 \begin{example}{Cocientes triviales}{}
@@ -771,12 +845,23 @@ A/I = \frac{A}{I} = \{a + I : a \in A\}.
 \end{example}
 
 \begin{example}{Cociente por ideales en polinomios}{}
-    Sea \(I = \{a_1X + \cdots + a_nX^n\} \subseteq A[X]\) (polinomios sin término constante). Entonces:
+    Sea \(I = \{a_1X + \cdots + a_nX^n\} \leq A[X]\). Entonces:
     \[
     A[X]/I \cong A
     \]
     mediante el isomorfismo que envía \(P(X) + I\) al término constante de \(P\).
 \end{example}
+
+\begin{proofbox}
+    Sea $P(X) \in A[X], P(X) = a_0 + a_1 X + \cdots + a_n X^n$ entonces $P(X) + I \in A[X]/I$ es de la forma $P(X) + I = a_0 + I$ ya que
+    \[
+    P(X) - a_0 = a_1 X + \cdots + a_n X^n \in I.
+    \]
+    luego el isomorfismo es $\phi(a_0 + I) = a_0$. Claramente es un homomorfismo sobreyectivo, para ver que es inyectivo supongamos
+    \[
+    \phi(a_0 + I) = \phi(b_0 + I) \implies a_0 = b_0 \implies a_0 - b_0 = 0 \in I \implies a_0 + I = b_0 + I.
+    \]
+\end{proofbox}
 
 \begin{example}{Cociente en productos}{}
     Sean \(A, B\) anillos, \(I = A \times \{0\}\). Entonces:
@@ -785,26 +870,9 @@ A/I = \frac{A}{I} = \{a + I : a \in A\}.
     \]
 \end{example}
 
-\subsection{Caracterización de ideales maximales}
+\subsection{Teorema de correspondencia}
 
-\begin{lemma}{Caracterización de ideales impropios}{caract-ideales-impropios}
-    Sea \(A\) un anillo. Para un ideal \(I \subseteq A\), las siguientes condiciones son equivalentes:
-    \begin{enumerate}
-        \item \(I = A\) (ideal impropio)
-        \item \(1 \in I\)
-        \item \(I\) contiene una unidad de \(A\) (i.e., \(I \cap A^* \neq \emptyset\))
-    \end{enumerate}
-\end{lemma}
-
-\begin{proofbox}
-    \begin{itemize}
-        \item (1) \(\Rightarrow\) (2): si \(I = A\), entonces \(1 \in I\)
-        \item (2) \(\Rightarrow\) (3): \(1\) es una unidad
-        \item (3) \(\Rightarrow\) (1): si \(u \in I \cap A^*\), entonces \(1 = uu^{-1} \in I\), luego \(I = A\)
-    \end{itemize}
-\end{proofbox}
-
-\subsection{Núcleo y teorema de correspondencia}
+Recordemos algunas definiciones y caracterizaciones útiles.
 
 \begin{definition}{Núcleo de un homomorfismo}{nucleo-homomorfismo}
     Sea \(f: A \to B\) un homomorfismo de anillos. El {núcleo} de \(f\) es:
