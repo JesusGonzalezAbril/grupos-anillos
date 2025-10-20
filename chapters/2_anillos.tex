@@ -450,6 +450,10 @@ Resulta interesante ahora estudiar algunas propiedades del núcleo y la imagen, 
     Si \(I\) es un ideal de \(A\), la proyección canónica \(\eta: A \to A/I\) dada por \(\pi(a) = a + I\) es un homomorfismo suprayectivo con \(\ker \eta = I\).
 \end{example}
 
+\begin{remark}
+    Usamos indiscriminadamente $\eta$ o $p$ para denominar a esta proyección canónica.
+\end{remark}
+
 \begin{example}{Homomorfismo de sustitución}{}
     Sea \(A\) un anillo y \(b \in A\). La aplicación \(\varphi_b: A[X] \to A\) dada por:
     \[
@@ -711,6 +715,13 @@ Todo aquel ideal que no sea impropio, es decir, que verifique $I \leq A, I \neq 
     Este es el menor ideal de \(A\) que contiene a \(T\).
 \end{example}
 
+\begin{remark}
+    Frecuentemente, cuando el conjunto sea finito escribiremos
+    \[
+    (\{x_1, x_2,\dots, x_n\}) = (x_1, x_2, \dots, x_n)
+    \]
+\end{remark}
+
 \begin{example}{Ideales en anillos producto}{}
     Si \(A\) y \(B\) son anillos, entonces \(A \times \{0\} = \{(a, 0) : a \in A\}\) es un ideal de \(A \times B\).
 \end{example}
@@ -890,7 +901,7 @@ A/I = \frac{A}{I} = \{a + I : a \in A\}.
     \end{itemize}
 \end{example}
 
-\begin{example}{Cociente por ideales en polinomios}{}
+\begin{example}{Cociente por ideales en polinomios}{cociente-sustitucion}
     Sea \(I = \{a_1X + \cdots + a_nX^n\} \leq A[X]\). Entonces:
     \[
     A[X]/I \cong A
@@ -1022,16 +1033,14 @@ si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
 
     Finalmente veamos que respetan las inclusiones.
     \begin{itemize}
-        \item Si $J,J' \in \mathcal{A}, J \subseteq J'$ entonces
+        \item Si $J,J' \in \mathcal{A}, J \subseteq J'$ entonces dado
         \[
-        \Phi(J) \subset \Phi(J')
+        x+I \in \Phi(J) = \eta(J) \implies x+I = \eta(j),\, j \in J \subseteq J' \implies x+I \in \eta(J') = \Phi(J').
         \]
-        por las propiedades de conjuntos.
-        \item Si $K, K' \in \mathcal{K}, K \subseteq K'$ entonces
+        \item De igual manera, si $K, K' \in \mathcal{K}, K \subseteq K'$ entonces
         \[
-        \Psi(K) \subset \Psi(K')
+        x \in \Psi(K) = \eta^{-1}(K) \implies \eta(x) \in K \subseteq K' \implies x \in \eta^{-1}(K') = \Phi(J').
         \]
-        por las propiedades de conjuntos.
     \end{itemize}
 \end{proofbox}
 
@@ -1044,7 +1053,7 @@ si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
     \[
     \eta(\eta^{-1}(K)) = K
     \]
-    es una de las caracterizaciones vista en conjuntos para que una aplicación $\eta$ sea sobreyectiva.
+    es una de las caracterizaciones vista en Conjuntos y Números para que una aplicación $\eta$ sea sobreyectiva.
 \end{remark}
 
 \begin{example}{Aplicación del teorema de correspondencia}{}
@@ -1168,43 +1177,86 @@ si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
     \end{itemize}
 \end{proofbox}
 
+\begin{example}{}{}
+    Sea $A$ un anillo y sean $a,b \in A$, entonces $(a,b) = (a) + (b)$
+\end{example}
+
+\begin{proofbox}
+    En efecto si $x \in (a,b)$ entonces
+    \[
+    x = a x_1 + b x_2 \implies x \in (a) + (b).
+    \]
+    De igual manera, si $x \in (a) + (b)$ entonces
+    \[
+    x = a_1 + b_1 
+    \]
+    con $a_1 \in (a) \implies a_1 = a x_1, b_1 \in (b) \implies b_1 = b x_2$, por tanto
+    \[
+    x = ax_1 + bx_2 \in (a,b).
+    \]
+\end{proofbox}
+
 \clearpage
 \section{Teoremas de isomorfía y Teorema chino de los restos}
 
 \begin{theorem}{Primer teorema de isomorfía}{isomorfia-uno}
-Sea $f : A \to B$ un homomorfismo de anillos. Entonces existe un único isomorfismo de anillos $\bar{f} : A/\ker f \to \text{Im } f$ que hace conmutativo el diagrama
+Sea $f : A \to B$ un homomorfismo de anillos. Entonces existe un único isomorfismo de anillos $\bar{f} : A/\ker f \to \Im f$ que hace conmutativo el diagrama
 \[
 \begin{tikzcd}
-A \arrow[r, "f"] \arrow[d, "p"'] & B \arrow[d, "i"] \\
-A/\ker f \arrow[r, "\bar{f}"'] & \text{Im } f
+A \arrow[r, "f"] \arrow[d, "p"'] & B \\
+A/\ker f \arrow[r, "\bar{f}"'] & \Im f \arrow[u, "i"]
 \end{tikzcd}
 \]
 es decir, $i \circ \bar{f} \circ p = f$, donde $i$ es la inclusión y $p$ es la proyección. En particular
 \[
-\frac{A}{\ker f} \simeq \text{Im } f.
+\frac{A}{\ker f} \cong \Im f.
 \]
 \end{theorem}
 
 \begin{proofbox}
-Sean $K = \ker f$ e $I = \text{Im } f$. La aplicación $\bar{f} : A/K \to I$ dada por $\bar{f}(x + K) = f(x)$ está bien definida (no depende de representantes) pues si $x + K = y + K$ entonces $x - y \in K$ y por lo tanto $f(x) - f(y) = f(x - y) = 0$; es decir, $f(x) = f(y)$. Además es elemental ver que es un homomorfismo de anillos y que es suprayectiva.
+Sean $K = \ker f$ e $I = \Im f$. La aplicación $\bar{f} : A/K \to I$ dada por $\bar{f}(x + K) = f(x)$ está bien definida (no depende de representantes) pues si $x + K = y + K$ entonces $x - y \in K$ y por lo tanto $f(x) - f(y) = f(x - y) = 0$; es decir, $f(x) = f(y)$. Además es elemental ver que es un homomorfismo de anillos y que es suprayectiva.
 
 Para ver que es inyectiva usamos la Proposición \ref{prop:prop-nucleo-imagen}: si $x + K$ está en el núcleo de $\bar{f}$ entonces $0 = \bar{f}(x + K) = f(x)$, de modo que $x \in K$ y así $x + K = 0 + K$. Es decir $\ker \bar{f} = 0$ y por lo tanto $\bar{f}$ es inyectiva. En conclusión, $\bar{f}$ es un isomorfismo, y hace conmutativo el diagrama porque, para cada $x \in A$, se tiene
 \[
-i(\bar{f}(p(x))) = \bar{f}(x + K) = f(x).
+i(\bar{f}(p(x))) = i(\bar{f}(x + K)) = i(f(x)_{\Im}) = f(x).
 \]
 
-En cuanto a la unicidad, supongamos que otro homomorfismo $\bar{f}' : A/K \to I$ verifica $i \circ \bar{f}' \circ p = f$; entonces para cada $x \in K$ se tiene $\bar{f}'(x + K) = i(\bar{f}'(p(x))) = f(x) = \bar{f}(x + K)$, y por lo tanto $\bar{f}' = \bar{f}$.
+En cuanto a la unicidad, supongamos que otro homomorfismo $\bar{f}' : A/K \to I$ verifica $i \circ \bar{f}' \circ p = f$; entonces para cada $x \in K$ se tiene 
+\[
+i(\bar{f}'(p(x))) = i(\bar{f}'(x + K)) = f(x) = i(\bar{f}(p(x))) = i(\bar{f}(x + K)).
+\]
+Por la inyectividad de $i$ debe ser entonces
+\[
+\bar{f}'(p(x)) = \bar{f}(p(x))
+\]
+como $p$ es sobreyectiva, dado $y + K \in A/\ker f$ existe $x_0 \in A$ tal que $y + K = p(x_0)$, por tanto para cualquier $y + K$
+\[
+\bar{f}'(y + K) = \bar{f}'(p(x_0)) = \bar{f}(p(x_0)) = \bar{f}(y + K)
+\]
+y finalmente $\bar{f}' = \bar{f}$.
 \end{proofbox}
 
 \begin{theorem}{Segundo teorema de isomorfía}{isomorfia-dos}
 Sea $A$ un anillo y sean $I$ y $J$ dos ideales tales que $I \subseteq J$. Entonces $J/I$ es un ideal de $A/I$ y existe un isomorfismo de anillos
 \[
-\frac{A/I}{J/I} \simeq \frac{A}{J}.
+\frac{A/I}{J/I} \cong \frac{A}{J}.
 \]
 \end{theorem}
 
 \begin{proofbox}
-Por el Teorema de la Correspondencia \ref{thm:correspondencia}, $J/I$ es un ideal de $A/I$. Sea $f : A/I \to A/J$ la aplicación definida por $f(a + I) = a + J$. Es elemental ver que $f$ está bien definida, que es un homomorfismo suprayectivo de anillos y que $\ker f = J/I$. Entonces el isomorfismo buscado se obtiene aplicando el Primer teorema de isomorfía a $f$.
+Por el Teorema de la Correspondencia \ref{thm:teorema-correspondencia}, $J/I$ es un ideal de $A/I$. Sea $f : A/I \to A/J$ la aplicación definida por $f(a + I) = a + J$. Es elemental ver que $f$ está bien definida, sean $a + I = b + I \in A/I$, entonces $a-b \in I \subset J$, luego
+\[
+a - b \in J \implies a + J = b + J \implies f(a + I) = f(b + I).
+\]
+Que es un homomorfismo suprayectivo de anillos se deja como ejercicio. Veamos que $\ker f = J/I$
+\[
+f(a+I) = a + J = 0 + J \iff a \in J \implies a + I \in \eta(J) = J/I
+\]
+si por el contrario $a + I \in J/I$ entonces
+\[
+a + I = \eta(j) = j + I \implies f(a + I) = f(j + I) = j + J = 0 + J \implies a + I \in \ker f.
+\]
+Entonces el isomorfismo buscado se obtiene aplicando el Primer teorema de isomorfía a $f$.
 \end{proofbox}
 
 \begin{theorem}{Tercer teorema de isomorfía}{isomorfia-tres}
@@ -1212,12 +1264,24 @@ Sea $A$ un anillo con un subanillo $B$ y un ideal $I$. Entonces:
 \begin{enumerate}
     \item $B \cap I$ es un ideal de $B$.
     \item $B + I$ es un subanillo de $A$ que contiene a $I$ como ideal.
-    \item Se tiene un isomorfismo de anillos $\dfrac{B}{B \cap I} \simeq \dfrac{B + I}{I}$.
+    \item Se tiene un isomorfismo de anillos $\dfrac{B}{B \cap I} \cong \dfrac{B + I}{I}$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proofbox}
-Los dos primeros apartados se dejan como ejercicio. En cuanto al último, sea $f : B \to A/I$ la composición de la inclusión $j : B \to A$ con la proyección $p : A \to A/I$. Es claro que $\ker f = B \cap I$ y que $\text{Im } f = (B + I)/I$, por lo que el resultado se sigue del Primer Teorema de Isomorfía.
+Los dos primeros apartados se dejan como ejercicio. En cuanto al último, sea $f : B \to A/I$ la composición de la inclusión $j : B \to A$ con la proyección $\eta : A \to A/I$
+\[
+f(b) = \eta(j(b)) = b + I.
+\]
+Es claro que $\ker f = B \cap I$, puesto que dado $b \in B$
+\[
+f(b) = b + I = 0 + I \iff b \in I \iff b \in B \cap I
+\]
+y que $\Im f = (B + I)/I$, ya que dado $b + I \in \Im f$ existe un cierto $b_0 \in B$ tal que
+\[
+b + I = f(b_0) = b_0 + I \iff b - b_0 \in I \iff b - b_0 = i \in I \implies b = b_0 + i \in B + I.
+\]
+Por tanto, el resultado se sigue del Primer Teorema de Isomorfía.
 \end{proofbox}
 
 \begin{example}{Aplicaciones del Primer Teorema de Isomorfía}{aplicaciones-isomorfia-uno}
@@ -1229,9 +1293,9 @@ Los dos primeros apartados se dejan como ejercicio. En cuanto al último, sea $f
     \frac{\mathbb{Z}_n}{(\overline{d})} = \frac{\mathbb{Z}/ (n)}{(d) / (n)} \simeq \frac{\mathbb{Z}}{ (d) } = \mathbb{Z}_d.
     \]
     
-    \item Si $A$ es un anillo, el homomorfismo $f : A[X] \to A$ de sustitución en $0$ (dado por $a_0 + a_1 X + \cdots \mapsto a_0$) es suprayectivo y tiene por núcleo el ideal $(X)$ generado por $X$ (consistente en los polinomios con coeficiente independiente nulo), de modo que $A[X]/(X) \simeq A$, como ya habíamos observado en el Ejemplo 1.19.(3).
+    \item Si $A$ es un anillo, el homomorfismo $f : A[X] \to A$ de sustitución en $0$ (dado por $a_0 + a_1 X + \cdots \mapsto a_0$) es suprayectivo y tiene por núcleo el ideal $(X)$ generado por $X$ (consistente en los polinomios con coeficiente independiente nulo), de modo que $A[X]/(X) \simeq A$, como ya habíamos observado en el Ejemplo \ref{ex:cociente-sustitucion}.
     
-    \item Sean $A$ un anillo e $I$ un ideal de $A$. Para cada $a \in A$, sea $\overline{a} = a + I$. La aplicación $f : A[X] \to (A/I)[X]$ dada por $f(a_0 + a_1 X + \cdots + a_n X^n) = \overline{a}_0 + \overline{a}_1 X + \cdots + \overline{a}_n X^n$ es un homomorfismo suprayectivo de anillos cuyo núcleo es $I[X] = \{a_0 + a_1 X + \cdots + a_n X^n : a_i \in I\}$. Del Primer Teorema de Isomorfía se deduce que
+    \item Sean $A$ un anillo e $I$ un ideal de $A$. Para cada $a \in A$, sea $\overline{a} = a + I$. La aplicación $f : A[X] \to (A/I)[X]$ dada por $f(a_0 + a_1 X + \cdots + a_n X^n) = \overline{a}_0 + \overline{a}_1 X + \cdots + \overline{a}_n X^n$ es un homomorfismo suprayectivo de anillos cuyo núcleo es $I[X] = \{a_0 + a_1 X + \cdots + a_n X^n : a_i \in I\}$ (estas afirmaciones quedan como ejercicio para el lector). Del Primer Teorema de Isomorfía se deduce entonces que
     \[
     \frac{A[X]}{I[X]} \simeq (A/I)[X].
     \]
@@ -1255,7 +1319,7 @@ Sea $A$ un anillo y sea $f : \mathbb{Z} \to A$ el único homomorfismo de anillos
 \begin{proofbox}
 La equivalencia entre (1) y (2) se deja como ejercicio para el lector, y es obvio que (3) implica (4).
 
-(2) implica (3). Se obtiene aplicando el Primer Teorema de Isomorfía y observando que $\text{Im } f$ es el subanillo primo de $A$.
+(2) implica (3). Se obtiene aplicando el Primer Teorema de Isomorfía y observando que $\Im f$ es el subanillo primo de $A$.
 
 (4) implica (2). Si $B$ es un subanillo de $A$ y $g : \mathbb{Z}_n \to B$ es un isomorfismo, considerando la proyección $\pi : \mathbb{Z} \to \mathbb{Z}_n$ y la inclusión $u : B \hookrightarrow A$ se obtiene un homomorfismo de anillos $u \circ g \circ \pi : \mathbb{Z} \to A$ que debe coincidir con $f$ por su unicidad (Ejemplo 1.12.(3)). Como $u \circ g$ es inyectiva, es elemental ver que $\ker f = n\mathbb{Z}$.
 \end{proofbox}
@@ -1263,7 +1327,7 @@ La equivalencia entre (1) y (2) se deja como ejercicio para el lector, y es obvi
 \begin{theorem}{Teorema Chino de los Restos}{chino-restos}
 Sea $A$ un anillo y sean $I_1, \ldots, I_n$ ideales de $A$ tales que $I_i + I_j = A$ para todo $i \neq j$. Entonces $I_1 \cap \cdots \cap I_n = I_1 \cdots I_n$. Además
 \[
-\frac{A}{I_1 \cap \cdots \cap I_n} \simeq \frac{A}{I_1} \times \cdots \times \frac{A}{I_n}.
+\frac{A}{I_1 \cap \cdots \cap I_n} \cong \frac{A}{I_1} \times \cdots \times \frac{A}{I_n}.
 \]
 \end{theorem}
 
