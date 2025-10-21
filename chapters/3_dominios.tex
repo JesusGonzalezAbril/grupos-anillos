@@ -4,6 +4,113 @@
 
 \section{Cuerpos y dominios}
 
+\begin{definition}{}{}
+Un elemento \(a\) de un anillo \(A\) se dice regular si la relación \(ab = ac\) con \(b, c \in A\) implica que \(b = c\); es decir, si \(a\) es cancelable respecto del producto. Claramente, el 0 nunca es regular\footnote{Obsérvese la importancia de la hipótesis \(1 \neq 0\) en este caso.}.
+
+Un cuerpo es un anillo en el que todos los elementos no nulos son invertibles, y un dominio (o dominio de integridad) es un anillo en el que todos los elementos no nulos son regulares.
+
+Un subanillo de un anillo \(A\) que sea un cuerpo se llama un subcuerpo de \(A\), y un homomorfismo de anillos entre dos cuerpos se llama homomorfismo de cuerpos.
+\end{definition}
+
+\begin{remark}
+    Si $A$ es un dominio y $0 \neq a,b \in A$, luego $a$ y $b$ son regulares. Supongamos que $ab = 0$, entonces
+    \[
+    ab = 0 = a0 \implies b = 0
+    \]
+    ya que $a$ es cancelable, pero esto es una contradicción, luego no puede cumplirse $ab = 0$ si $a,b \neq 0$.
+    
+    En otras palabras 
+    \[
+    a,b \neq 0 \implies ab \neq 0 
+    \]
+    el contrarrecíproco de esta afirmación es
+    \[
+    ab = 0 \implies a = 0 \text{ ó } b = 0
+    \]
+\end{remark}
+
+\begin{proposition}{}{cuerpos-dominios}
+Todo cuerpo es un dominio.
+\end{proposition}
+
+\begin{proofbox}
+Si \(A\) es un cuerpo y \(a \in A\), \(a \neq 0\), entonces \(a\) es invertible. Si \(ab = ac\), multiplicando por \(a^{-1}\) obtenemos \(b = c\), luego \(a\) es regular. Como esto vale para todo \(a \neq 0\), \(A\) es un dominio.
+\end{proofbox}
+
+\begin{proposition}{}{}
+Sea \(A\) un anillo.
+\begin{enumerate}
+\item Las condiciones siguientes son equivalentes:
+
+\begin{enumerate}
+    \item \(A\) es un cuerpo.
+    \item Los únicos ideales de \(A\) son \(0\) y \(A\).
+    \item Todo homomorfismo de anillos \(A \to B\) con \(B \neq 0\) es inyectivo.
+\end{enumerate}
+
+\item Un elemento \(a \in A\) es regular si y solo si la relación \(ab = 0\) con \(b \in A\) implica \(b = 0\) (por este motivo, los elementos no regulares se suelen llamar divisores de cero).
+
+\item \(A\) es un dominio si y solo si, para cualesquiera \(a, b \in A\) no nulos, se tiene \(ab \neq 0\).
+
+\item Todo subanillo de un dominio es un dominio.
+
+\item La característica de un dominio es cero o un número primo.
+\end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+
+\begin{enumerate}
+\item Demostramos las equivalencias.
+
+(a) $\Rightarrow$ (b) Si $A$ es cuerpo e $I$ es un ideal no nulo de $A$, entonces $I$ tiene un elemento $a \neq 0$. Como $A$ es cuerpo, $a$ es invertible, luego $I = A$.
+
+(b) $\Rightarrow$ (c) Si $f: A \to B$ es un homomorfismo con $B \neq 0$, entonces $\ker f$ es un ideal pero $\ker f \neq A$, pues $f(1) = 1 \neq 0$. Entonces, por (b), $\ker f = 0$, luego $f$ es inyectivo.
+
+(c) $\Rightarrow$ (a) Haremos el contrarrecírpoco. Si $A$ no es cuerpo, existe $a \neq 0$ no invertible. Entonces $(a)$ es un ideal propio no nulo, y el homomorfismo canónico
+\[
+\pi: A \to A/(a),\quad \pi(x) = x + (a)
+\]
+no es inyectivo ya que
+\[
+a \in \ker\pi \neq 0.
+\]
+
+\item Si $a$ es regular y $ab = 0$, entonces $ab = 0 = a0$, luego $b = 0$. Recíprocamente, si $a$ no es regular, existen $b \neq c$ con $ab = ac$, luego $a(b-c) = 0$ con $b-c \neq 0$.
+
+\item Es consecuencia inmediata de (2).
+
+\item Si $B$ es subanillo de un dominio $A$ y $x, y \in B$ son no nulos, entonces $xy \neq 0$ en $A$, luego también en $B$ ya que su cero es el mismo que el de $A$.
+
+\item Sea $D$ un dominio y consideremos el homomorfismo $f: \mathbb{Z} \to D$ dado por $f(n) = n\cdot 1$. Como $\ker f$ es un ideal de $\mathbb{Z}$, existe $n \geq 0$ tal que $\ker f = (n)$. Si $n = ab$ con $0 < a, b < n$, entonces $f(a)f(b) = f(ab) = 0$, luego $f(a) = 0$ o $f(b) = 0$, contradicción. Así que $n$ es primo o $n = 0$.
+\end{enumerate}
+\end{proofbox}
+
+\begin{example}{Dominios y cuerpos}{}
+
+\begin{enumerate}
+\item Los anillos \(\mathbb{Q}\), \(\mathbb{R}\) y \(\mathbb{C}\) son cuerpos y \(\mathbb{Z}\) es un dominio que no es un cuerpo (aunque es subanillo de un cuerpo).
+
+\item Para \(n \geq 2\), el anillo \(\mathbb{Z}_n\) es un dominio si y solo si es un cuerpo, si y sólo si \(n\) es primo.
+
+\begin{proofbox}
+Si $n$ es primo y $\overline{a} \neq 0$ en $\mathbb{Z}_n$, entonces $\mathrm{mcd}(a,n) = 1$, luego existen $x,y$ con $ax + ny = 1$, así que $\overline{a}\overline{x} = \overline{1}$. Recíprocamente, si $n$ no es primo, existen $a,b$ con $1 < a,b < n$ y $n = ab$, luego $\overline{a}\overline{b} = \overline{0}$ con $\overline{a},\overline{b} \neq 0$.
+\end{proofbox}
+
+\item Si \(m\) es un entero que no es el cuadrado de un número entero entonces \(\mathbb{Z}[\sqrt{m}]\) es un dominio (subanillo de \(\mathbb{C}\)) que no es un cuerpo (el \(2\) no tiene inverso). Sin embargo, \(\mathbb{Q}[\sqrt{m}]\) sí que es un cuerpo; de hecho, si \(a + b\sqrt{m} \neq 0\), entonces \(q = (a + b\sqrt{m})(a - b\sqrt{m}) = a^2 - b^2 m\) es un número racional no nulo y \((a + b\sqrt{m})^{-1} = \frac{a}{q} - \frac{b}{q}\sqrt{m}\).
+
+\item Un producto de anillos diferentes de \(0\) nunca es un dominio, pues \((1,0)(0,1) = (0,0)\).
+
+\item Los anillos de polinomios no son cuerpos, pues la indeterminada genera un ideal propio y no nulo. Por otra parte, \(A[X]\) es un dominio si y solo si lo es \(A\).
+
+\begin{proofbox}
+Si $A$ es dominio y $P,Q \in A[X]$ son no nulos, sean $a_n X^n$ y $b_m X^m$ sus términos de mayor grado. Entonces el coeficiente de $X^{n+m}$ en $PQ$ es $a_n b_m \neq 0$, luego $PQ \neq 0$. El recíproco es claro pues $A$ es subanillo de $A[X]$.
+\end{proofbox}
+
+\end{enumerate}
+\end{example}
+
+\clearpage
 \section{Ideales primos y maximales}
 
 \begin{definition}{Ideal primo}{ideal-primo}
@@ -17,13 +124,73 @@
     Un ideal propio \(M \leq A, M \neq A\) es maximal si no existe ningún ideal \(I\) tal que \(M \subsetneq I \subsetneq A\).
 \end{definition}
 
-\begin{lemma}{Caracterizaciones}{caract-primos-maximales}
-    \begin{enumerate}
-        \item \(P\) es primo si y solo si \(A/P\) es un dominio de integridad
-        \item \(M\) es maximal si y solo si \(A/M\) es un cuerpo
-        \item Todo ideal maximal es primo
-    \end{enumerate}
-\end{lemma}
+\begin{proposition}{Caracterizaciones de ideales maximales y primos}{caracterizacion-maximales-primos}
+Sean \(A\) un anillo e \(I\) un ideal propio de \(A\). Entonces:
+
+\begin{enumerate}
+\item \(I\) es maximal si y solo si \(A/I\) es un cuerpo.
+
+\item \(I\) es primo si y solo si \(A/I\) es un dominio.
+
+\item Si \(I\) es maximal entonces es primo.
+
+\item \(A\) es un cuerpo si y solo si el ideal \(0\) es maximal.
+
+\item \(A\) es un dominio si y solo si el ideal \(0\) es primo.
+\end{enumerate}
+
+\end{proposition}
+
+\begin{proofbox}
+
+\begin{enumerate}
+\item Por el teorema de correspondencia, los ideales de $A/I$ corresponden a los ideales de $A$ que contienen a $I$.
+
+Así, si $I$ es maximal entonces el único ideal distinto de $I$ que contiene a $I$ es $A$. Pero entonces, dado un ideal $J/I \leq A/I$ este ha de corresponder a $A/I$ o a $I/I = 0$, luego los únicos ideales de $A/I$ son $0$ y $A/I$, lo cual es una de las caracterizaciones para que un anillo sea un cuerpo. 
+
+De igual manera, si $A/I$ es un cuerpo, entonces los únicos ideales son $0$ y $A/I$, pero entonces los únicos ideales que contienen a $I$ son $I,A$, es decir, $I$ es maximal.
+
+\item Si $I$ es primo y tomamos $(a + I)(b + I) = ab + I = 0 + I$ entonces
+\[
+ab \in I \implies a \in I \text{ ó } b \in I \implies a + I = 0 + I \text{ ó } b + I = 0 + I
+\]
+luego $A/I$ es dominio.
+
+Por el contrario, si $A/I$ es dominio entonces dados $a,b$ tales que $ab \in I$
+\[
+0 + I = ab + I = (a + I)(b + I) \iff a + I = 0 + I \text{ ó } b + I = 0 + I \iff a \in I \text{ ó } b \in I 
+\]
+es decir, si $ab \in I$ entonces $a \in I$ o $b \in I$.
+
+\item Se sigue de (1) y (2) ya que
+\[
+I \text{ maximal} \iff A/I \text{ cuerpo} \implies A/I \text{ dominio} \iff I \text{ primo}.
+\]
+
+\item Es inmediato aplicando (1) ya que $A \cong A/(0)$.
+
+\item Es inmediato aplicando (2) ya que $A \cong A/(0)$
+\end{enumerate}
+
+\end{proofbox}
+
+\begin{remark}
+    La parte 3. de la proposición anterior se puede probar directamente. 
+    \begin{proofbox}
+    Supongamos que $I$ es maximal pero no primo. Entonces existen $a,b \in A$ tales que $ab \in I$ pero $a,b \notin I$. Consideremos entonces el siguiente ideal
+    \[
+    I + (a) = \{x + ay : x \in I, y \in A\}.
+    \]
+    Claramente $I \subseteq I + (a) \subseteq A$, y claramente $I \neq I + (a)$ ya que $a = 0 + a1 \in I + (a), a \notin I$. Pero también tenemos $I + (a) \neq A$ ya que si no fuera así entonces existirían $x_0 \in I, y_0 \in A$ tales que
+    \[
+    x_0 + ay_0 = 1 \implies bx_0 + aby_0 = b \implies b \in I
+    \]
+    ya que $bx_0, aby_0 \in I$, lo cual es contradictorio.
+    
+    Luego $I + (a)$ es un ideal propio que contiene a $I$, pero eso contradice la maximalidad de $I$, por tanto $I$ debe ser primo.
+    \end{proofbox}
+\end{remark}
+
 
 \begin{example}{Ejemplos en \(\mathbb{Z}\)}{}
     \begin{itemize}
@@ -31,3 +198,25 @@
         \item Los ideales maximales de \(\mathbb{Z}\) son \((p)\) con \(p\) primo
     \end{itemize}
 \end{example}
+
+\begin{proofbox}
+
+\end{proofbox}
+
+\begin{example}{}{}
+De la Proposición 1.15 sabemos que todos los ideales de \(\mathbb{Z}\) son principales. Además si \(n\) y \(m\) son enteros entonces \((n) \subseteq (m)\) si y solo si \(m\) divide a \(n\). Por tanto, \((n)\) es un ideal maximal de \(\mathbb{Z}\) si y solo si \(n \not\in \{0,1,-1\}\) y los únicos divisores de \(n\) son \(\pm 1\) y \(\pm n\), o sea si \(n\) es un número primo. En tal caso \((n)\) es ideal primo de \(\mathbb{Z}\) por la Proposición 2.6.(3). Observese que \((0)\) es un ideal primo de \(\mathbb{Z}\) que no es maximal pues \(\mathbb{Z}\) es un dominio que no es un cuerpo. Sin embargo si \(n \neq 0\) y \(n\) no es primo entonces \((n)\) no es un ideal primo de \(\mathbb{Z}\), pues o bien \(n = \pm 1\) en cuyo caso \((n) = \mathbb{Z}\) o bien \(n = ab\) con \(a\) y \(b\) dos divisores propios de \(\mathbb{Z}\), con lo que \(ab \in (n)\) pero ni \(a\) ni \(b\) están en \((n)\).
+
+En resumen, los ideales maximales de \(\mathbb{Z}\) son los de la forma \((n)\) con \(n\) un número primo y los ideales primos \(\mathbb{Z}\) son los de la forma \((n)\) con \(n = 0\) o un número primo.
+\end{example}
+
+\begin{proposition}
+Todo ideal propio de un anillo está contenido en un ideal maximal.
+\end{proposition}
+
+\begin{proof}
+Sea \(I\) un ideal propio de \(A\) y sea \(\Omega\) el conjunto de los ideales propios de \(A\) que contienen a \(I\). Observese que la unión de una cadena \(I_1 \subseteq I_2 \subseteq I_3 \subseteq \ldots\) de elementos de \(\Omega\) es un ideal, que además es propio, pues si no lo fuera, contendría a \(1\) y por tanto algún \(I_n\) contendría a \(1\) en contra de que todos los \(I_n\) son ideales propios. Aplicando el Lema de Zorn deducimos que \(\Omega\) tiene un elemento maximal que obviamente es un ideal maximal de \(A\).
+\end{proof}
+
+\begin{remark}
+El uso del Lema de Zorn en la demostración anterior implica que este resultado depende del Axioma de Elección. En anillos noetherianos (como \(\mathbb{Z}\) o \(K[X]\) con \(K\) cuerpo) se puede demostrar sin el Axioma de Elección.
+\end{remark}
