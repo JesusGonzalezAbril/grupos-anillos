@@ -5,7 +5,7 @@
 \section{Cuerpos y dominios}
 
 \begin{definition}{}{}
-Un elemento \(a\) de un anillo \(A\) se dice regular si la relación \(ab = ac\) con \(b, c \in A\) implica que \(b = c\); es decir, si \(a\) es cancelable respecto del producto. Claramente, el 0 nunca es regular\footnote{Obsérvese la importancia de la hipótesis \(1 \neq 0\) en este caso.}.
+Un elemento \(a\) de un anillo \(A\) se dice regular si la relación \(ab = ac\) con \(b, c \in A\) implica que \(b = c\); es decir, si \(a\) es cancelable respecto del producto. Claramente, el 0 nunca es regular (obsérvese la importancia de la hipótesis \(1 \neq 0\) en este caso.)
 
 Un cuerpo es un anillo en el que todos los elementos no nulos son invertibles, y un dominio (o dominio de integridad) es un anillo en el que todos los elementos no nulos son regulares.
 
@@ -194,29 +194,303 @@ I \text{ maximal} \iff A/I \text{ cuerpo} \implies A/I \text{ dominio} \iff I \t
 
 \begin{example}{Ejemplos en \(\mathbb{Z}\)}{}
     \begin{itemize}
-        \item Los ideales primos de \(\mathbb{Z}\) son \((0)\) y \((p)\) con \(p\) primo
-        \item Los ideales maximales de \(\mathbb{Z}\) son \((p)\) con \(p\) primo
+        \item Los ideales primos de \(\mathbb{Z}\) son \((0)\) y \((p)\) con \(p\) primo.
+        \item Los ideales maximales de \(\mathbb{Z}\) son \((p)\) con \(p\) primo.
     \end{itemize}
 \end{example}
 
 \begin{proofbox}
+    Como sabemos que los ideales de $\Z$ son de la forma $(n)$ basta hacer unas cuantas cuentas.
 
+    Sea $(n)$ un ideal primo de $\Z$. Dados $a,b \in Z$ tales que $ab \in (n)$ entonces $a \in (n)$ o $b \in (n)$. Notemos entonces que
+    \[
+    x \in (n) \implies x = ny \implies n | x
+    \]
+    por tanto la condición para que un ideal sea primo es que
+    \[
+    n | ab \implies n | a \text{ ó } n | b
+    \]
+    pero esto solo se cumple para $n=0$ o $n$ primo, como queríamos ver.
+
+    Notemos que si $(n) \subseteq (m)$ entonces 
+    \[
+    n \in (n) \subseteq (m) \implies n = my \implies m | n
+    \]
+    y de igual manera, si $m | n \implies n = my \implies (n) \subseteq (m)$.
+    Sea $(n)$ un ideal maximal, entonces no existe $m \neq \pm 1, \pm n$ tal que $(n) \subsetneq (m) \subsetneq \Z$, es decir, no existe ningún número distinto de $\pm 1, \pm n$ que divida a $n$, luego $n$ es primo como queríamos ver.
 \end{proofbox}
 
-\begin{example}{}{}
-De la Proposición 1.15 sabemos que todos los ideales de \(\mathbb{Z}\) son principales. Además si \(n\) y \(m\) son enteros entonces \((n) \subseteq (m)\) si y solo si \(m\) divide a \(n\). Por tanto, \((n)\) es un ideal maximal de \(\mathbb{Z}\) si y solo si \(n \not\in \{0,1,-1\}\) y los únicos divisores de \(n\) son \(\pm 1\) y \(\pm n\), o sea si \(n\) es un número primo. En tal caso \((n)\) es ideal primo de \(\mathbb{Z}\) por la Proposición 2.6.(3). Observese que \((0)\) es un ideal primo de \(\mathbb{Z}\) que no es maximal pues \(\mathbb{Z}\) es un dominio que no es un cuerpo. Sin embargo si \(n \neq 0\) y \(n\) no es primo entonces \((n)\) no es un ideal primo de \(\mathbb{Z}\), pues o bien \(n = \pm 1\) en cuyo caso \((n) = \mathbb{Z}\) o bien \(n = ab\) con \(a\) y \(b\) dos divisores propios de \(\mathbb{Z}\), con lo que \(ab \in (n)\) pero ni \(a\) ni \(b\) están en \((n)\).
+\begin{remark}
+    El ejemplo anterior también se puede completar considerando los anillos cociente apropiados. Queda como ejercicio para el lector.
+\end{remark}
 
-En resumen, los ideales maximales de \(\mathbb{Z}\) son los de la forma \((n)\) con \(n\) un número primo y los ideales primos \(\mathbb{Z}\) son los de la forma \((n)\) con \(n = 0\) o un número primo.
-\end{example}
-
-\begin{proposition}
+\begin{proposition}{}{}
 Todo ideal propio de un anillo está contenido en un ideal maximal.
 \end{proposition}
 
-\begin{proof}
-Sea \(I\) un ideal propio de \(A\) y sea \(\Omega\) el conjunto de los ideales propios de \(A\) que contienen a \(I\). Observese que la unión de una cadena \(I_1 \subseteq I_2 \subseteq I_3 \subseteq \ldots\) de elementos de \(\Omega\) es un ideal, que además es propio, pues si no lo fuera, contendría a \(1\) y por tanto algún \(I_n\) contendría a \(1\) en contra de que todos los \(I_n\) son ideales propios. Aplicando el Lema de Zorn deducimos que \(\Omega\) tiene un elemento maximal que obviamente es un ideal maximal de \(A\).
-\end{proof}
+\begin{proofbox}
+Sea \(I\) un ideal propio de \(A\) y sea \(\Omega\) el conjunto de los ideales propios de \(A\) que contienen a \(I\). Obsérvese que la unión de una cadena \(I_1 \subseteq I_2 \subseteq I_3 \subseteq \ldots\) de elementos de \(\Omega\) es un ideal, que además es propio, pues si no lo fuera, contendría a \(1\) y por tanto algún \(I_n\) contendría a \(1\) en contra de que todos los \(I_n\) son ideales propios. Aplicando el Lema de Zorn deducimos que \(\Omega\) tiene un elemento maximal que obviamente es un ideal maximal de \(A\).
+\end{proofbox}
 
 \begin{remark}
 El uso del Lema de Zorn en la demostración anterior implica que este resultado depende del Axioma de Elección. En anillos noetherianos (como \(\mathbb{Z}\) o \(K[X]\) con \(K\) cuerpo) se puede demostrar sin el Axioma de Elección.
 \end{remark}
+
+\clearpage
+\section{Divisibilidad}
+
+\begin{definition}{Divisibilidad}{}
+Sea \(A\) un anillo y sean \(a, b \in A\). Si existe \(c \in A\) tal que \(b = ac\) entonces se dice que \(a\) divide a \(b\) en \(A\), o que \(a\) es un divisor de \(b\) en \(A\), o que \(b\) es un multiplo de \(a\) en \(A\). Para indicar que \(a\) divide a \(b\) en \(A\) escribiremos \(a \mid b\) en \(A\). Si el anillo \(A\) esta claro por el contexto escribiremos simplemente \(a \mid b\).
+\end{definition}
+
+Obsérvese que la nocion de divisibilidad depende del anillo. Por ejemplo, si \(a\) es un entero diferente de \(0\), entonces \(a\) divide a todos los numeros enteros en \(\mathbb{Q}\), pero no necesariamente en \(\mathbb{Z}\).
+
+\begin{lemma}{}{}
+Si \(A\) es un anillo y \(a, b, c \in A\) entonces se verifican las siguientes propiedades:
+
+\begin{enumerate}
+\item (Reflexiva) \(a \mid a\).
+
+\item (Transitiva) Si \(a \mid b\) y \(b \mid c\), entonces \(a \mid c\).
+
+\item \(a \mid 0\) y \(1 \mid a\).
+
+\item \(0 \mid a\) si y solo si \(a = 0\).
+
+\item \(a \mid 1\) si y solo si \(a\) es una unidad; en este caso \(a \mid x\) para todo \(x \in A\) (es decir, las unidades dividen a cualquier elemento).
+
+\item Si \(a \mid b\) y \(a \mid c\) entonces \(a \mid rb + sc\) para cualesquiera \(r, s \in A\) (y en particular \(a \mid b + c\), \(a \mid b - c\) y \(a \mid rb\) para cualquier \(r \in A\)). Mas generalmente, si \(a\) divide a ciertos elementos, entonces divide a cualquier combinacion lineal suya con coeficientes en \(A\).
+
+\item Si \(c\) no es divisor de cero y \(ac \mid bc\), entonces \(a \mid b\).
+\end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+\begin{enumerate}
+\item \(a = a \cdot 1\), luego \(a \mid a\).
+
+\item Si \(a \mid b\) y \(b \mid c\), existen \(x, y \in A\) tales que \(b = ax\) y \(c = by\). Entonces \(c = a(xy)\), luego \(a \mid c\).
+
+\item \(0 = a \cdot 0\), luego \(a \mid 0\). Tambien \(a = 1 \cdot a\), luego \(1 \mid a\).
+
+\item Si \(0 \mid a\), existe \(x \in A\) tal que \(a = 0 \cdot x = 0\). Recíprocamente, si \(a = 0\), entonces \(0 \mid a\) por (3).
+
+\item Si \(a \mid 1\), existe \(u \in A\) tal que \(1 = au\). Entonces \(u = a^{-1}\) y \(a\) es unidad. Recíprocamente, si \(a\) es unidad, entonces \(1 = a a^{-1}\), luego \(a \mid 1\). Ademas, para cualquier \(x \in A\), \(x = a(a^{-1}x)\), luego \(a \mid x\).
+
+\item Si \(a \mid b\) y \(a \mid c\), existen \(x, y \in A\) tales que \(b = ax\) y \(c = ay\). Entonces \(rb + sc = a(rx + sy)\), luego \(a \mid rb + sc\).
+
+\item Si \(ac \mid bc\), existe \(d \in A\) tal que \(bc = acd\). Como \(c\) no es divisor de cero, podemos cancelar: \(b = ad\), luego \(a \mid b\).
+\end{enumerate}
+\end{proofbox}
+
+\begin{definition}{Elementos asociados}{}
+Dos elementos \(a\) y \(b\) de un anillo \(A\) se dice que son asociados en \(A\) si se dividen mutuamente en \(A\); es decir, si \(a \mid b\) y \(b \mid a\) en \(A\). Cuando este claro por el contexto en que anillo estamos trabajando, diremos simplemente que \(a\) y \(b\) son asociados.
+\end{definition}
+
+Por ejemplo, una unidad es lo mismo que un elemento asociado a 1.
+Es elemental ver que <<ser asociados>> es una relacion de equivalencia en \(A\), y que dos elementos son asociados si y solo si tienen los mismos divisores, si y solo si tienen los mismos multiplos. Por lo tanto, al estudiar cuestiones de divisibilidad, un elemento tendrá las mismas propiedades que sus asociados.
+
+\begin{lemma}{Asociados en dominios}{}
+Si \(D\) es un dominio entonces \(a, b \in D\) son asociados en \(D\) si y solo si existe una unidad \(u\) de \(D\) tal que \(b = au\).
+\end{lemma}
+
+\begin{proofbox}
+Si \(b = au\) con \(u\) unidad entonces \(a = bu^{-1}\) con lo que \(a \mid b\) y \(b \mid a\), es decir \(a\) y \(b\) son asociados. 
+
+Recíprocamente, supongamos que \(a\) y \(b\) son asociados. Entonces \(b = au\) y \(a = bv\) para ciertos \(u, v \in D\). Claramente si \(a\) o \(b\) es 0 entonces el otro tambien es 0, con lo que en este caso \(a = b1\). Por otro lado, si \(a\) y \(b\) son ambos distintos de 0 tambien lo son \(u\) y \(v\) con lo que \(uv \neq 0\) por ser \(D\) un dominio. Como ademas \(auv = bv = a = a1\) y \(a\) es cancelable por ser distinto de 0 y \(D\) un dominio, deducimos que \(uv = 1\) con lo que \(u\) es una unidad de \(D\).
+\end{proofbox}
+
+Sabemos que cualquier elemento \(a\) de un anillo \(A\) es divisible por sus asociados y por las unidades de \(A\), y que si \(a\) divide a uno de los elementos \(b\) o \(c\) entonces divide a su producto \(bc\). A continuacion estudiamos los elementos que verifican los recíprocos de estas propiedades.
+
+A menudo consideraremos elementos \(a\) de un anillo \(A\) que no son cero ni unidades, lo que sintetizaremos en la forma \(0 \neq a \in A \setminus A^*\).
+
+\begin{definition}{Elementos irreducibles y primos}{}
+Diremos que un elemento \(a\) del anillo \(A\) es irreducible si \(0 \neq a \in A \setminus A^*\) y la relacion \(a = bc\) en \(A\) implica que \(b \in A^*\) o \(c \in A^*\) (y por lo tanto que uno de los dos es asociado de \(a\)).
+
+Diremos que \(a\) es primo si \(0 \neq a \in A \setminus A^*\) y la relacion \(a \mid bc\) en \(A\) implica que \(a \mid b\) o \(a \mid c\).
+
+Ambas nociones dependen del anillo ambiente, y si este no esta claro por el contexto hablaremos de irreducibles y primos en \(A\).
+\end{definition}
+
+\begin{proposition}{}{}
+En un dominio \(A\) todo elemento primo es irreducible.
+\end{proposition}
+
+\begin{proofbox}
+Sea \(p\) un elemento primo de \(A\) y supongamos que \(p = ab\), con \(a, b \in A\). Entonces \(p \mid ab\) y como \(p\) es primo, \(p \mid a\) o \(p \mid b\). Supongamos que \(p \mid a\). Entonces existe \(u \in A\) tal que \(a = pu\). Sustituyendo en \(p = ab\) obtenemos \(p = pub\), luego \(p(1 - ub) = 0\). Como \(p \neq 0\) y \(A\) es dominio, \(1 - ub = 0\), es decir, \(ub = 1\), luego \(b\) es unidad. Esto demuestra que \(p\) es irreducible.
+\end{proofbox}
+
+El recíproco no se verifica en general, como muestra el siguiente ejemplo.
+
+\begin{example}{Irreducible no implica primo: Parte 1}{}
+Veamos primero el contraejemplo y luego una justificación de cómo se llega al resultado.
+
+En el anillo \(\mathbb{Z}[\sqrt{-5}]\) consideremos la factorización:
+\[
+6 = 2 \cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5}).
+\]
+
+Veamos que \(2\) es irreducible pero no primo:
+\begin{itemize}
+\item 2 es irreducible. Supongamos que \(2 = \alpha\beta\) con \(\alpha, \beta \in \mathbb{Z}[\sqrt{-5}]\). Considerando la norma \(N(a + b\sqrt{-5}) = a^2 + 5b^2\), tenemos:
+\[
+N(2) = 4 = N(\alpha)N(\beta).
+\]
+Las únicas factorizaciones de 4 en enteros positivos son \(4 = 1 \cdot 4 = 2 \cdot 2 = 4 \cdot 1\). No existe ningún elemento en \(\mathbb{Z}[\sqrt{-5}]\) con norma 2 (pues \(a^2 + 5b^2 = 2\) no tiene soluciones enteras). Por tanto, una de las normas debe ser 1 y la otra 4. Si \(N(\alpha) = 1\), entonces \(\alpha\) es unidad; si \(N(\beta) = 1\), entonces \(\beta\) es unidad. Luego 2 es irreducible.
+
+\item 2 no es primo. Observemos que:
+\[
+2 \mid 6 = (1 + \sqrt{-5})(1 - \sqrt{-5}),
+\]
+pero \(2 \nmid (1 + \sqrt{-5})\) y \(2 \nmid (1 - \sqrt{-5})\), pues si \(2 \mid (1 + \sqrt{-5})\), existiría \(\gamma \in \mathbb{Z}[\sqrt{-5}]\) tal que \(1 + \sqrt{-5} = 2\gamma\), lo cual es imposible (comparando partes enteras e irracionales). Por tanto, 2 no es primo.
+\end{itemize}
+
+\end{example}
+
+
+\begin{example}{Irreducible no implica primo: Parte 2}{}
+En el anillo \(\mathbb{Z}[\sqrt{-5}]\) hay elementos irreducibles que no son primos. Comencemos observando que el cuadrado del modulo de un elemento \(a + b\sqrt{-5}\) de \(\mathbb{Z}[\sqrt{-5}]\), con \(a, b \in \mathbb{Z}\) es
+\[
+N(a + b\sqrt{-5}) = |a + b\sqrt{-5}|^2 = a^2 + 5b^2.
+\]
+notemos además que \(N(xy) = N(x)N(y)\).
+
+Claramente, si \(x \mid y\) en \(\mathbb{Z}[\sqrt{-5}]\), entonces \(N(x)\) divide a \(N(y)\) en \(\mathbb{Z}\). En particular, si \(x = a + b\sqrt{-5}\) y \(N(x) = 1\) entonces
+\[
+N(x) = a^2 + 5 b^2 = 1 \implies a = \pm 1, b = 0 \implies x = \pm 1.
+\]
+De aqui deducimos que si un cierto elemento $u$ cumple $uv = 1$ entonces
+\[
+N(u) | N(1) = 1 \implies N(u) = 1
+\]
+por tanto las unidades en \(\Z[\sqrt{-5}]\) son
+\[
+\mathbb{Z}[\sqrt{-5}]^* = \{x \in \mathbb{Z}[\sqrt{-5}] : |x|^2 = 1\} = \{1, -1\}.
+\]
+
+Por otro lado los cuadrados en \(\mathbb{Z}_5\) son \(0 + (5)\) y \(\pm 1 + (5)\), y por lo tanto la congruencia 
+\[
+a^2 \equiv \pm 2 \mod 5
+\]
+no tiene solucion. Esto implica que en \(\mathbb{Z}[\sqrt{-5}]\) no hay elementos cuyo modulo al cuadrado valga \(2\), \(3\) o \(12\).
+
+Sea ahora \(x \in \mathbb{Z}[\sqrt{-5}]\) con \(N(x) = 4\). Si un cierto elemento $y$ divide a $x$, entonces
+\[
+y \mid x \implies N(y) | N(x) = 4
+\]
+pero al estar en $\Z$, $N(y)$ debe valer \(1\), \(2\) o \(4\).
+\begin{itemize}
+    \item Si $N(y) = 1$ entonces $y$ es una unidad.
+    \item $N(y) = 2$ es imposible porque ya hemos visto que no hay elementos con norma 2.
+    \item Si $N(y) = 4$ entonces $y$ es asociado de $x$. En efecto como sabemos que 
+    \[
+    y | x \implies x = ay \implies N(x) = 4 = N(a)N(y) = 4 N(a)
+    \]
+    es decir, $N(a) = 1$, luego $a$ es una unidad y por tanto $y = xa^-1 \implies x | y$.
+\end{itemize}
+Con esto hemos probado que $2$ es irreducible.
+
+De igual modo se puede ver que los elementos con modulo \(6\) o \(9\) son irreducibles, en particular lo son todos los factores de la igualdad
+\[
+2 \cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5}).
+\]
+Pero ninguno de ellos es primo. En concreto, de la igualdad se deduce que
+\[
+2 \mid (1 + \sqrt{-5})(1 - \sqrt{-5})
+\]
+y es claro que \(2 \nmid (1 + \sqrt{-5})\) y \(2 \nmid (1 - \sqrt{-5})\).
+\end{example}
+
+\clearpage
+\subsection{Divisibilidad en términos de ideales principales}
+
+Todas las nociones de divisibilidad que hemos presentado pueden enunciarse en terminos de los ideales principales generados por los elementos involucrados.
+
+\begin{proposition}{}{}
+Si \(D\) es un dominio y \(a, b \in D\) entonces se verifican las siguientes propiedades:
+
+\begin{enumerate}
+\item \(a = 0\) si y solo si \((a) = 0\).
+
+\item \(a \in D^*\) si y solo si \((a) = D\).
+
+\item \(a \mid b\) si y solo si \((b) \subseteq (a)\) (o si \(b \in (a)\)).
+
+\item \(a\) y \(b\) son asociados si y solo si \((a) = (b)\).
+
+\item \(a\) es primo si y solo si \((a)\) es un ideal primo no nulo de \(D\).
+
+\item \(a\) es irreducible si y solo si \((a)\) es maximal entre los ideales principales propios no nulos de \(D\); es decir, \(a \neq 0\) y \((a) \subseteq (b) \subset D\) implica \((a) = (b)\).
+\end{enumerate}
+
+\end{proposition}
+
+\begin{proofbox}
+
+\begin{enumerate}
+    \item Si \(a = 0\) entonces \((a) = \{0\} = 0\). Recíprocamente, si \((a) = 0\) entonces \(a = 0\).
+
+    \item Si \(a\) es unidad, existe \(a^{-1} \in D\) tal que \(aa^{-1} = 1\), luego \(1 \in (a)\) y \((a) = D\). Recíprocamente, si \((a) = D\), entonces \(1 \in (a)\), luego existe \(b \in D\) tal que \(ab = 1\), por lo que \(a\) es unidad.
+
+    \item Si \(a \mid b\), existe \(c \in D\) tal que \(b = ac\), luego \(b \in (a)\) y \((b) \subseteq (a)\). Recíprocamente, si \((b) \subseteq (a)\), entonces \(b \in (a)\), luego existe \(c \in D\) tal que \(b = ac\), es decir, \(a \mid b\).
+
+    \item Si \(a\) y \(b\) son asociados, entonces \(a \mid b\) y \(b \mid a\), luego \((b) \subseteq (a)\) y \((a) \subseteq (b)\), es decir, \((a) = (b)\). Recíprocamente, si \((a) = (b)\), entonces \(a \mid b\) y \(b \mid a\).
+
+    \item Si \(a\) es primo, entonces \(a \neq 0\) y si \(bc \in (a)\), entonces \(a \mid bc\), luego \(a \mid b\) o \(a \mid c\), es decir, \(b \in (a)\) o \(c \in (a)\). Recíprocamente, si \((a)\) es primo no nulo, entonces \(a \neq 0\) y si \(a \mid bc\), entonces \(bc \in (a)\), luego \(b \in (a)\) o \(c \in (a)\), es decir, \(a \mid b\) o \(a \mid c\).
+
+    \item Si \(a\) es irreducible y \((a) \subseteq (b) \subset D\), entonces \(a \in (b)\), luego existe \(c \in D\) tal que \(a = bc\). Como \(a\) es irreducible, \(b\) es unidad o \(c\) es unidad. Si \(b\) es unidad, entonces \((b) = D\), contradiccion. Luego \(c\) es unidad y \(a\) y \(b\) son asociados, por lo que \((a) = (b)\). Recíprocamente, si \(a = bc\), entonces \((a) \subseteq (b)\). Si \(b\) no es unidad, entonces \((b) \subset D\), luego por hipotesis \((a) = (b)\), por lo que \(a\) y \(b\) son asociados y \(c\) es unidad.
+\end{enumerate}
+
+\end{proofbox}
+
+\begin{definition}
+Sea \(A\) un anillo y sean \(S\) un subconjunto de \(A\) y \(a \in A\).
+
+(1) \(a\) es un maximo comun divisor de \(S\) en \(A\) si \(a\) es divisor de cada elemento de \(S\), y multiplo de cada elemento de \(A\) que sea divisor de todos los elementos de \(S\).
+
+(2) \(a\) es un minimo comun multiplo de \(S\) en \(A\) si \(a\) multiplo de cada elemento de \(S\), y divisor de cada elemento de \(A\) que sea multiplo de todos los elementos de \(S\).
+\end{definition}
+
+Obsérvese que no hablamos "del" maximo comun divisor ni "del" minimo comun multiplo sino que en ambos casos usamos el articulo indeterminado "un". En la siguiente proposicion se precisa por que tenemos que usar el articulo indeterminado y hasta que punto "el" maximo comun divisor y "el" minimo comun multiplo son unicos. Sin embargo en ocasiones abusaremos del lenguaje diciendo "el" maximo comun divisor o "el" minimo comun multiplo entendiendo que son conceptos que son "unicos salvo asociados". Tambien abusaremos del lenguaje escribiendo \(d = \mathrm{mcd}(S)\) o \(m = \mathrm{mcm}(S)\) significando que \(d\) es un maximo comun divisor de \(S\) en \(A\) y que \(m\) es un minimo comun multiplo de \(S\) en \(A\), respectivamente.
+
+\begin{proposition}
+Sea \(A\) un anillo y sean \(S\) un subconjunto de \(A\) y \(a, b \in A\). Entonces
+
+(1) \(a\) es un maximo comun divisor de \(S\) en \(A\) si y solo si \((a)\) es el menor ideal principal de \(A\) que contiene a \(S\). En particular si \((S) = (a)\) entonces \(a\) es el maximo comun divisor de \(S\).
+
+(2) \(a\) es un minimo comun multiplo de \(S\) en \(A\) si y solo si \((a)\) es el mayor ideal principal contenido en \(\cap_{s \in S}(s)\). En particular, si \((a) = \cap_{s \in S}(s)\) entonces \(a\) es minimo comun multiplo de \(S\).
+
+(3) Si \(a\) es un maximo comun divisor de \(S\) entonces \(b\) tambien es maximo comun divisor de \(S\) si y solo si \(a\) y \(b\) son asociados en \(A\).
+
+(4) Si \(a\) es un minimo comun multiplo de \(S\) entonces \(b\) tambien es maximo comun divisor de \(S\) si y solo si \(a\) y \(b\) son asociados en \(A\).
+
+(5) Si \(a\) es un divisor comun de los elementos de \(S\) y \(a \in (S)\) entonces \(a = \mathrm{mcd}(S)\).
+
+Obsérvese que la condicion \(a \in (S)\) significa que existen elementos \(s_1, \ldots, s_n \in S\) y \(a_1, \ldots, a_n \in A\) tales que
+\[
+a = a_1 s_1 + \cdots + a_n s_n. \tag{2.1}
+\]
+En el caso en que \(a = \mathrm{mcd}(S)\) se dice que esta expresion es una identidad de Bezout para \(S\).
+
+(6) Se verifica \(1 = \mathrm{mcd}(S)\) si y solo si los unicos divisores comunes de los elementos de \(S\) son las unidades de \(A\).
+
+(7) Si \((S) = 1\) (o sea, 1 es combinacion lineal de elementos de \(S\)) entonces \(1 = \mathrm{mcd}(S)\).
+\end{proposition}
+
+\begin{proofbox}
+(1) Usando la definicion de maximo comun divisor y la Proposicion 2.15.(3) tenemos que \(a = \mathrm{mcd}(S)\) si y solo si \((s) \subseteq (a)\) para todo \(s \in S\) y para todo \(b \in A\) se tiene que si \(S \subseteq (b)\) entonces \((a) \subseteq (b)\). Esto demuestra que \(a = \mathrm{mcd}(S)\) si y solo si \((a)\) es el menor ideal principal que contiene a \(S\).
+
+(2) se demuestra de forma similar y (3) y (4) son consecuencias evidentes de las definiciones.
+
+(5) Supongamos que \(a\) satisface la condicion dada y sea \(b\) un elemento de \(A\) que divide a todos los elementos de \(S\). Entonces divide a \(a_1 s_1 + \cdots + a_k s_k = a\). Esto demuestra que \(a = \mathrm{mcd}(S)\).
+
+(6) Si \(1 = \mathrm{mcd}(S)\) y \(d\) es un divisor comun de los elementos de \(S\), entonces \(d \mid 1\), luego \(d\) es unidad. Recíprocamente, si los unicos divisores comunes son unidades, entonces \(1\) es un maximo comun divisor.
+
+(7) es consecuencia inmediata de (5).
+\end{proofbox}
+
+\begin{example}
+Los recíprocos de las propiedades (5) y (7) no se verifican. Por ejemplo, los unicos divisores comunes de \(2\) y \(X\) en \(\mathbb{Z}[X]\) son \(1\) y \(-1\), es decir las unidades de \(\mathbb{Z}[X]\). Por tanto, \(1 = \mathrm{mcd}(2,X)\). Sin embargo, \(1 \not\in (2,X)\).
+\end{example}
+
+Si \(1 = \mathrm{mcd}(S)\) decimos que los elementos de \(S\) son coprimos en \(A\). Si para cada par de elementos distintos \(a, b \in S\) se verifica \(\mathrm{mcd}(a,b) = 1\), decimos que los elementos de \(S\) son coprimos dos a dos.
