@@ -240,7 +240,7 @@ El uso del Lema de Zorn en la demostración anterior implica que este resultado 
 \section{Divisibilidad}
 
 \begin{definition}{Divisibilidad}{}
-Sea \(A\) un anillo y sean \(a, b \in A\). Si existe \(c \in A\) tal que \(b = ac\) entonces se dice que \(a\) divide a \(b\) en \(A\), o que \(a\) es un divisor de \(b\) en \(A\), o que \(b\) es un multiplo de \(a\) en \(A\). Para indicar que \(a\) divide a \(b\) en \(A\) escribiremos \(a \mid b\) en \(A\). Si el anillo \(A\) esta claro por el contexto escribiremos simplemente \(a \mid b\).
+Sea \(A\) un anillo y sean \(a, b \in A\). Si existe \(c \in A\) tal que \(b = ac\) entonces se dice que \(a\) divide a \(b\) en \(A\), o que \(a\) es un divisor de \(b\) en \(A\), o que \(b\) es un múltiplo de \(a\) en \(A\). Para indicar que \(a\) divide a \(b\) en \(A\) escribiremos \(a \mid b\) en \(A\). Si el anillo \(A\) esta claro por el contexto escribiremos simplemente \(a \mid b\).
 \end{definition}
 
 Obsérvese que la nocion de divisibilidad depende del anillo. Por ejemplo, si \(a\) es un entero diferente de \(0\), entonces \(a\) divide a todos los numeros enteros en \(\mathbb{Q}\), pero no necesariamente en \(\mathbb{Z}\).
@@ -288,7 +288,7 @@ Dos elementos \(a\) y \(b\) de un anillo \(A\) se dice que son asociados en \(A\
 \end{definition}
 
 Por ejemplo, una unidad es lo mismo que un elemento asociado a 1.
-Es elemental ver que <<ser asociados>> es una relacion de equivalencia en \(A\), y que dos elementos son asociados si y solo si tienen los mismos divisores, si y solo si tienen los mismos multiplos. Por lo tanto, al estudiar cuestiones de divisibilidad, un elemento tendrá las mismas propiedades que sus asociados.
+Es elemental ver que <<ser asociados>> es una relacion de equivalencia en \(A\), y que dos elementos son asociados si y solo si tienen los mismos divisores, si y solo si tienen los mismos múltiplos. Por lo tanto, al estudiar cuestiones de divisibilidad, un elemento tendrá las mismas propiedades que sus asociados.
 
 \begin{lemma}{Asociados en dominios}{}
 Si \(D\) es un dominio entonces \(a, b \in D\) son asociados en \(D\) si y solo si existe una unidad \(u\) de \(D\) tal que \(b = au\).
@@ -402,11 +402,11 @@ y es claro que \(2 \nmid (1 + \sqrt{-5})\) y \(2 \nmid (1 - \sqrt{-5})\).
 \end{example}
 
 \clearpage
-\subsection{Divisibilidad en términos de ideales principales}
+\subsection{Divisibilidad en términos de ideales principales. Máximo común divisor y mínimo común múltiplo.}
 
 Todas las nociones de divisibilidad que hemos presentado pueden enunciarse en terminos de los ideales principales generados por los elementos involucrados.
 
-\begin{proposition}{}{}
+\begin{proposition}{}{divisibilidad-ideales-principales}
 Si \(D\) es un dominio y \(a, b \in D\) entonces se verifican las siguientes propiedades:
 
 \begin{enumerate}
@@ -428,13 +428,13 @@ Si \(D\) es un dominio y \(a, b \in D\) entonces se verifican las siguientes pro
 \begin{proofbox}
 
 \begin{enumerate}
-    \item Si \(a = 0\) entonces \((a) = \{0\} = 0\). Recíprocamente, si \((a) = 0\) entonces \(a = 0\).
+    \item Si \(a = 0\) entonces \((a) = \{0\} = 0\). Recíprocamente, si \((a) = 0\) entonces \(a \in \{0\} \implies a = 0\).
 
     \item Si \(a\) es unidad, existe \(a^{-1} \in D\) tal que \(aa^{-1} = 1\), luego \(1 \in (a)\) y \((a) = D\). Recíprocamente, si \((a) = D\), entonces \(1 \in (a)\), luego existe \(b \in D\) tal que \(ab = 1\), por lo que \(a\) es unidad.
 
-    \item Si \(a \mid b\), existe \(c \in D\) tal que \(b = ac\), luego \(b \in (a)\) y \((b) \subseteq (a)\). Recíprocamente, si \((b) \subseteq (a)\), entonces \(b \in (a)\), luego existe \(c \in D\) tal que \(b = ac\), es decir, \(a \mid b\).
+    \item Si \(a \mid b\), existe \(c \in D\) tal que \(b = ac\), luego \(b \in (a)\) y \((b) \subseteq (a)\). Recíprocamente, si \((b) \subseteq (a)\), entonces \(b \in (b) \subseteq (a)\), luego existe \(c \in D\) tal que \(b = ac\), es decir, \(a \mid b\).
 
-    \item Si \(a\) y \(b\) son asociados, entonces \(a \mid b\) y \(b \mid a\), luego \((b) \subseteq (a)\) y \((a) \subseteq (b)\), es decir, \((a) = (b)\). Recíprocamente, si \((a) = (b)\), entonces \(a \mid b\) y \(b \mid a\).
+    \item Si \(a\) y \(b\) son asociados, entonces \(a \mid b\) y \(b \mid a\), luego \((b) \subseteq (a)\) y \((a) \subseteq (b)\), es decir, \((a) = (b)\). Recíprocamente, si \((a) = (b)\), entonces por (3) \(a \mid b\) y \(b \mid a\).
 
     \item Si \(a\) es primo, entonces \(a \neq 0\) y si \(bc \in (a)\), entonces \(a \mid bc\), luego \(a \mid b\) o \(a \mid c\), es decir, \(b \in (a)\) o \(c \in (a)\). Recíprocamente, si \((a)\) es primo no nulo, entonces \(a \neq 0\) y si \(a \mid bc\), entonces \(bc \in (a)\), luego \(b \in (a)\) o \(c \in (a)\), es decir, \(a \mid b\) o \(a \mid c\).
 
@@ -443,50 +443,97 @@ Si \(D\) es un dominio y \(a, b \in D\) entonces se verifican las siguientes pro
 
 \end{proofbox}
 
+\begin{remark}
+    \textbf{Pregunta para el lector:} ?`en algún momento hemos usado que $D$ es un dominio?
+    
+    \noindent\textbf{Respuesta del autor:} Yo diría que no, pero como no estoy seguro rezo porque siempre que tenga que usar esta proposición esté trabajando con un dominio...
+\end{remark}
+
 \begin{definition}{}{}
 Sea \(A\) un anillo y sean \(S\) un subconjunto de \(A\) y \(a \in A\).
 
-(1) \(a\) es un maximo comun divisor de \(S\) en \(A\) si \(a\) es divisor de cada elemento de \(S\), y multiplo de cada elemento de \(A\) que sea divisor de todos los elementos de \(S\).
+\begin{enumerate}
+    \item \(a\) es un máximo común divisor de \(S\) en \(A\) si \(a\) es divisor de cada elemento de \(S\), y múltiplo de cada elemento de \(A\) que sea divisor de todos los elementos de \(S\).
 
-(2) \(a\) es un minimo comun multiplo de \(S\) en \(A\) si \(a\) multiplo de cada elemento de \(S\), y divisor de cada elemento de \(A\) que sea multiplo de todos los elementos de \(S\).
+    \item \(a\) es un mínimo común múltiplo de \(S\) en \(A\) si \(a\) es múltiplo de cada elemento de \(S\), y divisor de cada elemento de \(A\) que sea múltiplo de todos los elementos de \(S\).
+\end{enumerate}
 \end{definition}
 
-Obsérvese que no hablamos "del" maximo comun divisor ni "del" minimo comun multiplo sino que en ambos casos usamos el articulo indeterminado "un". En la siguiente proposicion se precisa por que tenemos que usar el articulo indeterminado y hasta que punto "el" maximo comun divisor y "el" minimo comun multiplo son unicos. Sin embargo en ocasiones abusaremos del lenguaje diciendo "el" maximo comun divisor o "el" minimo comun multiplo entendiendo que son conceptos que son "unicos salvo asociados". Tambien abusaremos del lenguaje escribiendo \(d = \mathrm{mcd}(S)\) o \(m = \mathrm{mcm}(S)\) significando que \(d\) es un maximo comun divisor de \(S\) en \(A\) y que \(m\) es un minimo comun multiplo de \(S\) en \(A\), respectivamente.
+Obsérvese que no hablamos del máximo común divisor ni del mínimo común múltiplo, sino que en ambos casos usamos el articulo indeterminado un. En la siguiente proposición se precisa por qué tenemos que usar el articulo indeterminado y hasta qué punto el máximo común divisor y el mínimo común múltiplo son únicos. Sin embargo, en ocasiones abusaremos del lenguaje diciendo el máximo común divisor o el mínimo común múltiplo, entendiendo que son conceptos que son únicos salvo asociados. Tambien abusaremos del lenguaje escribiendo \(d = \mathrm{mcd}(S)\) o \(m = \mathrm{mcm}(S)\) queriendo decir en tal caso que \(d\) es un máximo común divisor de \(S\) en \(A\) y que \(m\) es un mínimo común múltiplo de \(S\) en \(A\), respectivamente.
 
 \begin{proposition}{}{}
 Sea \(A\) un anillo y sean \(S\) un subconjunto de \(A\) y \(a, b \in A\). Entonces
+\begin{enumerate}
+\item \(a\) es un máximo común divisor de \(S\) en \(A\) si y solo si \((a)\) es el menor ideal principal de \(A\) que contiene a \(S\). En particular si \((S) = (a)\) entonces \(a\) es el máximo común divisor de \(S\).
 
-(1) \(a\) es un maximo comun divisor de \(S\) en \(A\) si y solo si \((a)\) es el menor ideal principal de \(A\) que contiene a \(S\). En particular si \((S) = (a)\) entonces \(a\) es el maximo comun divisor de \(S\).
+\item \(a\) es un mínimo común múltiplo de \(S\) en \(A\) si y solo si \((a)\) es el mayor ideal principal contenido en \(\cap_{s \in S}(s)\). En particular, si \((a) = \cap_{s \in S}(s)\) entonces \(a\) es mínimo común múltiplo de \(S\).
 
-(2) \(a\) es un minimo comun multiplo de \(S\) en \(A\) si y solo si \((a)\) es el mayor ideal principal contenido en \(\cap_{s \in S}(s)\). En particular, si \((a) = \cap_{s \in S}(s)\) entonces \(a\) es minimo comun multiplo de \(S\).
+\item Sea \(a\) un máximo común divisor de \(S\). Entonces \(b\) tambien es máximo común divisor de \(S\) si y solo si \(a\) y \(b\) son asociados en \(A\).
 
-(3) Si \(a\) es un maximo comun divisor de \(S\) entonces \(b\) tambien es maximo comun divisor de \(S\) si y solo si \(a\) y \(b\) son asociados en \(A\).
+\item Sea \(a\) es un mínimo común múltiplo de \(S\). Entonces \(b\) tambien es mínimo común múltiplo de \(S\) si y solo si \(a\) y \(b\) son asociados en \(A\).
 
-(4) Si \(a\) es un minimo comun multiplo de \(S\) entonces \(b\) tambien es maximo comun divisor de \(S\) si y solo si \(a\) y \(b\) son asociados en \(A\).
-
-(5) Si \(a\) es un divisor comun de los elementos de \(S\) y \(a \in (S)\) entonces \(a = \mathrm{mcd}(S)\).
+\item Si \(a\) es un divisor común de los elementos de \(S\) y \(a \in (S)\) entonces \(a = \mathrm{mcd}(S)\).
 
 Obsérvese que la condicion \(a \in (S)\) significa que existen elementos \(s_1, \ldots, s_n \in S\) y \(a_1, \ldots, a_n \in A\) tales que
 \[
-a = a_1 s_1 + \cdots + a_n s_n. \tag{2.1}
+a = a_1 s_1 + \cdots + a_n s_n.
 \]
 En el caso en que \(a = \mathrm{mcd}(S)\) se dice que esta expresion es una identidad de Bezout para \(S\).
 
-(6) Se verifica \(1 = \mathrm{mcd}(S)\) si y solo si los unicos divisores comunes de los elementos de \(S\) son las unidades de \(A\).
+\item Se verifica \(1 = \mathrm{mcd}(S)\) si y solo si los unicos divisores comúnes de los elementos de \(S\) son las unidades de \(A\).
 
-(7) Si \((S) = 1\) (o sea, 1 es combinacion lineal de elementos de \(S\)) entonces \(1 = \mathrm{mcd}(S)\).
+\item Si \(1 \in (S)\) (o sea, 1 es combinacion lineal de elementos de \(S\)) entonces \(1 = \mathrm{mcd}(S)\).
+\end{enumerate}
+
 \end{proposition}
 
 \begin{proofbox}
-(1) Usando la definicion de maximo comun divisor y la Proposicion 2.15.(3) tenemos que \(a = \mathrm{mcd}(S)\) si y solo si \((s) \subseteq (a)\) para todo \(s \in S\) y para todo \(b \in A\) se tiene que si \(S \subseteq (b)\) entonces \((a) \subseteq (b)\). Esto demuestra que \(a = \mathrm{mcd}(S)\) si y solo si \((a)\) es el menor ideal principal que contiene a \(S\).
 
-(2) se demuestra de forma similar y (3) y (4) son consecuencias evidentes de las definiciones.
+\begin{enumerate}
+\item Usando la definicion de máximo común divisor tenemos que si \(a = \mathrm{mcd}(S)\), entonces $a | s$ para todo $s\in S$. Entonces, por el apartado (3) de \ref{prop:divisibilidad-ideales-principales}, \((s) \subseteq (a)\) para todo \(s \in S\). Además, dado un ideal principal $(b)$ tal que $S \subseteq (b)$ se verifica
+\[
+s \in S \subseteq (b) \implies s = bc
+\]
+para cualquier elemento $s \in S$. Pero entonces $b | s$, por lo que $a$ debe ser múltiplo de $b$, es decir $a = bc$, pero entonces $(a) \subseteq (b)$ como queríamos ver.
 
-(5) Supongamos que \(a\) satisface la condicion dada y sea \(b\) un elemento de \(A\) que divide a todos los elementos de \(S\). Entonces divide a \(a_1 s_1 + \cdots + a_k s_k = a\). Esto demuestra que \(a = \mathrm{mcd}(S)\).
+Por el contrario, supongamos que \((a)\) es el menor ideal principal de \(A\) que contiene a \(S\). En concreto $S \subseteq (a)$, por tanto dado $s \in S$
+\[
+s \in (a) \implies s = ac \implies a | s
+\]
+luego $a$ divide a todos los elementos de $S$. Supongamos que $b$ es otro elemento que también divide a todos, en tal caso 
+\[
+b | s \implies (s) \subseteq (b) \implies S \subseteq (b)
+\]
+pero entonces por hipótesis $(a) \subseteq (b)$, por tanto $a = bc$, es decir, $a$ es múltiplo de $b$, luego $a = \mathrm{mcd}(S)$.
 
-(6) Si \(1 = \mathrm{mcd}(S)\) y \(d\) es un divisor comun de los elementos de \(S\), entonces \(d \mid 1\), luego \(d\) es unidad. Recíprocamente, si los unicos divisores comunes son unidades, entonces \(1\) es un maximo comun divisor.
+\item La demostración es similar a (1), omitimos algunos pequeños detalles.
 
-(7) es consecuencia inmediata de (5).
+Si $a$ es un $\text{mcm}$ entonces dado $s \in S$ tenemos $a = sx_s$, luego $(a) \subseteq (s)$, por tanto
+\[
+(a) \subseteq \cap_{s \in S} (s).
+\]
+Si $(b)$ es otro ideal tal que $(b) \subseteq \cap_{s \in S} (s)$ entonces $(b) \subseteq (s)$, luego $b = sy_s$ para cada $s$ y por la definición de $\text{mcm}$ debe ser $a | b$, lo cual implica
+\[
+(b) \subseteq (a)
+\]
+luego $(a)$ es el máximo ideal contenido en la interesección.
+
+Por el contrario, si $(a)$ es el máximo ideal contenido en $\cap_{s \in S} (s)$ entonces $a \in (a) \subseteq (s) \implies a = sx_s$ para cada $s$. Supongamos que $b = sy_s$ también para todo $s \in S$, en tal caso
+\[
+(b) \subseteq \cap_{s \in S} (s) \implies (b) \subseteq (a) \implies a | a.
+\] 
+
+\item Claramente si $b$ también es máximo común divisor entonces $a = bc, b = ad$, luego $b | a, a | b$, es decir, $a$ y $b$ son asociados. Si por el contrario $a | b, b | a$ entonces dado $s \in S,\ b | a | s \implies b | s$, y si $c$ es otro elemento que divide a cada $s$ tenemos entonces $a = cx$, pero como $a | b \implies b = ay = cxy$ es decir, $b$ es también un $\text{mcd}$.
+
+\item Si $b$ también es mínimo común múltiplo entonces $a | b, b | a$, luego $a$ y $b$ son asociados. Si por el contrario $a | b, b | a$ entonces $b = ac$, y dado $s \in S,\ a = sx_s \implies b = scx_s$, y si $c$ es otro elemento que es múltiplo de cada $s$ tenemos entonces $b | a | c$, es decir, $b$ es también un $\text{mcm}$.
+
+\item Supongamos que \(a\) satisface la condicion dada y sea \(b\) un elemento de \(A\) que divide a todos los elementos de \(S\). Entonces divide a \(a_1 s_1 + \cdots + a_k s_k = a\). Esto demuestra que \(a = \mathrm{mcd}(S)\).
+
+\item Si \(1 = \mathrm{mcd}(S)\) y \(d\) es un divisor común de los elementos de \(S\), entonces \(d \mid 1\), luego \(d\) es unidad. Recíprocamente, si los unicos divisores comunes son unidades, entonces \(1\) es un máximo común divisor.
+
+\item Es consecuencia inmediata de (5).
+\end{enumerate}
+
 \end{proofbox}
 
 \begin{example}{}{}
