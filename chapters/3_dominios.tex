@@ -322,7 +322,7 @@ Sea \(p\) un elemento primo de \(A\) y supongamos que \(p = ab\), con \(a, b \in
 
 El recíproco no se verifica en general, como muestra el siguiente ejemplo.
 
-\begin{example}{Irreducible no implica primo: Parte 1}{}
+\begin{example}{Irreducible no implica primo: Parte 1}{irreducible-no-primo}
 Veamos primero el contraejemplo y luego una justificación de cómo se llega al resultado.
 
 En el anillo \(\mathbb{Z}[\sqrt{-5}]\) consideremos la factorización:
@@ -541,3 +541,89 @@ Los recíprocos de las propiedades (5) y (7) no se verifican. Por ejemplo, los u
 \end{example}
 
 Si \(1 = \mathrm{mcd}(S)\) decimos que los elementos de \(S\) son coprimos en \(A\). Si para cada par de elementos distintos \(a, b \in S\) se verifica \(\mathrm{mcd}(a,b) = 1\), decimos que los elementos de \(S\) son coprimos dos a dos.
+
+\clearpage
+\section{Dominios de factorización única}
+
+\begin{definition}{Factorización}{}
+Sea \(D\) un dominio. Una factorización en producto de irreducibles de un elemento \(a\) de \(D\) es una expresión del tipo
+\[
+a = u p_1 \cdots p_n
+\]
+donde \(n \in \mathbb{Z}^{\geq 0}\), \(u\) es una unidad de \(D\) y \(p_1, \ldots, p_n\) son irreducibles de \(D\). Obsérvese que se admite la posibilidad de que sea $n = 0$, en cuyo caso la factorización se reduce a $a = u$ ya que, por convenio, el producto vacío es 1.
+\end{definition}
+
+\begin{definition}{Dominio de factorización}{}
+Diremos que \(D\) es un dominio de factorización o DF si todo elemento no nulo de \(D\) admite una factorización en producto de irreducibles.
+\end{definition}
+
+Dos factorizaciones de \(a \in D\) en producto de irreducibles se dice que son equivalentes si solo se diferencian en el orden y en asociados. Dicho con más rigor, las factorizaciones
+\[
+a = u p_1 \cdots p_n = v q_1 \cdots q_m
+\]
+(con \(u, v \in D^*\) y el resto de factores irreducibles) son equivalentes si \(n = m\) y existe una permutación \(\sigma\) de \(N_n\) (una biyección de \(N_n = \{1, 2, \ldots, n\}\) en sí mismo) tal que \(p_i\) y \(q_{\sigma(i)}\) son asociados para cada \(i = 1, \ldots, n\).
+
+\begin{definition}{Dominio de factorización única}{dfu}
+Diremos que \(D\) es un dominio de factorización única o DFU (UFD, en inglés) si es un dominio de factorización en el que, para cada \(0 \neq a \in D\), todas las factorizaciones de \(a\) son equivalentes.
+\end{definition}
+
+\begin{example}{}{}
+El Teorema Fundamental de la Aritmética simplemente nos dice que el anillo de los números enteros \( \Z \) es un DFU.
+\end{example}
+
+\begin{example}{}{Z-sqrt-m}
+Sea \(m\) un entero positivo. Vamos a ver que \(\mathbb{Z}[\sqrt{m}]\) es un dominio de factorización. Si \(m\) es un cuadrado en \(\mathbb{Z}\) entonces \(\mathbb{Z}[\sqrt{m}] = \mathbb{Z}\) que es un dominio de factorización. Por tanto, a partir de ahora suponemos que \(m\) no es un cuadrado en \(\mathbb{Z}\) y siempre que utilicemos una expresión \(a + b\sqrt{m}\) suponemos implícitamente que \(a\) y \(b\) son enteros. Vamos a utilizar la conjugación en \(\mathbb{Z}[\sqrt{m}]\) que es la siguiente aplicación (si \(m\) es negativo, esta aplicación es la conjugación compleja, si \(m\) es positivo entonces es una aplicación diferente, que también llamaremos conjugación).
+\[
+\overline{(\cdot)}: \mathbb{Z}[\sqrt{m}] \to \mathbb{Z}[\sqrt{m}], \quad a + b\sqrt{m} \mapsto \overline{a + b\sqrt{m}} = a - b\sqrt{m}
+\]
+Es fácil comprobar que esta aplicación es un homomorfismo de anillos.  Además, la siguiente aplicación
+\[
+N: \mathbb{Z}[\sqrt{m}] \to \mathbb{Z}, \quad a + b\sqrt{m} \mapsto a^2 - b^2 m = (a + b\sqrt{m})(a - b\sqrt{m})
+\]
+satisface \(N(xy) = N(x)N(y)\) para todo \(x, y \in \mathbb{Z}[\sqrt{m}]\) ya que 
+\[
+N(xy) = (xy)\overline{(xy)} = x \overline{x} y \overline{y} = N(x)N(y)
+\]
+usando que la conjugación es un homomorfismo.
+
+Sea \(x \in \mathbb{Z}[\sqrt{m}]\). Si \(x\) es invertible en \(\mathbb{Z}[\sqrt{m}]\) entonces \(1 = N(1) = N(xx^{-1}) = N(x)N(x^{-1})\) con lo que \(N(x)\) es invertible en \(\mathbb{Z}\), es decir \(N(x) = \pm 1\). Recíprocamente, si \(N(x) = \pm 1\), entonces \(x\overline{x} = \pm 1\), con lo que \(x\) es invertible en \(\mathbb{Z}[\sqrt{m}]\). Esto demuestra que las unidades son los elementos de norma 1
+\[
+\mathbb{Z}[\sqrt{m}]^* = \{x \in \mathbb{Z}[\sqrt{m}] : |N(x)| = 1\}.
+\]
+
+Vamos a demostrar que si \(x \neq 0\) entonces tiene una factorización en \(\mathbb{Z}[\sqrt{m}]\) por inducción en \(|N(x)|\). Observese que \(N(x) \neq 0\) pues si \(a^2 - b^2 m = 0\) entonces \(m\) es un cuadrado en \(\mathbb{Z}\) en contra de la hipótesis. Por tanto, el menor valor posible para \(|N(x)|\) es 1 y en el caso en que \(|N(x)| = 1\) entonces \(x\) es una unidad con lo que efectivamente tiene una factorización. Asumamos pues la hipótesis de inducción y supongamos que \(|N(x)| > 1\). Entonces \(x\) no es unidad. Si \(x\) es irreducible por supuesto que tiene una factorización con lo que podemos suponer que \(x\) no es irreducible. Por tanto \(x = ab\) con \(a\) y \(b\) no unidades. Por tanto \(|N(a)|\) y \(|N(b)|\) son divisores propios de \(|N(x)|\) y por hipótesis de inducción \(a\) y \(b\) son productos de irreducibles. Luego \(x\) también es producto de irreducibles.
+\end{example}
+
+En el siguiente lema vemos que en un DFU los elementos irreducibles coinciden con los primos.
+
+\begin{lemma}{}{}
+Si \(D\) es un DFU, entonces todo elemento irreducible de \(D\) es primo.
+\end{lemma}
+
+\begin{proofbox}
+Sea \(p \in D\) irreducible, y sean \(a, b \in D\) tales que \(p \mid ab\). Se trata de ver que \(p \mid a\) o \(p \mid b\). Esto está claro si \(a = 0\) o \(b = 0\) con lo que suponemos que ambos son diferentes de 0. Por hipótesis \(pt = ab\) para algún \(t \in D\). Si \(t = w p_1 \cdots p_n\), \(a = v q_1 \cdots q_m\) y \(b = u r_1 \cdots r_k\) son factorizaciones en irreducibles (con \(w, v, u \in D^*\)), entonces se tiene
+\[
+pt tp = w p_1 \cdots p_n p  = (vu) q_1 \cdots q_m r_1 \cdots r_k,
+\]
+y por la unicidad de la factorización \(p\) es asociado de algún \(q_i\) (y entonces \(p \mid a\)) o de algún \(r_i\) (y entonces \(p \mid b\)).
+\end{proofbox}
+
+Según hemos visto en \ref{ex:Z-sqrt-m} \(\mathbb{Z}[\sqrt{-5}]\) es un DF. Sin embargo, en el Ejemplo \ref{ex:irreducible-no-primo} hemos visto que tiene elementos irreducibles no primos, y por tanto no es DFU.
+
+\begin{proposition}{}{}
+Para un dominio \(D\), las condiciones siguientes son equivalentes:
+
+(1) \(D\) es un dominio de factorización única.
+
+(2) \(D\) es un dominio de factorización en el que todo elemento irreducible es primo.
+
+(3) Todo elemento no nulo de \(D\) es producto de primos.
+\end{proposition}
+
+\begin{proofbox}
+(1) implica (2) se sigue de la definición de DFU y el Lema 2.21.
+
+(2) implica (3) es consecuencia obvia de la definición de dominio de factorización.
+
+(3) implica (1) Como todo primo es irreducible basta ver que si \(p_1 \cdots p_k = u q_1 \cdots q_l\) con \(u\) unidad, cada \(p_i\) primo y cada \(q_k\) irreducible entonces ambas factorizaciones son equivalentes. Razonamos por inducción sobre \(k\). Si \(k = 0\) entonces \(a = 1\) con lo que necesariamente \(l = 0\). Supongamos que \(k > 0\) y que la propiedad se verifica para factorizaciones con menos de \(k\) primos. Como \(p_k\) es primo y divide a \(q_1 \cdots q_l\) se tiene que \(p_k\) divide a algún \(q_i\) y podemos suponer que \(p_k\) divide a \(q_l\). Como \(q_l\) es irreducible necesariamente \(p_k\) y \(q_l\) son asociados. Escribiendo \(q_l = v p_k\) y cancelando \(p_k\) obtenemos \(p_1 \cdots p_{k-1} = (uv) q_1 \cdots q_{l-1}\). Por la hipótesis de inducción estas dos factorizaciones son equivalentes con lo que \(k = l\) y después de reordenar los \(q_i\) podemos suponer que \(p_i\) es asociado de \(q_i\) para todo \(i = 1, \ldots, k\).
+\end{proofbox}
