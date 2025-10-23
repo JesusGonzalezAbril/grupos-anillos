@@ -545,7 +545,7 @@ Si \(1 = \mathrm{mcd}(S)\) decimos que los elementos de \(S\) son coprimos en \(
 \clearpage
 \section{Dominios de factorización única}
 
-\begin{definition}{Factorización}{}
+\begin{definition}{Factorización en irreducibles}{}
 Sea \(D\) un dominio. Una factorización en producto de irreducibles de un elemento \(a\) de \(D\) es una expresión del tipo
 \[
 a = u p_1 \cdots p_n
@@ -596,34 +596,62 @@ Vamos a demostrar que si \(x \neq 0\) entonces tiene una factorización en \(\ma
 
 En el siguiente lema vemos que en un DFU los elementos irreducibles coinciden con los primos.
 
-\begin{lemma}{}{}
+\begin{lemma}{}{dfu-irreducible}
 Si \(D\) es un DFU, entonces todo elemento irreducible de \(D\) es primo.
 \end{lemma}
 
 \begin{proofbox}
 Sea \(p \in D\) irreducible, y sean \(a, b \in D\) tales que \(p \mid ab\). Se trata de ver que \(p \mid a\) o \(p \mid b\). Esto está claro si \(a = 0\) o \(b = 0\) con lo que suponemos que ambos son diferentes de 0. Por hipótesis \(pt = ab\) para algún \(t \in D\). Si \(t = w p_1 \cdots p_n\), \(a = v q_1 \cdots q_m\) y \(b = u r_1 \cdots r_k\) son factorizaciones en irreducibles (con \(w, v, u \in D^*\)), entonces se tiene
 \[
-pt tp = w p_1 \cdots p_n p  = (vu) q_1 \cdots q_m r_1 \cdots r_k,
+pt = tp = w p_1 \cdots p_n p  = (vu) q_1 \cdots q_m r_1 \cdots r_k,
 \]
 y por la unicidad de la factorización \(p\) es asociado de algún \(q_i\) (y entonces \(p \mid a\)) o de algún \(r_i\) (y entonces \(p \mid b\)).
 \end{proofbox}
 
 Según hemos visto en \ref{ex:Z-sqrt-m} \(\mathbb{Z}[\sqrt{-5}]\) es un DF. Sin embargo, en el Ejemplo \ref{ex:irreducible-no-primo} hemos visto que tiene elementos irreducibles no primos, y por tanto no es DFU.
 
+Introducimos ahora una definición muy similar a la de factorización en irreducibles.
+\begin{definition}{Factorización en primos}{}
+Sea \(D\) un dominio. Una factorización en producto de primos de un elemento \(a\) de \(D\) es una expresión del tipo
+\[
+a = u p_1 \cdots p_n
+\]
+donde \(n \in \mathbb{Z}^{\geq 0}\), \(u\) es una unidad de \(D\) y \(p_1, \ldots, p_n\) son primos de \(D\). Obsérvese que se admite la posibilidad de que sea $n = 0$, en cuyo caso la factorización se reduce a $a = u$ ya que, por convenio, el producto vacío es 1.
+\end{definition}
+
 \begin{proposition}{}{}
 Para un dominio \(D\), las condiciones siguientes son equivalentes:
 
-(1) \(D\) es un dominio de factorización única.
+\begin{enumerate}
+\item \(D\) es un dominio de factorización única.
 
-(2) \(D\) es un dominio de factorización en el que todo elemento irreducible es primo.
+\item \(D\) es un dominio de factorización en el que todo elemento irreducible es primo.
 
-(3) Todo elemento no nulo de \(D\) es producto de primos.
+\item Todo elemento no nulo de \(D\) es producto de primos.
+\end{enumerate}
+
 \end{proposition}
 
 \begin{proofbox}
-(1) implica (2) se sigue de la definición de DFU y el Lema 2.21.
+(1) $\Rightarrow$ (2): Por ser un DFU, $D$ es en concreto un $DF$. Además, por el Lema \ref{lem:dfu-irreducible} todo elemento irreducible es primo, como queríamos ver.
 
-(2) implica (3) es consecuencia obvia de la definición de dominio de factorización.
+(2) $\Rightarrow$ (3): Sea $0 \neq a \in D$, como $D$ es DF $a$ admite una factorización en producto de irreducibles
+\[
+a = u p_1 \dots p_n
+\]
+y por hipótesis todos los elementos irreducibles son primos, luego los $p_i$ son primos y por tanto $a$ es producto de primos (salvo la unidad $u$).
 
-(3) implica (1) Como todo primo es irreducible basta ver que si \(p_1 \cdots p_k = u q_1 \cdots q_l\) con \(u\) unidad, cada \(p_i\) primo y cada \(q_k\) irreducible entonces ambas factorizaciones son equivalentes. Razonamos por inducción sobre \(k\). Si \(k = 0\) entonces \(a = 1\) con lo que necesariamente \(l = 0\). Supongamos que \(k > 0\) y que la propiedad se verifica para factorizaciones con menos de \(k\) primos. Como \(p_k\) es primo y divide a \(q_1 \cdots q_l\) se tiene que \(p_k\) divide a algún \(q_i\) y podemos suponer que \(p_k\) divide a \(q_l\). Como \(q_l\) es irreducible necesariamente \(p_k\) y \(q_l\) son asociados. Escribiendo \(q_l = v p_k\) y cancelando \(p_k\) obtenemos \(p_1 \cdots p_{k-1} = (uv) q_1 \cdots q_{l-1}\). Por la hipótesis de inducción estas dos factorizaciones son equivalentes con lo que \(k = l\) y después de reordenar los \(q_i\) podemos suponer que \(p_i\) es asociado de \(q_i\) para todo \(i = 1, \ldots, k\).
+(3) $\Rightarrow$ (1): Sea $0 \neq a \in D$, por hipótesis sabemos que $a$ es producto de primos, luego
+\[
+a = u p_1 \cdots p_k.
+\]
+Como todo primo es irreducible esta es también una factorización en producto de irreducibles, luego $D$ es un dominio de factorización. Supogamos que existe otra factorización
+\[
+a = u' q_1 \cdots q_l.
+\]
+Entonces deducimos que 
+\[
+p_1 \cdots p_k = (u'u^{-1}) q_1 \cdots q_l
+\]
+con \(w = u'u^{-1}\) una unidad. Razonamos por inducción sobre \(k\). Si \(k = 0\) entonces necesariamente \(l = 0\). Supongamos que \(k > 0\) y que la propiedad se verifica para factorizaciones con menos de \(k\) primos. Como \(p_k\) es primo y divide a \(q_1 \cdots q_l\) se tiene que \(p_k\) divide a algún \(q_i\) y podemos suponer que \(p_k\) divide a \(q_l\). Como \(q_l\) es irreducible necesariamente \(p_k\) y \(q_l\) son asociados. Escribiendo \(q_l = v p_k\) y cancelando \(p_k\) obtenemos \(p_1 \cdots p_{k-1} = (wv) q_1 \cdots q_{l-1}\). Por la hipótesis de inducción estas dos factorizaciones son equivalentes con lo que \(k = l\) y después de reordenar los \(q_i\) podemos suponer que \(p_i\) es asociado de \(q_i\) para todo \(i = 1, \ldots, k\).
 \end{proofbox}
