@@ -47,7 +47,7 @@ sin embargo, ni $(a-b)$ ni $x$ son cero, por lo que podemos interpretar que ambo
     luego $w = z^{-1}$ y por tanto $z$ tiene inverso.
 \end{proofbox}
 
-\begin{example}{Producto de anillos}{prod-anillos}
+\begin{example}{Producto de anillos}{prod_anillos}
     Sean $A$ y $B$ dos anillos. Entonces el producto cartesiano $A \times B$ tiene una estructura de anillo con las operaciones definidas componente a componente:
     \[
     (a_1, b_1) + (a_2, b_2) = (a_1 + a_2, b_1 + b_2)
@@ -67,7 +67,7 @@ sin embargo, ni $(a-b)$ ni $x$ son cero, por lo que podemos interpretar que ambo
     \[
     (f \cdot g)(x) = f(x) \cdot g(x)
     \]
-    Si definimos la familia de conjuntos $\{A_i = A : i \in X\}$ entonces es inmediato que $\cup_{i\in X} A_i = A$. Recordemos ahora que el producto $\prod_{i \in X} A_i$ es el conjunto de funciones $f: X \to \cup_{i\in X} A_i$, es decir, el conjunto de funciones $f : X \to A$, luego $A^X$ es un anillo correspondiente a un producto <<infinito>> del anillo $A$ consigo mismo. Para más información ver la Definición \ref{defn:producto-cartesiano}.
+    Si definimos la familia de conjuntos $\{A_i = A : i \in X\}$ entonces es inmediato que $\cup_{i\in X} A_i = A$. Recordemos ahora que el producto $\prod_{i \in X} A_i$ es el conjunto de funciones $f: X \to \cup_{i\in X} A_i$, es decir, el conjunto de funciones $f : X \to A$, luego $A^X$ es un anillo correspondiente a un producto <<infinito>> del anillo $A$ consigo mismo. Para más información ver la Definición \ref{defn:producto_cartesiano}.
 \end{example}
 
 \begin{example}{Anillo de polinomios}{polinomios}
@@ -91,7 +91,7 @@ sin embargo, ni $(a-b)$ ni $x$ son cero, por lo que podemos interpretar que ambo
 
 \subsection{Propiedades de los anillos}
 
-\begin{lemma}{}{prop-anillos}
+\begin{lemma}{}{prop_anillos}
     Sea $A$ un anillo y sean $a,b,c \in A$. Se verifican las siguientes propiedades
     \begin{enumerate}
         \item Todo elemento de $A$ es cancelable respecto de la suma.
@@ -108,10 +108,10 @@ sin embargo, ni $(a-b)$ ni $x$ son cero, por lo que podemos interpretar que ambo
 
 \begin{proofbox}
     \begin{enumerate}
-        \item Como $A$ es un grupo respecto de la suma todo elemento tiene inverso, y por la Proposición \ref{prop:prop-operaciones} todo elemento invertible (respecto a la suma) es cancelable (respecto a la suma).
-        \item De nuevo por la Proposición \ref{prop:prop-operaciones} todo elemento invertible (respecto al producto) es cancelable (respecto al producto).
+        \item Como $A$ es un grupo respecto de la suma todo elemento tiene inverso, y por la Proposición \ref{prop:prop_operaciones} todo elemento invertible (respecto a la suma) es cancelable (respecto a la suma).
+        \item De nuevo por la Proposición \ref{prop:prop_operaciones} todo elemento invertible (respecto al producto) es cancelable (respecto al producto).
         \item Si $b + a = a$ entonces como $a$ es cancelable por el apartado 1, tenemos $b=0$. Si $ba=a$ para todo $a$, entonces como el neutro es único $b=1$.
-        \item De nuevo se sigue de la Proposición \ref{prop:prop-operaciones}.
+        \item De nuevo se sigue de la Proposición \ref{prop:prop_operaciones}.
         \item Basta aplicar un pequeño truco
         \[
         0a=(0+0)a = 0a + 0a \implies 0 = 0a
@@ -131,7 +131,7 @@ sin embargo, ni $(a-b)$ ni $x$ son cero, por lo que podemos interpretar que ambo
         \[
         a(b(ab)^{-1})=ab(ab)^{-1}=e, ((ba)^{-1}b)a=(ba)^{-1}ba=e
         \]
-        por tanto, por la Proposición \ref{prop:prop-operaciones} ambos simétricos $b(ab)^{-1},(ba)^{-1}b$ son iguales (ambos son $a^{-1}$) y $a$ es invertible. Para ver que $b$ es invertible se procede igual.
+        por tanto, por la Proposición \ref{prop:prop_operaciones} ambos simétricos $b(ab)^{-1},(ba)^{-1}b$ son iguales (ambos son $a^{-1}$) y $a$ es invertible. Para ver que $b$ es invertible se procede igual.
         \item Si $0=1$ entonces dado $x \in A$ tenemos
         \[
         x = x1 = x0 = 0 \implies A=\{0\}.
@@ -141,7 +141,7 @@ sin embargo, ni $(a-b)$ ni $x$ son cero, por lo que podemos interpretar que ambo
 
 Dados un anillo $A$, un elemento $a \in A$ y un entero positivo $n$, la notación $na$ (respectivamente $a^n$) representa el resultado de sumar (respectivamente multiplicar) a consigo mismo $n$ veces, y si $n = 0$ convenimos que $0a = 0$ y $a^0 = 1$. Más rigurosamente, a partir de estas últimas igualdades se definen $na$ y $a^n$ de forma recurrente poniendo $(n + 1)a = a + na$ y $a^{n+1} = aa^n$ para $n \geq 0$. Por último, si $n \geq 1$ se define $(-n)a = -(na)$, y si además $a$ es invertible se define $a^{-n} = (a^{-1})^n$.
 
-\begin{lemma}{}{multiplicacion-anillos}
+\begin{lemma}{}{multiplicacion_anillos}
     Sea \( A \) un anillo, \( a, b \in A \), y \( m, n \in \mathbb{Z} \). Se verifican:
     \begin{enumerate}
         \item \( n (a + b) = n a + n b \).
@@ -188,7 +188,7 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
     Un subanillo de un anillo es un subconjunto suyo que con la misma suma y producto es un anillo con el mismo uno.
 \end{definition}
 
-\begin{proposition}{Caracterización de subanillos}{carac-subanillos}
+\begin{proposition}{Caracterización de subanillos}{carac_subanillos}
     Las siguientes condiciones son equivalentes para \( B \subseteq A \):
     \begin{enumerate}
     \item \( B \) es un subanillo de \( A \).
@@ -237,7 +237,7 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
     \end{align*}
 \end{proofbox}
 
-\begin{example}{Subanillo primo}{subanillo-primo}
+\begin{example}{Subanillo primo}{subanillo_primo}
     Si \(A\) es un anillo entonces el conjunto:
     \[
     \mathbb{Z}1 = \{n1 : n \in \mathbb{Z}\}
@@ -293,7 +293,7 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
     \[
     \forall x,y \in X \quad H(x)= f(x)g(x) = f(y)g(y) = H(y)
     \]
-    lo que prueba que $B$ es cerrado para productos. Por tanto, por \ref{prop:carac-subanillos} $B$ es un subanillo de $A^X$.
+    lo que prueba que $B$ es cerrado para productos. Por tanto, por \ref{prop:carac_subanillos} $B$ es un subanillo de $A^X$.
 \end{proofbox}
 
 \begin{example}{}{}
@@ -324,7 +324,7 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
 \clearpage
 \section{Homomorfismos de anillos}
 
-\begin{definition}{Homomorfismo de anillos}{hom-anillo}
+\begin{definition}{Homomorfismo de anillos}{hom_anillo}
     Sean \(A\) y \(B\) dos anillos. Un homomorfismo de anillos entre \(A\) y \(B\) es una aplicación \(f: A \to B\) que satisface:
     \begin{enumerate}
         \item \(f(x + y) = f(x) + f(y)\)
@@ -344,7 +344,7 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
     \end{itemize}
 \end{remark}
 
-\begin{definition}{Tipos de homomorfismos}{tipos-hom}
+\begin{definition}{Tipos de homomorfismos}{tipos_hom}
     \begin{itemize}
         \item Un {endomorfismo} es un homomorfismo de un anillo en sí mismo.
         \item Un {isomorfismo} es un homomorfismo biyectivo.
@@ -356,7 +356,7 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
     Si $B = \{0\}$ entonces la aplicación $f(a) = 0_B, \forall a \in A$ es un homomorfismo. Si $B \neq \{0\}$ entonces $f$ no es un homomorfismo ya que $f(1) = 0_B \neq 1_B$.
 \end{example}
 
-\begin{proposition}{Propiedades básicas}{prop-hom-basicas}
+\begin{proposition}{Propiedades básicas}{prop_hom_basicas}
     Sea \(f: A \to B\) un homomorfismo de anillos. Entonces para todo \(a, b, a_1, \ldots, a_n \in A\) se verifica:
     \begin{enumerate}
         \item \(f(0_A) = 0_B\)
@@ -397,7 +397,7 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
     \end{enumerate}
 \end{proofbox}
 
-\begin{definition}{Núcleo e imagen}{nucleo-imagen}
+\begin{definition}{Núcleo e imagen}{nucleo_imagen}
     Sea \(f: A \to B\) un homomorfismo de anillos. Definimos:
     \begin{itemize}
         \item El {núcleo} de \(f\): \(\ker f = \{a \in A : f(a) = 0_B\}\)
@@ -407,7 +407,7 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
 
 Resulta interesante ahora estudiar algunas propiedades del núcleo y la imagen, en concreto, su relación con los ideales (ver \ref{defn:ideal}).
 
-\begin{proposition}{Propiedades del núcleo e imagen}{prop-nucleo-imagen}
+\begin{proposition}{Propiedades del núcleo e imagen}{prop_nucleo_imagen}
     Sea \(f: A \to B\) un homomorfismo de anillos. Entonces:
     \begin{enumerate}
         \item \(\ker f\) es un ideal de \(A\)
@@ -473,7 +473,7 @@ Resulta interesante ahora estudiar algunas propiedades del núcleo y la imagen, 
 \subsection{Propiedades de los homomorfismos}
 
 
-\begin{proposition}{Composición de homomorfismos}{comp-hom}
+\begin{proposition}{Composición de homomorfismos}{comp_hom}
     Si \(f: A \to B\) y \(g: B \to C\) son homomorfismos de anillos, entonces la composición \(g \circ f: A \to C\) es un homomorfismo de anillos.
 \end{proposition}
 
@@ -488,7 +488,7 @@ Resulta interesante ahora estudiar algunas propiedades del núcleo y la imagen, 
     \]
 \end{proofbox}
 
-\begin{proposition}{Propiedades de isomorfismos}{prop-iso}
+\begin{proposition}{Propiedades de isomorfismos}{prop_iso}
     \begin{enumerate}
         \item La composición de isomorfismos es un isomorfismo.
         \item Si \(f: A \to B\) es un isomorfismo, entonces \(f^{-1}: B \to A\) es un isomorfismo.
@@ -521,7 +521,7 @@ Resulta interesante ahora estudiar algunas propiedades del núcleo y la imagen, 
     \end{enumerate}
 \end{proofbox}
 
-\begin{proposition}{Preservación de subestructuras}{preservacion-subestructuras}
+\begin{proposition}{Preservación de subestructuras}{preservacion_subestructuras}
     Sea \(f: A \to B\) un homomorfismo de anillos.
     \begin{enumerate}
         \item Si \(A_1\) es un subanillo de \(A\), entonces \(f(A_1)\) es un subanillo de \(B\)
@@ -565,7 +565,7 @@ Resulta interesante ahora estudiar algunas propiedades del núcleo y la imagen, 
     Sea \(i: \mathbb{Z} \hookrightarrow \mathbb{Q}\) la inclusión. El conjunto \(2\mathbb{Z}\) es un ideal de \(\mathbb{Z}\), pero \(i(2\mathbb{Z}) = 2\mathbb{Z}\) no es un ideal de \(\mathbb{Q}\), pues por ejemplo \(\frac{1}{2} \in \mathbb{Q}\) y \(2 \in 2\mathbb{Z}\), pero \(\frac{1}{2} \cdot 2 = 1 \notin 2\mathbb{Z}\) en \(\mathbb{Q}\).
 \end{example}
 
-\begin{theorem}{Homomorfismos en productos}{hom-productos}
+\begin{theorem}{Homomorfismos en productos}{hom_productos}
     Sean \(A, B, C\) anillos. Existe una biyección natural $\Phi$ tal que
     \[
     \operatorname{Hom}(A, B \times C) \cong \operatorname{Hom}(A, B) \times \operatorname{Hom}(A, C)
@@ -673,7 +673,7 @@ Si $I$ es un ideal de $A$ escribiremos $I \leq A$.
 
 Todo aquel ideal que no sea impropio, es decir, que verifique $I \leq A, I \neq A$ se llama ideal propio. En ocasiones nos interesará trabajar solo con ideales que sean propios, por lo que resulta muy útil caracterizar aquellos que no lo son.
 
-\begin{lemma}{Caracterización de ideales impropios}{caract-ideales-impropios}
+\begin{lemma}{Caracterización de ideales impropios}{caract_ideales_impropios}
     Sea \(A\) un anillo. Para un ideal \(I \leq A\), las siguientes condiciones son equivalentes:
     \begin{enumerate}
         \item \(I = A\), es decir, $I$ es un ideal impropio.
@@ -767,7 +767,7 @@ Todo aquel ideal que no sea impropio, es decir, que verifique $I \leq A, I \neq 
     \end{itemize}
 \end{proofbox}
 
-\begin{proposition}{Intersección de ideales}{interseccion-ideales}
+\begin{proposition}{Intersección de ideales}{interseccion_ideales}
     La intersección de cualquier familia de ideales de \(A\) es un ideal de \(A\).
 \end{proposition}
 
@@ -786,7 +786,7 @@ Todo aquel ideal que no sea impropio, es decir, que verifique $I \leq A, I \neq 
     \]
 \end{proofbox}
 
-\begin{proposition}{Ideales de \(\mathbb{Z}\)}{ideales-Z}
+\begin{proposition}{Ideales de \(\mathbb{Z}\)}{ideales_Z}
     Todos los ideales de \(\mathbb{Z}\) son principales. Es decir, para todo ideal \(I \subset \mathbb{Z}\), existe \(n \in \mathbb{Z}\) tal que \(I = (n)\).
 \end{proposition}
 
@@ -798,11 +798,11 @@ Todo aquel ideal que no sea impropio, es decir, que verifique $I \leq A, I \neq 
 
 \subsection{Anillos cociente}
 
-\begin{definition}{Congruencia módulo un ideal}{congruencia-ideal}
+\begin{definition}{Congruencia módulo un ideal}{congruencia_ideal}
     Sea \(I\) un ideal de un anillo \(A\). Decimos que \(a, b \in A\) son {congruentes módulo \(I\)}, y escribimos \(a \equiv b \pmod{I}\), si \(b - a \in I\).
 \end{definition}
 
-\begin{lemma}{Propiedades de la congruencia}{prop-congruencia}
+\begin{lemma}{Propiedades de la congruencia}{prop_congruencia}
     Sea \(I\) ideal de \(A\). Para todo \(a, b, c, d \in A\):
     \begin{enumerate}
         \item \(a \equiv a \pmod{I}\) (reflexiva).
@@ -827,7 +827,7 @@ Todo aquel ideal que no sea impropio, es decir, que verifique $I \leq A, I \neq 
     \end{enumerate}
 \end{proofbox}
 
-Del Lema \ref{lem:prop-congruencia} se deduce que la relación <<ser congruente módulo $I$>> es una relación de equivalencia en $A$ y, por tanto, las clases de equivalencia por esta relación definen una partición de $A$. 
+Del Lema \ref{lem:prop_congruencia} se deduce que la relación <<ser congruente módulo $I$>> es una relación de equivalencia en $A$ y, por tanto, las clases de equivalencia por esta relación definen una partición de $A$. 
 
 La clase de equivalencia que contiene a un elemento $a \in A$ es
 \[
@@ -848,7 +848,7 @@ En ocasiones se escriben las clases de equivalencia como
 \bar{a} = a + I, \bar{b} = b + I, \bar{0} = 0 + I = I.
 \]
 
-\begin{definition}{Anillo cociente}{anillo-cociente}
+\begin{definition}{Anillo cociente}{anillo_cociente}
     Sea \(I\) un ideal de \(A\). El conjunto de clases de equivalencia:
     \[
     A/I = \{a + I : a \in A\}
@@ -861,7 +861,7 @@ En ocasiones se escriben las clases de equivalencia como
     es un anillo llamado {anillo cociente de \(A\) módulo \(I\)}.
 \end{definition}
 
-\begin{proposition}{Buena definición del cociente}{bien-def-cociente}
+\begin{proposition}{Buena definición del cociente}{bien_def_cociente}
     Las operaciones en \(A/I\) están bien definidas y dotan a \(A/I\) de estructura de anillo con:
     \begin{itemize}
         \item Elemento cero: \(0 + I\)
@@ -886,7 +886,7 @@ En ocasiones se escriben las clases de equivalencia como
     Por tanto las operaciones están bien definidas. La comprobación del cero y el uno son inmediatas.
 \end{proofbox}
 
-\begin{definition}{Proyección canónica}{proyeccion-canonica}
+\begin{definition}{Proyección canónica}{proyeccion_canonica}
     La aplicación \(\eta: A \to A/I\) dada por \(\eta(a) = a + I\) es un homomorfismo sobreyectivo llamado {proyección canónica}.
 \end{definition}
 
@@ -905,7 +905,7 @@ En ocasiones se escriben las clases de equivalencia como
     \end{itemize}
 \end{example}
 
-\begin{example}{Cociente por ideales en polinomios}{cociente-sustitucion}
+\begin{example}{Cociente por ideales en polinomios}{cociente_sustitucion}
     Sea \(I = \{a_1X + \cdots + a_nX^n\} \leq A[X]\). Entonces:
     \[
     A[X]/I \cong A
@@ -924,7 +924,7 @@ En ocasiones se escriben las clases de equivalencia como
     \]
 \end{proofbox}
 
-\begin{example}{Cociente en productos}{cociente-productos}
+\begin{example}{Cociente en productos}{cociente_productos}
     Sean \(A, B\) anillos, \(I = A \times \{0\}\). Entonces:
     \[
     (A \times B)/I \cong B
@@ -935,14 +935,14 @@ En ocasiones se escriben las clases de equivalencia como
 
 Recordemos algunas definiciones y caracterizaciones útiles.
 
-\begin{definition}{Núcleo de un homomorfismo}{nucleo-homomorfismo}
+\begin{definition}{Núcleo de un homomorfismo}{nucleo_homomorfismo}
     Sea \(f: A \to B\) un homomorfismo de anillos. El {núcleo} de \(f\) es:
     \[
     \ker f = \{a \in A : f(a) = 0\}
     \]
 \end{definition}
 
-\begin{proposition}{Inyectividad y núcleo}{inyectividad-nucleo}
+\begin{proposition}{Inyectividad y núcleo}{inyectividad_nucleo}
     Un homomorfismo \(f: A \to B\) es inyectivo si y solo si \(\ker f = \{0\}\).
 \end{proposition}
 
@@ -959,7 +959,7 @@ El siguiente resultado describe los ideales de un anillo cociente. Consideremos 
 \]
 si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
 
-\begin{theorem}{Teorema de correspondencia}{teorema-correspondencia}
+\begin{theorem}{Teorema de correspondencia}{teorema_correspondencia}
     Sea \(I\) un ideal de un anillo \(A\). Sea $\mathcal{A}$ el conjunto de ideales de \(A\) que contienen a \(I\)
     \[
     \mathcal{A} = \{J \leq A : I \subseteq J\}.
@@ -1049,7 +1049,7 @@ si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
 \end{proofbox}
 
 \begin{remark}
-    En \ref{prop:preservacion-subestructuras} ya habíamos probado casi todo lo que necesitabamos para ver que $\Phi, \Psi$ son aplicaciones.
+    En \ref{prop:preservacion_subestructuras} ya habíamos probado casi todo lo que necesitabamos para ver que $\Phi, \Psi$ son aplicaciones.
 \end{remark}
 
 \begin{remark}
@@ -1068,14 +1068,14 @@ si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
 
 \section{Operaciones con ideales}
 
-\begin{definition}{Suma de ideales}{suma-ideales}
+\begin{definition}{Suma de ideales}{suma_ideales}
     Si \(I\) y \(J\) son ideales de \(A\), su {suma} es:
     \[
     I + J = \{x + y : x \in I, y \in J\} = (I \cup J)
     \]
 \end{definition}
 
-\begin{definition}{Producto de ideales}{producto-ideales}
+\begin{definition}{Producto de ideales}{producto_ideales}
     Si \(I\) y \(J\) son ideales de \(A\), su {producto} es:
     \[
     IJ = \left\{\sum_{i=1}^n x_i y_i : x_i \in I, y_i \in J, n \geq 0\right\} = \Big(\{xy : x \in I, y \in J\}\Big)
@@ -1090,7 +1090,7 @@ si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
     \end{itemize}
 \end{remark}
 
-\begin{proposition}{Propiedades de las operaciones}{prop-operaciones-ideales}
+\begin{proposition}{Propiedades de las operaciones}{prop_operaciones_ideales}
     Para ideales \(I, J, K\) de \(A\):
     \begin{enumerate}
         \item \(IJ \subseteq I \cap J\)
@@ -1203,7 +1203,7 @@ si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
 \clearpage
 \section{Teoremas de isomorfía y Teorema chino de los restos}
 
-\begin{theorem}{Primer teorema de isomorfía}{isomorfia-uno}
+\begin{theorem}{Primer teorema de isomorfía}{isomorfia_uno}
 Sea $f : A \to B$ un homomorfismo de anillos. Entonces existe un único isomorfismo de anillos $\bar{f} : A/\ker f \to \Im f$ que hace conmutativo el diagrama
 \[
 \begin{tikzcd}
@@ -1220,7 +1220,7 @@ es decir, $i \circ \bar{f} \circ p = f$, donde $i$ es la inclusión y $p$ es la 
 \begin{proofbox}
 Sean $K = \ker f$ e $I = \Im f$. La aplicación $\bar{f} : A/K \to I$ dada por $\bar{f}(x + K) = f(x)$ está bien definida (no depende de representantes) pues si $x + K = y + K$ entonces $x - y \in K$ y por lo tanto $f(x) - f(y) = f(x - y) = 0$; es decir, $f(x) = f(y)$. Además es elemental ver que es un homomorfismo de anillos y que es suprayectiva.
 
-Para ver que es inyectiva usamos la Proposición \ref{prop:prop-nucleo-imagen}: si $x + K$ está en el núcleo de $\bar{f}$ entonces $0 = \bar{f}(x + K) = f(x)$, de modo que $x \in K$ y así $x + K = 0 + K$. Es decir $\ker \bar{f} = 0$ y por lo tanto $\bar{f}$ es inyectiva. En conclusión, $\bar{f}$ es un isomorfismo, y hace conmutativo el diagrama porque, para cada $x \in A$, se tiene
+Para ver que es inyectiva usamos la Proposición \ref{prop:prop_nucleo_imagen}: si $x + K$ está en el núcleo de $\bar{f}$ entonces $0 = \bar{f}(x + K) = f(x)$, de modo que $x \in K$ y así $x + K = 0 + K$. Es decir $\ker \bar{f} = 0$ y por lo tanto $\bar{f}$ es inyectiva. En conclusión, $\bar{f}$ es un isomorfismo, y hace conmutativo el diagrama porque, para cada $x \in A$, se tiene
 \[
 i(\bar{f}(p(x))) = i(\bar{f}(x + K)) = i(f(x)_{\Im}) = f(x).
 \]
@@ -1240,7 +1240,7 @@ como $p$ es sobreyectiva, dado $y + K \in A/\ker f$ existe $x_0 \in A$ tal que $
 y finalmente $\bar{f}' = \bar{f}$.
 \end{proofbox}
 
-\begin{theorem}{Segundo teorema de isomorfía}{isomorfia-dos}
+\begin{theorem}{Segundo teorema de isomorfía}{isomorfia_dos}
 Sea $A$ un anillo y sean $I$ y $J$ dos ideales tales que $I \subseteq J$. Entonces $J/I$ es un ideal de $A/I$ y existe un isomorfismo de anillos
 \[
 \frac{A/I}{J/I} \cong \frac{A}{J}.
@@ -1248,7 +1248,7 @@ Sea $A$ un anillo y sean $I$ y $J$ dos ideales tales que $I \subseteq J$. Entonc
 \end{theorem}
 
 \begin{proofbox}
-Por el Teorema de la Correspondencia \ref{thm:teorema-correspondencia}, $J/I$ es un ideal de $A/I$. Sea $f : A/I \to A/J$ la aplicación definida por $f(a + I) = a + J$. Es elemental ver que $f$ está bien definida, sean $a + I = b + I \in A/I$, entonces $a-b \in I \subset J$, luego
+Por el Teorema de la Correspondencia \ref{thm:teorema_correspondencia}, $J/I$ es un ideal de $A/I$. Sea $f : A/I \to A/J$ la aplicación definida por $f(a + I) = a + J$. Es elemental ver que $f$ está bien definida, sean $a + I = b + I \in A/I$, entonces $a-b \in I \subset J$, luego
 \[
 a - b \in J \implies a + J = b + J \implies f(a + I) = f(b + I).
 \]
@@ -1263,7 +1263,7 @@ a + I = \eta(j) = j + I \implies f(a + I) = f(j + I) = j + J = 0 + J \implies a 
 Entonces el isomorfismo buscado se obtiene aplicando el Primer teorema de isomorfía a $f$.
 \end{proofbox}
 
-\begin{theorem}{Tercer teorema de isomorfía}{isomorfia-tres}
+\begin{theorem}{Tercer teorema de isomorfía}{isomorfia_tres}
 Sea $A$ un anillo con un subanillo $B$ y un ideal $I$. Entonces:
 \begin{enumerate}
     \item $B \cap I$ es un ideal de $B$.
@@ -1288,16 +1288,16 @@ b + I = f(b_0) = b_0 + I \iff b - b_0 \in I \iff b - b_0 = i \in I \implies b = 
 Por tanto, el resultado se sigue del Primer Teorema de Isomorfía.
 \end{proofbox}
 
-\begin{example}{Aplicaciones del Primer Teorema de Isomorfía}{aplicaciones-isomorfia-uno}
+\begin{example}{Aplicaciones del Primer Teorema de Isomorfía}{aplicaciones_isomorfia_uno}
 \begin{enumerate}
-    \item Si $A$ y $B$ son anillos, el homomorfismo $A \times B \to A$ de proyección en la primera componente es suprayectivo y tiene núcleo $I = 0 \times B$, por lo que $\frac{A \times B}{0 \times B} \simeq A$. En realidad ya habíamos visto esto en \ref{ex:cociente-productos}.
+    \item Si $A$ y $B$ son anillos, el homomorfismo $A \times B \to A$ de proyección en la primera componente es suprayectivo y tiene núcleo $I = 0 \times B$, por lo que $\frac{A \times B}{0 \times B} \simeq A$. En realidad ya habíamos visto esto en \ref{ex:cociente_productos}.
     
     \item Sea $n$ un entero positivo. Hemos visto que todo ideal de $\mathbb{Z}_n = \mathbb{Z}/ (n)$ es de la forma $(\overline{d}) = (d) / (n)$, para cierto divisor positivo $d$ de $n$. El Segundo Teorema de Isomorfía nos permite identificar el cociente $\mathbb{Z}_n/ (\overline{d})$, pues
     \[
     \frac{\mathbb{Z}_n}{(\overline{d})} = \frac{\mathbb{Z}/ (n)}{(d) / (n)} \simeq \frac{\mathbb{Z}}{ (d) } = \mathbb{Z}_d.
     \]
     
-    \item Si $A$ es un anillo, el homomorfismo $f : A[X] \to A$ de sustitución en $0$ (dado por $a_0 + a_1 X + \cdots \mapsto a_0$) es suprayectivo y tiene por núcleo el ideal $(X)$ generado por $X$ (consistente en los polinomios con coeficiente independiente nulo), de modo que $A[X]/(X) \simeq A$, como ya habíamos observado en el Ejemplo \ref{ex:cociente-sustitucion}.
+    \item Si $A$ es un anillo, el homomorfismo $f : A[X] \to A$ de sustitución en $0$ (dado por $a_0 + a_1 X + \cdots \mapsto a_0$) es suprayectivo y tiene por núcleo el ideal $(X)$ generado por $X$ (consistente en los polinomios con coeficiente independiente nulo), de modo que $A[X]/(X) \simeq A$, como ya habíamos observado en el Ejemplo \ref{ex:cociente_sustitucion}.
     
     \item Sean $A$ un anillo e $I$ un ideal de $A$. Para cada $a \in A$, sea $\overline{a} = a + I$. La aplicación $f : A[X] \to (A/I)[X]$ dada por $f(a_0 + a_1 X + \cdots + a_n X^n) = \overline{a}_0 + \overline{a}_1 X + \cdots + \overline{a}_n X^n$ es un homomorfismo suprayectivo de anillos cuyo núcleo es $I[X] = \{a_0 + a_1 X + \cdots + a_n X^n : a_i \in I\}$ (estas afirmaciones quedan como ejercicio para el lector). Del Primer Teorema de Isomorfía se deduce entonces que
     \[
@@ -1310,7 +1310,7 @@ Por tanto, el resultado se sigue del Primer Teorema de Isomorfía.
 Sea $A$ un anillo, y recordemos que si $n \in \mathbb{Z}^+$ escribimos $n1 = 1 + \cdots + 1$ ($n$ veces). Si existe $n \in \mathbb{Z}^+$ tal que $n1 = 0$, definimos la característica de $A$ como el menor $n \in \mathbb{Z}^+$ que verifica tal igualdad. Si no existe un tal $n$, decimos que la característica de $A$ es $0$.
 \end{definition}
 
-\begin{proposition}{Caracterización de la característica}{caracterizacion-caracteristica}
+\begin{proposition}{Caracterización de la característica}{caracterizacion_caracteristica}
 Sea $A$ un anillo y sea $f : \mathbb{Z} \to A$ el único homomorfismo de anillos (dado por $f(n) = n1$). Para un número natural $n$ las condiciones siguientes son equivalentes:
 \begin{enumerate}
     \item $n$ es la característica de $A$.
@@ -1328,7 +1328,7 @@ La equivalencia entre (1) y (2) se deja como ejercicio para el lector, y es obvi
 (4) implica (2). Si $B$ es un subanillo de $A$ y $g : \mathbb{Z}_n \to B$ es un isomorfismo, considerando la proyección $\pi : \mathbb{Z} \to \mathbb{Z}_n$ y la inclusión $u : B \hookrightarrow A$ se obtiene un homomorfismo de anillos $u \circ g \circ \pi : \mathbb{Z} \to A$ que debe coincidir con $f$ por su unicidad (Ejemplo 1.12.(3)). Como $u \circ g$ es inyectiva, es elemental ver que $\ker f = n\mathbb{Z}$.
 \end{proofbox}
 
-\begin{theorem}{Teorema Chino de los Restos}{chino-restos}
+\begin{theorem}{Teorema Chino de los Restos}{chino_restos}
 Sea $A$ un anillo y sean $I_1, \ldots, I_n$ ideales de $A$ tales que $I_i + I_j = A$ para todo $i \neq j$. Entonces $I_1 \cap \cdots \cap I_n = I_1 \cdots I_n$. Además
 \[
 \frac{A}{I_1 \cap \cdots \cap I_n} \cong \frac{A}{I_1} \times \cdots \times \frac{A}{I_n}.

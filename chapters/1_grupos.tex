@@ -2,7 +2,7 @@
 
 \section{Operaciones binarias}
 
-\begin{definition}{Operación binaria}{op-bin}
+\begin{definition}{Operación binaria}{op_bin}
     Sea \(X\) un conjunto. Una operación binaria en \(X\) es una aplicación \(*:X\times X\to X\). Por lo general escribimos \( * (a,b) = a * b\).
 \end{definition}
 
@@ -10,7 +10,7 @@
     En general, si por el contexto se sobreentiende que una operación es binaria, se simplifica el lenguaje hablando simplemente de operaciones. De igual manera, normalmente se omite el conjunto sobre el que está definida la operación.
 \end{remark}
 
-\begin{definition}{Tipos de operaciones}{tipos-op}
+\begin{definition}{Tipos de operaciones}{tipos_op}
     Una operación $*$ se dice
     \begin{itemize}
         \item \textbf{Conmutativa} si $x * y = y * x$ para todo $x,y\in X$.
@@ -18,7 +18,7 @@
     \end{itemize}
 \end{definition}
 
-\begin{definition}{Terminología sobre elementos}{term-elem}
+\begin{definition}{Terminología sobre elementos}{term_elem}
     Un elemento \(x\in X\) se dice que es:
     \begin{itemize}
         \item \textbf{Neutro por la izquierda (neutro por la derecha)} si \(x*y=y\) para todo \(y\in X\) (\(y*x=y\) para todo \(y\in X\)).
@@ -58,7 +58,7 @@ Si $x$ es cancelable por la derecha entonces, para cualesquiera $a,b \in X$ se t
     Notemos que esta caracterización no es más que el contrarrecíproco de la primera definición que hemos dado de elemento cancelable. 
 \end{remark}
 
-\begin{definition}{Tipos de conjuntos con operaciones}{tipos-conj-op}
+\begin{definition}{Tipos de conjuntos con operaciones}{tipos_conj_op}
     Un par \((X,*)\) formado por un conjunto y una operación \(*\) decimos que es un:
     \begin{itemize}
         \item \textbf{Semigrupo} si \(*\) es asociativa.
@@ -71,7 +71,7 @@ Si $x$ es cancelable por la derecha entonces, para cualesquiera $a,b \in X$ se t
     \end{itemize}
 \end{definition}
 
-\begin{example}{}{conjuntos-op-binarias}
+\begin{example}{}{conjuntos_op_binarias}
     Si tomamos la suma de elementos sobre distintos conjuntos de números obtenemos un ejemplo de cada uno de los tipos de conjuntos con operaciones:
     \begin{enumerate}
         \item $(\N \setminus \{ 0 \},+)$ es un semigrupo, ya que la suma es asociativa, pero no tiene neutro.
@@ -80,7 +80,7 @@ Si $x$ es cancelable por la derecha entonces, para cualesquiera $a,b \in X$ se t
     \end{enumerate}
 \end{example}
 
-\begin{example}{Grupo no abeliano}{grupo-no-abeliano}
+\begin{example}{Grupo no abeliano}{grupo_no_abeliano}
     Un ejemplo de grupo no abeliano es $GL_n(\R)$ si $n \geq 2$. $GL_n(\R)$ es el grupo de las matrices invertibles $n\times n$ con entradas reales, donde la operación es la multiplicación de matrices.
 \end{example}
 
@@ -106,7 +106,7 @@ Si $x$ es cancelable por la derecha entonces, para cualesquiera $a,b \in X$ se t
     Sean $A$ un conjunto y sea $X=A^{A}$ el conjunto de las aplicaciones de $A$ en $A$. Probar que la composición de aplicaciones define una operación asociativa en $X$ para la que la identidad $1_{X}$ es neutro. Esto prueba que $(A^{A},\circ)$ es un monoide.
 \end{example}
 
-\begin{proposition}{}{prop-operaciones}
+\begin{proposition}{}{prop_operaciones}
     Sea $*$ una operación en un conjunto $X$.
 
     \begin{enumerate}
@@ -175,7 +175,7 @@ considerar $*$ como una operación en $B$ que se dice inducida por la operación
 
 Demostraremos ahora algunas propiedades de los grupos.
 
-\begin{lemma}{Propiedades básicas de grupos}{prop-grupos}
+\begin{lemma}{Propiedades básicas de grupos}{prop_grupos}
     Sea \((G,\cdot)\) un grupo.
     \begin{enumerate}
     \item {(Unicidad del neutro)} El neutro de \(G\) es único y lo denotaremos \(e\). De hecho, si \(a,b\in G\) satisfacen que \(a\cdot b = a\) ó \(b\cdot a = a\) entonces \(b = e\).
@@ -229,7 +229,7 @@ Demostraremos ahora algunas propiedades de los grupos.
 
 \subsection{Ejemplos}
 
-\begin{example}{Grupo trivial}{grupo-trivial}
+\begin{example}{Grupo trivial}{grupo_trivial}
     Sea \(X\) un conjunto y consideremos la aplicación identidad $1_X: X \to X$ tal que $1_X(x) = x$ para todo $x \in X$. Entonces el conjunto $T = \{1_X\}$ con la operación de composición es un grupo $(T, \circ)$ que llamaremos el grupo trivial (lo denotaremos $1$).
     
     En general, podríamos haber definido este grupo como un único elemento $\{x\}$ con la operación descrita por $x \cdot x = x$.
@@ -237,7 +237,7 @@ Demostraremos ahora algunas propiedades de los grupos.
 
 En términos de grupos de transformaciones, el grupo trivial de $X$ es el grupo de transformaciones más pequeño que podemos construir. Que en efecto se trata de un grupo es inmediato.
 
-\begin{example}{Grupo simétrico}{grupo-simetrico}
+\begin{example}{Grupo simétrico}{grupo_simetrico}
     Sean \(X\) un conjunto y \(S_X\) el conjunto de todas las biyecciones de \(X\) en sí mismo. Entonces \((S_X, \circ)\) es un grupo, llamado {grupo simétrico} o {grupo de las permutaciones} de \(X\).
 \end{example}
 
@@ -263,12 +263,12 @@ En términos de grupos de transformaciones, el grupo de permutaciones de $X$ es 
     En general $S_X$ no es un grupo abeliano.
 \end{remark}
 
-\begin{example}{Producto de grupos}{prod-grupos}
+\begin{example}{Producto de grupos}{prod_grupos}
     Si \((G, *)\) y \((H, *)\) son dos grupos, entonces el {producto directo} \(G \times H\) es un grupo en el que la operación viene dada componente a componente:
     \[
     (g_1, h_1) \cdot (g_2, h_2) = (g_1 * g_2, h_1 * h_2).
     \]
-    Más generalmente, si \((G_i)_{i\in I}\) es una familia arbitraria de grupos, entonces el producto directo \(\prod_{i\in I} G_i\) tiene una estructura de grupo en el que el producto se realiza componente a componente. Para más información ver la Definición \ref{defn:producto-cartesiano}.
+    Más generalmente, si \((G_i)_{i\in I}\) es una familia arbitraria de grupos, entonces el producto directo \(\prod_{i\in I} G_i\) tiene una estructura de grupo en el que el producto se realiza componente a componente. Para más información ver la Definición \ref{defn:producto_cartesiano}.
 \end{example}
 
 Probemos que el producto directo de dos grupos es un grupo:
@@ -289,7 +289,7 @@ Probemos que el producto directo de dos grupos es un grupo:
     \end{enumerate}
 \end{proofbox}
 
-\begin{example}{Tabla de Cayley}{tabla-cayley}
+\begin{example}{Tabla de Cayley}{tabla_cayley}
     Dado un grupo finito podemos construir lo que llamaremos su tabla de Cayley (también llamada tabla de multiplicación o de suma, dependiendo del nombre que le demos a la operación del grupo). Esta tabla se obtiene disponiendo cada uno de los elementos del grupo tanto por columnas como por filas y calculando sus productos. Si el grupo tiene 2 elementos $a,b$ la tabla será de la forma:
     \begin{center}
         \begin{tabular}{c | c | c}

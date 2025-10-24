@@ -29,7 +29,7 @@ Un subanillo de un anillo \(A\) que sea un cuerpo se llama un subcuerpo de \(A\)
     \]
 \end{remark}
 
-\begin{proposition}{}{cuerpos-dominios}
+\begin{proposition}{}{cuerpos_dominios}
 Todo cuerpo es un dominio.
 \end{proposition}
 
@@ -113,18 +113,18 @@ Si $A$ es dominio y $P,Q \in A[X]$ son no nulos, sean $a_n X^n$ y $b_m X^m$ sus 
 \clearpage
 \section{Ideales primos y maximales}
 
-\begin{definition}{Ideal primo}{ideal-primo}
+\begin{definition}{Ideal primo}{ideal_primo}
     Un ideal propio \(P \leq A, P \neq A\) es primo si para todo \(a, b \in A\):
     \[
     ab \in P \Rightarrow a \in P \text{ o } b \in P
     \]
 \end{definition}
 
-\begin{definition}{Ideal maximal}{ideal-maximal}
+\begin{definition}{Ideal maximal}{ideal_maximal}
     Un ideal propio \(M \leq A, M \neq A\) es maximal si no existe ningún ideal \(I\) tal que \(M \subsetneq I \subsetneq A\).
 \end{definition}
 
-\begin{proposition}{Caracterizaciones de ideales maximales y primos}{caracterizacion-maximales-primos}
+\begin{proposition}{Caracterizaciones de ideales maximales y primos}{caracterizacion_maximales_primos}
 Sean \(A\) un anillo e \(I\) un ideal propio de \(A\). Entonces:
 
 \begin{enumerate}
@@ -312,7 +312,7 @@ Diremos que \(a\) es primo si \(0 \neq a \in A \setminus A^*\) y la relacion \(a
 Ambas nociones dependen del anillo ambiente, y si este no esta claro por el contexto hablaremos de irreducibles y primos en \(A\).
 \end{definition}
 
-\begin{proposition}{}{primo-implica-irreducible}
+\begin{proposition}{}{primo_implica_irreducible}
 En un dominio \(A\) todo elemento primo es irreducible.
 \end{proposition}
 
@@ -322,7 +322,7 @@ Sea \(p\) un elemento primo de \(A\) y supongamos que \(p = ab\), con \(a, b \in
 
 El recíproco no se verifica en general, como muestra el siguiente ejemplo.
 
-\begin{example}{Irreducible no implica primo: Parte 1}{irreducible-no-primo}
+\begin{example}{Irreducible no implica primo: Parte 1}{irreducible_no_primo}
 Veamos primero el contraejemplo y luego una justificación de cómo se llega al resultado.
 
 En el anillo \(\mathbb{Z}[\sqrt{-5}]\) consideremos la factorización:
@@ -406,7 +406,7 @@ y es claro que \(2 \nmid (1 + \sqrt{-5})\) y \(2 \nmid (1 - \sqrt{-5})\).
 
 Todas las nociones de divisibilidad que hemos presentado pueden enunciarse en terminos de los ideales principales generados por los elementos involucrados.
 
-\begin{proposition}{}{divisibilidad-ideales-principales}
+\begin{proposition}{}{divisibilidad_ideales_principales}
 Si \(D\) es un dominio y \(a, b \in D\) entonces se verifican las siguientes propiedades:
 
 \begin{enumerate}
@@ -492,7 +492,7 @@ En el caso en que \(a = \mathrm{mcd}(S)\) se dice que esta expresion es una iden
 \begin{proofbox}
 
 \begin{enumerate}
-\item Usando la definicion de máximo común divisor tenemos que si \(a = \mathrm{mcd}(S)\), entonces $a | s$ para todo $s\in S$. Entonces, por el apartado (3) de \ref{prop:divisibilidad-ideales-principales}, \((s) \subseteq (a)\) para todo \(s \in S\). Además, dado un ideal principal $(b)$ tal que $S \subseteq (b)$ se verifica
+\item Usando la definicion de máximo común divisor tenemos que si \(a = \mathrm{mcd}(S)\), entonces $a | s$ para todo $s\in S$. Entonces, por el apartado (3) de \ref{prop:divisibilidad_ideales_principales}, \((s) \subseteq (a)\) para todo \(s \in S\). Además, dado un ideal principal $(b)$ tal que $S \subseteq (b)$ se verifica
 \[
 s \in S \subseteq (b) \implies s = bc
 \]
@@ -573,7 +573,7 @@ Diremos que \(D\) es un dominio de factorización única o DFU (UFD, en inglés)
 El Teorema Fundamental de la Aritmética simplemente nos dice que el anillo de los números enteros \( \Z \) es un DFU.
 \end{example}
 
-\begin{example}{}{Z-sqrt-m}
+\begin{example}{}{Z_sqrt_m}
 Sea \(m\) un entero positivo. Vamos a ver que \(\mathbb{Z}[\sqrt{m}]\) es un dominio de factorización. Si \(m\) es un cuadrado en \(\mathbb{Z}\) entonces \(\mathbb{Z}[\sqrt{m}] = \mathbb{Z}\) que es un dominio de factorización. Por tanto, a partir de ahora suponemos que \(m\) no es un cuadrado en \(\mathbb{Z}\) y siempre que utilicemos una expresión \(a + b\sqrt{m}\) suponemos implícitamente que \(a\) y \(b\) son enteros. Vamos a utilizar la conjugación en \(\mathbb{Z}[\sqrt{m}]\) que es la siguiente aplicación (si \(m\) es negativo, esta aplicación es la conjugación compleja, si \(m\) es positivo entonces es una aplicación diferente, que también llamaremos conjugación).
 \[
 \overline{(\cdot)}: \mathbb{Z}[\sqrt{m}] \to \mathbb{Z}[\sqrt{m}], \quad a + b\sqrt{m} \mapsto \overline{a + b\sqrt{m}} = a - b\sqrt{m}
@@ -598,7 +598,7 @@ Vamos a demostrar que si \(x \neq 0\) entonces tiene una factorización en \(\ma
 
 En el siguiente lema vemos que en un DFU los elementos irreducibles coinciden con los primos.
 
-\begin{lemma}{}{DFU-irreducible}
+\begin{lemma}{}{DFU_irreducible}
 Si \(D\) es un DFU, entonces todo elemento irreducible de \(D\) es primo.
 \end{lemma}
 
@@ -610,7 +610,7 @@ pt = tp = w p_1 \cdots p_n p  = (vu) q_1 \cdots q_m r_1 \cdots r_k,
 y por la unicidad de la factorización \(p\) es asociado de algún \(q_i\) (y entonces \(p \mid a\)) o de algún \(r_i\) (y entonces \(p \mid b\)).
 \end{proofbox}
 
-Según hemos visto en \ref{ex:Z-sqrt-m} \(\mathbb{Z}[\sqrt{-5}]\) es un DF. Sin embargo, en el Ejemplo \ref{ex:irreducible-no-primo} hemos visto que tiene elementos irreducibles no primos, y por tanto no es DFU.
+Según hemos visto en \ref{ex:Z_sqrt_m} \(\mathbb{Z}[\sqrt{-5}]\) es un DF. Sin embargo, en el Ejemplo \ref{ex:irreducible_no_primo} hemos visto que tiene elementos irreducibles no primos, y por tanto no es DFU.
 
 Introducimos ahora una definición muy similar a la de factorización en irreducibles.
 \begin{definition}{Factorización en primos}{}
@@ -621,7 +621,7 @@ a = u p_1 \cdots p_n
 donde \(n \in \mathbb{Z}^{\geq 0}\), \(u\) es una unidad de \(D\) y \(p_1, \ldots, p_n\) son primos de \(D\). Obsérvese que se admite la posibilidad de que sea $n = 0$, en cuyo caso la factorización se reduce a $a = u$ ya que, por convenio, el producto vacío es 1.
 \end{definition}
 
-\begin{proposition}{}{equivalencias-DFU}
+\begin{proposition}{}{equivalencias_DFU}
 Para un dominio \(D\), las condiciones siguientes son equivalentes:
 
 \begin{enumerate}
@@ -635,7 +635,7 @@ Para un dominio \(D\), las condiciones siguientes son equivalentes:
 \end{proposition}
 
 \begin{proofbox}
-(1) $\Rightarrow$ (2): Por ser un DFU, $D$ es en concreto un $DF$. Además, por el Lema \ref{lem:DFU-irreducible} todo elemento irreducible es primo, como queríamos ver.
+(1) $\Rightarrow$ (2): Por ser un DFU, $D$ es en concreto un $DF$. Además, por el Lema \ref{lem:DFU_irreducible} todo elemento irreducible es primo, como queríamos ver.
 
 (2) $\Rightarrow$ (3): Sea $0 \neq a \in D$, como $D$ es DF $a$ admite una factorización en producto de irreducibles
 \[
@@ -665,7 +665,7 @@ con \(w = u'u^{-1}\) una unidad. Razonamos por inducción sobre \(k\). Si \(k = 
 Un dominio de ideales principales, o DIP (PID, en la literatura en ingles), es un dominio en el que todos los ideales son principales.
 \end{definition}
 
-\begin{proposition}{}{propiedades-DIP}
+\begin{proposition}{}{propiedades_DIP}
 Si \(D\) es un DIP y \(0 \neq a \in D \setminus D^*\), las siguientes condiciones son equivalentes:
 
 \begin{enumerate}
@@ -686,11 +686,11 @@ Si \(D\) es un DIP y \(0 \neq a \in D \setminus D^*\), las siguientes condicione
 
 \begin{proofbox}
 
-(1) \(\Leftrightarrow\) (2): Por la Proposición \ref{prop:divisibilidad-ideales-principales}, \(a\) es irreducible si y solo si \((a)\) es maximal entre los ideales principales propios. Pero como \(D\) es DIP, todo ideal es principal, luego \((a)\) es maximal entre todos los ideales propios, es decir, es maximal.
+(1) \(\Leftrightarrow\) (2): Por la Proposición \ref{prop:divisibilidad_ideales_principales}, \(a\) es irreducible si y solo si \((a)\) es maximal entre los ideales principales propios. Pero como \(D\) es DIP, todo ideal es principal, luego \((a)\) es maximal entre todos los ideales propios, es decir, es maximal.
 
 (2) \(\Leftrightarrow\) (3): Por un resultado previo, \((a)\) es maximal si y solo si \(D/(a)\) es cuerpo.
 
-(4) \(\Leftrightarrow\) (5): Por la Proposición \ref{prop:divisibilidad-ideales-principales}, \(a\) es primo si y solo si \((a)\) es primo.
+(4) \(\Leftrightarrow\) (5): Por la Proposición \ref{prop:divisibilidad_ideales_principales}, \(a\) es primo si y solo si \((a)\) es primo.
 
 (5) \(\Leftrightarrow\) (6): Por un resultado previo, \((a)\) es primo si y solo si \(D/(a)\) es dominio.
 
@@ -703,12 +703,12 @@ Si \(D\) es un DIP y \(0 \neq a \in D \setminus D^*\), las siguientes condicione
     Hemos probado $(1) \Leftrightarrow (2) \Leftrightarrow (3)$ y $(4) \Leftrightarrow (5) \Leftrightarrow (6)$, por tanto solo hace falta probar que alguno de los 3 primeros implica alguno de los 3 últimos y viceversa.
 \end{remark}
 
-\begin{theorem}{DIP_implica_DFU}{}
+\begin{theorem}{DIP implica DFU}{}
 Todo dominio de ideales principales \(D\) es un dominio de factorizacion unica.
 \end{theorem}
 
 \begin{proofbox}
-Por la Proposición \ref{prop:propiedades-DIP} sabemos que al ser $D$ un dominio los elementos irreducibles son primos. Por la Proposición \ref{prop:equivalencias-DFU} basta entonces con demostrar que \(D\) es un dominio de factorizacion.
+Por la Proposición \ref{prop:propiedades_DIP} sabemos que al ser $D$ un DIP los elementos irreducibles son primos. Por la Proposición \ref{prop:equivalencias_DFU} basta entonces con demostrar que \(D\) es un dominio de factorizacion.
 
 Por reduccion al absurdo suponemos que \(D\) no lo es, y vamos a construir, por recurrencia, una sucesion \(a_1, a_2, \ldots\) de elementos de \(D\) que no admiten factorizacion y tales que \((a_1) \subset (a_2) \subset \cdots\) es una cadena estrictamente creciente de ideales de \(D\). Para el primer paso simplemente elegimos un elemento arbitrario \(a_1\) de \(D\) que no admita factorizacion en irreducibles. Supongamos ahora que hemos elegido \(a_1, \ldots, a_n\) satisfaciendo las condiciones requeridas. Entonces \(a_n\) no es irreducible, luego existen \(x, y \in D \setminus D^*\) tales que \(a_n = xy\). Como \(a_n\) no es producto de irreducibles, al menos uno de los factores \(x\) o \(y\) (digamos que \(x\)) no es producto de irreducibles. Entonces, poniendo \(a_{n+1} = x\), tenemos \((a_n) \subset (a_{n+1})\) con la inclusion estricta porque \(y\) no es una unidad.
 

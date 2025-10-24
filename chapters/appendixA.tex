@@ -94,7 +94,7 @@ Una aplicación \( f \) se dice biyectiva si es a la vez inyectiva y sobreyectiv
 
 Enunciamos ahora el siguiente teorema que permite caracterizar las nociones anteriores en aplicación de inversas por la derecha e izquierda.
 
-\begin{theorem}{}{inversas-aplicaciones}
+\begin{theorem}{}{inversas_aplicaciones}
     Sea \( f: A \to B \) una aplicación, con \( A \neq \emptyset \).
     \begin{enumerate}
         \item \( f \) es inyectiva si y solo si existe una aplicación \( g: B \to A \) tal que \( gf = 1_A \).
@@ -107,7 +107,7 @@ La aplicación \( g \) del teorema anterior se llama una {inversa por la izquier
 \[
 g = g1_B = g(fh) = (gf)h = 1_A h = h
 \]
-y la aplicación \( g = h \) se llama la {inversa} de \( f \). Este argumento también muestra que la inversa de una aplicación (si existe) es única. Por el Teorema \ref{thm:inversas-aplicaciones}, si \( A \) es un conjunto y \( f: A \to B \) una aplicación, entonces
+y la aplicación \( g = h \) se llama la {inversa} de \( f \). Este argumento también muestra que la inversa de una aplicación (si existe) es única. Por el Teorema \ref{thm:inversas_aplicaciones}, si \( A \) es un conjunto y \( f: A \to B \) una aplicación, entonces
 \[
 f \text{ es biyectiva} \iff f \text{ tiene inversa por ambos lados}
 \]
@@ -142,7 +142,7 @@ Otra ventaja de este enfoque es que permite definir funciones con dominio vacío
 
 Consideremos el producto cartesiano de dos conjuntos \( A_1 \times A_2 \). Un elemento de \( A_1 \times A_2 \) es un par \( (a_1, a_2) \) con \( a_i \in A_i \), \( i = 1, 2 \). Así, el par \( (a_1, a_2) \) determina una aplicación \( f: \{1, 2\} \to A_1 \cup A_2 \) mediante: \( f(1) = a_1 \), \( f(2) = a_2 \). Recíprocamente, toda aplicación \( f: \{1, 2\} \to A_1 \cup A_2 \) con la propiedad de que \( f(1) \in A_1 \) y \( f(2) \in A_2 \) determina un elemento \( (a_1, a_2) = (f(1), f(2)) \) de \( A_1 \times A_2 \). Por lo tanto, no es difícil ver que hay una correspondencia biyectiva entre el conjunto de todas las aplicaciones de este tipo y el conjunto \( A_1 \times A_2 \). Este hecho nos lleva a generalizar la noción de producto cartesiano como sigue.
 
-\begin{definition}{Producto}{producto-cartesiano}
+\begin{definition}{Producto}{producto_cartesiano}
     Sea \( \{A_i : i \in I\} \) una familia de conjuntos indexada por un conjunto (no vacío) \( I \). El producto (cartesiano) de los conjuntos \( A_i \) es el conjunto de todas las aplicaciones \( f: I \to \bigcup_{i \in I} A_i \) tales que \( f(i) \in A_i \) para todo \( i \in I \). Se denota \( \prod_{i \in I} A_i \).
 \end{definition}
 
@@ -156,7 +156,7 @@ Sea $\prod_{i \in I} A_i$ un producto cartesiano. Para cada $k \in I$, definamos
 
 El producto $\prod_{i \in I} A_i$ y sus proyecciones son precisamente lo que necesitamos para el siguiente teorema
 
-\begin{theorem}{Propiedad universal del producto}{prop-universal-producto}
+\begin{theorem}{Propiedad universal del producto}{prop_universal_producto}
     Sea $\{A_i : i \in I\}$ una familia de conjuntos indexada por $I$. Entonces existe un conjunto $D$, junto con una familia de aplicaciones $\{\pi_i: D \to A_i : i \in I\}$, con la siguiente propiedad: para cualquier conjunto $C$ y familia de aplicaciones $\{\varphi_i: C \to A_i : i \in I\}$, existe una única aplicación $\varphi: C \to D$ tal que $\pi_i \varphi = \varphi_i$ para todo $i \in I$. Además, $D$ está determinado de manera única salvo biyección.
 \end{theorem}
 
@@ -196,7 +196,7 @@ La última frase significa que si $D'$ es un conjunto y $\{\pi_i': D' \to A_i : 
     Así, $\varphi \psi: D \to D$ es una aplicación tal que $\pi_i (\varphi \psi) = \pi_i$ para todo $i \in I$. Pero por la demostración anterior, hay una única aplicación con esta propiedad. Como la aplicación $1_D: D \to D$ también satisface $\pi_i 1_D = \pi_i$ para todo $i \in I$, debemos tener $\varphi \psi = 1_D$ por unicidad. Un argumento similar muestra que $\psi \varphi = 1_D$. Por lo tanto, $\varphi$ es una biyección por (13), y $D = \prod_{i \in I} A_i$ está determinado de manera única salvo biyección.
 \end{proofbox}
 
-Nótese que el enunciado del Teorema \ref{thm:prop-universal-producto} no menciona elementos; involucra solo conjuntos y aplicaciones. Establece que el producto $\prod_{i \in I} A_i$ se caracteriza por una cierta propiedad universal que cumplen todas las aplicaciones. Esta propiedad se resume en el siguiente diagrama conmutativo:
+Nótese que el enunciado del Teorema \ref{thm:prop_universal_producto} no menciona elementos; involucra solo conjuntos y aplicaciones. Establece que el producto $\prod_{i \in I} A_i$ se caracteriza por una cierta propiedad universal que cumplen todas las aplicaciones. Esta propiedad se resume en el siguiente diagrama conmutativo:
 
 \[
     \begin{tikzcd}
