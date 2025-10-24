@@ -312,7 +312,7 @@ Diremos que \(a\) es primo si \(0 \neq a \in A \setminus A^*\) y la relacion \(a
 Ambas nociones dependen del anillo ambiente, y si este no esta claro por el contexto hablaremos de irreducibles y primos en \(A\).
 \end{definition}
 
-\begin{proposition}{}{}
+\begin{proposition}{}{primo-implica-irreducible}
 En un dominio \(A\) todo elemento primo es irreducible.
 \end{proposition}
 
@@ -402,7 +402,7 @@ y es claro que \(2 \nmid (1 + \sqrt{-5})\) y \(2 \nmid (1 - \sqrt{-5})\).
 \end{example}
 
 \clearpage
-\subsection{Divisibilidad en términos de ideales principales. Máximo común divisor y mínimo común múltiplo.}
+\subsection{Divisibilidad en términos de ideales principales}
 
 Todas las nociones de divisibilidad que hemos presentado pueden enunciarse en terminos de los ideales principales generados por los elementos involucrados.
 
@@ -448,6 +448,8 @@ Si \(D\) es un dominio y \(a, b \in D\) entonces se verifican las siguientes pro
     
     \noindent\textbf{Respuesta del autor:} Yo diría que no, pero como no estoy seguro rezo porque siempre que tenga que usar esta proposición esté trabajando con un dominio...
 \end{remark}
+
+\subsection{Máximo común divisor y mínimo común múltiplo}
 
 \begin{definition}{}{}
 Sea \(A\) un anillo y sean \(S\) un subconjunto de \(A\) y \(a \in A\).
@@ -563,7 +565,7 @@ a = u p_1 \cdots p_n = v q_1 \cdots q_m
 \]
 (con \(u, v \in D^*\) y el resto de factores irreducibles) son equivalentes si \(n = m\) y existe una permutación \(\sigma\) de \(N_n\) (una biyección de \(N_n = \{1, 2, \ldots, n\}\) en sí mismo) tal que \(p_i\) y \(q_{\sigma(i)}\) son asociados para cada \(i = 1, \ldots, n\).
 
-\begin{definition}{Dominio de factorización única}{dfu}
+\begin{definition}{Dominio de factorización única}{DFU}
 Diremos que \(D\) es un dominio de factorización única o DFU (UFD, en inglés) si es un dominio de factorización en el que, para cada \(0 \neq a \in D\), todas las factorizaciones de \(a\) son equivalentes.
 \end{definition}
 
@@ -596,7 +598,7 @@ Vamos a demostrar que si \(x \neq 0\) entonces tiene una factorización en \(\ma
 
 En el siguiente lema vemos que en un DFU los elementos irreducibles coinciden con los primos.
 
-\begin{lemma}{}{dfu-irreducible}
+\begin{lemma}{}{DFU-irreducible}
 Si \(D\) es un DFU, entonces todo elemento irreducible de \(D\) es primo.
 \end{lemma}
 
@@ -619,7 +621,7 @@ a = u p_1 \cdots p_n
 donde \(n \in \mathbb{Z}^{\geq 0}\), \(u\) es una unidad de \(D\) y \(p_1, \ldots, p_n\) son primos de \(D\). Obsérvese que se admite la posibilidad de que sea $n = 0$, en cuyo caso la factorización se reduce a $a = u$ ya que, por convenio, el producto vacío es 1.
 \end{definition}
 
-\begin{proposition}{}{}
+\begin{proposition}{}{equivalencias-DFU}
 Para un dominio \(D\), las condiciones siguientes son equivalentes:
 
 \begin{enumerate}
@@ -633,7 +635,7 @@ Para un dominio \(D\), las condiciones siguientes son equivalentes:
 \end{proposition}
 
 \begin{proofbox}
-(1) $\Rightarrow$ (2): Por ser un DFU, $D$ es en concreto un $DF$. Además, por el Lema \ref{lem:dfu-irreducible} todo elemento irreducible es primo, como queríamos ver.
+(1) $\Rightarrow$ (2): Por ser un DFU, $D$ es en concreto un $DF$. Además, por el Lema \ref{lem:DFU-irreducible} todo elemento irreducible es primo, como queríamos ver.
 
 (2) $\Rightarrow$ (3): Sea $0 \neq a \in D$, como $D$ es DF $a$ admite una factorización en producto de irreducibles
 \[
@@ -655,3 +657,72 @@ p_1 \cdots p_k = (u'u^{-1}) q_1 \cdots q_l
 \]
 con \(w = u'u^{-1}\) una unidad. Razonamos por inducción sobre \(k\). Si \(k = 0\) entonces necesariamente \(l = 0\). Supongamos que \(k > 0\) y que la propiedad se verifica para factorizaciones con menos de \(k\) primos. Como \(p_k\) es primo y divide a \(q_1 \cdots q_l\) se tiene que \(p_k\) divide a algún \(q_i\) y podemos suponer que \(p_k\) divide a \(q_l\). Como \(q_l\) es irreducible necesariamente \(p_k\) y \(q_l\) son asociados. Escribiendo \(q_l = v p_k\) y cancelando \(p_k\) obtenemos \(p_1 \cdots p_{k-1} = (wv) q_1 \cdots q_{l-1}\). Por la hipótesis de inducción estas dos factorizaciones son equivalentes con lo que \(k = l\) y después de reordenar los \(q_i\) podemos suponer que \(p_i\) es asociado de \(q_i\) para todo \(i = 1, \ldots, k\).
 \end{proofbox}
+
+\clearpage
+\section{Dominios de ideales principales}
+
+\begin{definition}{Dominio de ideales principales}{DIP}
+Un dominio de ideales principales, o DIP (PID, en la literatura en ingles), es un dominio en el que todos los ideales son principales.
+\end{definition}
+
+\begin{proposition}{}{propiedades-DIP}
+Si \(D\) es un DIP y \(0 \neq a \in D \setminus D^*\), las siguientes condiciones son equivalentes:
+
+\begin{enumerate}
+\item \(a\) es irreducible.
+
+\item \((a)\) es un ideal maximal.
+
+\item \(D/(a)\) es un cuerpo.
+
+\item \(a\) es primo.
+
+\item \((a)\) es un ideal primo.
+
+\item \(D/(a)\) es un dominio.
+\end{enumerate}
+
+\end{proposition}
+
+\begin{proofbox}
+
+(1) \(\Leftrightarrow\) (2): Por la Proposición \ref{prop:divisibilidad-ideales-principales}, \(a\) es irreducible si y solo si \((a)\) es maximal entre los ideales principales propios. Pero como \(D\) es DIP, todo ideal es principal, luego \((a)\) es maximal entre todos los ideales propios, es decir, es maximal.
+
+(2) \(\Leftrightarrow\) (3): Por un resultado previo, \((a)\) es maximal si y solo si \(D/(a)\) es cuerpo.
+
+(4) \(\Leftrightarrow\) (5): Por la Proposición \ref{prop:divisibilidad-ideales-principales}, \(a\) es primo si y solo si \((a)\) es primo.
+
+(5) \(\Leftrightarrow\) (6): Por un resultado previo, \((a)\) es primo si y solo si \(D/(a)\) es dominio.
+
+(2) \(\Rightarrow\) (5): Por un resultado previo, todo ideal maximal es primo.
+
+(4) \(\Rightarrow\) (1): En cualquier dominio, todo elemento primo es irreducible.
+\end{proofbox}
+
+\begin{remark}
+    Hemos probado $(1) \Leftrightarrow (2) \Leftrightarrow (3)$ y $(4) \Leftrightarrow (5) \Leftrightarrow (6)$, por tanto solo hace falta probar que alguno de los 3 primeros implica alguno de los 3 últimos y viceversa.
+\end{remark}
+
+\begin{theorem}{DIP_implica_DFU}{}
+Todo dominio de ideales principales \(D\) es un dominio de factorizacion unica.
+\end{theorem}
+
+\begin{proofbox}
+Por la Proposición \ref{prop:propiedades-DIP} sabemos que al ser $D$ un dominio los elementos irreducibles son primos. Por la Proposición \ref{prop:equivalencias-DFU} basta entonces con demostrar que \(D\) es un dominio de factorizacion.
+
+Por reduccion al absurdo suponemos que \(D\) no lo es, y vamos a construir, por recurrencia, una sucesion \(a_1, a_2, \ldots\) de elementos de \(D\) que no admiten factorizacion y tales que \((a_1) \subset (a_2) \subset \cdots\) es una cadena estrictamente creciente de ideales de \(D\). Para el primer paso simplemente elegimos un elemento arbitrario \(a_1\) de \(D\) que no admita factorizacion en irreducibles. Supongamos ahora que hemos elegido \(a_1, \ldots, a_n\) satisfaciendo las condiciones requeridas. Entonces \(a_n\) no es irreducible, luego existen \(x, y \in D \setminus D^*\) tales que \(a_n = xy\). Como \(a_n\) no es producto de irreducibles, al menos uno de los factores \(x\) o \(y\) (digamos que \(x\)) no es producto de irreducibles. Entonces, poniendo \(a_{n+1} = x\), tenemos \((a_n) \subset (a_{n+1})\) con la inclusion estricta porque \(y\) no es una unidad.
+
+Una vez construida la sucesion \((a_i)\), tomamos \(I = (a_1, a_2, \ldots) = \cup_{i \in \mathbb{Z}^+}(a_i)\) (dejamos que el lector compruebe la igualdad anterior). Como \(D\) es un DIP, existe \(x \in D\) tal que \(I = (x)\); en particular \(x \in I = \cup_{i \in \mathbb{Z}^+}(a_i)\) y por tanto existe un indice \(i\) tal que \(x \in (a_i)\); como es claro que \(a_i \in (x)\), se tiene \((a_i) = (x) = I\) y por lo tanto \((a_i) = (a_{i+1})\), en contra de la construccion realizada. Este absurdo concluye la demostracion.
+\end{proofbox}
+
+El reciproco del Teorema 2.25 es falso: \(\mathbb{Z}[X]\) es un DFU que no es un DIP. Que no es DIP se sigue del Ejemplo 1.26.(2). De hecho ese ejemplo es un caso particular de un hecho mucho mas general (Problema 2.4.2). La demostracion de que \(\mathbb{Z}[X]\) es DFU es bastante mas complicada y tambien es consecuencia de un resultado mas general. La veremos en el Capítulo 3.
+
+\begin{example}{}{}
+El anillo de los enteros $\mathbb{Z}$ es un DIP. Todo ideal de $\mathbb{Z}$ es de la forma $(n)$ para algún $n \in \mathbb{Z}$.
+\end{example}
+
+\begin{example}{}{}
+Si $K$ es un cuerpo, entonces $K$ es un DIP trivialmente, pues sus únicos ideales son $(0)$ y $(1)$.
+\end{example}
+
+Más adelante veremos los dominios euclídeos y probraremos que todo dominio euclídeo es un DIP, por tanto todos los ejemplos de la siguiente sección valen también para esta.
