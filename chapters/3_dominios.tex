@@ -703,19 +703,25 @@ Si \(D\) es un DIP y \(0 \neq a \in D \setminus D^*\), las siguientes condicione
     Hemos probado $(1) \Leftrightarrow (2) \Leftrightarrow (3)$ y $(4) \Leftrightarrow (5) \Leftrightarrow (6)$, por tanto solo hace falta probar que alguno de los 3 primeros implica alguno de los 3 últimos y viceversa.
 \end{remark}
 
-\begin{theorem}{DIP implica DFU}{}
+\begin{theorem}{DIP implica DFU}{DIP_implica_DFU}
 Todo dominio de ideales principales \(D\) es un dominio de factorizacion unica.
 \end{theorem}
 
 \begin{proofbox}
 Por la Proposición \ref{prop:propiedades_DIP} sabemos que al ser $D$ un DIP los elementos irreducibles son primos. Por la Proposición \ref{prop:equivalencias_DFU} basta entonces con demostrar que \(D\) es un dominio de factorizacion.
 
-Por reduccion al absurdo suponemos que \(D\) no lo es, y vamos a construir, por recurrencia, una sucesion \(a_1, a_2, \ldots\) de elementos de \(D\) que no admiten factorizacion y tales que \((a_1) \subset (a_2) \subset \cdots\) es una cadena estrictamente creciente de ideales de \(D\). Para el primer paso simplemente elegimos un elemento arbitrario \(a_1\) de \(D\) que no admita factorizacion en irreducibles. Supongamos ahora que hemos elegido \(a_1, \ldots, a_n\) satisfaciendo las condiciones requeridas. Entonces \(a_n\) no es irreducible, luego existen \(x, y \in D \setminus D^*\) tales que \(a_n = xy\). Como \(a_n\) no es producto de irreducibles, al menos uno de los factores \(x\) o \(y\) (digamos que \(x\)) no es producto de irreducibles. Entonces, poniendo \(a_{n+1} = x\), tenemos \((a_n) \subset (a_{n+1})\) con la inclusion estricta porque \(y\) no es una unidad.
+Por reducción al absurdo supongamos que \(D\) no lo es. Vamos a construir, por recurrencia, una sucesion \(a_1, a_2, \ldots\) de elementos de \(D\) que no admiten factorizacion y tales que
+\[
+(a_1) \subset (a_2) \subset \cdots
+\]
+es una cadena estrictamente creciente de ideales de \(D\).
+
+Para el primer paso simplemente elegimos un elemento arbitrario \(a_1\) de \(D\) que no admita factorizacion en irreducibles. Supongamos ahora que hemos elegido \(a_1, \ldots, a_n\) satisfaciendo las condiciones requeridas. Entonces \(a_n\) no es irreducible, luego existen \(x, y \in D \setminus D^*\) tales que \(a_n = xy\). Como \(a_n\) no es producto de irreducibles, al menos uno de los factores \(x\) o \(y\) (digamos que \(x\)) no es producto de irreducibles. Entonces, poniendo \(a_{n+1} = x\), tenemos \((a_n) \subset (a_{n+1})\) con la inclusion estricta porque \(y\) no es una unidad.
 
 Una vez construida la sucesion \((a_i)\), tomamos \(I = (a_1, a_2, \ldots) = \cup_{i \in \mathbb{Z}^+}(a_i)\) (dejamos que el lector compruebe la igualdad anterior). Como \(D\) es un DIP, existe \(x \in D\) tal que \(I = (x)\); en particular \(x \in I = \cup_{i \in \mathbb{Z}^+}(a_i)\) y por tanto existe un indice \(i\) tal que \(x \in (a_i)\); como es claro que \(a_i \in (x)\), se tiene \((a_i) = (x) = I\) y por lo tanto \((a_i) = (a_{i+1})\), en contra de la construccion realizada. Este absurdo concluye la demostracion.
 \end{proofbox}
 
-El reciproco del Teorema 2.25 es falso: \(\mathbb{Z}[X]\) es un DFU que no es un DIP. Que no es DIP se sigue del Ejemplo 1.26.(2). De hecho ese ejemplo es un caso particular de un hecho mucho mas general (Problema 2.4.2). La demostracion de que \(\mathbb{Z}[X]\) es DFU es bastante mas complicada y tambien es consecuencia de un resultado mas general. La veremos en el Capítulo 3.
+El reciproco del Teorema \ref{thm:DIP_implica_DFU} es falso: \(\mathbb{Z}[X]\) es un DFU que no es un DIP. Que no es DIP se sigue del Ejemplo \ref{ex:ideal_no_principal}. La demostracion de que \(\mathbb{Z}[X]\) es DFU es bastante mas complicada y tambien es consecuencia de un resultado mas general. La veremos en el Capítulo 3.
 
 \begin{example}{}{}
 El anillo de los enteros $\mathbb{Z}$ es un DIP. Todo ideal de $\mathbb{Z}$ es de la forma $(n)$ para algún $n \in \mathbb{Z}$.
@@ -725,4 +731,185 @@ El anillo de los enteros $\mathbb{Z}$ es un DIP. Todo ideal de $\mathbb{Z}$ es d
 Si $K$ es un cuerpo, entonces $K$ es un DIP trivialmente, pues sus únicos ideales son $(0)$ y $(1)$.
 \end{example}
 
-Más adelante veremos los dominios euclídeos y probraremos que todo dominio euclídeo es un DIP, por tanto todos los ejemplos de la siguiente sección valen también para esta.
+En la sección \ref{dominios_euclideos} estudiaremos los dominios euclídeos y probraremos que todo dominio euclídeo es un DIP, por tanto, todos los ejemplos de la siguiente sección valen también para esta.
+
+\clearpage
+\section{Dominios euclídeos}\label{dominios_euclideos}
+
+\begin{definition}{Función euclídea}{funcion_euclidea}
+Una funcion euclidea en \(D\) es una aplicacion \(\delta: D \setminus \{0\} \to \mathbb{Z}^{\geq 0}\) que cumple las siguientes condiciones:
+
+\begin{itemize}
+\item[(DE1)] Si \(a, b \in D \setminus \{0\}\) verifican \(a \mid b\) entonces \(\delta(a) \leq \delta(b)\).
+
+\item[(DE2)] Dados \(a, b \in D\) con \(b \neq 0\), existen \(q, r \in D\) tales que \(a = bq + r\) y o bien \(r = 0\) o bien \(\delta(r) < \delta(b)\).
+\end{itemize}
+
+Un dominio euclideo es un dominio que admite una funcion euclidea.
+\end{definition}
+
+\begin{example}{}{}
+El valor absoluto es una funcion euclidea en \(\mathbb{Z}\). En efecto, si \(a, b \in \mathbb{Z}\) con \(b \neq 0\), existen \(q, r \in \mathbb{Z}\) tales que \(a = bq + r\) con \(0 \leq r < |b|\), luego se cumple (DE2). Ademas, si \(a \mid b\), \(a,b \neq 0\) entonces
+\[
+b = ax,\, x \neq 0 \implies |b| = |a||x|,\, |x| \geq 1 \implies |a| \leq |b|
+\]
+luego se cumple (DE1).
+\end{example}
+
+\begin{example}{}{}
+Si \(K\) es un cuerpo, entonces el grado define una función euclídea en \(K[X]\). En efecto, la condicion (DE1) se verifica claramente.
+
+Para demostrar que se verifica la condicion (DE2) tomamos \(a, b \in K[X] \setminus \{0\}\) con \(b \neq 0\). Si \(a = 0\) tomando \(q = r = 0\) se tiene que \(a = bq + r\). Por tanto, suponemos que \(a \neq 0\) y denotamos por \(n\) al grado de \(a\) y por \(m\) al grado de \(b\). 
+
+Razonamos por inducción en \(n\). Si \(n < m\) podemos tomar \(q = 0\) y \(r = a\)
+\[
+a = r = 0 + r = bq + r
+\]
+luego solo tenemos que estudiar los casos \(m \leq n\).
+
+Si \(n = m = 0\) ambos polinomios son constantes, tomamos \(q = ab^{-1}\) y \(r = 0\) (recordemos que \(b\) es invertible al ser constante no nulo). Esto incluye el menor valor posible para \(n\), o sea \(n = 0\). 
+
+Ahora, para el caso \(n\), por hipótesis de inducción se tiene que para todo polinomio \(c\) de grado menor que \(n\) existen \(q'\) y \(r'\) en \(K[X]\) con \(c = q'b + r'\) y o bien \(r' = 0\) o \(r'\) tiene grado menor que \(b\). Aplicamos esto a
+\[
+c = a - \alpha\beta^{-1}X^{n-m}b,
+\]
+donde \(\alpha\) es el termino principal de \(a\) y \(\beta\) es el termino principal de \(b\). Es facil ver que \(c\) tiene grado menor que \(a\) con lo que tenemos
+\[
+a - \alpha\beta^{-1}X^{n-m}b = c = q'b + r' \implies a = (q' + \alpha\beta^{-1}X^{n-m})b + r'.
+\]
+Tomando \(q = q' + \alpha\beta^{-1}X^{n-m}\) se tiene que \(a = qb + r\), como deseabamos.
+\end{example}
+
+\begin{example}{}{}
+El cuadrado del modulo complejo define una funcion euclidea en el anillo \(\mathbb{Z}[i]\). En efecto, si \(x = a + bi\) con \(a\) y \(b\) numeros enteros entonces 
+\[
+\delta(x) = |x|^2 = a^2 + b^2 \in \mathbb{Z}^{\geq 0}.
+\]
+Además, \(\delta(x) = 0\) si y solo si \(x = 0\) y \(\delta(xy) = \delta(x)\delta(y)\) de donde facilmente se deduce que \(\delta\) verifica (DE1).
+
+Sean ahora \(a = a_1 + a_2i\) y \(b = b_1 + b_2i \neq 0\) con \(a_1, a_2, b_1, b_2 \in \mathbb{Z}\). Sea
+\[
+x = x_1 + x_2i = \frac{a}{b}. %= (a_1 + a_2i)\left(\frac{b_1 - b_2i}{b_1^2 + b_2 ^2}\right) = \frac{(a_1 b_1 + a_2 b_2) + (a_2 b_1 - a_1 b_2)i}{b_1^2 + b_2 ^2}
+\]
+Elegimos dos numeros enteros \(q_1\) y \(q_2\) lo mas próximos posible a \(x_1\) y \(x_2\) respectivamente y ponemos \(q = q_1 + q_2i\). De la eleccion de los \(q_i\) tenemos que \(|x_i - q_i| \leq \frac{1}{2}\). Sea \(r = a - bq\), por tanto \(a = bq + r\) y si \(r \neq 0\)
+\[
+\delta(r) = |a - bq|^2 = |b|^2|x - q|^2 = \delta(b)((x_1 - q_1)^2 + (x_2 - q_2)^2) \leq \delta(b)\left(\frac{1}{4} + \frac{1}{4}\right) = \frac{\delta(b)}{2} < \delta(b).
+\]
+\end{example}
+
+\begin{lemma}{}{DE_ideales_principales}
+Sea \(\delta\) una funcion euclidea en \(D\), sea \(I\) un ideal de \(D\) y \(a\) un elemento de \(I\) diferente de \(0\). Entonces \(I = (a)\) si y solo si para todo \(x \in I\) se cumple \(\delta(a) \leq \delta(x)\) .
+\end{lemma}
+
+\begin{proofbox}
+Supongamos que \(I = (a)\) y sea \(x \in I\). Entonces \(x = ab \implies a \mid x\), luego de (DE1) deducimos que \(\delta(a) \leq \delta(x)\).
+
+Para demostrar el recíproco supongamos que para todo \(x \in I\), \(\delta(a) \leq \delta(x)\). Notemos que como \(a \in I\) se tiene que \((a) \subseteq I\). Para probar el otro contenido imitamos la demostracion de que \(\mathbb{Z}\) es DIP. Sea \(x \in I\), por (DE2) existen \(q, r \in D\) tales que \(x = aq + r\) y o bien \(r = 0\) o bien \(\delta(r) < \delta(a)\). Entonces
+\[
+r = x - aq \in I,
+\]
+por tanto, \(\delta(a) \leq \delta(r)\) por hipótesis. Finalmente ha de ser \(r = 0\), con lo que \(x \in (a)\). Esto demuestra que \(I = (a)\).
+\end{proofbox}
+
+Del Lema anterior se deduce de forma inmediata el siguiente resultado:
+
+\begin{theorem}{}{DE_implica_DIP}
+Todo dominio euclideo es DIP.
+\end{theorem}
+
+\begin{proofbox}
+Sea \(D\) un dominio euclideo con funcion euclidea \(\delta\), y sea \(I\) un ideal de \(D\). Si \(I = 0\), entonces \(I = (0)\) es principal. Si \(I \neq 0\), sea
+\[
+\mathcal{A} = \{\delta(x) : x \in I \setminus \{0\}\} \subseteq \Z^{\geq 0}.
+\]
+Por el principio de buena ordenación $\mathcal{A}$ tiene un mínimo, luego existe \(a \in I \setminus \{0\}\) tal que \(\forall x \in I \quad \delta(a) \leq \delta(x)\). Por el Lema \ref{lem:DE_ideales_principales}, \(I = (a)\), luego \(I\) es principal.
+\end{proofbox}
+
+\begin{lemma}{}{}
+Si \(\delta\) es una funcion euclidea en \(D\) entonces las siguientes condiciones son equivalentes para \(a \in D \setminus \{0\}\):
+
+\begin{enumerate}
+\item \(a\) es una unidad de \(D\).
+
+\item \(\delta(a) = \delta(1)\).
+
+\item \(\delta(a) \leq \delta(x)\), para todo \(x \in D \setminus \{0\}\).
+\end{enumerate}
+
+\end{lemma}
+
+\begin{proofbox}
+(1) \(\Rightarrow\) (2): Si \(a\) es unidad, entonces
+\[
+a a^{-1} = 1, a = 1a
+\]
+luego\(a \mid 1\) y \(1 \mid a\), luego por (DE1) tenemos \(\delta(a) = \delta(1)\).
+
+(2) \(\Rightarrow\) (3): Sea \(x \in D \setminus \{0\}\). Como \(1 \mid x\), por (DE1) tenemos \(\delta(1) \leq \delta(x)\), luego \(\delta(a) = \delta(1) \leq \delta(x)\).
+
+(3) \(\Rightarrow\) (1): Aplicando (DE2) a \(1\) y \(a\), existen \(q, r \in D\) tales que \(1 = aq + r\) con \(r = 0\) o \(\delta(r) < \delta(a)\). Pero, por (3), \(\delta(a) \leq \delta(r)\) si \(r \neq 0\), luego necesariamente \(r = 0\) y \(1 = aq\), por lo que \(a\) es unidad.
+\end{proofbox}
+
+\begin{example}{}{}
+El anillo \(\mathbb{Z}[\sqrt{2}] = \{a + b\sqrt{2} : a, b \in \mathbb{Z}\}\) es un dominio euclideo con la funcion \(\delta(a + b\sqrt{2}) = |a^2 - 2b^2|\).
+\end{example}
+
+\begin{proofbox}
+Si \(x = a + b \sqrt{2}\) con \(a,b \in \Z\), entonces
+\[
+\delta(x) = |a^2 - 2b^2| \in \mathbb{Z}^{\geq 0}.
+\]
+Además, \(\delta(x) = 0\) si y solo si
+\[
+a^2 = 2b^2 \iff a = b = 0
+\]
+ya que si $b \neq 0$ entonces $2$ sería un cuadrado perfecto en $\Q$. Por otro lado, si $x \mid y$ entonces
+\[
+y = xz,\quad z \in \Z[\sqrt{2}]
+\]
+Denotando $\bar{x} = a - b\sqrt{2}$ deducimos fácilmente que
+\[
+\delta(y) = y\bar{y} = x\bar{x}z\bar{z} = \delta(x)\delta(z) \implies \delta(x) \leq \delta(y)
+\]
+luego \(\delta\) verifica (DE1).
+
+Sean ahora \(a = a_1 + a_2\sqrt{2}\) y \(b = b_1 + b_2\sqrt{2} \neq 0\) con \(a_1, a_2, b_1, b_2 \in \mathbb{Z}\). Sea
+\[
+x = x_1 + x_2\sqrt{2} = (a_1 + a_2\sqrt{2})\left(\frac{b_1 - b_2\sqrt{2}}{|b_1^2 - 2b_2 ^2|}\right).
+\]
+Notemos entonces que
+\[
+xb = (a_1 + a_2\sqrt{2})\left(\frac{b_1^2 - 2b_2^2}{|b_1^2 - 2b_2 ^2|}\right) = \pm a
+\]
+luego $a = by$, donde $y = \pm x$ según sea $xb = a$ o $xb = -a$.
+
+Elegimos dos numeros enteros \(q_1\) y \(q_2\) lo mas próximos posible a \(y_1\) y \(y_2\) respectivamente y ponemos \(q = q_1 + q_2\sqrt{2} \in \Z[\sqrt{2}]\). De la eleccion de los \(q_i\) tenemos que \(|y_i - q_i| \leq \frac{1}{2}\). Sea \(r = a - bq\), por tanto \(a = bq + r\) y si $r \neq 0$
+\[
+\delta(r) = \delta(a - bq) = \delta(by - bq) = \delta(b)\delta(y - q)
+\]
+pero
+\[
+\delta(y - q) = |(y_1 - q_1)^2 - 2(y_2 - q_2)^2| \leq (y_1 - q_1)^2 + 2(y_2 - q_2)^2 \leq \frac{1}{4} + \frac{1}{2} < 1
+\]
+por tanto
+\[
+\delta(r) < \delta(b)
+\]
+lo que confirma que se verifica (DE2).
+\end{proofbox}
+
+\begin{example}{}{}
+El anillo \(\mathbb{Z}[\sqrt{-2}] = \{a + b\sqrt{-2} : a, b \in \mathbb{Z}\}\) es un dominio euclideo con la funcion \(\delta(a + b\sqrt{-2}) = a^2 + 2b^2\). La demostración es casi igual a la del ejemplo anterior.
+\end{example}
+
+\begin{example}{}{}
+No todo DIP es euclideo. El anillo \(\mathbb{Z}[\frac{1 + \sqrt{-19}}{2}]\) es un DIP pero no es euclideo. La demostracion de este hecho es bastante técnica.
+\end{example}
+
+\begin{remark}
+La definicion de dominio euclideo no requiere que la funcion euclidea satisfaga \(\delta(ab) = \delta(a)\delta(b)\) o \(\delta(ab) \geq \delta(a)\). Estas propiedades se verifican en los ejemplos clasicos pero no son parte de la definicion.
+\end{remark}
+
+\begin{remark}
+En algunos textos se exige que la funcion euclidea satisfaga \(\delta(a) \leq \delta(ab)\) para todo \(a, b \neq 0\). Esta condicion es mas restrictiva pero muchas funciones euclideas naturales la satisfacen.
+\end{remark}
