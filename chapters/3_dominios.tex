@@ -913,3 +913,262 @@ La definicion de dominio euclideo no requiere que la funcion euclidea satisfaga 
 \begin{remark}
 En algunos textos se exige que la funcion euclidea satisfaga \(\delta(a) \leq \delta(ab)\) para todo \(a, b \neq 0\). Esta condicion es mas restrictiva pero muchas funciones euclideas naturales la satisfacen.
 \end{remark}
+
+\clearpage
+\section{El cuerpo de fracciones de un dominio}
+
+\emph{A lo largo de toda la sección \(D\) es un dominio.}
+
+Ya sabemos que todo subanillo de un cuerpo es un dominio. En esta sección vamos a ver que el recíproco es cierto, es decir, todo dominio \(D\) es un subanillo de un cuerpo. De hecho, existe un cuerpo que, en cierto sentido, es el menor cuerpo que contiene a \(D\). Dicho cuerpo es único salvo isomorfismos y se llama el cuerpo de fracciones de \(D\). Comenzaremos con la construcción de ese cuerpo, que es una traducción literal de la construcción de \(\mathbb{Q}\) a partir de \(\mathbb{Z}\), y analizaremos entonces sus propiedades. La idea de la construcción es la de formar un cuerpo \(Q(D)\) cuyos elementos sean <<fracciones>> del tipo \(a/b\) con \(a,b \in D\) y \(b \neq 0\). De este modo, \(D\) estara contenido en \(Q(D)\) (identificando cada elemento \(a\) de \(D\) con la fraccion \(a/1\)), y los elementos no nulos de \(Q(D)\) seran invertibles, pues si \(a,b \in D \setminus \{0\}\), entonces \(b/a\) sera el inverso de \(a/b\). Por supuesto, hay que definir con mas rigor las fracciones y hay que dotar a \(Q(D)\) de una estructura de cuerpo. El primer problema que se presenta, si pensamos en el caso \(D = \mathbb{Z}\) y \(Q(D) = \mathbb{Q}\), es el hecho de que dos fracciones aparentemente distintas pueden representar el mismo elemento, como en el caso \(10/15 = 2/3\). Esto se resuelve identificando ciertas fracciones mediante una relacion de equivalencia, y este sera el primer paso en nuestra construccion.
+
+\begin{definition}{Cuerpo de fracciones}{}
+El cuerpo de fracciones o cuerpo de cocientes del dominio \(D\) es el cuerpo \(Q(D)\) construido como el conjunto de clases de equivalencia de pares \((a, s)\) con \(a \in D\), \(s \in D \setminus \{0\}\) bajo la relación \((a_1, s_1) \sim (a_2, s_2) \Leftrightarrow a_1 s_2 = a_2 s_1\), con las operaciones:
+\[
+\frac{a_1}{s_1} + \frac{a_2}{s_2} = \frac{a_1 s_2 + a_2 s_1}{s_1 s_2}, \quad \frac{a_1}{s_1} \cdot \frac{a_2}{s_2} = \frac{a_1 a_2}{s_1 s_2}.
+\]
+\end{definition}
+
+\begin{proposition}{}{}
+Las operaciones definidas sobre \(Q(D)\) están bien definidas.
+\end{proposition}
+
+\begin{proofbox}
+Supongamos que \(a_1/s_1 = b_1/t_1\) y \(a_2/s_2 = b_2/t_2\), por tanto
+\begin{equation}\label{eq:1}\tag{\star}
+a_1 t_1 = b_1 s_1,\quad a_2 t_2 = b_2 s_2
+\end{equation}
+veamos ahora ambas operaciones.
+\begin{itemize}
+\item Suma:
+\[
+\frac{a_1}{s_1} + \frac{a_2}{s_2} = \frac{a_1 s_2 + a_2 s_1}{s_1 s_2}
+\]
+\[
+\frac{b_1}{t_1} + \frac{b_2}{t_2} = \frac{b_1 t_2 + b_2 t_1}{t_1 t_2} 
+\]
+entonces
+\[
+(a_1 s_2 + a_2 s_1, s_1 s_2) \sim (b_1 t_2 + b_2 t_1, t_1 t_2) \iff (a_1 s_2 + a_2 s_1)t_1 t_ 2 = (b_1 t_2 + b_2 t_1) s_1 s_2
+\]
+para comprobar la igualdad del lado derecho basta usar \eqref{eq:1}
+\[
+(a_1 s_2 + a_2 s_1)t_1 t_ 2 = a_1 t_1 s_2 t_2 + a_2 t_2 s_1 t_1 = b_1 s_1 s_2 t_2 + b_2 s_2 s_1 t_1 = (b_1 t_2 + b_2 t_1) s_1 s_2
+\]
+por tanto la suma está bien definida.
+
+\item Producto:
+\[
+\frac{a_1}{s_1} \cdot \frac{a_2}{s_2} = \frac{a_1 a_2}{s_1 s_2}
+\]
+\[
+\frac{b_1}{t_1} + \frac{b_2}{t_2} = \frac{b_1 b_2}{t_1 t_2} 
+\]
+entonces
+\[
+(a_1 a_2, s_1 s_2) \sim (b_1 b_2, t_1 t_2) \iff (a_1 a_2)t_1 t_ 2 = (b_1 b_2) s_1 s_2
+\]
+para comprobar la igualdad del lado derecho basta usar \eqref{eq:1}
+\[
+(a_1 a_2)t_1 t_ 2 = a_1 t_1 a_2 t_2 = b_1 s_1 b_2 s_2 = (b_1 b_2) s_1 s_2
+\]
+por tanto el producto está bien definido.
+\end{itemize}
+
+\end{proofbox}
+
+\begin{proposition}{}{cuerpo_fracciones}
+Si \(D\) es un dominio entonces \(Q(D)\) es un cuerpo con la suma y multiplicación definidas anteriormente. Dados \(a, b, s, t \in D\) con \(s, t \neq 0\), se tiene:
+
+\begin{enumerate}
+\item El cero de \(Q(D)\) es \(0/1\). Además, la igualdad \(a/s = 0/1\) se verifica si y solo si \(a = 0\).
+
+\item El uno de \(Q(D)\) es \(1/1\). Además, la igualdad \(a/s = 1/1\) se verifica si y solo si \(a = s\).
+
+\item \(at/st = a/s\).
+
+\item La igualdad \(a/s = b/s\) se verifica si y solo si \(a = b\).
+
+\item La definición de suma se simplifica cuando hay "denominador común": \(a/s + b/s = (a + b)/s\).
+\end{enumerate}
+
+\end{proposition}
+
+\begin{proofbox}
+Probaremos las propiedades para después usarlas al justificar que $Q(D)$ es un cuerpo. En primer lugar, notemos que si $a = b \implies as = bs \implies \frac{a}{s} = \frac{b}{s}$, animamos al lector a fijarse en los pasos que usan este hecho.
+\begin{enumerate}
+\item Claramente
+\[
+\frac{a}{s} + \frac{0}{1} = \frac{a}{s}
+\]
+y
+\[
+\frac{a}{s} = \frac{0}{1} \iff a1 = s0 = 0 \iff a = 0.
+\]
+
+\item
+\[
+\frac{a}{s} \cdot \frac{1}{1} = \frac{a}{s}
+\]
+y
+\[
+\frac{a}{s} = \frac{1}{1} \iff a1 = s1 \iff a = s.
+\]
+
+\item 
+\[
+(at)s = a(st) \iff (at, st) \sim (a, s) \iff \frac{at}{st} = \frac{a}{s}.
+\]
+
+\item Como $s \neq 0$ es cancelable (recordemos que $D$ es un dominio)
+\[
+\frac{a}{s} = \frac{b}{s} \iff as = bs \iff a = b
+\]
+
+\item Usando (3):
+\[
+\frac{a}{s} + \frac{b}{s} = \frac{as + bs}{ss} = \frac{(a+b)s}{ss} = \frac{a + b}{s}.
+\]
+\end{enumerate}
+
+Veamos ahora que \(Q(D)\) es un anillo conmutativo con uno.
+\begin{itemize}
+    \item \((Q(D), +)\) es un grupo. Tiene elemento neutro por (1). En cuanto a los simétricos, dado \(\frac{a}{s}\) se tiene
+    \[
+    \frac{a}{s} + \frac{-a}{s} = \frac{as - as}{ss} = \frac{0}{ss} = \frac{0}{1}
+    \]
+    usando (1). Es fácil ver que además el grupo es abeliano por cómo está definida la suma
+    \[
+    \frac{a}{s} + \frac{b}{t} = \frac{as + bt}{st} = \frac{bt + as}{ts} = \frac{b}{t} + \frac{a}{s}.
+    \]
+
+    \item \((Q(D), \cdot)\) es un monoide. El producto tiene neutro por (2), y es asociativo ya que
+    \[
+    (\frac{a}{s} \frac{b}{t}) \frac{c}{v} = \frac{ab}{st} \frac{c}{v} = \frac{abc}{stv} = \frac{a}{s} \frac{bc}{tv} = \frac{a}{s}(\frac{b}{t} \frac{c}{v}).
+    \]
+    Que es conmutativo es inmediato por serlo \(D\)
+    \[
+    \frac{a}{s} \frac{b}{t} = \frac{ab}{st} = \frac{ba}{ts} = \frac{b}{t} \frac{a}{s}.
+    \]
+
+    \item En cuanto a la propiedad distributiva:
+    \[
+    \frac{a}{s}\left(\frac{b_1}{t_1} + \frac{b_2}{t_2}\right) = \frac{a}{s}\left(\frac{b_1 t_2 + b_2 t_1}{t_1 t_2}\right) = \frac{ab_1 t_2 + ab_2 t_1}{st_1 t_2} = \frac{ab_1}{st_1} + \frac{ab_2}{st_2} = \frac{a}{s}\frac{b_1}{t_1} + \frac{a}{s}\frac{b_2}{t_2}.
+    \]
+\end{itemize}
+Para ver que es cuerpo solo necesitamos ver que $\frac{a}{s} \neq \frac{0}{1}$ tiene inverso, pero es obvio que como no es el cero entonces $a \neq 0$, luego
+\[
+\frac{s}{a} \in Q(D),\quad \frac{a}{s}\frac{s}{a} = \frac{as}{sa} = \frac{1}{1}
+\]
+usando (2).
+\end{proofbox}
+
+\begin{example}{}{}
+Obviamente, \(\mathbb{Q}\) es el cuerpo de fracciones de \(\mathbb{Z}\).
+\end{example}
+
+\begin{example}{}{}
+Supongamos que un anillo de polinomios \(A[X]\) es un dominio (lo que ocurre si y solo si \(A\) es un dominio). Su cuerpo de fracciones se suele denotar por \(A(X)\) y se llama el cuerpo de fracciones racionales sobre \(A[X]\). Sus elementos son fracciones del tipo \(P/Q\) con \(P, Q \in A[X]\) y \(Q \neq 0\), que se suman y se multiplican de forma natural.
+\end{example}
+
+Usando la Proposición \ref{prop:cuerpo_fracciones}, es sencillo ver que la aplicación \(u: D \to Q(D)\) dada por \(u(a) = a/1\) es un homomorfismo inyectivo de anillos
+\[
+u(a + b) = \frac{a + b}{1} = \frac{a}{1} + \frac{b}{1} = u(a) + u(b)
+\]
+\[
+u(ab) = \frac{ab}{1} = \frac{a}{1} \frac{b}{1} = u(ab)
+\]
+\[
+u(1) = \frac{1}{1}
+\]
+\[
+u(a) = \frac{a}{1} = \frac{0}{1} \iff a = 0,~\text{ luego }~ \ker u = 0
+\]
+lo que nos permite ver a \(D\) como un subanillo de \(Q(D)\) si identificamos cada elemento \(a\) de \(D\) con la fracción \(a/1\) de \(Q(D)\). El par \((Q(D), u)\) verifica una interesante propiedad:
+
+\begin{proposition}{Propiedad Universal del Cuerpo de Fracciones}{}
+Sean \(D\) un dominio, \(Q(D)\) su cuerpo de fracciones y \(u: D \to Q(D)\) la aplicación dada por \(u(a) = a/1\). Entonces:
+
+\begin{enumerate}
+\item Para toda pareja \((K, f)\) formada por un cuerpo \(K\) y un homomorfismo inyectivo de anillos \(f: D \to K\), existe un único homomorfismo de cuerpos \(\bar{f}: Q(D) \to K\) tal que \(\bar{f} \circ u = f\). Se dice que \(\bar{f}\) completa de modo único el diagrama
+\[
+\begin{tikzcd}
+D \arrow[r, "f"] \arrow[d, "u"'] & K \\
+Q(D) \arrow[ru, "\bar{f}"'] &
+\end{tikzcd}
+\]
+
+\item Si dos homomorfismos de cuerpos \(g, h: Q(D) \to K\) coinciden sobre \(D\) entonces son iguales.
+
+\item Supongamos que existen un cuerpo $F$ y un homomorfismo inyectivo de anillos $v : D \to F$ tales que, para todo cuerpo $K$ y todo homomorfismo inyectivo de anillos $f : D \to K$, existe un único homomorfismo de cuerpos $\bar{f} : F \to K$ tal que $\bar{f} \circ v = f$. Entonces existe un isomorfismo $\phi : F \to Q(D)$ tal que $\phi \circ v = u$. Es decir, \(Q(D)\) está determinado salvo isomorfismos por la Propiedad Universal.
+\end{enumerate}
+
+\end{proposition}
+
+\begin{proofbox}
+\begin{enumerate}
+\item Sea \(f: D \to K\) como en el enunciado. Si \(\bar{f}: Q(D) \to K\) es un homomorfismo de cuerpos tal que \(\bar{f} \circ u = f\) entonces, para todo \(a/s \in Q(D)\), se verifica
+\[
+\bar{f}(a/s) = \bar{f}(u(a)u(s)^{-1}) = (\bar{f} \circ u)(a)(\bar{f} \circ u)(s)^{-1} = f(a)f(s)^{-1}.
+\]
+Esto prueba que el único homomorfismo de cuerpos \(\bar{f}: Q(D) \to K\) que puede satisfacer \(\bar{f} \circ u = f\) tiene que venir dado por
+\[
+\bar{f}(a/s) = f(a)f(s)^{-1}.
+\]
+Solo falta comprobar que la aplicación \(\bar{f}\) así dada está bien definida y es un homomorfismo. Si \(a_1/s_1 = a_2/s_2\) entonces \(a_1 s_2 = a_2 s_1\), luego \(f(a_1)f(s_2) = f(a_2)f(s_1)\) y, por tanto, \(f(a_1)f(s_1)^{-1} = f(a_2)f(s_2)^{-1}\). Esto prueba que \(\bar{f}\) está bien definido. La verificación de que es homomorfismo es directa.
+
+\item Si ponemos \(f = g \circ u = h \circ u: D \to K\), los homomorfismos \(g\) y \(h\) completan el diagrama del apartado (1). Por la unicidad se tiene \(g = h\).
+
+\item Sea \(v: D \to F\) como en el enunciado. Aplicando (1) encontramos un homomorfismo \(\bar{v}: Q(D) \to F\) tal que \(\bar{v} \circ u = v\), y aplicando la hipótesis de (3) encontramos un homomorfismo \(\bar{u}: F \to Q(D)\) tal que \(\bar{u} \circ v = u\). Entonces la composición \(\bar{u} \circ \bar{v}: Q(D) \to Q(D)\) verifica \((\bar{u} \circ \bar{v}) \circ u = \bar{u} \circ v = u\), y por (2) se obtiene \(\bar{u} \circ \bar{v} = 1_{Q(D)}\). En particular \(\bar{u}\) es supravectiva, y como es inyectiva por ser un homomorfismo de cuerpos, \(\phi = \bar{u}\) es el isomorfismo que buscamos.
+\end{enumerate}
+
+\end{proofbox}
+
+La Propiedad Universal permite afirmar que \(Q(D)\) es <<el menor cuerpo que contiene a \(D\)>> en un sentido que se hace explícito en el siguiente resultado:
+
+\begin{proposition}{}{subcuerpos_fracciones}
+Sea \(D\) un dominio. Si \(K\) es un cuerpo y \(f: D \to K\) es un homomorfismo inyectivo de anillos, entonces \(K\) contiene un subcuerpo isomorfo a \(Q(D)\).
+\end{proposition}
+
+\begin{proofbox}
+Por la Propiedad Universal del Cuerpo de Fracciones existe un homomorfismo de cuerpos \(\bar{f}: Q(D) \to K\), y como \(\bar{f}\) es inyectiva, \(\Im \bar{f}\) es un subcuerpo de \(K\) isomorfo a \(Q(D)\).
+\end{proofbox}
+
+\begin{example}{El cuerpo de fracciones de \(\mathbb{Z}[\sqrt{m}]\)}{}
+Sea \(m\) un número entero que no es un cuadrado, y sea \(f: \mathbb{Z}[\sqrt{m}] \to \mathbb{C}\) la inclusión. Si \(\bar{f}\) es como en la demostración de la Proposición \ref{prop:subcuerpos_fracciones}, entonces \(\Im \bar{f}\) es isomorfo al cuerpo de fracciones de \(\mathbb{Z}[\sqrt{m}]\).
+
+Un elemento genérico de Im \(\bar{f}\) es de la forma
+\[
+x = \frac{a + b\sqrt{m}}{c + d\sqrt{m}},
+\]
+con \(a, b, c, d \in \mathbb{Z}\) y \(c + d\sqrt{m} \neq 0\). 
+
+Notemos que \(c - d\sqrt{m} \neq 0\) \emph{(pregunta para el lector: ?`por qué?)}, luego
+\[
+x = \frac{a + b\sqrt{m}}{c + d\sqrt{m}} = \frac{a + b\sqrt{m}}{c + d\sqrt{m}} \cdot \frac{c - d\sqrt{m}}{c - d\sqrt{m}} = \frac{(ac-bdm) + (bc - ad)\sqrt{m}}{c^2 - d^2m} = \frac{r}{t} + \frac{s}{t}\sqrt{m}
+\]
+donde \(r, s, t \in \mathbb{Z}\), y por tanto \(x \in \mathbb{Q}[\sqrt{m}]\). Esto demuestra que Im \(\bar{f} \subseteq \mathbb{Q}[\sqrt{m}]\), y el otro contenido es claro, pues un elemento genérico \(\frac{a}{s} + \frac{b}{t}\sqrt{m}\) de \(\mathbb{Q}[\sqrt{m}]\) se reescribe como \(\frac{at + bs\sqrt{m}}{st}\).
+
+En conclusión, el cuerpo de fracciones de \(\mathbb{Z}[\sqrt{m}]\) es isomorfo a \(\mathbb{Q}[\sqrt{m}]\). De hecho abusaremos de la notación y diremos que el cuerpo de fracción de \(\mathbb{Z}[\sqrt{m}]\) es \(\mathbb{Q}[\sqrt{m}]\).
+\end{example}
+
+Un interesante corolario de la Proposición \ref{prop:subcuerpos_fracciones} es el siguiente:
+
+\begin{corollary}{}{}
+Todo cuerpo \(K\) posee un subcuerpo \(K'\), llamado el subcuerpo primo de \(K\), que está contenido en cualquier otro subcuerpo de \(K\) (es decir, \(K'\) es <<el menor subcuerpo de \(K\)>>). Si la característica de \(K\) es un entero primo \(p\), entonces \(K'\) es isomorfo a \(\mathbb{Z}_p\); en caso contrario \(K'\) es isomorfo a \(\mathbb{Q}\).
+\end{corollary}
+
+\begin{proofbox}
+Si la característica es un primo \(p\) entonces el subanillo primo \(\Z1\) de \(K\) (isomorfo a \(\mathbb{Z}_p\)) es ya un cuerpo, y contiene a cualquier subcuerpo (de hecho, a cualquier subanillo) de \(K\).
+
+En otro caso, al ser \(K\) un cuerpo, la característica es cero; es decir, el homomorfismo de anillos \(f: \mathbb{Z} \to K\) es inyectivo. El cuerpo de fracciones de \(\mathbb{Z}\) es \(\mathbb{Q}\), y el homomorfismo de cuerpos \(\bar{f}: \mathbb{Q} \to K\) que nos da la Propiedad Universal viene dada por \(\bar{f}(n/m) = f(n)f(m)^{-1}\).
+
+Como \(\bar{f}\) es inyectivo, \(K' = \text{Im } \bar{f}\) es un subcuerpo de \(K\) isomorfo a \(\mathbb{Q}\), y ahora basta ver que \(K'\) está contenido en cualquier subcuerpo \(F\) de \(K\). Dado un tal \(F\), se tiene \(f(m) \in F\) para cada \(m \in \mathbb{Z}\), y si \(m \neq 0\) entonces \(f(m) \neq 0\) y \(f(m)^{-1} \in F\). Por tanto, para cada \(n/m \in \mathbb{Q}\) se tiene \(\bar{f}(n/m) = f(n)f(m)^{-1} \in F\), lo que demuestra que \(K' \subseteq F\).
+\end{proofbox}
+
+\begin{remark}
+La construcción del cuerpo de fracciones es análoga a la construcción de los números racionales a partir de los enteros. De hecho, \(\mathbb{Q}\) es el caso particular cuando \(D = \mathbb{Z}\).
+\end{remark}
+
+\begin{remark}
+Si \(D\) es ya un cuerpo, entonces \(Q(D)\) es isomorfo a \(D\), pues la aplicación \(a \mapsto a/1\) es un isomorfismo.
+\end{remark}
