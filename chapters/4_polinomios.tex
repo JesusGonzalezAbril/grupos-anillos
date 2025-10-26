@@ -250,3 +250,217 @@ Sea \(A\) un subanillo de \(B\) y sea \(S_b : A[X] \to B\) el homomorfismo de su
 % TODO: explicar esto bien
 Por ejemplo, si \(A = \mathbb{Z}, B = \mathbb{C}\) y \(b = \sqrt{m}\) para cierto \(m \in \mathbb{Z}\), entonces la notación anterior es compatible con la que se usó anteriormente (es decir, \(\mathbb{Z}[\sqrt{m}]\) representa el mismo subanillo atendiendo a cualquiera de las dos definiciones). Lo mismo ocurre si se toma \(A = \mathbb{Q}\). Si además \(m \equiv 1\) mod 4 entonces \(\mathbb{Z} \left[ \frac{1+\sqrt{m}}{2} \right]\) es el anillo \(A_m = \{\frac{a + b \sqrt{2}}{2} : a \equiv b \text{ mod 2}\}\) y \(\mathbb{Q}[\sqrt{m}] = \mathbb{Q} \left[ \frac{1+\sqrt{m}}{2} \right]\).
 \end{example}
+
+\clearpage
+\section{Raíces de polinomios}
+
+Empezaremos esta sección con el siguiente lema. Recuérdese que consideramos el polinomio cero como un polinomio de grado $-\infty$.
+
+\begin{lemma}{}{}
+Sea $A$ un anillo y sean $f,g\in A[X]$. Si el coeficiente principal de $g$ es invertible en $A$, entonces existen dos únicos polinomios $q,r\in A[X]$ tales que $f = gq + r$ y $\gr(r) < \gr(g)$.
+
+En esta situación, $q$ y $r$ se llaman cociente y resto de la división de $f$ entre $g$.
+\end{lemma}
+
+\begin{proofbox}
+\emph{Para la existencia usamos el argumento que vimos en el Ejemplo \ref{ex:grado_funcion_euclidea}.}
+
+Sea $m = \gr(g)$ y sea $b$ el coeficiente principal de $g$, que es invertible en $A$ por hipótesis. Dado $f\in A[X]$ vamos a ver, por inducción en $n = \gr(f)$, que existen $q, r\in A[X]$ satisfaciendo las propiedades del Lema. 
+
+Si $n<m$ podemos tomar $q = 0$ y $r = f$. Supongamos pues que $n\geq m$ y que la propiedad se verifica si $f$ se sustituye por un polinomio de grado menor. Si $a$ es el término principal de $f$, es claro que el polinomio $f_{1} = f - ab^{-1} X^{n-m} g\in A[X]$ tiene grado menor que el de $f$. Por hipótesis de inducción existen $q_{1}, r\in A[X]$ tales que $f_{1} = gq_{1} + r$ y $r = 0$ o $\gr(r) < m$. Entonces $f = g(q_{1} + ab^{-1} X^{n-m}) + r$, lo que termina la demostración de la existencia de cociente y resto.
+
+En cuanto a la unicidad, supongamos que $f=gq_{1}+r_{1}=gq_{2}+r_{2}$ con $\gr(r_{i}) < \gr(g)$ para cada $i=1,2$. Como el término principal de $g$ es regular, del Lema \ref{lem:grados_polinomios} se deduce que
+\[
+gr(g)+gr(q_{1}-q_{2})= \gr(g(q_{1 }-q_{2}))= \gr(r_{2}-r_{1})\leq\max\{\gr(r_{2}), \gr(r_{1})\} < \gr(g).
+\]
+
+Luego $\gr(q_{1}-q_{2})<0$ y en consecuencia $q_{1}=q_{2}$, de donde $r_{1}=r_{2}$.
+\end{proofbox}
+
+\begin{proposition}{}{}
+Sean $A$ un anillo, $a\in A$ y $f\in A[X]$. Entonces:
+
+\begin{enumerate}
+\item (Teorema del Resto) El resto de la división de $f$ entre $X-a$ es $f(a)$.
+\item (Teorema de Ruffini) $X-a$ divide a $f$ si y solo si $f(a)=0$. En tal caso se dice que $a$ es una raíz de $f$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+Dividiendo $f$ entre $X-a$ (podemos hacerlo puesto que el coeficiente principal de $X-a$ es $1$) tenemos $f=q(X-a)+r$ con $\gr(r)<1$, por lo que $r$ es constante y así $r=r(a)=f(a)-q(a)(a-a)=f(a)$. Esto demuestra (1), y (2) es entonces inmediato.
+\end{proofbox}
+
+Fijemos $a \in A$. Como, para cada $k \in N_0$, el polinomio $(X - a)^k$ es monico de grado $k$, se tiene $gr((X - a)^k q) = k + gr(q)$ para cada $q \in A[X]$. Por tanto, para cada $f \in A[X]$ no nulo, existe un mayor $m \in N_0$ tal que $(X - a)^m$ divide a $f$. Este entero $m$, que verifica $0 \leq m \leq gr(f)$, se llama la multiplicidad de $a$ en $f$. Por el Teorema de Ruffini, $a$ es raíz de $f$ precisamente si $m \geq 1$. Cuando $m = 1$ se dice que $a$ es una raíz simple de $f$, y cuando $m > 1$ se dice que $a$ es una raíz múltiple de $f$.
+
+\begin{lemma}{}{}
+Sean $a \in A$ y $f \in A[X]$. La multiplicidad de $a$ en $f$ es el único entero no negativo $m$ tal que $f = (X - a)^m g$ para algún polinomio $g \in A[X]$ del que $a$ no es raíz.
+\end{lemma}
+
+\begin{proofbox}
+Sea $n$ la multiplicidad de $a$ en $f$. Entonces
+\[
+f = (X - a)^n h
+\]
+para un polinomio $h$, pero $(X - a)^{n+1}$ no divide a $f$. Si $a$ es raíz de $h$, entonces $X - a$ divide a $h$ y por tanto $(X - a)^{n+1}$ divide a $f$, que acabamos de decir que no pasa. Luego $a$ no es raíz de $h$.
+
+Recíprocamente, supongamos que
+\[
+f = (X - a)^m g
+\]
+con $g \in A[X]$ y $g(a) = 0$. Por la definición de multiplicidad, $m \leq n$. Como $X - a$ es monico también es cancelable en $A[X]$, y por tanto de
+\[
+(X - a)^m g = (X - a)^n h
+\]
+deducimos que $(X - a)^{n-m} h = g$. Si $n > m$ entonces $g(a) = 0$, en contra de la suposición. Luego $m = n$.
+\end{proofbox}
+
+Cuando $D$ es un dominio, del Teorema de Ruffini se deduce que $X - a$ es primo para cualquier $a \in D$. En efecto
+\[
+(X - a) \mid fg \implies f(a)g(a) = 0 \implies f(a) = 0 ~\text{ ó }~ g(a) = 0 \implies (X - a) \mid f ~\text{ ó }~ (X - a) \mid g.
+\]
+Esto es esencial en la demostración del siguiente resultado.
+
+\begin{proposition}{Acotación de raíces}{acotacion_raices}
+Sean $D$ un dominio y $0 \neq f \in D[X]$. Entonces:
+
+\begin{enumerate}
+\item Si $a_1, \ldots, a_n \in D$ son distintos dos a dos y $\alpha_1, \ldots, \alpha_n \geq 1$ son enteros con cada $(X - a_i)^{\alpha_i}$ dividiendo a $f$, entonces $(X - a_1)^{\alpha_1} \cdots (X - a_n)^{\alpha_n}$ divide a $f$. Por tanto $\sum_{i=1}^n \alpha_i \leq gr(f)$.
+
+\item La suma de las multiplicidades de todas las raíces de $f$ es menor o igual que $gr(f)$. En particular, el número de raíces distintas de $f$ es menor o igual que $gr(f)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+Es claro que basta con demostrar la primera afirmación de (1), cosa que hacemos por inducción en $s = \sum_{i=1}^n \alpha_i$. El caso $s = 1$ es inmediato, ya que por hipótesis $(X - a_1)^\alpha_1$ divide a $f$.
+
+Cuando $s > 1$, por hipótesis $(X - a_1)^{\alpha_1}$ divide a $f$, y por hipótesis de inducción
+\[
+(X - a_1)^{\alpha_1 - 1}(X - a_2)^{\alpha_2} \cdots (X - a_{n})^{\alpha_{n}} \mid f
+\]
+también. Por tanto, sabemos que existen polinomios $g$ y $h$ tales que
+\[
+g(X - a_1)^{\alpha_1} = f = h(X - a_1)^{\alpha_1-1}(X - a_2)^{\alpha_2} \cdots (X - a_n)^{\alpha_n}.
+\]
+Cancelando $(X - a_1)^{\alpha_1-1}$ y usando el hecho de que $X - a_1$ es primo y no divide a ningún otro $X - a_i$ (pues $a_1 \neq a_i$ para $i \geq 2$), deducimos que $X - a_1$ divide a $h$, y esto nos da el resultado.
+\end{proofbox}
+
+Si $D$ no es un dominio, siempre podemos encontrar un polinomio en $D[X]$ para el que falle la acotación de raíces (es decir, "con más raíces que grado"). En efecto, si $0 \neq a, b \in D$ y $ab = 0$, entonces $aX$ es un polinomio de grado 1 con al menos 2 raíces, 0 y $b$. Otro ejemplo se obtiene considerando el polinomio $X^2 - 1$, que tiene 4 raíces en $\mathbb{Z}_8$.
+
+El siguiente corolario evidente de la Proposición \ref{prop:acotacion_raices} se conoce como el principio de las identidades polinómicas. Ya hemos comentado que su segundo apartado falla sobre cualquier anillo finito.
+
+\begin{corollary}{Principio de las identidades polinómicas}{}
+Sea $D$ un dominio, y sean $f, g \in D[X]$. Entonces:
+
+\begin{enumerate}
+\item Si las funciones polinomicas $f,g:D\to D$ coinciden en $m$ elementos de $D$ y se tiene que $m>gr(f)$ y $m>gr(g)$, entonces $f=g$ (como polinomios).
+
+\item Si $D$ es infinito entonces dos polinomios distintos definen funciones polinomicas distintas en $D$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proofbox}
+
+\begin{enumerate}
+\item Si $f \neq g$, entonces $f - g \neq 0$ y tiene grado a lo sumo $\max\{\gr(f), \gr(g)\}$. Pero $f-g$ tiene al menos $m$ raíces, lo que contradice la Proposición \ref{prop:acotacion_raices}.
+
+\item Si $f$ y $g$ definen la misma función polinómica, entonces $f-g$ se anula en todo $D$, que es infinito, luego por (1) se tiene $f=g$.
+\end{enumerate}
+
+\end{proofbox}
+
+La necesidad de la hipotesis de infinitud del dominio $D$ en el Corolario anterior resulta obvia si observamos que si $K$ es un cuerpo (recuerdese que todo dominio finito es un cuerpo) entonces hay infinitos polinomios con coeficientes en $K$ pero solo un numero finito de aplicaciones de $K$ en $K$.
+
+Para un ejemplo explícito recordemos el Pequeño Teorema de Fermat que afirma que si $p$ es primo, entonces $a^{p}\equiv a \bmod p$. Eso implica que todos los elementos del cuerpo $\mathbb{Z}/p\mathbb{Z}$ son raíces del polinomio no nulo $X^{p}-X$.
+
+El siguiente concepto es útil para calcular multiplicidades.
+
+\begin{definition}{Derivada de un polinomio}{}
+Sea $A$ un anillo. La derivada de $P=a_{0}+a_{1}X+\cdots+a_{n}X^{n}\in A[X]$ se define como
+\[
+D(P)=P^{\prime}=a_{1}+2a_{2}X+3a_{3}X^{2}+\cdots+na_{n}X^{n-1}.
+\]
+\end{definition}
+
+Observese que la derivada no se ha definido a partir de ningún concepto métrico. Por ejemplo, no es cierto en general que un polinomio con derivada nula sea constante (considérese por ejemplo $X^{n}\in\mathbb{Z}_{n}[X]$). Sin embargo, esta derivada formal satisface las mismas propiedades algebraicas que la derivada del Análisis.
+
+\begin{lemma}{}{derivadas_polinomicas}
+Dados $a,b\in A$ y $P,Q\in A[X]$:
+\begin{enumerate}
+\item $(aP+bQ)^{\prime}=aP^{\prime}+bQ^{\prime}$.
+\item $(PQ)^{\prime}=P^{\prime}Q+PQ^{\prime}$.
+\item $(P^{n})^{\prime}=nP^{n-1}P^{\prime}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+Sean
+\[
+P = p_0 + p_1 X + \dots + p_n X^n, Q = q_0 + q_1 X + \dots + q_m X^m
+\]
+y supongamos sin perder generalidad que $n \geq m$.
+\begin{enumerate}
+\item Es inmediato que
+\[
+aP + bQ = c_0 + c_1 X + \dots + c_n X^n
+\]
+donde $c_k = ap_k + bq_k$. Entonces
+\[
+(aP+bQ)' = c_1 + 2c_2 X + \dots + nc_n X^{n-1} 
+\]
+mientras que 
+\[
+P' = p_1 + \dots + np_n X^{n-1},\quad Q' = q_1 + \dots + mq_m X^{m-1}
+\]
+de donde es claro que $aP' + bQ'$ tiene coeficientes
+\[
+ap_1 + bq_1, 2(ap_2 + bq_2), \dots, n(ap_n + bq_n)
+\]
+es decir, los mismos que $(aP+bQ)'$, como queríamos ver.
+\end{enumerate}
+
+Las otras dos me dan pereza, quedan como ejercicio para el lector.
+\end{proofbox}
+
+\begin{proposition}{}{}
+Un elemento $a\in A$ es una raiz multiple de $P\in A[X]$ si y solo si $P(a)=P^{\prime}(a)=0$.
+\end{proposition}
+
+\begin{proofbox}
+Ya sabemos que $a$ es una raiz de $P$ si y solo si $P(a)=0$. Si $a$ es raiz simple se tiene $P=(X-a)Q$ para cierto $Q\in A[X]$ con $Q(a)\neq 0$, por lo que, del Lema \ref{lem:derivadas_polinomicas} tenemos que
+\[
+P^{\prime}=Q+(X-a)Q^{\prime}
+\]
+y asi $P^{\prime}(a)=Q(a)\neq 0$.
+
+Si $a$ es raiz multiple se tiene $P=(X-a)^{2}Q$ para cierto $Q\in A[X]$, por lo que $P^{\prime}=2(X-a)Q+(X-a)^{2}Q^{\prime}$ y asi $P^{\prime}(a)=0$.
+\end{proofbox}
+
+En dominios de caracteristica cero, la idea de la demostracion anterior puede usarse para determinar la multiplicidad de $a$ en $P$ (no solo para decidir si $a$ es simple o multiple). Para ello, necesitamos considerar las derivadas sucesivas de un polinomio: Para cada $n\geq 0$ se define la derivada $n$-esima $P^{(n)}$ de $P\in A[X]$, de forma recurrente, por las formulas:
+\[
+P^{(0)} = P,\quad P^{(n+1)} = \left( P^{(n)} \right)'
+\]
+
+\begin{proposition}{}{}
+Sea $D$ un dominio de característica 0, y sean $P \in D[X]$ y $a \in D$. Entonces la multiplicidad de $a$ en $P$ es el menor $m \in \N_0$ tal que $P^{(m)}(a) \neq 0$.
+\end{proposition}
+
+\begin{proofbox}
+Haremos inducción en la multiplicidad $m$ de $a$ en $P$. Si $m = 0$ el resultado es inmediato puesto que $a$ no es raíz de $P$, luego $P^{(0)}(a) = P(a) \neq 0$.
+
+Supongamos ahora que se cumple para $m-1$. Sea $a$ raíz de $P$ con multiplicidad $m$, entonces $P = (X - a)Q$ para cierto $Q \in D[X]$.Claramente, la multiplicidad de $a$ en $Q$ es $m - 1$, y por hipótesis de inducción para todo $i < m - 1$ se tiene $Q^{(i)}(a) = 0$ mientras que $Q^{(m-1)}(a) \neq 0$.
+
+Además, usando el Lema \ref{lem:derivadas_polinomicas} es fácil demostrar por inducción que para cada $t \geq 1$ se tiene
+\[
+P^{(t)} = tQ^{(t-1)} + (X - a)Q^{(t)}.
+\]
+Entonces es inmediato que para todo $i < m$
+\[
+P^{(i)}(a) = iQ^{(i-1)}(a) + (a - a)Q^{(i)} = 0,
+\]
+mientras que 
+\[
+P^{(m)}(a) = mQ^{(m-1)}(a) + (a - a)Q^{(i)} = mQ^{(m-1)}(a) \neq 0.
+\]
+\end{proofbox}
+
+La hipótesis sobre la característica de $D$ en la Proposición anterior es necesaria. Por ejemplo, si $p$ es un número primo, $K = \Z_p$ y $P = X^p$, entonces $P' = 0$ y así $P^{(n)} = 0$ para todo $n$. No todos los polinomios con coeficientes en un anillo $A$ tienen raíces en $A$. Por ejemplo, los polinomios de grado 0 no tienen ninguna raíz, y un polinomio lineal $aX + b$ (con $a \neq 0$) tiene una raíz en $A$ si y solo si a divide a $b$. En particular, todo polinomio lineal sobre un cuerpo tiene una raíz, pero puede haber polinomios de grado positivo sin raíces: por ejemplo, $X^2 + 1$ no tiene raíces en $\R$, y para todo entero primo $p$ y todo $n \geq 2$ el polinomio $X^n - p$ no tiene raíces en $\Q$.
