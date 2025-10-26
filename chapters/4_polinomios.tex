@@ -1,0 +1,252 @@
+\clearpage
+\chapter{Polinomios}
+
+\section{Anillos de polinomios}
+
+\emph{En el resto del capítulo usaremos la siguiente notacion: \(\mathbb{N}_{0} = \mathbb{N}\cup \{0\}\).}
+
+Sea \(A\) un anillo. En el capítulo 1 definimos el anillo de polinomios \(A[X]\) en una indeterminada con coeficientes en \(A\) como el conjunto de las expresiones del tipo
+\[
+P=P(X)=p_{0}+p_{1}X+p_{2}X^{2}+\cdots+p_{n}X^{n}
+\]
+donde \(n\) es un numero entero no negativo y \(p_{i}\in A\) para todo \(i\).
+
+Los elementos \(p_{0},p_{1},p_{2},\ldots\) se llaman coeficientes de \(P\). Más precisamente, \(p_{i}X^{i}\) se llama monomio de grado \(i\) del polinomio \(P\) y \(p_{i}\) se llama coeficiente del monomio de grado \(i\) de \(P\). Observese que \(P\) tiene infinitos coeficientes, aunque todos menos un numero finito son iguales a \(0\). Dos polinomios son iguales si sus coeficientes de los monomios del mismo grado son iguales. El polinomio cero o polinomio nulo es el polinomio que tiene todos los coeficientes iguales a \(0\).
+
+La suma y el producto en \(A[X]\) se definen
+\[
+(a_{0}+a_{1}X+a_{2}X^{2}+\cdots)+(b_{0}+b_{1}X+b_{2}X^{2}+\cdots)=c_{0}+c_{1}X+c _{2}X^{2}+\cdots,
+\]
+donde cada \(c_{n}=a_{n}+b_{n}\), y
+\[
+(a_{0}+a_{1}X+a_{2}X^{2}+\cdots)\cdot(b_{0}+b_{1}X+b_{2}X^{2}+\cdots)=d_{0}+d_{1 }X+d_{2}X^{2}+\cdots,
+\]
+donde cada \(d_{n}=a_{0}b_{n}+a_{1}b_{n-1}+\cdots+a_{n-1}b_{1}+a_{n}b_{0}=\sum_{i=0}^{n}a_{i} b_{n-i}\).
+
+Sea \(A\) un anillo y sea \(p=\sum_{i\in\mathbb{N}_{0}}p_{i}X^{i}\in A[X]\) un polinomio no nulo de \(A[X]\). Entonces, por definicion de polinomio, el conjunto \(\{i\in\mathbb{N}_{0}:p_{i}\neq 0\}\) no es vacio y esta acotado superiormente. Por tanto ese conjunto tiene un maximo, al que llamamos grado del polinomio \(P\) y denotamos por \(\gr(p)\). Es decir,
+\[
+\gr(p)=\max\{i\in\mathbb{N}_{0}:p_{i}\neq 0\}.
+\]
+
+El coeficiente de mayor grado, \(p_{\textrm{gr}(p)}\), se conoce como el coeficiente principal de \(P\), y diremos que \(P\) es monico si su coeficiente principal es \(1\). Por convenio, consideramos que el polinomio \(0\) tiene grado \(-\infty\) y coeficiente principal \(0\). Es claro que los polinomios de grado \(0\) son precisamente los polinomios constantes no nulos. A veces llamaremos lineales a los polinomios de grado \(1\), cuadraticos a los de grado \(2\), cubicos a los de grado \(3\), etcetera.
+
+\begin{lemma}{}{grados_polinomios}
+Si $P$ y $Q$ son polinomios no nulos de $A[X]$ y sus términos principales son $p$ y $q$ respectivamente entonces se verifican las siguientes propiedades:
+
+\begin{enumerate}
+    \item \(\gr(P + Q) \leq \max(\gr(P), \gr(Q))\), con la desigualdad estricta si y solo si \(\gr(P) = \gr(Q)\) y \(p + q = 0\).
+    \item \(\gr(PQ) \leq \gr(P) + \gr(Q)\), con igualdad si y solo si \(pq \neq 0\).
+    \item Si \(p\) es regular (por ejemplo, si \(P\) es mónico, o si \(A\) es un dominio), entonces se tiene \(\gr(PQ) = \gr(P) + \gr(Q)\).
+    \item Las desigualdades de los apartados 1 y 2 pueden ser estrictas.
+\end{enumerate}
+
+\end{lemma}
+
+\begin{proofbox}
+
+Supongamos que los coeficientes de $P$ son \(p_0, p_1, \dots, p_n = p, 0, \dots\) y los de $Q$ son $q_0, q_1, \dots, q_m = q, 0, \dots$, luego $\gr(P) = n, \gr(Q) = m$. Podemos suponer además sin perder generalidad que $n \geq m$.
+
+\begin{enumerate}
+    \item Por la definición de grado
+    \[
+    \gr(P + Q) = \max \{i \in \N_0 : p_i + g_i \neq 0\}.
+    \]
+    Sabemos que si $i > n \geq m$ entonces $p_i = q_i = 0 \implies p_i + q_i = 0$, luego
+    \[
+    \gr(P + Q) \leq n = \gr(P) = \max(\gr(P), \gr(Q)).
+    \] 
+    Además, la desigualdad es estricta si y solo si 
+    \[
+    p_n + q_n = 0 \iff p_n = -q_n 
+    \]
+    y como $p_n = p \neq 0$ debe ser $m = n$ y $q = -p$.
+    \item Por definición
+    \[
+    \gr(PQ) = \max \{i \in \N_0 : \sum_{k=0}^{i} p_kq_{i - k} \neq 0\}.
+    \]
+    Sea $i > n + m$ entonces dado $0 \leq k \leq i$ tenemos \(k > n \implies p_k = 0\) por lo que 
+    \[
+    \sum_{k=0}^{i} p_kq_{i - k} = \sum_{k=0}^{n} p_kq_{i - k}
+    \]
+    pero $i - k > m \implies q_{i-k} = 0$ y esta condición es equivalente a
+    \[
+    i - k \leq m \iff k \geq i - m > n
+    \]
+    es decir, si $k > n$ los $q_{i-k} = 0$, por tanto nos queda
+    \[
+    \sum_{k=0}^{n} p_kq_{i - k} = 0
+    \]
+    esto prueba que 
+    \[
+    \gr(PQ) \leq n + m = \gr(P) + \gr(Q).
+    \]
+    La igualdad se da si y solo si
+    \[
+    0 \neq \sum_{k=0}^{n + m} p_kq_{(n+m) - k} = \sum_{k=n}^{n} p_k q_{(n+m) - k} = p_n q_m 
+    \]
+    es decir, si y solo si \(pq \neq 0\).
+    \item Supongamos que \(p\) es regular y que \(pq = 0\), entonces, como $p$ es regular \(q = 0\), pero esto es imposible pues \(q\) es el término principal de \(Q\). Por tanto
+    \[
+    pq \neq 0 \implies \gr(PQ) = \gr(P) + \gr(Q)
+    \]
+    por (2).
+    \item Para el apartado (1) consideremos los polinomios
+    \[
+    P = X + 1, Q = -X,\quad P,Q \in \Z[X],
+    \]
+    claramente $\gr(P) = \gr(Q) = 1$ pero \(P + Q = 1\), luego
+    \[
+    \gr(P + Q) = 0 < \max(\gr(P), \gr(Q)) = 1.
+    \]
+
+    En cuanto al apartado (2), sean
+    \[
+    P = 2, Q = 2X + 1,\quad P,Q \in \Z_4[X],
+    \]
+    entonces $\gr(P) = 0, \gr(Q) = 1$, pero $PQ = 4X + 2 = 2$, luego 
+    \[
+    \gr(PQ) = 0 < \gr(P) + \gr(Q) = 1.
+    \]
+\end{enumerate}
+
+\end{proofbox}
+
+Una consecuencia inmediata del Lema \ref{lem:grados_polinomios} es:
+
+\begin{corollary}{}{}
+Un anillo de polinomios \(A[X]\) es un dominio si y solo si lo es el anillo de coeficientes \(A\). En este caso se tiene \(A[X]^* = A^*\), es decir, los polinomios invertibles de \(A[X]\) son los polinomios constantes invertibles en \(A\). En particular, los polinomios invertibles sobre un cuerpo son exactamente los de grado 0, y \(A[X]\) nunca es un cuerpo.
+\end{corollary}
+
+\begin{proofbox}
+Supongamos que \(A[X]\) es un dominio, entonces
+\[
+PQ = 0 \implies P = 0 ~\text{ o }~ Q = 0.
+\]
+Sean $p,q \in A$ y supongamos que $pq = 0$, sean $P = p, Q = q$ polinomios en $A[X]$ con grado 0, que claramente cumplen $PQ = pq = 0$. Como \(A[X]\) es un dominio debe ser entonces $P = 0$ o $Q = 0$, es decir, $p = 0$ o $q = 0$, luego \(A\) también es un dominio.
+
+Para el recíproco, supongamos que \(A\) es un dominio. Sean $P,Q \in A[X]$ tales que $PQ = 0$, luego $\gr(PQ) = -\infty$. Por la parte (3) del Lema \ref{lem:grados_polinomios} sabemos que
+\[
+-\infty = \gr(PQ) = \gr(P) + \gr(Q)
+\]
+luego o bien \(\gr(P) = -\infty\) o \(\gr(Q) = - \infty\), es decir, $P = 0$ o $Q = 0$. Esto prueba que $A[X]$ es un dominio. 
+
+En cuanto a las unidades, es claro que $A^* \subseteq A[X]^*$ (abusamos del lenguaje identificando $A$ como subanillo de $A[X]$). Sea ahora $P \in A[X]^*$, entonces existe $Q$ tal que
+\[
+PQ = 1 \implies 0 = \gr(PQ) = \gr(P) + \gr(Q) \implies \gr(P) = \gr(Q) = 0
+\]
+es decir, $P, Q \in A \setminus \{0\}$, pero entonces $P$ es una unidad en $A$, luego $P \in A^*$ como queríamos ver.
+\end{proofbox}
+
+Hemos observado que un anillo \(A\) es un subanillo del anillo de polinomios \(A[X]\), y por tanto la inclusión \(u : A \to A[X]\) es un homomorfismo de anillos. También es claro que el subanillo de \(A[X]\) generado por \(A\) y \(X\) es todo \(A[X]\). Es decir, la indeterminada \(X\) y las constantes de \(A\) (las imágenes de \(u\)) generan todos los elementos de \(A[X]\).
+
+\begin{proofbox}
+Ya sabemos que $(A \cup \{X\}) \subseteq A[X]$. Sea $P \in A[X]$, entonces
+\[
+P = p_0 + p_1 X + \dots + p_n X^n, \quad p_n \neq 0
+\]
+agrupando términos
+\[
+P = p_0 + X(p_1 + \dots + p_n X^{n-1}) \in (A \cup \{X\})
+\]
+luego $A[X] \subseteq (A \cup \{X\})$ como queríamos ver.
+\end{proofbox}
+
+El siguiente resultado nos dice que \(A[X]\) puede caracterizarse por una propiedad en la que solo intervienen \(X\) y \(u\).
+
+\begin{proposition}{Propiedad Universal del Anillo de Polinomios, PUAP}{}
+Sean \(A\) un anillo, \(A[X]\) el anillo de polinomios con coeficientes en \(A\) en la indeterminada \(X\) y \(u : A \to A[X]\) el homomorfismo de inclusión.
+
+\begin{enumerate}
+    \item Para todo homomorfismo de anillos \(f : A \to B\) y todo elemento \(b\) de \(B\) existe un único homomorfismo de anillos \(\overline{f} : A[X] \to B\) tal que \(\overline{f}(X) = b\) y \(\overline{f} \circ u = f\). Para expresar la última igualdad dice que \(\overline{f}\) completa de modo único el diagrama
+    
+    \[
+    \begin{tikzcd}
+    A \arrow[r, "u"] \arrow[dr, "f"'] & A[X] \arrow[d, "\overline{f}"] \\
+    & B
+    \end{tikzcd}
+    \]
+    
+    \item Si dos homomorfismos de anillos \(g, h : A[X] \to B\) coinciden sobre \(A\) y en \(X\) entonces son iguales. Es decir, si \(g \circ u = h \circ u\) y \(g(X) = h(X)\) entonces \(g = h\).
+    \item \(A[X]\) y \(u\) están determinados salvo isomorfismos por la PUAP. Explicitamente: supongamos que existen un homomorfismo de anillos \(v:A\to P\) y un elemento \(T\in P\) tales que, para todo homomorfismo de anillos \(f:A\to B\) y todo elemento \(b\in B\), existe un único homomorfismo de anillos \(\overline{f}:P\to B\) tal que \(\overline{f}\circ v=f\) y \(\overline{f}(T)=b\). Entonces existe un isomorfismo \(\phi:A[X]\to P\) tal que \(\phi\circ u=v\) y \(\phi(X)=T\).
+\end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+\begin{enumerate}
+\item Sean \(f:A\to B\) y \(b\in B\) como en el enunciado. Si existe un homomorfismo \(\overline{f}:A[X]\to B\) tal que \(\overline{f}\circ u=f\) y \(\overline{f}(X)=b\), entonces para un polinomio \(P=\sum_{n=0}^{m} p_{n}X^{n}\), se tendra
+
+\[\overline{f}(P)=\overline{f}\left(\sum_{n=0}^{m} u(p_{n})X^{n}\right)=\sum_{n=0}^{m}f(p_{n})b^{n}.\]
+
+Por tanto, la aplicacion dada por \(\overline{f}(P)=\sum_{n=0}^{m}f(p_{n})b^{n}\) es la unica que puede cumplir tales condiciones.
+
+Veamos que es un homomorfismo de anillos, dados \(P,Q \in A[X]\)
+\[
+\overline{f}(P + Q) = \sum_{n \geq 0}f(c_{n})b^{n} = \sum_{n \geq 0}f(p_{n} + q_n)b^{n} = \sum_{n \geq 0}f(p_{n})b^{n} + \sum_{n \geq 0}f(q_{n})b^{n} = \overline{f}(P) + \overline{f}(Q)
+\]
+\[
+\overline{f}(PQ) = \sum_{n \geq 0}f(d_{n})b^{n} = \sum_{n \geq 0} f(\sum_{i=0}^n p_{i} q_{n-i})b^n = \sum_{n \geq 0} \left(\sum_{i=0}^n f(p_{i}) f(q_{n-i})\right)b^n = \overline{f}(P)\overline{f}(Q)
+\]
+\[
+\overline{f}(1) = f(1)b^0 = f(1) = 1. 
+\]
+Además, es elemental ver que satisface \(\overline{f}(X)=b\) y \(\overline{f}\circ u=f\).
+
+\item Si ponemos \(f=g\circ u=h\circ u:A\to B\), los homomorfismos \(g\) y \(h\) completan el diagrama del apartado (1). Por la unicidad se tiene \(g=h\).
+
+\item Sean \(v:A\to P\) y \(T\in P\) como en (3). Aplicando (1) y la hipotesis de (3) deducimos que existen homomorfismos \(\overline{v}:A[X]\to P\) y \(\overline{u}:P\to A[X]\) tales que que se verifican las siguientes igualdades:
+\[
+\overline{v}\circ u=v,\quad\overline{v}(X)=T,\qquad\overline{u}\circ v=u,\quad \overline{u}(T)=X.
+\]
+Entonces la composicion \(\overline{u}\circ\overline{v}:A[X]\to A[X]\) verifica
+\[
+(\overline{u}\circ\overline{v})\circ u=\overline{u}\circ v=u\qquad\text{y} \qquad(\overline{u}\circ\overline{v})(X)=\overline{u}(T)=X,
+\]
+y por (2) se obtiene \(\overline{u}\circ\overline{v} = 1_{A[X]}\). De modo analogo, y observando que \(v\) y \(T\) verifican una condicion similar a (2), se demuestra que \(\overline{v}\circ\overline{u}=1_{P}\), con lo que \(\overline{v}\) es el isomorfismo que buscamos.
+\end{enumerate}
+\end{proofbox}
+
+La utilidad de la PUAP estriba en que, dado un homomorfismo \(f:A\to B\), nos permite crear un homomorfismo \(A[X]\to B\) que "respeta" a \(f\) y que "se comporta bien" sobre un elemento \(b\in B\) que nos interese. Los siguientes ejemplos son aplicaciones de la PUAP a ciertos homomorfismos que aparecen con frecuencia y son importantes tanto en este capitulo como en algunos de los siguientes (y en otras muchas situaciones que no estudiaremos aqui).
+
+\begin{example}{Aplicaciones de la PUAP (1)}{}
+Sean \(A\) un subanillo de \(B\) y \(b\in B\). Aplicando la PUAP a la inclusion \(A\hookrightarrow B\) obtenemos un homomorfismo \(S_{b}:A[X]\to B\) que es la identidad sobre \(A\) (decimos a veces que fija los elementos de \(A\)) y tal que \(S_{b}(X)=b\).
+
+Se le llama el homomorfismo de sustitución (o de evaluación) en \(b\). Dado \(P\in A[X]\), escribiremos a menudo \(P(b)\) en vez de \(S_{b}(X)\). Podemos describir explicitamente la accion de \(S_{b}\) en un polinomio:
+\[
+P(X)=\sum_{n\geq 0}^{A[X]}p_{n}X^{n} \leadsto S_{b}(P)=P(b)=\sum_{n \geq 0}p_{n}b^{n}.
+\]
+\end{example}
+
+\begin{example}{Aplicaciones de la PUAP (2)}{}
+Sean \(A\) un anillo y \(a \in A\). Si en el ejemplo anterior tomamos \(B = A[X]\) y \(b = X + a\), obtenemos un homomorfismo \(\phi: A[X] \to A[X]\) dado por \[ p(X) \mapsto p(X + a). \] Este homomorfismo es un automorfismo cuyo inverso \(\psi\) viene dado por \(p(X) \mapsto p(X - a)\). En efecto
+\[
+\phi(\psi(p(X))) = \phi(p(X - a)) = p((X + a) - a) = p(x)
+\]
+\[
+\psi(\phi(p(X))) = \psi(p(X + a)) = p((X - a) + a) = p(x).
+\]
+\end{example}    
+
+\begin{example}{Aplicaciones de la PUAP (3)}{}
+Todo homomorfismo de anillos \(f : A \to B\) induce un homomorfismo entre los correspondientes anillos de polinomios.
+
+Aplicándole la PUAP a la composición de \(f\) con la inclusión \(B \hookrightarrow B[X]\) obtenemos \(\overline{f} : A[X] \to B[X]\) tal que \(\overline{f} |_{A} = f\) y \(\overline{f}(X) = X\). Explicitamente,
+\[
+\overline{f} \left( \sum_{n \geq 0} p_n X^n \right) = \sum_{n \geq 0} f(p_n) X^n.
+\]
+Es fácil ver que si \(f\) es inyectivo o suprayectivo, entonces lo es \(\overline{f}\); como casos particulares de esta afirmación se obtienen los dos ejemplos siguientes.
+\end{example}
+
+\begin{example}{Aplicaciones de la PUAP (4)}{}
+Si \(A\) es un subanillo de \(B\) entonces \(A[X]\) es un subanillo de \(B[X]\).
+\end{example}
+
+\begin{example}{Aplicaciones de la PUAP (5)}{}
+Si \(I\) es un ideal del anillo \(A\), la proyección \(\pi : A \to A/I\) induce un homomorfismo suprayectivo \(\overline{\pi} : A[X] \to (A/I)[X]\). Si ponemos \(\overline{a} = a + I\), el homomorfismo \(\overline{\pi}\) viene dado explícitamente por \[\overline{\pi} \left( \sum_{n \geq 0} p_n X^n \right) = \sum_{n \geq 0} \overline{p_n} X^n.\] A \(\overline{\pi}\) se le llama el homomorfismo de reducción de coeficientes módulo I. Su núcleo, que es un ideal de \(A[X]\), consiste en los polinomios con coeficientes en \(I\), y lo denotaremos por \(I[X]\). Del Primer Teorema de Isomorfía se tiene que \((A/I)[X] \simeq \frac{A[X]}{I[X]}.\)
+\end{example}
+
+\begin{example}{Aplicaciones de la PUAP (6)}{}
+Sea \(A\) un subanillo de \(B\) y sea \(S_b : A[X] \to B\) el homomorfismo de sustitución en cierto elemento \(b\) de \(B\). Entonces Im \(S_b\) es el subanillo de \(B\) generado por \(A \cup \{b\}\), y consiste en las ``expresiones polinómicas en \(b\) con coeficientes en \(A\)''; es decir, en los elementos de la forma \[\sum_{i=0}^{n} a_i b^i,\] donde \(n \geq 0\) y \(a_i \in A\) para cada \(i\). Este subanillo se suele denotar por \(A[b]\) y es el menor subanillo de \(B\) que contiene a \(A \cup \{b\}\).
+    
+% TODO: explicar esto bien
+Por ejemplo, si \(A = \mathbb{Z}, B = \mathbb{C}\) y \(b = \sqrt{m}\) para cierto \(m \in \mathbb{Z}\), entonces la notación anterior es compatible con la que se usó anteriormente (es decir, \(\mathbb{Z}[\sqrt{m}]\) representa el mismo subanillo atendiendo a cualquiera de las dos definiciones). Lo mismo ocurre si se toma \(A = \mathbb{Q}\). Si además \(m \equiv 1\) mod 4 entonces \(\mathbb{Z} \left[ \frac{1+\sqrt{m}}{2} \right]\) es el anillo \(A_m = \{\frac{a + b \sqrt{2}}{2} : a \equiv b \text{ mod 2}\}\) y \(\mathbb{Q}[\sqrt{m}] = \mathbb{Q} \left[ \frac{1+\sqrt{m}}{2} \right]\).
+\end{example}
