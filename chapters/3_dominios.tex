@@ -446,7 +446,7 @@ Si \(D\) es un dominio y \(a, b \in D\) entonces se verifican las siguientes pro
 \begin{remark}
     \textbf{Pregunta para el lector:} ?`en algún momento hemos usado que $D$ es un dominio?
     
-    \noindent\textbf{Respuesta del autor:} Yo diría que no, pero como no estoy seguro rezo porque siempre que tenga que usar esta proposición esté trabajando con un dominio...
+    \noindent\textbf{Respuesta del autor:} Yo diría que en ningún momento, pero como no estoy seguro rezo porque siempre que tenga que usar esta proposición esté trabajando con un dominio...
 \end{remark}
 
 \subsection{Máximo común divisor y mínimo común múltiplo}
@@ -542,7 +542,9 @@ Por el contrario, si $(a)$ es el máximo ideal contenido en $\cap_{s \in S} (s)$
 Los recíprocos de las propiedades (5) y (7) no se verifican. Por ejemplo, los unicos divisores comunes de \(2\) y \(X\) en \(\mathbb{Z}[X]\) son \(1\) y \(-1\), es decir las unidades de \(\mathbb{Z}[X]\). Por tanto, \(1 = \mathrm{mcd}(2,X)\). Sin embargo, \(1 \not\in (2,X)\).
 \end{example}
 
+\begin{definition}{Coprimos}{coprimos}
 Si \(1 = \mathrm{mcd}(S)\) decimos que los elementos de \(S\) son coprimos en \(A\). Si para cada par de elementos distintos \(a, b \in S\) se verifica \(\mathrm{mcd}(a,b) = 1\), decimos que los elementos de \(S\) son coprimos dos a dos.
+\end{definition}
 
 \clearpage
 \section{Dominios de factorización única}
@@ -588,7 +590,7 @@ N(xy) = (xy)\overline{(xy)} = x \overline{x} y \overline{y} = N(x)N(y)
 \]
 usando que la conjugación es un homomorfismo.
 
-Sea \(x \in \mathbb{Z}[\sqrt{m}]\). Si \(x\) es invertible en \(\mathbb{Z}[\sqrt{m}]\) entonces \(1 = N(1) = N(xx^{-1}) = N(x)N(x^{-1})\) con lo que \(N(x)\) es invertible en \(\mathbb{Z}\), es decir \(N(x) = \pm 1\). Recíprocamente, si \(N(x) = \pm 1\), entonces \(x\overline{x} = \pm 1\), con lo que \(x\) es invertible en \(\mathbb{Z}[\sqrt{m}]\). Esto demuestra que las unidades son los elementos de norma 1
+Sea \(x \in \mathbb{Z}[\sqrt{m}]\). Si \(x\) es invertible en \(\mathbb{Z}[\sqrt{m}]\) entonces \(1 = N(1) = N(xx^{-1}) = N(x)N(x^{-1})\) con lo que \(N(x)\) es invertible en \(\mathbb{Z}\), es decir \(N(x) = \pm 1\). Recíprocamente, si \(N(x) = \pm 1\), entonces \(x\overline{x} = \pm 1\), con lo que \(x\) es invertible en \(\mathbb{Z}[\sqrt{m}]\). Esto demuestra que las unidades son los elementos de norma $\pm 1$
 \[
 \mathbb{Z}[\sqrt{m}]^* = \{x \in \mathbb{Z}[\sqrt{m}] : |N(x)| = 1\}.
 \]
@@ -610,7 +612,7 @@ pt = tp = w p_1 \cdots p_n p  = (vu) q_1 \cdots q_m r_1 \cdots r_k,
 y por la unicidad de la factorización \(p\) es asociado de algún \(q_i\) (y entonces \(p \mid a\)) o de algún \(r_i\) (y entonces \(p \mid b\)).
 \end{proofbox}
 
-Según hemos visto en \ref{ex:Z_sqrt_m} \(\mathbb{Z}[\sqrt{-5}]\) es un DF. Sin embargo, en el Ejemplo \ref{ex:irreducible_no_primo} hemos visto que tiene elementos irreducibles no primos, y por tanto no es DFU.
+Según hemos visto en el Ejemplo \ref{ex:Z_sqrt_m} \(\mathbb{Z}[\sqrt{-5}]\) es un DF. Sin embargo, en el Ejemplo \ref{ex:irreducible_no_primo} hemos visto que tiene elementos irreducibles no primos, y por tanto no es DFU.
 
 Introducimos ahora una definición muy similar a la de factorización en irreducibles.
 \begin{definition}{Factorización en primos}{}
@@ -657,6 +659,66 @@ p_1 \cdots p_k = (u'u^{-1}) q_1 \cdots q_l
 \]
 con \(w = u'u^{-1}\) una unidad. Razonamos por inducción sobre \(k\). Si \(k = 0\) entonces necesariamente \(l = 0\). Supongamos que \(k > 0\) y que la propiedad se verifica para factorizaciones con menos de \(k\) primos. Como \(p_k\) es primo y divide a \(q_1 \cdots q_l\) se tiene que \(p_k\) divide a algún \(q_i\) y podemos suponer que \(p_k\) divide a \(q_l\). Como \(q_l\) es irreducible necesariamente \(p_k\) y \(q_l\) son asociados. Escribiendo \(q_l = v p_k\) y cancelando \(p_k\) obtenemos \(p_1 \cdots p_{k-1} = (wv) q_1 \cdots q_{l-1}\). Por la hipótesis de inducción estas dos factorizaciones son equivalentes con lo que \(k = l\) y después de reordenar los \(q_i\) podemos suponer que \(p_i\) es asociado de \(q_i\) para todo \(i = 1, \ldots, k\).
 \end{proofbox}
+
+\begin{theorem}{Máximo común divisor y mínimo común múltiplo en un DFU}{}
+Si $D$ es un $DFU$ entonces $\forall a,b \in D$ existen $\mcd(a,b), \mcm(a,b)$.
+\end{theorem}
+
+\begin{proofbox}
+En primer lugar, vamos a ver que existe un conjunto de representantes $P$ de irreducibles tal que cualquier $0 \neq a \in D$ se escribe como
+\[
+a = u \prod_{p \in P} p^{\alpha_p(a)},
+\]
+donde $u$ es una unidad, $\alpha_p(a) \in \Z^{\geq 0}$ y solo un número finito de $\alpha_p$ es distinto de 0.
+
+Sea $\mathcal{I}$ el conjunto de todos los elementos irreducibles de $D$. Definimos en $\mathcal{I}$ la relación de equivalencia:
+\[
+p \sim q \iff \text{$p$ es asociado de $q$}
+\]
+Por el axioma de elección, podemos elegir exactamente un elemento de cada clase de equivalencia de $\mathcal{I}/\sim$. Llamemos $P$ a este conjunto de representantes.
+
+Ahora, sea $0 \neq a \in D$, entonces
+\[
+a = v q_1 \cdots q_n
+\]
+con cada $q_i$ irreducible, pero entonces cada uno de ellos es asociado de algún $p \in P$, luego $q_i = u_i p_i$ para cada $i$, es decir,
+\[
+a = (v u_1 \cdots u_n) p_1 \cdots p_n = u \prod_{p \in P} p^{\alpha_p(a)}
+\]
+donde la última igualdad se obtiene agrupando todas las unidades y agrupando cada $p_i \in P$. Cada número $\alpha_p(a)$ corresponde al número de veces que aparece un elemento asociado a $p$ en la factorización de $a$. Como hay un número finito de $q_i$ en la factorización, está claro que casi todos los $\alpha_p(a)$ son 0.
+
+Sean $a,b \in D$, por hipótesis $a$ y $b$ tienen factorizaciones únicas en irreducibles, luego
+\[
+a = u \prod_{p \in P} p^{\alpha_p},\quad b = v \prod_{p \in P} p^{\beta_p}.
+\]
+Probemos ahora la existencia de mcd y mcm.
+\begin{itemize}
+\item 
+Sea $\gamma_p = \min(\alpha_p, \beta_p)$, entonces
+\[
+d = \prod_{p \in P} p^{\gamma_p}
+\]
+divide a ambos $a,b$, y si $c$ es otro divisor de ambos entonces
+\[
+c=u_c \prod_{p \in P} p^{\delta_p} \mid a,b \implies \delta_p \leq \alpha_p, \beta_p \implies \delta_p \leq \min(\alpha_p, \beta_p) = \gamma_p 
+\]
+es decir, $c \mid d$. Por tanto, $d$ es un mcd de $a,b$. 
+
+\item Definimos
+\[
+m = \prod_{p \in P} p^{\mu_p}, \quad \mu_p = \max(\alpha_p, \beta_p).
+\]
+Como \( \mu_p \ge \alpha_p \) y \( \mu_p \ge \beta_p \) y $u,v$ son unidades entonces \( a \mid m \) y \( b \mid m \). Además, si \( a \mid t \) y \( b \mid t \), podemos escribir
+\[
+t = u_t \prod_p p^{\tau_p}.
+\]  
+Sabemos que \( a \mid t \) implica \( \alpha_p \le \tau_p \), \( b \mid t \) implica \( \beta_p \le \tau_p \), luego \( \max(\alpha_p, \beta_p) = \mu_p \le \tau_p \). Así \( m \mid t \).
+
+Por tanto, \( m \) es un mcm de \( a \) y \( b \).
+
+\end{itemize}
+\end{proofbox}
+
 
 \clearpage
 \section{Dominios de ideales principales}
@@ -721,7 +783,7 @@ Para el primer paso simplemente elegimos un elemento arbitrario \(a_1\) de \(D\)
 Una vez construida la sucesion \((a_i)\), tomamos \(I = (a_1, a_2, \ldots) = \cup_{i \in \mathbb{Z}^+}(a_i)\) (dejamos que el lector compruebe la igualdad anterior). Como \(D\) es un DIP, existe \(x \in D\) tal que \(I = (x)\); en particular \(x \in I = \cup_{i \in \mathbb{Z}^+}(a_i)\) y por tanto existe un indice \(i\) tal que \(x \in (a_i)\); como es claro que \(a_i \in (x)\), se tiene \((a_i) = (x) = I\) y por lo tanto \((a_i) = (a_{i+1})\), en contra de la construccion realizada. Este absurdo concluye la demostracion.
 \end{proofbox}
 
-El reciproco del Teorema \ref{thm:DIP_implica_DFU} es falso: \(\mathbb{Z}[X]\) es un DFU que no es un DIP. Que no es DIP se sigue del Ejemplo \ref{ex:ideal_no_principal}. La demostracion de que \(\mathbb{Z}[X]\) es DFU es bastante mas complicada y tambien es consecuencia de un resultado mas general. La veremos en el Capítulo 3.
+El reciproco del Teorema \ref{thm:DIP_implica_DFU} es falso: \(\mathbb{Z}[X]\) es un DFU que no es un DIP. Que no es DIP se sigue del Ejemplo \ref{ex:ideal_no_principal}. La demostracion de que \(\mathbb{Z}[X]\) es DFU es bastante mas complicada y tambien es consecuencia de un resultado mas general. La veremos en el Capítulo 4.
 
 \begin{example}{}{}
 El anillo de los enteros $\mathbb{Z}$ es un DIP. Todo ideal de $\mathbb{Z}$ es de la forma $(n)$ para algún $n \in \mathbb{Z}$.
@@ -730,6 +792,42 @@ El anillo de los enteros $\mathbb{Z}$ es un DIP. Todo ideal de $\mathbb{Z}$ es d
 \begin{example}{}{}
 Si $K$ es un cuerpo, entonces $K$ es un DIP trivialmente, pues sus únicos ideales son $(0)$ y $(1)$.
 \end{example}
+
+\begin{example}{}{}
+Si $K$ es un cuerpo, entonces $K[[X]]$ es un DIP, pues sus ideales no nulos son de la forma $(X^n)$ para algún $n \in \N$.
+\end{example}
+
+\begin{proofbox}
+Sea $K$ un cuerpo y sea $I \subseteq K[[X]]$.
+
+En primer lugar, probaremos que las unidades de $K[[X]]$ son las series de potencias con primer término no nulo.
+
+\begin{proofbox}
+    Claramente para ser invertible, una serie de potencias $f = \sum_{n=0}^{\infty} a_n X^n$ debe cumplir $a_0 \neq 0$, puesto que la serie con $a_1 = 1, a_n = 0 \text{ si }n \neq 1$ no es invertible.
+
+    Por otro lado, si una serie verifica $a_0 \neq 0$ entonces la serie
+    \[
+    \sum_{n = 0}^{\infty} b_n X^n
+    \]
+    construida haciendo $a_0b_0 = 1, \sum_{k=0}^{n} a_k b_{n-k} = 0$, es decir,
+    \[
+    b_0 = \frac{1}{a_0}, b_1 = \frac{a_1 b_0}{a_0}, \dots, b_n = \frac{\sum_{k=1}^{n} a_k b_{n-k}}{a_0}, \dots
+    \]
+    verifica que
+    \[
+    (\sum_{n=0}^{\infty} a_n X^n)(\sum_{n = 0}^{\infty} b_n X^n) = \sum_{n = 0}^{\infty} \left( \sum_{k=0}^{n} a_k b_{n-k} \right) X^n = 1.
+    \]
+    Luego $f$ es invertible.
+\end{proofbox}
+
+Pasamos a demostrar el ejemplo. Si $I = (0)$ es principal. De igual manera, si existe alguna serie en $I$ con $0 \neq a_0$ entonces la serie es invertible y por tanto $I = (X^0) = (1) = K[[X]]$, luego $I$ es principal.
+
+Supongamos por tanto que todas las series de $I$ tienen $a_0 = 0$. Sean $m \in \N$ el menor número natural tal que existe una serie con $a_m = 0$ (este número ha de existir puesto que en caso contrario $I = (0)$). Entonces cualquier $f \in I$ es de la forma
+\[
+f = X^m (\sum_{n=0}^{\infty} a_n X^n)
+\]
+y finalmente $I = (X^m)$ como queríamos ver.
+\end{proofbox}
 
 En la sección \ref{dominios_euclideos} estudiaremos los dominios euclídeos y probraremos que todo dominio euclídeo es un DIP, por tanto, todos los ejemplos de la siguiente sección valen también para esta.
 
