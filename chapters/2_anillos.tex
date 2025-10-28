@@ -1220,26 +1220,31 @@ es decir, $i \circ \bar{f} \circ p = f$, donde $i$ es la inclusión y $p$ es la 
 \end{theorem}
 
 \begin{proofbox}
-Sean $K = \ker f$ e $I = \Im f$. La aplicación $\bar{f} : A/K \to I$ dada por $\bar{f}(x + K) = f(x)$ está bien definida (no depende de representantes) pues si $x + K = y + K$ entonces $x - y \in K$ y por lo tanto $f(x) - f(y) = f(x - y) = 0$; es decir, $f(x) = f(y)$. Además es elemental ver que es un homomorfismo de anillos y que es suprayectiva.
+Sean $K = \ker f$ e $I = \Im f$. La aplicación $\bar{f} : A/K \to I$ dada por $\bar{f}(x + K) = f(x)$ está bien definida (no depende de representantes) pues si $x + K = y + K$ entonces $x - y \in K$ y por lo tanto $f(x) - f(y) = f(x - y) = 0$; es decir, $f(x) = f(y)$. Además es elemental ver que es un homomorfismo de anillos
+\[
+\bar{f}((x + K) + (y + K)) = \bar{f}((x+y) + K) = f(x + y) = f(x) + f(y) = \bar{f}(x + K) + \bar{f}(y + K)
+\]
+\[
+\bar{f}((x + K)(y + K)) = \bar{f}(xy + K) = f(xy) = f(x)f(y) = \bar{f}(x + K)\bar{f}(y + K)
+\]
+\[
+\bar{f}(1 + K) = f(1) = 1.
+\]
+Que es suprayectiva también es inmediato, dado $b \in I$ existe $a \in A$ tal que $b = f(a)$, luego
+\[
+\bar{f}(a + K) = f(a) = b.
+\]
 
 Para ver que es inyectiva usamos la Proposición \ref{prop:prop_nucleo_imagen}: si $x + K$ está en el núcleo de $\bar{f}$ entonces $0 = \bar{f}(x + K) = f(x)$, de modo que $x \in K$ y así $x + K = 0 + K$. Es decir $\ker \bar{f} = 0$ y por lo tanto $\bar{f}$ es inyectiva. En conclusión, $\bar{f}$ es un isomorfismo, y hace conmutativo el diagrama porque, para cada $x \in A$, se tiene
 \[
-i(\bar{f}(p(x))) = i(\bar{f}(x + K)) = i(f(x)_{\Im}) = f(x).
+i(\bar{f}(p(x))) = i(\bar{f}(x + K)) = i(f(x)) = f(x).
 \]
 
 En cuanto a la unicidad, supongamos que otro homomorfismo $\bar{f}' : A/K \to I$ verifica $i \circ \bar{f}' \circ p = f$; entonces para cada $x \in K$ se tiene 
 \[
-i(\bar{f}'(p(x))) = i(\bar{f}'(x + K)) = f(x) = i(\bar{f}(p(x))) = i(\bar{f}(x + K)).
+\bar{f}'(x + K) = i(\bar{f}'(p(x))) = f(x) = \bar{f}(x + K).
 \]
-Por la inyectividad de $i$ debe ser entonces
-\[
-\bar{f}'(p(x)) = \bar{f}(p(x))
-\]
-como $p$ es sobreyectiva, dado $y + K \in A/\ker f$ existe $x_0 \in A$ tal que $y + K = p(x_0)$, por tanto para cualquier $y + K$
-\[
-\bar{f}'(y + K) = \bar{f}'(p(x_0)) = \bar{f}(p(x_0)) = \bar{f}(y + K)
-\]
-y finalmente $\bar{f}' = \bar{f}$.
+Finalmente, $\bar{f}' = \bar{f}$.
 \end{proofbox}
 
 \begin{theorem}{Segundo teorema de isomorfía}{isomorfia_dos}
@@ -1254,7 +1259,7 @@ Por el Teorema de la Correspondencia \ref{thm:teorema_correspondencia}, $J/I$ es
 \[
 a - b \in J \implies a + J = b + J \implies f(a + I) = f(b + I).
 \]
-Que es un homomorfismo suprayectivo de anillos se deja como ejercicio. Veamos que $\ker f = J/I$
+Que es un homomorfismo de anillos se deja como ejercicio. Que es suprayectivo es inmediato, pues dado $a + J \in A/J$ es claro que $f(a + I) = a + J$. Veamos que $\ker f = J/I$
 \[
 f(a+I) = a + J = 0 + J \iff a \in J \implies a + I \in \eta(J) = J/I
 \]
@@ -1275,7 +1280,13 @@ Sea $A$ un anillo con un subanillo $B$ y un ideal $I$. Entonces:
 \end{theorem}
 
 \begin{proofbox}
-Los dos primeros apartados se dejan como ejercicio. En cuanto al último, sea $f : B \to A/I$ la composición de la inclusión $j : B \to A$ con la proyección $\eta : A \to A/I$
+
+\begin{enumerate}
+\item Claramente $0 \in B \cap I$. Sean $x,y \in B \cap I$, como $B$ es subanillo e $I$ ideal $x + y \in B, I \implies x + y \in B \cap I$. Dado $a \in B$, como $B$ subanillo $ax \in B$, y como $I$ es ideal de $A$ y $a \in B \subseteq A$ tenemos $ax \in I$, luego $ax \in B \cap I$.
+
+\item Claramente $1 = 1 + O \in B + I$. Además, es obvio que es cerrado para restas y productos por ser $B$ subanillo e $I$ ideal, luego es un subanillo. Que $I$ es ideal de $B + I$ porque está contenido en la suma, el resto de condiciones se verifican trivialmente porque se cumplen en $A$.
+
+\item Sea $f : B \to A/I$ la composición de la inclusión $j : B \to A$ con la proyección $\eta : A \to A/I$
 \[
 f(b) = \eta(j(b)) = b + I.
 \]
@@ -1288,6 +1299,8 @@ y que $\Im f = (B + I)/I$, ya que dado $b + I \in \Im f$ existe un cierto $b_0 \
 b + I = f(b_0) = b_0 + I \iff b - b_0 \in I \iff b - b_0 = i \in I \implies b = b_0 + i \in B + I.
 \]
 Por tanto, el resultado se sigue del Primer Teorema de Isomorfía.
+\end{enumerate}
+
 \end{proofbox}
 
 \begin{example}{Aplicaciones del Primer Teorema de Isomorfía}{aplicaciones_isomorfia_uno}
@@ -1323,11 +1336,32 @@ Sea $A$ un anillo y sea $f : \mathbb{Z} \to A$ el único homomorfismo de anillos
 \end{proposition}
 
 \begin{proofbox}
-La equivalencia entre (1) y (2) se deja como ejercicio para el lector, y es obvio que (3) implica (4).
+(1) $\Rightarrow$ (2): Claramente $n\Z \subseteq \ker f$ puesto que para todo $nm \in n\Z, f(nm) = nm1 = m(n1) = 0$. Sea $m \in \ker f$, sabemos que $m = nq + r$ para cierto $q \in \Z$, $0 \leq r < n$, luego
+\[
+0 = f(m) = f(nq + r) = f(nq) + f(r) = r1 \implies r = 0
+\]
+luego $m \in n\Z$.
 
-(2) implica (3). Se obtiene aplicando el Primer Teorema de Isomorfía y observando que $\Im f$ es el subanillo primo de $A$.
+(2) $\Rightarrow$ (1): Supongamos que existe $0 \leq m < n$ tal que $f(m) = 0$, entonces $m \in \ker f = n\Z$, luego $m = nq$ para cierto $q \in \Z$, lo cual es claramente imposible, por tanto $n$ es el menor tal que $n1 = f(n) = 0$. 
 
-(4) implica (2). Si $B$ es un subanillo de $A$ y $g : \mathbb{Z}_n \to B$ es un isomorfismo, considerando la proyección $\pi : \mathbb{Z} \to \mathbb{Z}_n$ y la inclusión $u : B \hookrightarrow A$ se obtiene un homomorfismo de anillos $u \circ g \circ \pi : \mathbb{Z} \to A$ que debe coincidir con $f$ por su unicidad (Ejemplo 1.12.(3)). Como $u \circ g$ es inyectiva, es elemental ver que $\ker f = n\mathbb{Z}$.
+(3) $\Rightarrow$ (4): Es inmediato.
+
+(2) $\Rightarrow$ (3). Aplicando el Primer Teorema de Isomorfía 
+\[
+\Z_n \cong \Z / n\Z = \Z / \ker f \cong \Im f.
+\]
+Basta ver ahora que $\Im f$ es el subanillo primo de $A$. En efecto si $x \in \Z 1$ entonces $x = n1 = f(n)$. De igual manera, si $x \in \Im f \implies x = f(n) = n1 \in \Z 1$.
+
+(4) $\Rightarrow$ (2). Si $B$ es un subanillo de $A$ y $g : \mathbb{Z}_n \to B$ es un isomorfismo, considerando la proyección $\pi : \mathbb{Z} \to \mathbb{Z}_n$ y la inclusión $u : B \hookrightarrow A$ se obtiene un homomorfismo de anillos $u \circ g \circ \pi : \mathbb{Z} \to A$ que debe coincidir con $f$ por su unicidad.
+
+Además, como $m \in \ker f$ si y solo si 
+\[
+0 = f(m) = u(g(\pi(m))) \iff \pi(m) \in \ker (u \circ g)  
+\]
+pero como $u \circ g$ es inyectiva su núcleo es trivial, por lo que debe ser
+\[
+\pi(m) = 0 \iff m \in n\Z.
+\]
 \end{proofbox}
 
 \begin{theorem}{Teorema Chino de los Restos}{chino_restos}
@@ -1338,7 +1372,15 @@ Sea $A$ un anillo y sean $I_1, \ldots, I_n$ ideales de $A$ tales que $I_i + I_j 
 \end{theorem}
 
 \begin{proofbox}
-Razonamos por inducción sobre $n$, empezando con el caso $n = 2$. La hipótesis $I_1 + I_2 = A$ nos dice que existen $x_1 \in I_1$ y $x_2 \in I_2$ tales que $x_1 + x_2 = 1$, y entonces para cada $a \in I_1 \cap I_2$ se tiene $a = a x_1 + a x_2 \in I_1 I_2$, de modo que $I_1 \cap I_2 \subseteq I_1 I_2$, y la otra inclusión es clara. Claramente la aplicación $f : A \to A/I_1 \times A/I_2$ dada por $f(a) = (a + I_1, a + I_2)$ es un homomorfismo de anillos con núcleo $I_1 \cap I_2$, y es suprayectiva pues, dado un elemento arbitrario $(a_1 + I_1, a_2 + I_2)$ de $A/I_1 \times A/I_2$, el elemento $a = a_1 x_2 + a_2 x_1$ verifica $f(a) = (a_1 + I_1, a_2 + I_2)$. Ahora el resultado se obtiene aplicando el Primer Teorema de Isomorfía.
+Razonamos por inducción sobre $n$, empezando con el caso $n = 2$. 
+
+La hipótesis $I_1 + I_2 = A$ nos dice que existen $x_1 \in I_1$ y $x_2 \in I_2$ tales que $x_1 + x_2 = 1$, y entonces para cada $a \in I_1 \cap I_2$ se tiene
+\[
+a = a x_1 + a x_2 \in I_1 I_2,
+\]
+de modo que $I_1 \cap I_2 \subseteq I_1 I_2$, y la otra inclusión es clara.
+
+Claramente la aplicación $f : A \to A/I_1 \times A/I_2$ dada por $f(a) = (a + I_1, a + I_2)$ es un homomorfismo de anillos con núcleo $I_1 \cap I_2$, y es suprayectiva pues, dado un elemento arbitrario $(a_1 + I_1, a_2 + I_2)$ de $A/I_1 \times A/I_2$, el elemento $a = a_1 + a_2$ verifica $f(a) = (a_1 + I_1, a_2 + I_2)$. Ahora el resultado se obtiene aplicando el Primer Teorema de Isomorfía.
 
 En el caso general ($n > 2$) basta ver que las hipótesis implican que $(I_1 \cap \cdots \cap I_{n-1}) + I_n = A$, pues entonces la hipótesis de inducción nos da
 \[
