@@ -1022,7 +1022,7 @@ si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
         \[
         \Psi(\Phi(J)) = \eta^{-1}(\eta(J)) \supseteq J
         \]
-        por las propiedades de conjuntos. Para la otra inclusión, si $x \in \eta^{-1}(\eta(J))$ entonces $\eta(x) \in \eta(J)$, luego existe $y\in J$ tal que 
+        por las propiedades básicas de las aplicaciones. Para la otra inclusión, si $x \in \eta^{-1}(\eta(J))$ entonces $\eta(x) \in \eta(J)$, luego existe $y\in J$ tal que 
         \[
         x + I = \eta(y) = y + I \implies x - y \in I \subseteq J \implies x = (x - y) + y \in J
         \] 
@@ -1032,19 +1032,21 @@ si $J$ contiene a $I$ denotaremos a este conjunto $\eta(J) = J/I$.
         \[
         \Phi(\Psi(K)) = \eta(\eta^{-1}(K)) \subseteq K
         \]
-        por conjuntos. Por otro lado, si $x + I \in K$ entonces, al ser $\eta$ sobreyectiva existe $y \in \eta^{-1}(K)$ tal que $\eta(y) = x + I \in K$. Por tanto $x + I \in \eta(\eta^{-1}(K))$ 
+        por las propiedades de las aplicaciones. Por otro lado, si $x + I \in K$ entonces, al ser $\eta$ sobreyectiva existe $y \in \eta^{-1}(K)$ tal que $\eta(y) = x + I \in K$. Por tanto $x + I \in \eta(\eta^{-1}(K))$ 
     \end{itemize}
 
     Finalmente veamos que respetan las inclusiones.
     \begin{itemize}
         \item Si $J,J' \in \mathcal{A}, J \subseteq J'$ entonces dado
         \[
-        x+I \in \Phi(J) = \eta(J) \implies x+I = \eta(j),\, j \in J \subseteq J' \implies x+I \in \eta(J') = \Phi(J').
+        x+I \in \Phi(J) = \eta(J) \implies x+I = \eta(j),\, j \in J \subseteq J' \implies x+I \in \eta(J') = \Phi(J'),
         \]
+        es decir $\Phi(J) \subseteq \Phi(J')$.
         \item De igual manera, si $K, K' \in \mathcal{K}, K \subseteq K'$ entonces
         \[
-        x \in \Psi(K) = \eta^{-1}(K) \implies \eta(x) \in K \subseteq K' \implies x \in \eta^{-1}(K') = \Phi(J').
+        x \in \Psi(K) = \eta^{-1}(K) \implies \eta(x) \in K \subseteq K' \implies x \in \eta^{-1}(K') = \Psi(J'),
         \]
+        es decir, $\Psi(K) \subseteq \Psi(K')$.
     \end{itemize}
 \end{proofbox}
 
