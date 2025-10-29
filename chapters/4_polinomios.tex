@@ -470,7 +470,7 @@ La hipótesis sobre la característica de $D$ en la Proposición anterior es nec
 
 La siguiente proposición caracteriza cuándo un anillo de polinomios es un DIP o dominio euclídeo y cuáles son los irreducibles en tal caso.
 
-\begin{proposition}{}{}
+\begin{proposition}{}{equivalencias_anillos_polinomios}
 Para un anillo $A$, las condiciones siguientes son equivalentes:
 
 \begin{enumerate}
@@ -487,7 +487,7 @@ En este caso, un polinomio $f \in A[X]$ es irreducible si y solo si es primo si 
 \begin{itemize}
 \item Ya sabemos que (1) implica (2) por el Teorema \ref{thm:DE_implica_DIP} y que (3) implica (1) por el Ejemplo \ref{ex:grado_funcion_euclidea}.
 
-\item Para ver (2) implica (3) notemos que laramente el polinomio $X$ es irreducible, con lo que si $A[X]$ es DIP entonces el ideal $(X)$ es maximal. Si $a \in A \setminus \{0\}$ entonces $a \notin (X)$ con lo que de la maximalidad de $(X)$ deducimos que $(a, X) = A[X]$ y por tanto $1 = aP + XQ$ para ciertos $P, Q \in A[X]$. Luego $1 = aP(0)$, con lo que $a$ es invertible en $A$. Esto demuestra que $A$ es un cuerpo.
+\item Para ver (2) implica (3) notemos que claramente el polinomio $X$ es irreducible, con lo que si $A[X]$ es DIP entonces el ideal $(X)$ es maximal. Si $a \in A \setminus \{0\}$ entonces $a \notin (X)$ con lo que de la maximalidad de $(X)$ deducimos que $(a, X) = A[X]$ y por tanto $1 = aP + XQ$ para ciertos $P, Q \in A[X]$. Luego $1 = aP(0)$, con lo que $a$ es invertible en $A$. Esto demuestra que $A$ es un cuerpo.
 \end{itemize}
 
 En caso de que se verifiquen las equivalencias, por \ref{prop:propiedades_DIP} $f \in A[X]$ es irreducible si y solo si es primo.
@@ -508,7 +508,7 @@ a \mid f \iff f = ag \iff f_0 + f_1X + \dots + f_nX^n = ag_0 + ag_1X + \dots + a
 \]
 es decir, $a \mid f$ si y solo si $a$ divide a todos los coeficientes de $f$.
 
-\begin{lemma}{}{}
+\begin{lemma}{}{primos_irreducibles_polinomios}
 Sea $D$ un dominio y sea $p\in D$.
 
 \begin{enumerate}
@@ -562,38 +562,62 @@ que a cada $0\neq a\in D$ le asocia el numero $\varphi(a)$ de factores irreducib
 \varphi(ab)=\varphi(a)+\varphi(b)\qquad\text{y}\qquad\varphi(a)=0\Leftrightarrow a \in D^{*}.
 \]
 
-\begin{lemma}{}{}
+\begin{lemma}{}{tecnico_1}
 Si $a\in D$ y $f,g,h\in D[X]$ verifican $af=gh\neq 0$, entonces existen $g_{1},h_{1}\in D[X]$ tales que
 
 \[f=g_{1}h_{1},\qquad\operatorname{gr}(g_{1})=\operatorname{gr}(g),\qquad\operatorname{gr}(h _{1})=\operatorname{gr}(h).\]
 \end{lemma}
 
 \begin{proofbox}
-Razonamos por induccion en $\varphi(a)$. Si $\varphi(a)=0$ podemos tomar $g_{1}=a^{-1}g$ y $h_{1}=h$. Si $\varphi(a)>0$, existen $p,b\in D$ tales que $a=pb$ y $p$ es primo. Entonces $p\mid af=gh$ en $D[X]$ y, por el Lema 3.14, podemos asumir que $p\mid g$ en $D[X]$. Es decir, existe $\overline{g}\in D[X]$ tal que $g=p\overline{g}$, de donde $\operatorname{gr}(g)=\operatorname{gr}(\overline{g})$. Cancelando $p$ en la igualdad $pbf=af=gh=p\overline{g}h$ obtenemos $bf=\overline{g}h$. Como $\varphi(b)=\varphi(a)-1<\varphi(a)$, la hipotesis de induccion nos dice que existen $g_{1},h_{1}\in D[X]$ tales que $f=g_{1}h_{1}$, $\operatorname{gr}(g_{1})=\operatorname{gr}(\overline{g})=\operatorname{gr}(g)$, y $\operatorname{gr}(h_{1})=\operatorname{gr}(h)$, lo que nos da el resultado.
+Razonamos por induccion en $\varphi(a)$. Si $\varphi(a)=0$ podemos tomar $g_{1}=a^{-1}g$ y $h_{1}=h$.
+
+Si $\varphi(a)>0$, existen $p,b\in D$ tales que $a=pb$ y $p$ es irreducible. Entonces $p \mid af=gh$ en $D[X]$ y, por el Lema \ref{lem:primos_irreducibles_polinomios}, $p$ es primo en $D[X]$ y por tanto podemos asumir que $p\mid g$ en $D[X]$. Es decir, existe $\overline{g}\in D[X]$ tal que $g=p\overline{g}$, de donde $\operatorname{gr}(g)=\operatorname{gr}(\overline{g})$.
+
+Cancelando $p$ en la igualdad
+\[
+pbf=af=gh=p\overline{g}h
+\]
+obtenemos $bf=\overline{g}h$. Como $\varphi(b)=\varphi(a)-1<\varphi(a)$, la hipotesis de induccion nos dice que existen $g_{1},h_{1}\in D[X]$ tales que $f=g_{1}h_{1}$, $\operatorname{gr}(g_{1})=\operatorname{gr}(\overline{g})=\operatorname{gr}(g)$, y $\operatorname{gr}(h_{1})=\operatorname{gr}(h)$, lo que nos da el resultado.
 \end{proofbox}
 
-El siguiente resultado relaciona la irreducibilidad de un polinomio sobre $D$ con su irreducibilidad sobre $K$. Aunque su recíproco es falso en general (piensese en $2X$ como polinomio sobre $\mathbb{Z}$), pronto veremos que es válido con una condicion extra sobre el polinomio (Proposicion 3.20).
+\begin{example}{}{}
+Consideremos \(D = \Z\)
+\[
+2 \in \Z, f = X^2 + X, g = X + 1, h = 2X
+\]
+es inmediato que
+\[
+2f = 2X^2 + 2X = gh
+\]
+y $g_1 = X + 1, h_1 = X$ son los elementos que proporciona la proposición anterior.
+\end{example}
 
-\begin{lemma}{}{}
+El siguiente resultado relaciona la irreducibilidad de un polinomio sobre $D$ con su irreducibilidad sobre $K$. Aunque su recíproco es falso en general: $2X$ no es irreducible como polinomio sobre $\mathbb{Z}$, pero sí en $\Q$ porque en ese caso $2$ es unidad. Pronto veremos que el recíproco sí es válido con una condicion extra sobre el polinomio (Lema de Gauss \ref{lem:gauss}).
+
+\begin{lemma}{}{irreducibles_en_cociente}
 Si $f\in D[X]\setminus D$ es irreducible en $D[X]$, entonces es irreducible (y primo) en $K[X]$.
 \end{lemma}
 
 \begin{proofbox}
-Supongamos que $f$ no es irreducible en $K[X]$. Por la Proposicion 3.13, existen $G,H\in K[X]$ tales que
-
-\[f=GH,\qquad\operatorname{gr}(G)>0,\qquad\operatorname{gr}(H)>0.\]
-
-Si $0\neq b\in D$ es un multiplo comun de los denominadores de los coeficientes de $G$, se tiene $g=bG\in D[X]$, y analogamente existe $0\neq c\in D$ tal que $h=cH\in D[X]$. Aplicando el Lema 3.15 a la igualdad $(bc)f=gh$ obtenemos $g_{1},h_{1}\in D[X]$ tales que $f=g_{1}h_{1}$, $\operatorname{gr}(g_{1})=\operatorname{gr}(g)=\operatorname{gr}(G)>0$, y $\operatorname{gr}(h_{1})=\operatorname{gr}(h)=\operatorname{gr}(H)>0$, lo que nos da una factorizacion no trivial de $f$ en $D[X]$.
+Supongamos que $f$ no es irreducible en $K[X]$. Por la Proposición \ref{prop:equivalencias_anillos_polinomios}, existen $G,H\in K[X]$ tales que
+\[
+f=GH,\qquad\operatorname{gr}(G)>0,\qquad\operatorname{gr}(H)>0.
+\]
+Si $0\neq b\in D$ es un multiplo comun de los denominadores de los coeficientes de $G$, se tiene $g=bG\in D[X]$, y analogamente existe $0\neq c\in D$ tal que $h=cH\in D[X]$. Aplicando el Lema \ref{lem:tecnico_1} a la igualdad $(bc)f=gh$ obtenemos $g_{1},h_{1}\in D[X]$ tales que 
+\[
+f=g_{1}h_{1}, \operatorname{gr}(g_{1}) = \operatorname{gr}(g) = \operatorname{gr}(G)>0, \qquad \text{y} \qquad \operatorname{gr}(h_{1}) = \operatorname{gr}(h) = \operatorname{gr}(H) > 0,
+\]
+lo que nos da una factorizacion no trivial de $f$ en $D[X]$.
 \end{proofbox}
 
 Podemos ya demostrar el resultado principal de esta seccion:
 
-\begin{theorem}{}{}
+\begin{theorem}{}{D_DFU_sii_DX_DFU}
 $D$ es un DFU si y solo si lo es $D[X]$.
 \end{theorem}
 
 \begin{proofbox}
-Supongamos primero que $D[X]$ es un DFU. Entonces $D$ es un dominio (Corolario 3.2), y cada $0\neq a\in D\setminus D^{*}$ es producto de irreducibles de $D[X]$, que tendran grado 0 pues lo tiene $a$. Por el Lema 3.14, esa sera una factorizacion de $a$ en irreducibles de $D$. Del mismo lema se deduce que todo irreducible de $D$ es primo en $D$, por lo que $D$ es un DFU.
+Supongamos primero que $D[X]$ es un DFU. Entonces $D[X]$ es un dominio y por tanto $D$ también, y cada $0\neq a\in D\setminus D^{*}$ es producto de irreducibles de $D[X]$, que tendran grado 0 pues lo tiene $a$. Por el Lema \ref{lem:primos_irreducibles_polinomios}, esa sera una factorizacion de $a$ en irreducibles de $D$. Del mismo lema se deduce que todo irreducible de $D$ es primo en $D$, por lo que $D$ es un DFU.
 
 Supongamos ahora que $D$ es un DFU y veamos que lo es $D[X]$. Empezaremos demostrando que cada $a=a_{0}+\cdots+a_{n}X^{n}\in D[X]$ (con $a_{n}\neq 0$) no invertible es producto de irreducibles, y lo haremos por induccion en $n+\varphi(a_{n})$. Observese que $a$ es invertible si y solo si $n+\varphi(a_{n})=0$. El caso $n+\varphi(a_{n})=1$ se resuelve facilmente. Supongamos pues que $n+\varphi(a_{n})>1$ y que $a$ no es irreducible. Entonces existen
 
@@ -605,37 +629,35 @@ en $D[X]$, no invertibles, con $a=bc$ y $b$ y $c$ elementos de $D[X]$ que no son
 
 En consecuencia, podemos aplicar la hipotesis de induccion a $b$ y $c$, y pegando las factorizaciones asi obtenidas conseguimos una factorizacion en irreducibles de $a$.
 
-Por la Proposicion 2.22, solo falta demostrar que todo irreducible $f$ de $D[X]$ es primo, y por el Lema 3.14 podemos suponer que $\operatorname{gr}(f)\geq 1$. Sean pues $g,h\in D[X]$ tales que $f\mid gh$ en $D[X]$, y veamos que $f\mid g$ o $f\mid h$ en $D[X]$. Obviamente, $f\mid gh$ en $K[X]$, y como $f$ es primo en $K[X]$ por el Lema 3.16, podemos asumir que $f\mid g$ en $K[X]$. Es decir, existe $G\in K[X]$ tal que $g=fG$, y si demostramos que $G\in D[X]$ habremos terminado. Para ello, tomando $a\in D$ con $aG\in D[X]$ y $\varphi(a)$ mínimo, basta ver que $\varphi(a)=0$. Supongamos que $\varphi(a)>0$ y sean $p,b\in D$ con $a=pb$ y $p$ primo. Entonces, en $D[X]$, se tiene $p\mid ag=f(aG)$. Como $p$ es primo en $D[X]$ (Lema 3.14) y $p\nmid f$ (pues $f$ es irreducible y $\operatorname{gr}(f)\geq 1$), deducimos que $p\mid aG$ en $D[X]$. Si $g_{1}\in D[X]$ verifica $aG=pg_{1}$ entonces $bG=g_{1}\in D[X]$, contra la minimalidad de $\varphi(a)$, y esta contradiccion termina la demostracion.
+Por la Proposición \ref{prop:equivalencias_DFU}, solo falta demostrar que todo irreducible $f$ de $D[X]$ es primo, y por el Lema \ref{lem:primos_irreducibles_polinomios} podemos suponer que $\operatorname{gr}(f)\geq 1$. Sean pues $g,h\in D[X]$ tales que $f\mid gh$ en $D[X]$, y veamos que $f\mid g$ o $f\mid h$ en $D[X]$. Obviamente, $f\mid gh$ en $K[X]$, y como $f$ es primo en $K[X]$ por el Lema \ref{lem:irreducibles_en_cociente}, podemos asumir que $f\mid g$ en $K[X]$. Es decir, existe $G\in K[X]$ tal que $g=fG$, y si demostramos que $G\in D[X]$ habremos terminado. Para ello, tomando $a\in D$ con $aG\in D[X]$ y $\varphi(a)$ mínimo, basta ver que $\varphi(a)=0$. Supongamos que $\varphi(a)>0$ y sean $p,b\in D$ con $a=pb$ y $p$ primo. Entonces, en $D[X]$, se tiene $p\mid ag=f(aG)$. Como $p$ es primo en $D[X]$ (Lema \ref{lem:primos_irreducibles_polinomios}) y $p\nmid f$ (pues $f$ es irreducible y $\operatorname{gr}(f)\geq 1$), deducimos que $p\mid aG$ en $D[X]$. Si $g_{1}\in D[X]$ verifica $aG=pg_{1}$ entonces $bG=g_{1}\in D[X]$, contra la minimalidad de $\varphi(a)$, y esta contradiccion termina la demostracion.
 \end{proofbox}
 
-De la Proposicion 3.13 y el Teorema 3.17 se deduce que ${\mathbb{Z}}[X]$ es un DFU pero no un DIP, lo que muestra que el reciproco del Teorema 2.25 no es cierto.
-
-En el resto de la seccion suponemos que $D$ es un DFU y $K$ es su cuerpo de fracciones.
+De la Proposición \ref{prop:equivalencias_anillos_polinomios} y el Teorema \ref{thm:D_DFU_sii_DX_DFU} se deduce que ${\mathbb{Z}}[X]$ es un DFU pero no un DIP, lo que muestra que el reciproco del Teorema \ref{thm:DIP_implica_DFU} no es cierto.
 
 Definimos una relacion de equivalencia $\sim$ en $K$ de la siguiente forma para $x,y\in K$:
-
-\[x\sim y\Leftrightarrow y=ux\text{ para algun }u\in D^{*}.\]
-
+\[
+x\sim y\Leftrightarrow y=ux\text{ para algun }u\in D^{*}.
+\]
 Claramente la clase de equivalencia que contiene a $x$ es $xD^{*}=\{xu:u\in D^{*}\}$. En particular, si $x\in D$ entonces la clase de equivalencia que contiene a $x$ esta formada por los elementos que son asociados de $x$ en $D$. Por ejemplo, $0D^{*}=\{0\}$, $1D^{*}=D^{*}$. Observese que $xyD^{*}=\{xa:a\in yD^{*}\}=x(yD^{*})$.
 
 Podemos definir una multiplicacion de elementos de $K$ por elementos de $K/\sim$ poniendo
-
-\[a(bD^{*})=(ab)D^{*}.\]
-
+\[
+a(bD^{*})=(ab)D^{*}.
+\]
 Esto esta bien definido pues si $b_{1}\sim b_{2}$ entonces $ab_{1}\sim ab_{2}$. Ademas se verifica $a(b(cD^{*}))=(ab)(cD^{*})$.
 
 Vamos a definir una aplicacion
-
-\[c:K[X]\to K/\sim\]
-
+\[
+c:K[X]\to K/\sim
+\]
 Empezamos definiendo $c(p)$ para $p\in D[X]$ como la clase que contiene a un maximo comun divisor de los coeficientes de $p$, o sea, si $p=\sum_{i\geq 0}p_{i}X^{i}$ entonces
-
-\[c(p)=\operatorname{mcd}(p_{i}:i\geq 0)D^{*}.\]
-
+\[
+c(p)=\operatorname{mcd}(p_{i}:i\geq 0)D^{*}.
+\]
 Para definir $c(p)$ para un elemento $p\in K[X]$ elegimos $a\in D\setminus\{0\}$ con $ap\in D[X]$ y definimos
-
-\[c(p)=a^{-1}c(ap).\]
-
+\[
+c(p)=a^{-1}c(ap).
+\]
 Esto esta bien definido pues si $a_{1}p,a_{2}p\in D[X]$ entonces $c(a_{1}a_{2}p)=a_{1}c(a_{2}p)=a_{2}c(a_{1}p)$ con lo que $a_{1}^{-1}c(a_{1}p)=a_{2}^{-1}c(a_{2}p)$.
 
 Si $c(p)=aD^{*}$, entonces decimos que $a$ es el contenido y abusaremos de la notacion escribiendo $a=c(p)$. En realidad deberiamos decir "un contenido" pero estamos abusando de la notacion, de la misma forma que lo haciamos al hablar "del maximo comun divisor" o "el mínimo comun multiplo". En todos los casos se trata de un concepto que es unico salvo multiplicacion por unidades de $D$.
@@ -645,17 +667,17 @@ Observese que si $a\in D$ y $p\in D[X]$ entonces las notaciones $a\mid c(p)$ y $
 Veamos ahora algunas propiedades del contenido.
 
 \begin{proposition}{}{}
-Sean D un DFU y K su cuerpo de fracciones. Sean a $\in$ K y p $\in$ K[X].
+Sean $D$ un DFU y $K$ su cuerpo de fracciones. Sean $a \in K$ y $p \in K[X]$.
 
 \begin{enumerate}
-\item[(1)] Si a $\in$ D y p $\in$ D[X] entonces a $|$ p en D[X] si y solo si a $|$ c(p) en D.
-\item[(2)] c(ap) = ac(p).
-\item[(3)] p $\in$ D[X] si y solo si c(p) $\in$ D.
+\item Si $a \in D$ y $p \in D[X]$ entonces $a \mid p$ en $D[X]$ si y solo si $a \mid c(p)$ en $D$.
+\item $c(ap) = ac(p)$.
+\item $p \in D[X]$ si y solo si $c(p) \in D$.
 \end{enumerate}
 \end{proposition}
 
 \begin{proofbox}
-Pongamos b = c(p).
+Pongamos $b = c(p)$.
 (1) Supongamos que a $\in$ D y p $\in$ D[X]. Entonces b es máximo común divisor de los coeficientes de p. Luego a $|$ p en D[X] si y solo si a divide a cada uno de los coeficientes de p (en D) si y solo si a divide a b.
 (2) Es consecuencia inmediata de la fórmula $\operatorname{mcd}(ap_0, ap_1, \ldots, ap_n) = a \operatorname{mcd}(p_0, p_1, \ldots, p_n)$.
 (3) Obviamente si p $\in$ D[X] entonces b $\in$ D. Para demostrar la otra implicación ponemos p = $\sum_{i=0}^k s_i X^i$ donde cada $s_i$ es una fracción reducida, entendiendo que si $r_i = 0$ entonces $s_i = 1$. Supongamos que p $\notin$ D[X]. Eso implica que algún $s_i$ no es unidad de D con lo que es divisible por un irreducible q y por tanto q no divide a $r_i$. Ponemos $s_i = q^{n_i} h_i$ con q no divide a $h_i$ para cada i y tomamos n = $\max(n_0, n_1, \ldots, n_k) \geq 1$ y m = $\operatorname{mcm}(s_0, \ldots, s_k)$. Entonces m = $q^n h$ con h $\in$ D y q no divide a h en D. Además $mp \in D[X] y c(mp) = mbD^*$. Pero $m s_i r_i = \frac{h r}{h_i}$ es el coeficiente de $X^i$ en $mp$, que es un elemento de D que no es múltiplo de q. Luego mb, que es el máximo común divisor de los coeficientes de mp, no es múltiplo de q en D. Pero m es un elemento de D que sí es múltiplo de q en D. Por tanto b $\notin$ D.
@@ -663,7 +685,7 @@ Pongamos b = c(p).
 
 Diremos que un polinomio es primitivo si c(p) = 1. Es decir p $\in$ D[X] es primitivo si los únicos divisores de p en D[X] que tienen grado 0 son las unidades de D[X]. Obsérvese que para todo 0 $\neq$ p $\in$ D[X] se tiene que p/c(p) es primitivo y de hecho c = c(p) si y solo si p = cp1 con p1 $\in$ D[X], primitivo.
 
-\begin{lemma}{Lema de Gauss}{}
+\begin{lemma}{Lema de Gauss}{gauss}
 Si f, g $\in$ K[X], entonces c(fg) = c(f)c(g). En particular, si f y g son primitivos entonces fg es primitivo y si además f, g $\in$ D[X] entonces se verifica el recíproco.
 \end{lemma}
 
@@ -675,8 +697,12 @@ Tenemos f = c(f)f1 y g = c(g)g1 con f1 y g1 primitivos. Por tanto fg = c(f)c(g)f
 Para un polinomio primitivo f $\in$ D[X] $\setminus$ D, las condiciones siguientes son equivalentes:
 
 \begin{enumerate}
-\item[(1)] f es irreducible en D[X].
-\item[(2)] f es irreducible en K[X].
-\item[(3)] Si f = GH con G, H $\in$ K[X] entonces $\operatorname{gr}(G) = 0$ ó $\operatorname{gr}(H) = 0$.
+\item f es irreducible en D[X].
+\item f es irreducible en K[X].
+\item Si f = GH con G, H $\in$ K[X] entonces $\operatorname{gr}(G) = 0$ ó $\operatorname{gr}(H) = 0$.
 \end{enumerate}
 \end{proposition}
+
+\begin{corollary}{}{}
+Si $D$ es un DFU y $K$ es su cuerpo de fracciones, entonces los irreducibles de $D[X]$ son los irreducibles de $D$ y los polinomios primitivos de $D[X] \setminus D$ que son irreducibles en $K[X]$.
+\end{corollary}
