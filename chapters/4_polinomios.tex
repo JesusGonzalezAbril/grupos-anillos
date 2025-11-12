@@ -44,7 +44,7 @@ Si $P$ y $Q$ son polinomios no nulos de $A[X]$ y sus términos principales son $
 
 \begin{proofbox}
 
-Supongamos que los coeficientes de $P$ son \(p_0, p_1, \dots, p_n = p, 0, \dots\) y los de $Q$ son $q_0, q_1, \dots, q_m = q, 0, \dots$, luego $\gr(P) = n, \gr(Q) = m$. Podemos suponer además sin perder generalidad que $n \geq m$.
+Supongamos que los coeficientes de $P$ son \(p_0, p_1, \dots, p_n = p\) y los de $Q$ son $q_0, q_1, \dots, q_m = q$, luego $\gr(P) = n, \gr(Q) = m$. Podemos suponer además sin perder generalidad que $n \geq m$.
 
 \begin{enumerate}
     \item Por la definición de grado
@@ -307,7 +307,7 @@ Recíprocamente, supongamos que
 \[
 f = (X - a)^m g
 \]
-con $g \in A[X]$ y $g(a) = 0$. Por la definición de multiplicidad, $m \leq n$. Como $X - a$ es monico también es cancelable en $A[X]$, y por tanto de
+con $g \in A[X]$ y $g(a) \neq 0$. Notemos que por tener multiplicidad $n$ también tenemos $f = (X - a)^n h$. Por la definición de multiplicidad, $m \leq n$. Como $X - a$ es monico, también es cancelable en $A[X]$, y por tanto de
 \[
 (X - a)^m g = (X - a)^n h
 \]
@@ -634,11 +634,14 @@ Por la Proposición \ref{prop:equivalencias_DFU}, solo falta demostrar que todo 
 
 De la Proposición \ref{prop:equivalencias_anillos_polinomios} y el Teorema \ref{thm:D_DFU_sii_DX_DFU} se deduce que ${\mathbb{Z}}[X]$ es un DFU pero no un DIP, lo que muestra que el reciproco del Teorema \ref{thm:DIP_implica_DFU} no es cierto.
 
+\clearpage
+\subsection{Contenido de un polinomio}
+
 Definimos una relacion de equivalencia $\sim$ en $K$ de la siguiente forma para $x,y\in K$:
 \[
 x\sim y\Leftrightarrow y=ux\text{ para algun }u\in D^{*}.
 \]
-Claramente la clase de equivalencia que contiene a $x$ es $xD^{*}=\{xu:u\in D^{*}\}$. En particular, si $x\in D$ entonces la clase de equivalencia que contiene a $x$ esta formada por los elementos que son asociados de $x$ en $D$. Por ejemplo, $0D^{*}=\{0\}$, $1D^{*}=D^{*}$. Observese que $xyD^{*}=\{xa:a\in yD^{*}\}=x(yD^{*})$.
+Claramente la clase de equivalencia que contiene a $x$ es $xD^{*}=\{xu:u\in D^{*}\}$. En particular, si $x\in D$ entonces la clase de equivalencia que contiene a $x$ está formada por los elementos que son asociados de $x$ en $D$. Por ejemplo, $0D^{*}=\{0\}$, $1D^{*}=D^{*}$. Observese que $xyD^{*}=\{xa:a\in yD^{*}\}=x(yD^{*})$.
 
 Podemos definir una multiplicacion de elementos de $K$ por elementos de $K/\sim$ poniendo
 \[
@@ -652,13 +655,13 @@ c:K[X]\to K/\sim
 \]
 Empezamos definiendo $c(p)$ para $p\in D[X]$ como la clase que contiene a un maximo comun divisor de los coeficientes de $p$, o sea, si $p=\sum_{i\geq 0}p_{i}X^{i}$ entonces
 \[
-c(p)=\operatorname{mcd}(p_{i}:i\geq 0)D^{*}.
+c(p)=\operatorname{mcd}\{p_{i}:i\geq 0\}D^{*}.
 \]
 Para definir $c(p)$ para un elemento $p\in K[X]$ elegimos $a\in D\setminus\{0\}$ con $ap\in D[X]$ y definimos
 \[
 c(p)=a^{-1}c(ap).
 \]
-Esto esta bien definido pues si $a_{1}p,a_{2}p\in D[X]$ entonces $c(a_{1}a_{2}p)=a_{1}c(a_{2}p)=a_{2}c(a_{1}p)$ con lo que $a_{1}^{-1}c(a_{1}p)=a_{2}^{-1}c(a_{2}p)$.
+Donde $a^{-1} \in K$. Esto esta bien definido pues si $a_{1}p,a_{2}p\in D[X]$ entonces $c(a_{1}a_{2}p)=a_{1}c(a_{2}p)=a_{2}c(a_{1}p)$ con lo que $a_{1}^{-1}c(a_{1}p)=a_{2}^{-1}c(a_{2}p)$.
 
 Si $c(p)=aD^{*}$, entonces decimos que $a$ es el contenido y abusaremos de la notacion escribiendo $a=c(p)$. En realidad deberiamos decir "un contenido" pero estamos abusando de la notacion, de la misma forma que lo haciamos al hablar "del maximo comun divisor" o "el mínimo comun multiplo". En todos los casos se trata de un concepto que es unico salvo multiplicacion por unidades de $D$.
 
@@ -678,8 +681,34 @@ Sean $D$ un DFU y $K$ su cuerpo de fracciones. Sean $a \in K$ y $p \in K[X]$.
 
 \begin{proofbox}
 Pongamos $b = c(p)$.
-(1) Supongamos que a $\in$ D y p $\in$ D[X]. Entonces b es máximo común divisor de los coeficientes de p. Luego a $|$ p en D[X] si y solo si a divide a cada uno de los coeficientes de p (en D) si y solo si a divide a b.
-(2) Es consecuencia inmediata de la fórmula $\operatorname{mcd}(ap_0, ap_1, \ldots, ap_n) = a \operatorname{mcd}(p_0, p_1, \ldots, p_n)$.
+\begin{enumerate}
+    \item Si $a \mid p$ en $D[X]$ entonces $\forall i\geq 0,\ a \mid p_i$. Por tanto, por definición de $\mcd$, $b = ax \implies a \mid b$ en $D$. Por el contrario, si $a \mid b$ entonces $a$ es un divisor común de todos los $p_i$, por lo que divide a $p$.
+
+    \item Sea $d \in D \setminus \{0\}$ tal que $dap, dp \in D[X]$, entonces
+    \[
+    c(ap) = d^{-1}c(dap),\quad c(p) = d^{-1}c(dp).
+    \]
+    Por tanto, basta probar que
+    \[
+    \operatorname{mcd}(ap_0, ap_1, \ldots, ap_n) = a \operatorname{mcd}(p_0, p_1, \ldots, p_n).
+    \]
+    En efecto, si $d = \operatorname{mcd}(p_0, p_1, \ldots, p_n)$ entonces dado $i\geq 0$ sabemos que $d \mid p_i$, por lo que $ad \mid ap_i$ y $ad$ es divisor común de los $ap_i$. Si
+    \[
+    c = \operatorname{mcd}(ap_0, ap_1, \ldots, ap_n)
+    \]
+    entonces $ad \mid c$. Además, como $d$ es el $mcd$ de los $p_i$ existen $a_i$ tales que
+    \[
+    d = a_1 p_1 + \dots + a_n p_n \implies ad = aa_1 p_1 + \dots + aa_n p_n 
+    \]
+    y como $c \mid a p_i \implies c \mid a a_i p_i$, por tanto
+    \[
+    c \mid \sum_i a a_i p_i = ad
+    \]
+    y finalmente $c = ad$ como queríamos ver.
+
+    \item Pendiente
+\end{enumerate}
+\vspace{1cm}
 (3) Obviamente si p $\in$ D[X] entonces b $\in$ D. Para demostrar la otra implicación ponemos p = $\sum_{i=0}^k s_i X^i$ donde cada $s_i$ es una fracción reducida, entendiendo que si $r_i = 0$ entonces $s_i = 1$. Supongamos que p $\notin$ D[X]. Eso implica que algún $s_i$ no es unidad de D con lo que es divisible por un irreducible q y por tanto q no divide a $r_i$. Ponemos $s_i = q^{n_i} h_i$ con q no divide a $h_i$ para cada i y tomamos n = $\max(n_0, n_1, \ldots, n_k) \geq 1$ y m = $\operatorname{mcm}(s_0, \ldots, s_k)$. Entonces m = $q^n h$ con h $\in$ D y q no divide a h en D. Además $mp \in D[X] y c(mp) = mbD^*$. Pero $m s_i r_i = \frac{h r}{h_i}$ es el coeficiente de $X^i$ en $mp$, que es un elemento de D que no es múltiplo de q. Luego mb, que es el máximo común divisor de los coeficientes de mp, no es múltiplo de q en D. Pero m es un elemento de D que sí es múltiplo de q en D. Por tanto b $\notin$ D.
 \end{proofbox}
 
