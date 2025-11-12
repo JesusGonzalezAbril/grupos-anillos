@@ -1,0 +1,154 @@
+\section{Operaciones binarias}
+
+\begin{definition}{Operación binaria}{op_bin}
+    Sea \(X\) un conjunto. Una operación binaria en \(X\) es una aplicación \(*:X\times X\to X\). Por lo general escribimos \( * (a,b) = a * b\).
+\end{definition}
+
+\begin{remark}
+    En general, si por el contexto se sobreentiende que una operación es binaria, se simplifica el lenguaje hablando simplemente de operaciones. De igual manera, normalmente se omite el conjunto sobre el que está definida la operación.
+\end{remark}
+
+\begin{definition}{Tipos de operaciones}{tipos_op}
+    Una operación $*$ se dice
+    \begin{itemize}
+        \item \textbf{Conmutativa} si $x * y = y * x$ para todo $x,y\in X$.
+        \item \textbf{Asociativa} si $x * (y * z) = (x * y) * z$ para todo $x,y,z \in X$.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{Terminología sobre elementos}{term_elem}
+    Un elemento \(x\in X\) se dice que es:
+    \begin{itemize}
+        \item \textbf{Neutro por la izquierda (neutro por la derecha)} si \(x*y=y\) para todo \(y\in X\) (\(y*x=y\) para todo \(y\in X\)).
+        
+        \item \textbf{Cancelable por la izquierda (cancelable por la derecha)} si para cada dos elementos distintos \(a \neq b\) de \(X\) se verifica \(x*a\neq x*b\) (\(a*x\neq b*x\)).
+        
+        \item \textbf{Neutro} si es neutro por la derecha y por la izquierda.
+
+        \item \textbf{Cancelable} si es cancelable por la izquierda y por la derecha.
+    \end{itemize}
+
+    Supongamos que \(e\) es un elemento neutro de \(X\) con respecto a \(*\). Sean \(x\) e \(y\) elementos de \(X\). Decimos que \(x\) es simétrico de \(y\) por la izquierda y que \(y\) es simétrico de \(x\) por la derecha con respecto a \(*\) si se verifica \(x*y=e\). En este contexto decimos que $x$ es:
+    \begin{itemize}
+        \item \textbf{Simétrico} de $y$ si lo es por ambos lados. En tal caso decimos que $x$ es invertible, siendo $y$ su inverso ($y = x^{-1}$ si el inverso es único).
+    \end{itemize}
+\end{definition}
+
+\begin{example}{}{}
+    Si $x$ es cancelable por la izquierda, entonces para cualesquiera $a,b \in X$ se tiene
+    \[
+    x * a = x * b \implies a = b
+    \]
+\end{example}
+
+\begin{proofbox}
+    Supongamos que $x * a = x * b$, si $a = b$ ya hemos terminado. En caso contrario, $a$ y $b$ son elementos distintos, y, como $x$ es cancelable por la izquierda, entonces debe ser $x * a \neq x * b$, pero eso contradice la suposición inicial, luego ha de ser $a = b$.
+\end{proofbox}
+
+\begin{example}{}{}
+Si $x$ es cancelable por la derecha entonces, para cualesquiera $a,b \in X$ se tiene
+    \[
+    a * x = b * x \implies a = b
+    \]
+\end{example}
+
+\begin{remark}
+    Notemos que esta caracterización no es más que el contrarrecíproco de la primera definición que hemos dado de elemento cancelable. 
+\end{remark}
+
+\begin{definition}{Tipos de conjuntos con operaciones}{tipos_conj_op}
+    Un par \((X,*)\) formado por un conjunto y una operación \(*\) decimos que es un:
+    \begin{itemize}
+        \item \textbf{Semigrupo} si \(*\) es asociativa.
+        
+        \item \textbf{Monoide} si es un semigrupo que tiene un elemento neutro con respecto a \(*\).
+        
+        \item \textbf{Grupo} si es un monoide y todo elemento de \(X\) es invertible con respecto a \(*\).
+        
+        \item \textbf{Grupo abeliano} si es un grupo y \(*\) es conmutativa.
+    \end{itemize}
+\end{definition}
+
+\begin{example}{}{conjuntos_op_binarias}
+    Si tomamos la suma de elementos sobre distintos conjuntos de números obtenemos un ejemplo de cada uno de los tipos de conjuntos con operaciones:
+    \begin{enumerate}
+        \item $(\N \setminus \{ 0 \},+)$ es un semigrupo, ya que la suma es asociativa, pero no tiene neutro.
+        \item $(\N,+)$ es un monoide, ya que la suma es asociativa y tiene el 0 como neutro.
+        \item $(\Z,+)$ es un grupo, ya que la suma es asociativa, tiene neutro y todos los elementos tienen inverso. De hecho, como la suma es conmutativa es un grupo abeliano.
+    \end{enumerate}
+\end{example}
+
+\begin{example}{Grupo no abeliano}{grupo_no_abeliano}
+    Un ejemplo de grupo no abeliano es $GL_n(\R)$ si $n \geq 2$. $GL_n(\R)$ es el grupo de las matrices invertibles $n\times n$ con entradas reales, donde la operación es la multiplicación de matrices.
+\end{example}
+
+\begin{proofbox}
+    En primer lugar, es inmediato que la operación es asociativa. También es fácil ver que tiene elemento neutro, la matriz identidad $I_n$. Si tomamos una matriz cualquiera $A\in GL_n(\R)$ esta ha de tener inversa, por lo que su elemento inverso es $A^{-1}$ que claramente pertenece a $GL_n(\R)$.
+
+    Finalmente, para ver que el grupo no es conmutativo notemos que para $n=2$ podemos tomar las matrices
+    \[
+    A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}, B = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}
+    \]
+    ambas invertibles por tener determinante no nulo, que verifican
+    \[
+    AB = \begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix} \neq BA = \begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}.
+    \]
+    En el caso de que sea $n > 2$ podemos tomar matrices de la forma
+    \[
+    A' = \begin{pmatrix} A & 0 \\ 0 & I_{n-2} \end{pmatrix}, B' = \begin{pmatrix} B & 0 \\ 0 & I_{n-2} \end{pmatrix}
+    \]
+    cuyo producto no conmuta por las propiedades de la multiplicación de matrices por bloques.
+\end{proofbox}
+
+\begin{example}{}{}
+    Sean $A$ un conjunto y sea $X=A^{A}$ el conjunto de las aplicaciones de $A$ en $A$. Probar que la composición de aplicaciones define una operación asociativa en $X$ para la que la identidad $1_{X}$ es neutro. Esto prueba que $(A^{A},\circ)$ es un monoide.
+\end{example}
+
+\begin{proposition}{}{prop_operaciones}
+    Sea $*$ una operación en un conjunto $X$.
+
+    \begin{enumerate}
+    
+    \item Si $e$ es un neutro por la izquierda y $f$ es un neutro por la derecha de $X$ con respecto a $*$, entonces $e = f$. En particular, $X$ tiene a lo sumo un neutro.
+    
+    \item Supongamos que $(X, *)$ es un monoide y sea $a \in X$.
+    \begin{enumerate}
+        \item Si $x$ es un simétrico por la izquierda de $a$ e $y$ es un simétrico por la derecha de $a$, entonces $x = y$. Por tanto, en tal caso $a$ es invertible y tiene a lo sumo un simétrico.
+        
+        \item Si $a$ tiene un simétrico por un lado entonces es cancelable por ese mismo lado. En particular, todo elemento invertible es cancelable.
+    \end{enumerate}
+    \end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+    (1) Como $e$ es neutro por la izquierda y $f$ es neutro por la derecha tenemos
+    \[
+    f = e * f = e.
+    \]
+    (2a) Ahora suponemos que $(X, *)$ es un monoide. Por (1), $(X, *)$ tiene un único neutro que vamos a denotar por $e$. Como $x$ es inverso por la izquierda de $a$ e $y$ es inverso por la derecha de $a$, usando la propiedad asociativa, tenemos que
+    \[
+    y = e * y = (x * a) * y = x * (a * y) = x * e = x.
+    \]
+    (2b) Supongamos que $a$ es un elemento de $X$ que tiene un inverso por la izquierda $b$ y que $a * x = a * y$ para $x, y \in X$. Usando la asociatividad una vez más concluimos que
+    \[
+    x = e * x = (b * a) * x = b * (a * x) = b * (a * y) = (b * a) * y = e * y = y.
+    \]
+\end{proofbox}
+
+\begin{remark}
+    Por la proposición anterior si $X$ es un monoide cada elemento invertible $a$ tiene un único inverso que denotaremos $a^{-1}$. 
+\end{remark}
+
+\subsection{Subconjuntos y operaciones}
+
+Sea $*$ una operación en un conjunto $A$ y sea $B$ un subconjunto de $A$. Decimos que $B$ es cerrado con respecto a $*$ si para todo $a, b \in B$ se verifica que $a * b \in B$. En tal caso podemos
+considerar $*$ como una operación en $B$ que se dice inducida por la operación en $A$.
+
+\begin{itemize}
+\item Un subsemigrupo de un semigrupo es un subconjunto suyo que con la misma operación es un semigrupo.
+
+\item Un submonoide de un monoide es un subconjunto suyo que con la misma operación es un monoide con el mismo neutro.
+
+\item Un subgrupo de un grupo es un subconjunto suyo que con la misma operación es un grupo.
+\end{itemize}
+

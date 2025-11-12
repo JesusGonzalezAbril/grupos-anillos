@@ -1,0 +1,136 @@
+\clearpage
+\section{Subgrupos}
+
+\begin{definition}{Subgrupo}{subgrupo}
+Sea $G$ un grupo. Un subconjunto $S$ de $G$ se dice que es un subgrupo si la operación que define la estructura de grupo en $G$ induce también una estructura de grupo en $S$.
+\end{definition}
+
+\begin{lemma}{Caracterización de subgrupos}{caracterizacion_subgrupos}
+Sean $G$ un grupo y $S$ un subconjunto de $G$. Las siguientes condiciones son equivalentes:
+
+\begin{enumerate}
+    \item $S$ es un subgrupo de $G$.
+    \item $1 \in S$ y para todo $a, b \in S$, se verifican $ab, a^{-1} \in S$.
+    \item $S \neq \emptyset$ y para todo $a, b \in S$, se verifican $ab, a^{-1} \in S$.
+    \item $1 \in S$ y para todo $a, b \in S$, se verifica $ab^{-1} \in S$.
+    \item $S \neq \emptyset$ y para todo $a, b \in S$, se verifica $ab^{-1} \in S$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+    Pendiente.
+\end{proofbox}
+
+\subsection{Ejemplos de subgrupos}
+\label{ejemplos_subgrupos}
+
+\begin{example}{}{}
+Si $G$ es un grupo, entonces $\{1\}$ y $G$ son subgrupos de $G$. El primero se llama subgrupo trivial, denotado $1$ y el segundo subgrupo impropio de $G$. Los subgrupos de $G$ diferentes de $G$ se dice que son subgrupos propios.
+\end{example}
+
+\begin{example}{}{}
+Si $(A, +)$ es el grupo aditivo de un anillo, entonces todo subanillo y todo ideal de $A$ son subgrupos de este grupo.
+\end{example}
+    
+\begin{example}{Subgrupos de \(\Z\)}{}
+Si $S$ es un subgrupo de $(\mathbb{Z}, +)$, entonces $nx \in S$, para todo $n \in \mathbb{Z}$ y todo $x \in I$. Eso implica que $S$ es un ideal de $\mathbb{Z}$ y por tanto los subgrupos de $(\mathbb{Z}, +)$ son los de la forma $n\mathbb{Z}$ para $n$ un entero no negativo.
+\end{example}
+
+\begin{example}{}{}
+Sea $\mathrm{GL}_n(K)$ el grupo de las matrices invertibles de tamaño $n$ con entradas en el cuerpo $K$. Entonces el conjunto $\mathrm{SL}_n(K)$ formado por las matrices de determinante $1$ es un subgrupo de $\mathrm{GL}_n(K)$.
+\end{example}
+
+\begin{example}{Automorfismos}{}
+Supongamos que $A$ es un anillo y sea $S_A$ el grupo de las permutaciones de $A$. Entonces el conjunto $\mathrm{Aut}(A)$ formado por los automorfismos de $A$ es un subgrupo de $S_A$.
+
+Ejemplos similares se pueden obtener con casi todas las estructuras matemáticas. Por ejemplo, si $G$ es un grupo, entonces decimos que $f : G \to G$ es un automorfismo si $f$ es biyectivo y $f(gh) = f(g)f(h)$ para todo $g, h \in G$. Entonces el conjunto $\mathrm{Aut}(G)$ formado por todos los automorfismos de $G$ es un subgrupo del grupo simétrico $S_G$ de $G$.
+\end{example}
+
+\begin{example}{}{}
+Si $X$ es un espacio topológico entonces el conjunto de todos los homeomorfismos de $X$ de $X$ en si mismo es un subgrupo de $S_X$. Recuérdese que un homeomorfismo entre dos espacios topológicos es una aplicación biyectiva que tanto ella como su inversa son continuas. Si $X$ es un espacio métrico con distancia $d$, entonces el conjunto de las isometrías es un subgrupo de $S_X$. Recuérdese que una isometría entre dos espacios métricos es una biyección $f$ de uno al otro verifica $d(f(x),f(y))=d(x,y)$ para todos los elementos $x,y$ del dominio de $f$.
+\end{example}
+
+\begin{example}{Subgrupo cíclico}{}
+Si $G$ es un grupo y $g \in G$, entonces 
+\[
+\langle g\rangle = \{g^n : n \in \mathbb{Z}\}
+\]
+es un subgrupo de $G$, llamado grupo cíclico generado por $g$. Un grupo $G$ se dice que es cíclico si tiene un elemento $g$ tal que $G = \langle g\rangle$. En tal caso se dice que $g$ es un generador de $G$. Por ejemplo, $(\mathbb{Z},+)$ es cíclico generado por $1$ y $(\mathbb{Z}_n,+)$ es otro grupo cíclico generado por la clase de $1$. Otros ejemplos de grupos cíclicos son los grupos $C_n$ y $C_\infty$.
+\end{example}
+
+\begin{example}{}{}
+Si $X$ es un subconjunto arbitrario de $G$, entonces el conjunto formado por todos los elementos de $G$ de la forma $x_1^{n_1}x_2^{n_2}\ldots x_m^{n_m}$, con $x_1,\ldots x_m \in X$ y $n_1,\ldots,n_m \in \mathbb{Z}$, es un subgrupo de $G$, que resulta ser el menor subgrupo de $G$ que contiene a $X$ y por tanto se llama subgrupo generado por $X$ y se denota $\langle X\rangle$.
+
+El subgrupo generado por $X$ se puede construir de otra forma. Es un sencillo ejercicio comprobar que la intersección de subgrupos de $G$, es un subgrupo. Por tanto la intersección de todos los subgrupos de $G$ que contienen a $X$ es un subgrupo de $G$ y es el menor subgrupo de $G$ que contiene a $X$, con lo que es el subgrupo generado por $X$.
+\end{example}
+
+\begin{example}{Suma directa de grupos}{}
+Si $(G_i)_{i \in I}$ es una familia arbitraria de grupos, entonces el subconjunto $\oplus_{i \in I} G_i$ formado por los elementos $(g_i) \in \prod_{i \in I} G_i$ tales que $g_i = 1$ para casi todo $i$, es un subgrupo de $\prod_{i \in I} G_i$.
+\end{example}
+
+\begin{example}{Centro y centralizador}{}
+Si $G$ es un grupo arbitrario, entonces 
+\[
+Z(G) = \{g \in G : gx = xg, \text{ para todo } x \in G\}
+\]
+es un subgrupo abeliano de $G$, llamado centro de $G$. Más generalmente, si $x \in G$, entonces 
+\[
+C_G(x) = \{g \in G : gx = xg\}
+\]
+es un subgrupo de $G$, llamado centralizador de $x$ en $G$. Observese que $Z(G)$ es la intersección de todos los centralizadores de los elementos de $G$ en $G$.
+\end{example}
+
+\subsection{Clases laterales}
+
+Sea $G$ un grupo y $H$ un subgrupo de $G$. Se define la siguiente relación binaria en $G$:
+\[
+a \equiv_i b \mod H \quad \Leftrightarrow \quad a^{-1}b \in H. \qquad (a,b \in G).
+\]
+Se puede comprobar fácilmente que esta relación es de equivalencia y por tanto define una partición de $G$ en clases de equivalencia. La clase de equivalencia que contiene a $a$ es
+\[
+aH = \{ah : h \in H\}
+\]
+y se llama clase lateral de $a$ módulo $H$ por la izquierda.
+
+Análogamente se puede definir otra relación de equivalencia:
+\[
+a \equiv_d b \mod H \quad \Leftrightarrow \quad ab^{-1} \in H. \quad (a,b \in G)
+\]
+para la que las clase de equivalencia que contiene a $a$ es
+\[
+Ha = \{ha : h \in H\}
+\]
+y se llama clase lateral de $a$ módulo $H$ por la derecha.
+
+El conjunto de las clases laterales por la izquierda de $G$ módulo $H$ se denota por $G/H$ y el de clases laterales por la derecha $H \backslash G$.
+
+Como consecuencia del Lema \ref{lem:caracterizacion_subgrupos} las aplicaciones
+\[
+\begin{array}{ccc}
+H \to aH & \quad & H \to Ha \\
+h \mapsto ah & & h \mapsto ha
+\end{array}
+\]
+son biyectivas, con lo que todas las clases laterales tienen el mismo cardinal. Además la aplicación
+\[
+\begin{array}{ccc}
+G/H & \to & H \backslash G \\
+aH & \mapsto & Ha^{-1}
+\end{array}
+\]
+es otra biyección con lo que también $G/H$ y $H \backslash G$ tienen el mismo cardinal.
+
+Denotamos con $|X|$ el cardinal de un conjunto cualquiera. En el caso en que $G$ sea un grupo el cardinal de $G$ se suele llamar orden de $G$. Acabamos de ver que para cada subgrupo $H$ de $G$ se verifica:
+\[
+|aH| = |Ha| = |H| \quad \text{y} \quad |G/H| = |H \backslash G|
+\]
+
+El cardinal de $G/H$ (y $H \backslash G$) se llama índice de $H$ en $G$ y se denota $[G : H]$. Una consecuencia inmediata de estas fórmulas es el siguiente Teorema.
+
+\begin{theorem}{Teorema de Lagrange}{lagrange}
+Si $G$ es un grupo finito y $H$ es un subgrupo de $G$ entonces $|G| = |H||G : H|$.
+\end{theorem}
+
+\begin{corollary}{}{corolario_lagrange}
+Si $G$ es un grupo finito de orden primo entonces los únicos subgrupos de $G$ son $1$ y $G$. En particular $G$ es cíclico y cualquier elemento de $G$ distinto de $1$ es un generador de $G$.
+\end{corollary}
