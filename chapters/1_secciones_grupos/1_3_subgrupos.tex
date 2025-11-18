@@ -7,22 +7,31 @@ Sea $G$ un grupo. Un subconjunto $S$ de $G$ se dice que es un subgrupo si la ope
 
 \begin{lemma}{Caracterización de subgrupos}{caracterizacion_subgrupos}
 Sean $G$ un grupo y $S$ un subconjunto de $G$. Las siguientes condiciones son equivalentes:
-
 \begin{enumerate}
     \item $S$ es un subgrupo de $G$.
-    \item $1 \in S$ y para todo $a, b \in S$, se verifican $ab, a^{-1} \in S$.
+    \item $e \in S$ y para todo $a, b \in S$, se verifican $ab, a^{-1} \in S$.
     \item $S \neq \emptyset$ y para todo $a, b \in S$, se verifican $ab, a^{-1} \in S$.
-    \item $1 \in S$ y para todo $a, b \in S$, se verifica $ab^{-1} \in S$.
+    \item $e \in S$ y para todo $a, b \in S$, se verifica $ab^{-1} \in S$.
     \item $S \neq \emptyset$ y para todo $a, b \in S$, se verifica $ab^{-1} \in S$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proofbox}
-    Pendiente.
+$(1) \Rightarrow (2)$: Que $ab \in S$ es inmediato porque $S$ es un grupo, para ver que $a^{-1} \in S$ basta notar que los inversos son únicos: como $a$ debe de tener un inverso en $S$, este debe coincidir con su inverso en $G$. Sea $a \in S$, entonces $a^{-1} \in S$, luego $e = aa^{-1} \in S$.
+
+$(2) \Rightarrow (3)$: Inmediato.
+
+$(3) \Rightarrow (4)$: Dado $a \in S$ (existe por hipótesis) tenemos que $a^{-1} \in S$, luego $e = aa^{-1} \in S$. Además, $b^{-1} \in S$, luego $ab^{-1} \in S$.
+
+$(4) \Rightarrow (5)$: inmediato.
+
+$(5) \Rightarrow (1)$: Dado $a \in S$ (existe por hipótesis) tenemos que $aa^{-1} \in S$, luego $e = aa^{-1} \in S$. Este elemento es el neutro de $S$ puesto que el neutro es único. Sea $a \in S$, entonces $ea^{-1} \in S$, luego $a^{-1} \in S$, y este ha de ser el inverso de $a$ puesto que el inverso es único en $G$.
 \end{proofbox}
 
 \subsection{Ejemplos de subgrupos}
 \label{ejemplos_subgrupos}
+
+Para probar que un conjunto es un subgrupo podemos emplear cualquiera de las caracterizaciones del Lema \ref{lem:caracterizacion_subgrupos}, usualmente emplearemos (5) por ser la más sencilla.
 
 \begin{example}{}{}
 Si $G$ es un grupo, entonces $\{1\}$ y $G$ son subgrupos de $G$. El primero se llama subgrupo trivial, denotado $1$ y el segundo subgrupo impropio de $G$. Los subgrupos de $G$ diferentes de $G$ se dice que son subgrupos propios.
@@ -33,21 +42,39 @@ Si $(A, +)$ es el grupo aditivo de un anillo, entonces todo subanillo y todo ide
 \end{example}
     
 \begin{example}{Subgrupos de \(\Z\)}{}
-Si $S$ es un subgrupo de $(\mathbb{Z}, +)$, entonces $nx \in S$, para todo $n \in \mathbb{Z}$ y todo $x \in I$. Eso implica que $S$ es un ideal de $\mathbb{Z}$ y por tanto los subgrupos de $(\mathbb{Z}, +)$ son los de la forma $n\mathbb{Z}$ para $n$ un entero no negativo.
+Si $S$ es un subgrupo de $(\mathbb{Z}, +)$, entonces dado $x \in S$ arbitrario, $x + x \in S$. Por inducción se deduce que $nx \in S$ para todo $n \in \mathbb{Z}$ y todo $x \in S$. Eso implica que $S$ es un ideal de $\mathbb{Z}$ y por tanto los subgrupos de $(\mathbb{Z}, +)$ son los de la forma $n\mathbb{Z}$ para $n$ un entero no negativo.
 \end{example}
 
 \begin{example}{}{}
 Sea $\mathrm{GL}_n(K)$ el grupo de las matrices invertibles de tamaño $n$ con entradas en el cuerpo $K$. Entonces el conjunto $\mathrm{SL}_n(K)$ formado por las matrices de determinante $1$ es un subgrupo de $\mathrm{GL}_n(K)$.
+
+\begin{proofbox}
+Claramente $\mathrm{SL}_n(K)$ es no vacío. Sean $A, B \in \mathrm{SL}_n(K)$, entonces $\det(A) = \det(B) = 1$, como además $B$ es invertible sabemos que
+\[
+1 = \det(I) = \det(BB^{-1}) = \det(B)\det(B^{-1}) = \det(B^{-1}),
+\]
+luego 
+\[
+\det(AB^{-1}) = \det(A)\det(B^{-1}) = 1 \implies AB^{-1} \in \mathrm{SL}_n(K)
+\]
+como queríamos ver.
+\end{proofbox}
+
 \end{example}
 
 \begin{example}{Automorfismos}{}
 Supongamos que $A$ es un anillo y sea $S_A$ el grupo de las permutaciones de $A$. Entonces el conjunto $\mathrm{Aut}(A)$ formado por los automorfismos de $A$ es un subgrupo de $S_A$.
+\begin{proofbox}
+$\mathrm{Aut}(A) \neq \emptyset$, dados $f,g \in \mathrm{Aut}(A)$, $g^{-1}$ también es un automorfismo y, como la composición de homomorfismos de anillos es homomorfismo, $fg^{-1} \in \mathrm{Aut}(A)$ al ser un homomorfismo de $A$ en $A$.
+\end{proofbox}
 
 Ejemplos similares se pueden obtener con casi todas las estructuras matemáticas. Por ejemplo, si $G$ es un grupo, entonces decimos que $f : G \to G$ es un automorfismo si $f$ es biyectivo y $f(gh) = f(g)f(h)$ para todo $g, h \in G$. Entonces el conjunto $\mathrm{Aut}(G)$ formado por todos los automorfismos de $G$ es un subgrupo del grupo simétrico $S_G$ de $G$.
 \end{example}
 
 \begin{example}{}{}
-Si $X$ es un espacio topológico entonces el conjunto de todos los homeomorfismos de $X$ de $X$ en si mismo es un subgrupo de $S_X$. Recuérdese que un homeomorfismo entre dos espacios topológicos es una aplicación biyectiva que tanto ella como su inversa son continuas. Si $X$ es un espacio métrico con distancia $d$, entonces el conjunto de las isometrías es un subgrupo de $S_X$. Recuérdese que una isometría entre dos espacios métricos es una biyección $f$ de uno al otro verifica $d(f(x),f(y))=d(x,y)$ para todos los elementos $x,y$ del dominio de $f$.
+Si $X$ es un espacio topológico entonces el conjunto de todos los homeomorfismos de $X$ de $X$ en si mismo es un subgrupo de $S_X$. Recuérdese que un homeomorfismo entre dos espacios topológicos es una aplicación biyectiva tal que tanto ella como su inversa son continuas. 
+
+Si $X$ es un espacio métrico con distancia $d$, entonces el conjunto de las isometrías es un subgrupo de $S_X$. Recuérdese que una isometría entre dos espacios métricos es una biyección $f$ de uno al otro verifica $d(f(x),f(y))=d(x,y)$ para todos los elementos $x,y$ del dominio de $f$.
 \end{example}
 
 \begin{example}{Subgrupo cíclico}{}
@@ -55,17 +82,65 @@ Si $G$ es un grupo y $g \in G$, entonces
 \[
 \langle g\rangle = \{g^n : n \in \mathbb{Z}\}
 \]
-es un subgrupo de $G$, llamado grupo cíclico generado por $g$. Un grupo $G$ se dice que es cíclico si tiene un elemento $g$ tal que $G = \langle g\rangle$. En tal caso se dice que $g$ es un generador de $G$. Por ejemplo, $(\mathbb{Z},+)$ es cíclico generado por $1$ y $(\mathbb{Z}_n,+)$ es otro grupo cíclico generado por la clase de $1$. Otros ejemplos de grupos cíclicos son los grupos $C_n$ y $C_\infty$.
+es un subgrupo de $G$, llamado grupo cíclico generado por $g$.
+\begin{proofbox}
+Notemos que $e = g^0 \in \langle g\rangle$. Si $a, b \in \langle g \rangle$ entonces $a = g^{n_0}, b = g^{n_1}$ y es obvio que
+\[
+bg^{-n_1} = g^0 = e \implies b^{-1} = g^{-n_1}
+\]
+luego
+\[
+ab^{-1} = g^{n_0}g^{-n_1} = g^{n_0 - n_1} \in \langle g\rangle. 
+\]
+\end{proofbox}
+
+Un grupo $G$ se dice que es cíclico si tiene un elemento $g$ tal que $G = \langle g\rangle$. En tal caso se dice que $g$ es un generador de $G$. Por ejemplo, $(\mathbb{Z},+)$ es cíclico generado por $1$ y $(\mathbb{Z}_n,+)$ es otro grupo cíclico generado por la clase de $1$. Otros ejemplos de grupos cíclicos son los grupos $C_n$ y $C_\infty$.
 \end{example}
 
 \begin{example}{}{}
 Si $X$ es un subconjunto arbitrario de $G$, entonces el conjunto formado por todos los elementos de $G$ de la forma $x_1^{n_1}x_2^{n_2}\ldots x_m^{n_m}$, con $x_1,\ldots x_m \in X$ y $n_1,\ldots,n_m \in \mathbb{Z}$, es un subgrupo de $G$, que resulta ser el menor subgrupo de $G$ que contiene a $X$ y por tanto se llama subgrupo generado por $X$ y se denota $\langle X\rangle$.
+\begin{proofbox}
+Sea $x \in X$, entonces $e = x^0 \in \langle X\rangle$. Sean $a,b \in \langle X\rangle$ de la forma
+\[
+a = x_1^{n_1}x_2^{n_2}\ldots x_m^{n_m}, b = y_1^{l_1}y_2^{l_2}\ldots y_k^{l_k}
+\]
+es inmediato que
+\[
+b(y_k^{-l_k} \ldots y_1^{-l_1}) = e \implies b^{-1} = y_k^{-l_k} \ldots y_1^{-l_1}
+\]
+y por tanto
+\[
+ab^{-1} = x_1^{n_1}x_2^{n_2} \ldots x_m^{n_m} y_k^{-l_k} \ldots y_1^{-l_1} = z_1^{j_1} \ldots z_{m+k}^{j_k}
+\]
+donde $z_i = x_i, j_i = n_i$ si $1 \leq i \leq m$, $z_i = y_{k + m + 1 - i}, j_i = l_{k + m + 1 - i}= $ si $m < i \leq m + k$. Luego $ab^{-1} \in \langle X \rangle$.
+\end{proofbox}
 
-El subgrupo generado por $X$ se puede construir de otra forma. Es un sencillo ejercicio comprobar que la intersección de subgrupos de $G$, es un subgrupo. Por tanto la intersección de todos los subgrupos de $G$ que contienen a $X$ es un subgrupo de $G$ y es el menor subgrupo de $G$ que contiene a $X$, con lo que es el subgrupo generado por $X$.
+\end{example}
+
+\begin{example}{}{}
+El subgrupo generado por $X$ se puede construir de otra forma. Es un sencillo ejercicio comprobar que la intersección de subgrupos de $G$, es un subgrupo.
+
+\begin{proofbox}
+Sean $G_i \subseteq G$ subgrupos de $G$ y sea $H = \cap_{i \in I} G_i$. Entonces $e \in H$ ya que está en cada $G_i$. Si $a,b \in H$ entonces para todo $i \in I$
+\[
+a, b \in G_i \implies ab^{-1} \in G_i \implies ab^{-1} \in H.
+\]
+\end{proofbox}
+
+Por tanto la intersección de todos los subgrupos de $G$ que contienen a $X$ es un subgrupo de $G$ y es el menor subgrupo de $G$ que contiene a $X$, con lo que es el subgrupo generado por $X$.
 \end{example}
 
 \begin{example}{Suma directa de grupos}{}
 Si $(G_i)_{i \in I}$ es una familia arbitraria de grupos, entonces el subconjunto $\oplus_{i \in I} G_i$ formado por los elementos $(g_i) \in \prod_{i \in I} G_i$ tales que $g_i = 1$ para casi todo $i$, es un subgrupo de $\prod_{i \in I} G_i$.
+
+\begin{proofbox}
+El elemento neutro de $\prod_{i \in I} G_i$ está, obviamente, en $\oplus_{i \in I} G_i$. Si $a, b \in \oplus_{i \in I} G_i$ entonces el inverso de $b = (b_i)$ es el elemento $b^{-1} = (c_i) = (b_i^{-1})$, notemos que como $1^{-1} = 1$ casi todo $c_i = 1$, luego $b^{-1} \in \oplus_{i \in I} G_i$ y de hecho 
+\[
+ab^{-1} = (d_i)
+\]
+donde todos los $d_i = 1$ salvo un número finito (como mucho, hay tantos distintos de 1 como la suma de los distintos de 1 de $a$ y $b$). En resumen, $ab^{-1} \in \oplus_{i \in I} G_i$, luego es un subgrupo.
+\end{proofbox}
+
 \end{example}
 
 \begin{example}{Centro y centralizador}{}
@@ -79,6 +154,21 @@ C_G(x) = \{g \in G : gx = xg\}
 \]
 es un subgrupo de $G$, llamado centralizador de $x$ en $G$. Observese que $Z(G)$ es la intersección de todos los centralizadores de los elementos de $G$ en $G$.
 \end{example}
+
+\begin{proofbox}
+Dado $x \in G$ veamos que $C_G(x)$ es un subgrupo, a partir de esto es fácil ver que $Z(G)$ es un subgrupo abeliano. La identidad está en $C_G(x)$ ya que
+\[
+ex = xe = x,
+\]
+dados $a,b \in C_G(x)$ es fácil ver que
+\[
+b^{-1}x = b^{-1}xbb^{-1} = b^{-1}bxb^{-1} = xb^{-1} \implies b^{-1} \in C_G(x)
+\]
+y, además,
+\[
+abx = axb = xab \implies ab \in C_G(x).
+\]
+\end{proofbox}
 
 \subsection{Clases laterales}
 
@@ -104,7 +194,7 @@ y se llama clase lateral de $a$ módulo $H$ por la derecha.
 
 El conjunto de las clases laterales por la izquierda de $G$ módulo $H$ se denota por $G/H$ y el de clases laterales por la derecha $H \backslash G$.
 
-Como consecuencia del Lema \ref{lem:caracterizacion_subgrupos} las aplicaciones
+Como consecuencia del Lema \ref{lem:prop_grupos} las aplicaciones
 \[
 \begin{array}{ccc}
 H \to aH & \quad & H \to Ha \\
@@ -119,6 +209,17 @@ aH & \mapsto & Ha^{-1}
 \end{array}
 \]
 es otra biyección con lo que también $G/H$ y $H \backslash G$ tienen el mismo cardinal.
+
+\begin{proofbox}
+Veamos que $L_a(h) = ah$ es una biyección. Si $ah = bh \implies a=b$ por la propiedad cancelativa, luego es inyectiva. Si $ax \in aH$ entonces $L_a(x) = ax$, luego es sobreyectiva.
+
+En cuanto a $\phi(aH) = Ha^{-1}$ notemos que está bien definida y es inyectiva
+\[
+\phi(aH) = \phi(bH) \iff Ha^{-1} = Hb^{-1} \iff a^{-1}b \in H \iff aH = bH.
+\]
+También es sobreyectiva, puesto que dado $Ha^{-1} \in H \backslash G$, $\phi(aH) = Ha^{-1}$.
+
+\end{proofbox}
 
 Denotamos con $|X|$ el cardinal de un conjunto cualquiera. En el caso en que $G$ sea un grupo el cardinal de $G$ se suele llamar orden de $G$. Acabamos de ver que para cada subgrupo $H$ de $G$ se verifica:
 \[
