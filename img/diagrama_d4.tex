@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz-cd}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+\begin{tikzcd}[every arrow/.append style={dash}]
+&&D_4\ar[d]\ar[dl]\ar[dr]\\
+&\langle a^2,b \rangle \ar[d]\ar[dl]\ar[dr]&\langle a\rangle\ar[d] &\langle a^2,ab\rangle\ar[d]\ar[dl]\ar[dr]\\
+\underline{\langle b\rangle}\ar[rrd]&\underline{\langle a^2b\rangle}\ar[rd]&\langle a^2\rangle\ar[d]&\underline{\langle ab\rangle}\ar[ld]&\underline{\langle a^3b\rangle}\ar[lld]\\
+&&\langle e\rangle
+\end{tikzcd}
+\end{document}

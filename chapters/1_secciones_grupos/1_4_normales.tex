@@ -1,0 +1,239 @@
+\clearpage
+\section{Subgrupos normales y grupos cociente}
+
+Introducimos ahora una notación que usaremos frecuentemente. Dados subconjuntos $A$ y $B$ de un grupo $G$, pondremos $AB = \{ab : a \in A, b \in B\}$. Si $X = \{x\}$ pondremos $xA$ en lugar de $XA$ y $Ax$ en lugar de $AX$, lo que es consistente con la notación usada para las clases laterales. Por otra parte, la asociatividad de $G$ implica que $(ABC) = A(BC)$ para subconjuntos $A$, $B$ y $C$ arbitrarios, lo que nos permite escribir $ABC$ sin ambigüedad; obviamente $ABC = \{abc : a \in A, b \in B, c \in C\}$.
+
+Nuestra siguiente parada es la noción de subgrupo normal. Esta surge naturalmente al intentar definir una estructura de grupo en el conjunto de clases laterales $G/H$. Para que el producto $aH \cdot bH = abH$ esté bien definido, queremos que el producto no dependa de los representantes elegidos, debemos tener que para cualesquiera $h_1, h_2 \in H$ exista $h_3 \in H$ tal que:
+\[
+(ah_1)(bh_2) = abh_3
+\]
+Esto equivale a que $h_1b = bh_3$ para algún $h_3 \in H$, es decir, $b^{-1}h_1b \in H$. Por lo tanto, $H$ debe ser cerrado bajo conjugación por elementos de $G$. La siguiente Proposición recoge varias condiciones equivalentes para que esto ocurra.
+
+\begin{proposition}{Caracterización de subgrupos normales}{caracterizacion_normales}
+Las condiciones siguientes son equivalentes para un subgrupo $N$ de un grupo $G$:
+
+\begin{enumerate}
+    \item $N \backslash G = G/N$.
+    \item Para cada $x \in G$ se tiene $Nx = xN$ (o equivalentemente $x^{-1}Nx = N$).
+    \item Para cada $x \in G$ se tiene $Nx \subseteq xN$ (o equivalentemente $x^{-1}Nx \subseteq N$).
+    \item Para cada $x \in G$ se tiene $xN \subseteq Nx$ (o equivalentemente $xNx^{-1} \subseteq N$).
+    \item Para cualesquiera $a,b \in G$ se tiene $aNbN = abN$.
+    \item Para cualesquiera $a,b \in G$ se tiene $NaNb = Nab$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+Veamos que (1) $\Leftrightarrow$ (2) $\Leftrightarrow$ (3) $\Leftrightarrow$ (4). En efecto, si se verifica (3) entonces para todo $x \in G$
+\[
+x^{-1}Nx \subseteq N, xNx^{-1} \subseteq Nx \iff xN \subseteq xN, xN \subseteq Nx \iff Nx = xN.
+\]
+Esto demuestra que las tres primeras propiedades son equivalentes y, por simetría, también la cuarta es equivalente a ellas.
+
+(2) $\Rightarrow$ (5)
+Como $N$ es un subgrupo claramente $NN = N$. Por tanto, si  $a,b \in G$ entonces $aNbN = a(Nb)N = a(bN)N = ab(NN) = abN$.
+
+(5) $\Rightarrow$ (3)
+Dado $x \in G$
+\[
+x^{-1}Nx \subseteq x^{-1}NxN = xx^{-1}NN = eNN = N.
+\]
+
+Por simetría, las misma demostraciones sirven para probar las equivalencias con (6).
+\end{proofbox}
+
+Supongamos que se cumplen las condiciones de la Proposición \ref{prop:caracterizacion_normales}. Entonces el producto de dos elementos de $G/N$ (o de $N \backslash G$) es un elemento de $G/N$, y es elemental comprobar que esta operación dota a $G/N$ de una estructura de grupo. Observese que, para realizar un producto $aN \cdot bN$ en $G/N$, no necesitamos describir el conjunto resultante, pues este queda determinado por cualquier representante suyo, por ejemplo $ab$. El elemento neutro de $G/N$ es la clase $N = 1N$, y el inverso de $aN$ es $a^{-1}N$.
+
+\begin{definition}{Subgrupo normal}{subgrupo_normal}
+Un subgrupo $N$ de un grupo $G$ se dice que es subgrupo normal de $G$ (también se dice que $N$ es normal en $G$) si verifica las condiciones equivalentes de la Proposición \ref{prop:caracterizacion_normales}. Escribiremos $N \unlhd G$ (respectivamente $N \lhd G$) para indicar que $N$ es un subgrupo normal (respectivamente normal y propio) de $G$.
+
+Si $N$ es normal en $G$, el grupo $G/N$ recién descrito se llama grupo cociente de $G$ módulo $N$.
+\end{definition}
+
+\subsection{Ejemplos de subgrupos normales}
+\label{sec:ejemplos_normales}
+
+\begin{example}{}{}
+Es claro que, en un grupo abeliano, todo subgrupo es normal. Esto es claro puesto que si $N \leq G$ y $G$ es abeliano entonces
+\[
+x \in gN \iff \exists n \in N \text{ tal que } x = gn = ng \iff x \in Ng
+\]
+de donde deducimos que $gN = Ng$.
+\end{example} 
+
+\begin{example}{}{}
+Si $I$ es un ideal de un anillo $A$, entonces el grupo cociente $A/I$ es el grupo aditivo del anillo cociente. (Ver \ref{defn:anillo_cociente}).
+\end{example} 
+   
+\begin{example}{}{}
+Si $G$ es un grupo y $H$ es un subgrupo contenido en el centro $Z(G)$, entonces $H$ es normal en $G$. En particular, el centro es un subgrupo normal.
+\end{example} 
+\begin{proofbox}
+Supongamos que $H \leq Z(G)$, entonces 
+\[
+\forall h \in H, \forall g \in G, \quad hg = gh
+\]
+ya que $H \subseteq Z(G)$. Sea $g \in G$, entonces
+\[
+x \in gN \iff \exists n \in N \text{ tal que } x = gn = ng \iff x \in Ng
+\]
+lo que prueba que $H$ es normal en $G$.
+\end{proofbox}
+   
+\begin{example}{}{}
+Si $H$ es un subgrupo de $G$ de índice 2, entonces $H$ es normal en $G$. En efecto, como las clases por la derecha módulo $H$ constituyen una partición de $G$, solo hay dos, y una de ellas es $H$, la otra ha de ser el complementario $\{g \in G : g \not\in H\}$. El mismo argumento vale para las clases por la izquierda y en consecuencia $G/N = N \backslash G$.
+\end{example} 
+   
+\begin{example}{}{}
+Sea $G = \mathrm{GL}_n(\mathbb{R})$ el grupo lineal general sobre $\mathbb{R}$. Usando el hecho de que, si $a,b \in G$, entonces
+    
+    \[
+    \det(ba) = \det(b)\det(a) = \det(a)\det(b) = \det(ab),
+    \]
+    
+    es fácil ver que $\mathrm{SL}_n(\mathbb{R})$ es un subgrupo normal de $G$.
+\end{example} 
+   
+\begin{example}{}{}
+En la Figura \ref{fig:diagrama_d4} aparece representado el diagrama de todos los subgrupos de $D_4$ ordenados por inclusión: una línea entre dos subgrupos significa que el superior contiene al inferior. En el diagrama están subrayados los subgrupos que no son normales en $D_4$.
+
+Obsérvese que cualquier subgrupo del diagrama es normal en cualquiera de los subgrupos que lo contienen y están en el nivel inmediatamente superior. Por ejemplo, $\langle b\rangle \unlhd \langle a^2,b\rangle$ y $\langle a^2,b\rangle \unlhd D_4$; como $\langle b\rangle$ no es normal en $D_4$, este ejemplo muestra que la relación "ser normal en" no es transitiva.
+\end{example}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/diagrama_d4.pdf}
+    \caption{Diagrama de subgrupos de $D_4$.}
+    \label{fig:diagrama_d4}
+\end{figure}
+
+\subsection{Teorema de Correspondencia}
+
+Acabamos la sección con el Teorema de la Correspondencia. Este resultado es muy intuitivo, establece que los subgrupos de un grupo cociente $G/N$ son todos de la forma $K/N$, donde $K$ es un subgrupo de $G$ que contiene a $N$. 
+
+En términos simbólicos, podríamos expresarlo de la manera siguiente
+\[
+N \subseteq K \leq G \iff K/N \leq G/N.
+\]
+
+Para la demostración del resultado, definamos la aplicación 
+\[
+\pi : G \to G/N,\quad \pi(g) = gN
+\]
+y la imagen y preimagen de un conjunto por ella como
+\[
+\pi(H) = \{hN : h \in H\},\quad \pi^{-1}(K/N) = \{k \in G : \pi(k) \in K/N \}.
+\]
+Notemos además que $\pi$ es sobreyectiva, pues dado $xN \in G/N$, $x \in G$, es obvio que $\pi(x) = xN$.
+
+% \begin{theorem}{Teorema de la Correspondencia}{teorema_correspondencia}
+% Sea $N$ un subgrupo normal de un grupo $G$. La asignación $H \mapsto H/N$ establece una biyección entre el conjunto de los subgrupos de $G$ que contienen a $N$ y el conjunto de los subgrupos de $G/N$.
+
+% Además, esta biyección conserva las inclusiones y la normalidad. Es decir, dados dos subgrupos $H$ y $K$ de $G$ que contienen a $N$, se tiene:
+
+% \begin{enumerate}
+%     \item $H \subseteq K$ si y solo si $(H/N) \subseteq (K/N)$.
+%     \item $H \unlhd G$ si y sólo si $(H/N) \unlhd (G/N)$.
+% \end{enumerate}
+% \end{theorem}
+
+\begin{theorem}{Teorema de correspondencia para grupos}{teorema_correspondencia_grupos}
+    Sea \(N\) un subgrupo normal de un grupo \(G\). Sea $\mathcal{A}$ el conjunto de subgrupos de \(G\) que contienen a \(N\)
+    \[
+    \mathcal{A} = \{H \leq G : N \subseteq H\}.
+    \]
+    Sea $\mathcal{K}$ el conjunto de todos los subgrupos del grupo cociente \(G/N\)
+    \[
+    \mathcal{K} = \{ K \leq G/N \}.
+    \]
+    Entonces las asignaciones
+    \begin{align*}
+    &\Phi : \mathcal{A} \to \mathcal{K},\ \Phi(H) = H/N \\
+    &\Psi : \mathcal{K} \to \mathcal{A},\ \Psi(K) = \pi^{-1}(K)
+    \end{align*}
+    definen aplicaciones biyectivas, una inversa de la otra, que conservan la inclusión en $\mathcal{A}$ y $\mathcal{K}$.
+\end{theorem}
+
+\begin{proofbox}
+    En primer lugar, veamos que son aplicaciones:
+    \begin{itemize}
+        \item Si \(H\) es un subgrupo que contiene a \(N\) entonces \(\pi(H) = H/N\), que es un subgrupo de \(G/N\). Es claro que $\pi(H)$ está formado por todas las clases laterales con representantes en $H$, es decir, es precisamente $H/N$. Veamos que es un subgrupo
+        \begin{itemize}
+            \item Como \(H\) es un subgrupo, \(e \in H\), luego \(eN = \pi(e) \in \pi(H) = H/N \neq \emptyset\).
+            \item Sean \(xN, yN \in H/N\) (es decir, \(x, y \in H\) tales que \(\pi(x) = xN, \pi(y) = yN\)). Es claro que
+            \[
+            \pi(xy) = xyN = (xN)(yN) \in H/N
+            \]
+            como necesitamos.
+            \item Sea \(xN \in H/N\), entonces
+            \[
+            (xN)^{-1} = x^{-1}N = \pi(x^{-1}) \in H/N
+            \]
+            ya que \(x^{-1} \in H\) al ser \(H\) subgrupo.
+        \end{itemize}
+
+        \item Si \(K\) es un subgrupo de \(G/N\) entonces \(\pi^{-1}(K)\) es un subgrupo de \(G\) que contiene a \(N\).
+        \begin{itemize}
+            \item Como \(K\) es un subgrupo, \(eN \in K\), y al ser \(eN = \pi(e) \implies e \in \pi^{-1}(K) \neq \emptyset\).
+            
+            \item Sean \(x,y \in \pi^{-1}(K)\), entonces \(xN, yN \in K \implies (xy)N \in K\). Finalmente
+            \[
+            \pi(xy) = xyN \in K \implies (xy) \in \pi^{-1}(K)
+            \]
+            como necesitamos.
+            \item Sea \(x \in \pi^{-1}(K)\), entonces
+            \[
+            \pi(x^{-1}) = x^{-1}N = (xN)^{-1} \in K
+            \]
+            ya que \(K\) es un subgrupo, pero entonces \(x^{-1} \in \pi^{-1}(K)\) como queríamos ver.
+
+            \item Sea \(x \in N\), entonces
+            \[
+            \pi(x) = xN = eN \in K \implies x \in \pi^{-1}(K).
+            \]
+        \end{itemize}
+    \end{itemize}
+
+    Veamos ahora que una es inversa de la otra, lo cual implica directamente que son biyectivas.
+    \begin{itemize}
+        \item Dado \(H \in \mathcal{A}\)
+        \[
+        \Psi(\Phi(H)) = \pi^{-1}(\pi(H)) \supseteq H
+        \]
+        por las propiedades básicas de las aplicaciones. Para la otra inclusión, si \(x \in \pi^{-1}(\pi(H))\) entonces \(\pi(x) \in \pi(H)\), luego existe \(y\in H\) tal que 
+        \[
+        xN = \pi(y) = yN \implies xy^{-1} \in N \subseteq H \implies x = (xy^{-1})y \in H
+        \] 
+        usando que \(H\) es subgrupo.
+
+        \item Sea ahora \(K \in \mathcal{K}\), entonces 
+        \[
+        \Phi(\Psi(K)) = \pi(\pi^{-1}(K)) \subseteq K
+        \]
+        por las propiedades de las aplicaciones. Por otro lado, si \(xN \in K\) entonces, al ser \(\pi\) sobreyectiva existe \(y \in \pi^{-1}(K)\) tal que \(\pi(y) = xN \in K\). Por tanto \(xN \in \pi(\pi^{-1}(K))\).
+    \end{itemize}
+
+    Finalmente veamos que respetan las inclusiones.
+    \begin{itemize}
+        \item Si \(H,H' \in \mathcal{A}, H \subseteq H'\) entonces dado
+        \[
+        xN \in \Phi(H) = \pi(H) \implies xN = \pi(h),\, h \in H \subseteq H' \implies xN \in \pi(H') = \Phi(H'),
+        \]
+        es decir \(\Phi(H) \subseteq \Phi(H')\).
+        \item De igual manera, si \(K, K' \in \mathcal{K}, K \subseteq K'\) entonces
+        \[
+        x \in \Psi(K) = \pi^{-1}(K) \implies \pi(x) \in K \subseteq K' \implies x \in \pi^{-1}(K') = \Psi(K'),
+        \]
+        es decir, \(\Psi(K) \subseteq \Psi(K')\).
+    \end{itemize}
+\end{proofbox}
+
+\begin{example}{Aplicaciones del Teorema de la Correspondencia}{aplicaciones_correspondencia}
+Aplicando el Teorema de la Correspondencia al diagrama de los subgrupos de $D_4$ (Figura \ref{fig:diagrama_d4}), obtenemos el diagrama de los subgrupos de $D_4/\langle a^2\rangle$ de la Figura \ref{fig:diagrama_d4_2}.
+\end{example}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/diagrama_d4_2.pdf}
+    \caption{Diagrama de subgrupos de $D_4 / \langle a^2 \rangle$.}
+    \label{fig:diagrama_d4_2}
+\end{figure}
