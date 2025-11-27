@@ -23,11 +23,12 @@ Las condiciones siguientes son equivalentes para un subgrupo $N$ de un grupo $G$
 \end{proposition}
 
 \begin{proofbox}
-Veamos que (1) $\Leftrightarrow$ (2) $\Leftrightarrow$ (3) $\Leftrightarrow$ (4). En efecto, si se verifica (3) entonces para todo $x \in G$
-\[
-x^{-1}Nx \subseteq N, xNx^{-1} \subseteq Nx \iff xN \subseteq xN, xN \subseteq Nx \iff Nx = xN.
-\]
-Esto demuestra que las tres primeras propiedades son equivalentes y, por simetría, también la cuarta es equivalente a ellas.
+Es claro que (1) $\Leftrightarrow$ (2). Para ver que (2) $\Leftrightarrow$ (3) $\Leftrightarrow$ (4), si se verifica (3) entonces dados $x, x^{-1} \in G$
+\begin{align*}
+Nx \subseteq xN, Nx^{-1} \subseteq x^{-1}N &\iff Nx \subseteq xN, xNx^{-1}x \subseteq xx^{-1}Nx \\
+&\iff Nx \subseteq xN, xN \subseteq Nx \iff Nx = xN.
+\end{align*}
+Esto demuestra que (2) y (3) son equivalentes y, por simetría, también (4) es equivalente a ellas.
 
 (2) $\Rightarrow$ (5)
 Como $N$ es un subgrupo claramente $NN = N$. Por tanto, si  $a,b \in G$ entonces $aNbN = a(Nb)N = a(bN)N = ab(NN) = abN$.

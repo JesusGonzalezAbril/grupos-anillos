@@ -21,17 +21,79 @@ El núcleo de un homomorfismo $f:G\to H$ es
 Si $f:G\to H$ es un homomorfismo de grupos entonces se verifican las siguientes propiedades para $a,a_{1},\ldots,a_{n}\in G$:
 
 \begin{enumerate}
-    \item $(f$ conserva el neutro) $f(1_{G})=1_{H}$.
-    \item $(f$ conserva inversos) $f(a^{-1})=f(a)^{-1}$.
-    \item $(f$ conserva productos finitos) $f(a_{1}\cdots a_{n})=f(a_{1}) \cdots f(a_{n})$.
-    \item $(f$ conserva potencias) Si $n\in\mathbb{Z}$ entonces $f(a^{n})=f(a)^{n}$.
+    \item ($f$ conserva el neutro) $f(1_{G})=1_{H}$.
+    \item ($f$ conserva inversos) $f(a^{-1})=f(a)^{-1}$.
+    \item ($f$ conserva productos finitos) $f(a_{1}\cdots a_{n})=f(a_{1}) \cdots f(a_{n})$.
+    \item ($f$ conserva potencias) Si $n\in\mathbb{Z}$ entonces $f(a^{n})=f(a)^{n}$.
     \item Si $f$ es un isomorfismo entonces la aplicación inversa $f^{-1}:H\to G$ también lo es.
     \item Si $g:H\to K$ es otro homomorfismo de grupos entonces $g\circ f:G\to K$ es un homomorfismo de grupos.
-    \item Si $H_{1}$ es un subgrupo de $H$ entonces $f^{-1}(H_{1})=\{x\in G:f(x)\in H_{1}\}$ es un subgrupo de $G$. Si además $H_{1}$ es normal en $H$ entonces $f^{-1}(H_{1})$ es normal en $G$; en particular, $\operatorname{Ker} f$ es un subgrupo normal de $G$.
-    \item $f$ es inyectivo si y solo si $\operatorname{Ker} f=\{1\}$.
-    \item Si $G_{1}$ es un subgrupo de $G$ entonces $f(G_{1})$ es un subgrupo de $H$; en particular, $\operatorname{Im} f$ es un subgrupo de $H$. Si además $G_{1}$ es normal en $G$ y $f$ es suprayectiva entonces $f(G_{1})$ es normal en $H$.
+    \item Si $H_{1}$ es un subgrupo de $H$ entonces $f^{-1}(H_{1})=\{x\in G:f(x)\in H_{1}\}$ es un subgrupo de $G$. Si además $H_{1}$ es normal en $H$ entonces $f^{-1}(H_{1})$ es normal en $G$; en particular, $\ker f$ es un subgrupo normal de $G$.
+    \item $f$ es inyectivo si y solo si $\ker f=\{1\}$.
+    \item Si $G_{1}$ es un subgrupo de $G$ entonces $f(G_{1})$ es un subgrupo de $H$; en particular, $\Im f$ es un subgrupo de $H$. Si además $G_{1}$ es normal en $G$ y $f$ es suprayectiva entonces $f(G_{1})$ es normal en $H$.
 \end{enumerate}
 \end{lemma}
+
+\begin{proofbox}
+\begin{enumerate}
+    \item $f(1_G) = f(1_G 1_G) = f(1_G)f(1_G) \implies f(1_G) = 1_H$.
+    \item $f(a^{-1})f(a) = f(aa^{-1}) = f(1_G) = 1_H \implies f(a^{-1})=f(a)^{-1}$.
+    \item Por inducción, el caso base es cierto por hipótesis, si lo suponemos cierto para $n$ entonces
+    \[
+    f(a_{1}\cdots a_{n+1})=f(a_{1}\cdots a_{n})f(a_{n+1}) = f(a_{1}) \cdots f(a_{n}) f(a_{n+1}).
+    \]
+    \item De nuevo es fácil razonar por inducción, queda como ejercicio. Para el caso base $f(a^2)=f(aa)=f(a)f(a)=f(a)^2$.
+    \item Si $f$ es un isomorfismo a inversa es biyectiva, por lo que basta ver que verifica
+    \[
+    f^{-1}(ab) = f^{-1}(a)f^{-1}(b).
+    \]
+    Para ello notemos que
+    \[
+    f(f^{-1}(ab))= ab = f(f^{-1}(a))f(f^{-1}(b)) = f(f^{-1}(a)f^{-1}(b)).
+    \]
+    y como $f$ es inyectiva debe ser 
+    \[
+    f^{-1}(ab) = f^{-1}(a)f^{-1}(b).
+    \]
+    \item Basta notar que
+    \[
+    g \circ f(ab) = g(f(ab))=g(f(a)f(b))=g(f(a))g(f(b)) = [g \circ f(a)] [g \circ f(b)].
+    \]
+    \item Claramente, $1_G \in f^{-1}(H_{1}) \neq \emptyset$, y si $a,b \in f^{-1}(H_{1})$, entonces existen $x,y \in H_1$ tales que
+    \[
+    x = f(a), y = f(b) \implies f(ab^{-1}) = xy^{-1} \in H_1 \implies ab^{-1} \in f^{-1}(H_1).
+    \]
+    Si además $H_{1}$ es normal en $H$ entonces poniendo $N = f^{-1}(H_{1})$ y dado $g \in G$
+    \begin{align*}
+    x \in gNg^{-1} \implies x = gng^{-1}, f(n) \in H_1 \implies f(x) = f(g)f(n)f(g)^{-1} \in f(g)H_1f(g)^{-1} = H_1 \implies x \in N,
+    \end{align*}
+    luego $gNg^{-1} \subseteq N$, por lo que por la Proposición \ref{prop:caracterizacion_subgrupos_normales} $N$ es normal.
+    \item Si $f$ es inyectivo entonces
+    \[
+    f(x) = 1 = f(1) \implies x = 1.
+    \]
+    Por otro lado, si $\ker f = \{1\}$, entonces
+    \[
+    f(x) = f(y) \implies f(xy^{-1}) = 1 \implies xy^{-1} = 1 \implies x = y.
+    \]
+    \item Claramente $1 = f(1) \in f(G_1) \neq \emptyset$. Además, si $a,b \in f(G_1)$,entonces existen $x, y \in G_1$ tales que 
+    \[
+    a = f(x), b = f(y) \implies ab^{-1} = f(xy^{-1}) \in f(G_1).
+    \]
+    
+    Si $G_1 \unlhd G$ y $f$ es sobreyectivo, llamando $N = f(G_1)$ tenemos para todo $h \in H$
+    \[
+    x \in hNh^{-1} \implies x = hnh^{-1} = f(a)f(b)f(a)^{-1} =f(aba^{-1})
+    \]
+    donde $h = f(a)$ por ser $f$ sobreyectivo, $n=f(b)$ con $b \in G_1$ por ser $n \in N$.
+    
+    Como $aba^{-1} \in aG_1a^{-1} = G_1$ entonces
+    \[
+    x = f(aba^{-1}) \in N
+    \]
+    como queríamos ver.
+\end{enumerate}
+\end{proofbox}
+
 
 \subsection{Ejemplos de homomorfismos}
 
@@ -95,51 +157,54 @@ Otro ejemplo en el que se mezclan las notaciones aditiva y multiplicativa es el 
 es un isomorfismo de grupos cuya inversa es la aplicación $\mathbb{R}^{+}\to\mathbb{R}$ dada por $s\mapsto\log_{\alpha}s$.
 \end{example}
 
-Claramente, si $f:G\to H$ es un homomorfismo inyectivo de grupos entonces $f:G\to\operatorname{Im} f$ es un isomorfismo de grupos que nos permite ver a $G$ como un subgrupo de $H$.
-
-Los Teoremas de Isomorfía que vimos para anillos tienen una versión para grupos. Las demostraciones son análogas.
+Claramente, si $f:G\to H$ es un homomorfismo inyectivo de grupos entonces $f:G\to\Im f$ es un isomorfismo de grupos que nos permite ver a $G$ como un subgrupo de $H$. Este resultado, y algunas consecuencias, vienen recogidas en el siguiente teorema.
 
 \begin{theorem}{Teoremas de Isomorfía para grupos}{teoremas_isomorfia}
 \begin{enumerate}
-    \item Si $f:G\to H$ es un homomorfismo de grupos entonces existe un único isomorfismo de grupos $\bar{f}:G/\operatorname{Ker} f\to\operatorname{Im} f$ que hace conmutativo el diagrama
+    \item Si $f:G\to H$ es un homomorfismo de grupos entonces existe un único isomorfismo de grupos $\bar{f}:G/\ker f\to\Im f$ que hace conmutativo el diagrama
     \[
-    \begin{array}{c}
-    G \stackrel{f}{\longrightarrow} H \\
-    p\bigg\downarrow \quad \nearrow i \\
-    G/\operatorname{Ker} f \stackrel{\bar{f}}{\longrightarrow} \operatorname{Im} f
-    \end{array}
+    \begin{tikzcd}
+    G \arrow[r, "f"] \arrow[d, "p"] & H \\
+    G/\ker f \arrow[r, "\bar{f}"] & \Im f \arrow[u, "i"]
+    \end{tikzcd}
     \]
     es decir, $i\circ\bar{f}\circ p=f$, donde $i$ es la inclusión y $p$ es la proyección canónica. En particular
     \[
-    \frac{G}{\operatorname{Ker} f}\simeq\operatorname{Im} f.
+    \frac{G}{\ker f}\cong\Im f.
     \]
     
     \item Sean $N$ y $H$ subgrupos normales de un grupo $G$ con $N\subseteq H$. Entonces $H/N$ es un subgrupo normal de $G/N$ y se tiene
     \[
-    \frac{G/N}{H/N}\simeq G/H.
+    \frac{G/N}{H/N}\cong G/H.
     \]
     
     \item Sean $G$ un grupo, $H$ un subgrupo de $G$ y $N$ un subgrupo normal de $G$. Entonces $NH$ es un subgrupo de $G$ que contiene a $H$, $N\cap H$ es un subgrupo normal de $H$ y se tiene
     \[
-    \frac{H}{N\cap H}\simeq\frac{NH}{N}.
+    \frac{H}{N\cap H}\cong\frac{NH}{N}.
     \]
 \end{enumerate}
 \end{theorem}
 
-\begin{remark}{}{observacion_producto_subgrupos}
-En general no es verdad que si $H$ y $K$ son subgrupos de $G$ entonces $HK$ es un subgrupo de $G$. Por ejemplo, consideremos el grupo $S_{3}$ de las permutaciones de tres elementos y sean $\sigma$ y $\tau$ las permutaciones dadas por $\sigma(1)=2$, $\sigma(2)=1,\sigma(3)=3$, $\tau(1)=3$, $\tau(2)=2$ y $\tau(3)=1$. Entonces $\langle\sigma\rangle=\{1,\sigma\}$ y $\langle\tau\rangle=\{1,\tau\}$. Luego $\langle\sigma\rangle\langle\tau\rangle=\{1,\sigma,\tau,\sigma\tau\}$ y por tanto $|\langle\sigma\rangle\langle\tau\rangle|=4$ que no divide a $|S_{3}|=6$. Del Teorema de Lagrange (Teorema 4.7) deducimos que $\langle\sigma\rangle\langle\tau\rangle$ no es subgrupo de $S_{3}$.
+\begin{remark}
+En general no es verdad que si $H$ y $K$ son subgrupos de $G$ entonces $HK$ es un subgrupo de $G$. Por ejemplo, consideremos el grupo $S_{3}$ de las permutaciones de tres elementos y sean $\sigma$ y $\tau$ las permutaciones dadas por $\sigma(1)=2$, $\sigma(2)=1,\sigma(3)=3$, $\tau(1)=3$, $\tau(2)=2$ y $\tau(3)=1$. Entonces $\langle\sigma\rangle=\{1,\sigma\}$ y $\langle\tau\rangle=\{1,\tau\}$. Luego $\langle\sigma\rangle\langle\tau\rangle=\{1,\sigma,\tau,\sigma\tau\}$ y por tanto $|\langle\sigma\rangle\langle\tau\rangle|=4$ que no divide a $|S_{3}|=6$. Del \hyperref[thm:lagrange]{Teorema de Lagrange} deducimos que $\langle\sigma\rangle\langle\tau\rangle$ no es subgrupo de $S_{3}$.
 \end{remark}
 
-Usando el Teorema de la Correspondencia se obtiene el siguiente corolario.
+Usando el \hyperref[thm:teorema_correspondencia_grupos]{Teorema de la Correspondencia} se obtiene el siguiente corolario.
 
 \begin{corollary}{}{corolario_correspondencia_homomorfismos}
-Si $f:G\to H$ es un homomorfismo de grupos entonces $K\mapsto f(K)$ define una biyección entre el conjunto de los subgrupos de $G$ que contienen a $\operatorname{Ker} f$ y el de los subgrupos de $\operatorname{Im} f$.
+Si $f:G\to H$ es un homomorfismo de grupos entonces $K\mapsto f(K)$ define una biyección entre el conjunto de los subgrupos de $G$ que contienen a $\ker f$ y el de los subgrupos de $\Im f$.
 \end{corollary}
 
 \begin{example}{Aplicaciones de los Teoremas de Isomorfía}{aplicaciones_isomorfia}
 \begin{enumerate}
     \item Consideremos los grupos multiplicativos $\mathbb{C}^{*}$ y $\mathbb{R}^{*}$, y la aplicación norma $\delta:\mathbb{C}^{*}\to\mathbb{R}^{*}$ dada por $\delta(a+bi)=a^{2}+b^{2}$. Entonces $\delta$ es un homomorfismo que tiene por núcleo a la circunferencia de radio $1$ en $\mathbb{C}$, y por imagen a $\mathbb{R}^{+}$. Por tanto, el grupo cociente de $\mathbb{C}^{*}$ por la circunferencia de radio $1$ es isomorfo a $\mathbb{R}^{+}$.
     
-    \item La aplicación $\det : \mathrm{GL}_{n}(\mathbb{R})\to\mathbb{R}^{*}$ que lleva una matriz a su determinante es un homomorfismo supravectivo de grupos con núcleo $\mathrm{SL}_{n}(\mathbb{R})$. Esto nos dice que el cociente de $\mathrm{GL}_{n}(\mathbb{R})$ por $\mathrm{SL}_{n}(\mathbb{R})$ es isomorfo a $\mathbb{R}^{*}$.
+    \item La aplicación $\det:\mathrm{GL}_{n}(\mathbb{R})\to\mathbb{R}^{*}$ que lleva una matriz a su determinante es un homomorfismo supravectivo de grupos con núcleo $\mathrm{SL}_{n}(\mathbb{R})$. Esto nos dice que el cociente de $\mathrm{GL}_{n}(\mathbb{R})$ por $\mathrm{SL}_{n}(\mathbb{R})$ es isomorfo a $\mathbb{R}^{*}$.
+
+    Esto es totalmente esperable, pues dada una matriz invertible genérica $M \in GL_n(\R)$ podemos obtener una matriz "equivalente" en $SL_n(\R)$ sin más que hacer
+    \[
+    M' = \lambda M,\quad \lambda = (\det(M))^{-1/n}
+    \]
+    puesto que $\det(M') = \lambda^n \det(M) = \det(M)^{-1} \det(M) = 1$.
 \end{enumerate}
 \end{example}
