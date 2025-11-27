@@ -1,0 +1,145 @@
+\subsection{Homomorfismos de grupo y Teoremas de Isomorfía}
+
+\begin{definition}{Homomorfismo de grupos}{homomorfismo_grupos}
+Un homomorfismo del grupo $G$ en el grupo $H$ es una aplicación $f:G\to H$ que conserva la operación; es decir, que verifica
+\[
+f(ab)=f(a)f(b)
+\]
+para cualesquiera $a,b\in G$. Si $G=H$ decimos que $f$ es un endomorfismo de $G$.
+
+Si $f:G\to H$ es un homomorfismo biyectivo, diremos que es un isomorfismo y que los grupos $G$ y $H$ son isomorfos. Un automorfismo de $G$ es isomorfismo de $G$ en $G$.
+\end{definition}
+
+\begin{definition}{Núcleo}{nucleo_homomorfismo}
+El núcleo de un homomorfismo $f:G\to H$ es
+\[
+\ker f=f^{-1}(1_{H})=\{x\in G:f(x)=1_{H}\}.
+\]
+\end{definition}
+
+\begin{lemma}{Propiedades de homomorfismos}{propiedades_homomorfismos}
+Si $f:G\to H$ es un homomorfismo de grupos entonces se verifican las siguientes propiedades para $a,a_{1},\ldots,a_{n}\in G$:
+
+\begin{enumerate}
+    \item $(f$ conserva el neutro) $f(1_{G})=1_{H}$.
+    \item $(f$ conserva inversos) $f(a^{-1})=f(a)^{-1}$.
+    \item $(f$ conserva productos finitos) $f(a_{1}\cdots a_{n})=f(a_{1}) \cdots f(a_{n})$.
+    \item $(f$ conserva potencias) Si $n\in\mathbb{Z}$ entonces $f(a^{n})=f(a)^{n}$.
+    \item Si $f$ es un isomorfismo entonces la aplicación inversa $f^{-1}:H\to G$ también lo es.
+    \item Si $g:H\to K$ es otro homomorfismo de grupos entonces $g\circ f:G\to K$ es un homomorfismo de grupos.
+    \item Si $H_{1}$ es un subgrupo de $H$ entonces $f^{-1}(H_{1})=\{x\in G:f(x)\in H_{1}\}$ es un subgrupo de $G$. Si además $H_{1}$ es normal en $H$ entonces $f^{-1}(H_{1})$ es normal en $G$; en particular, $\operatorname{Ker} f$ es un subgrupo normal de $G$.
+    \item $f$ es inyectivo si y solo si $\operatorname{Ker} f=\{1\}$.
+    \item Si $G_{1}$ es un subgrupo de $G$ entonces $f(G_{1})$ es un subgrupo de $H$; en particular, $\operatorname{Im} f$ es un subgrupo de $H$. Si además $G_{1}$ es normal en $G$ y $f$ es suprayectiva entonces $f(G_{1})$ es normal en $H$.
+\end{enumerate}
+\end{lemma}
+
+\subsection{Ejemplos de homomorfismos}
+
+\begin{example}{}{}
+Si $H$ es un subgrupo de $G$, la inclusión $i$ de $H$ en $G$ es un homomorfismo inyectivo.
+\end{example}
+\begin{proofbox}
+Si $a,b \in H$, entonces
+\[
+i(ab) = ab = i(a)i(b),
+\]
+luego es un homomorfismo. Además, $i(a) = i(b) \implies a = b$ en $G$, pero entonces $a = b$ en $H$, lo que prueba la inyectividad.
+\end{proofbox}
+
+\begin{example}{}{}
+Si $N$ es un subgrupo normal de $G$, la aplicación $\pi:G\to G/N$ dada por $\pi(x)=xN$ es un homomorfismo suprayectivo, que recibe el nombre de proyección canónica de $G$ sobre $G/N$. Su núcleo es $N$.
+\end{example}
+\begin{proofbox}
+Si $a,b \in G$, entonces
+\[
+\pi(ab) = abN = aNbN = \pi(a)\pi(b),
+\]
+luego es un homomorfismo. Además, dado $xN \in G/N$, $\pi(x) = xN$.
+\end{proofbox}
+
+\begin{example}{}{}
+Dados dos grupos $G$ y $H$, la aplicación $f:G\to H$ dada por $f(a)=1_{H}$ para cada $a\in G$ es un homomorfismo llamado homomorfismo trivial de $G$ en $H$. Su núcleo es todo $G$.
+\end{example}
+\begin{proofbox}
+Si $a,b \in G$, entonces
+\[
+f(ab) = 1_H  = 1_H 1_H = f(a)f(b),
+\]
+luego es un homomorfismo.
+\end{proofbox}
+
+\begin{example}{}{}
+La aplicación $f:\mathbb{Z}\to\mathbb{Z}$ dada por $f(n)=2n$ es un endomorfismo del grupo aditivo de $\mathbb{Z}$ que es inyectivo y no suprayectivo. (Nótese que $f$ no es un endomorfismo de anillos.)
+\end{example}
+\begin{proofbox}
+En este caso usaremos notación aditiva. Si $a,b \in \Z$, entonces
+\[
+f(a+b) = 2(a+b) = 2a + 2b = f(a) + f(b)
+\]
+luego es un homomorfismo. Para ver que es inyectivo
+\[
+f(a) = f(b) \implies 2a = 2b \implies 2(a-b) = 0 \implies a = b
+\]
+usando que $\Z$ es un dominio. Que no es sobreyectivo es fácil de ver, ya que $3 \in \Z$ pero $f(a) = 3 \implies 2a = 3$ lo cual es imposible al ser $3$ impar.
+\end{proofbox}
+
+\begin{example}{}{}
+Si $G$ es cualquier grupo y $x\in G$ entonces la aplicación $\mathbb{Z}\to G$ dada por $n\mapsto x^{n}$ es un homomorfismo de grupos; como en $\mathbb{Z}$ usamos notación aditiva y en $G$ multiplicativa, la afirmación anterior es equivalente al hecho, que ya conocemos, de que $x^{n+m}=x^{n}x^{m}$.
+\end{example}
+
+\begin{example}{}{}
+Otro ejemplo en el que se mezclan las notaciones aditiva y multiplicativa es el siguiente: Fijado un número real positivo $\alpha$, la aplicación 
+\[
+(\mathbb{R},+) \rightarrow (\mathbb{R}^{+}=\{x\in\mathbb{R}:x>0\},\cdot), \quad r \mapsto \alpha^{r}
+\]
+es un isomorfismo de grupos cuya inversa es la aplicación $\mathbb{R}^{+}\to\mathbb{R}$ dada por $s\mapsto\log_{\alpha}s$.
+\end{example}
+
+Claramente, si $f:G\to H$ es un homomorfismo inyectivo de grupos entonces $f:G\to\operatorname{Im} f$ es un isomorfismo de grupos que nos permite ver a $G$ como un subgrupo de $H$.
+
+Los Teoremas de Isomorfía que vimos para anillos tienen una versión para grupos. Las demostraciones son análogas.
+
+\begin{theorem}{Teoremas de Isomorfía para grupos}{teoremas_isomorfia}
+\begin{enumerate}
+    \item Si $f:G\to H$ es un homomorfismo de grupos entonces existe un único isomorfismo de grupos $\bar{f}:G/\operatorname{Ker} f\to\operatorname{Im} f$ que hace conmutativo el diagrama
+    \[
+    \begin{array}{c}
+    G \stackrel{f}{\longrightarrow} H \\
+    p\bigg\downarrow \quad \nearrow i \\
+    G/\operatorname{Ker} f \stackrel{\bar{f}}{\longrightarrow} \operatorname{Im} f
+    \end{array}
+    \]
+    es decir, $i\circ\bar{f}\circ p=f$, donde $i$ es la inclusión y $p$ es la proyección canónica. En particular
+    \[
+    \frac{G}{\operatorname{Ker} f}\simeq\operatorname{Im} f.
+    \]
+    
+    \item Sean $N$ y $H$ subgrupos normales de un grupo $G$ con $N\subseteq H$. Entonces $H/N$ es un subgrupo normal de $G/N$ y se tiene
+    \[
+    \frac{G/N}{H/N}\simeq G/H.
+    \]
+    
+    \item Sean $G$ un grupo, $H$ un subgrupo de $G$ y $N$ un subgrupo normal de $G$. Entonces $NH$ es un subgrupo de $G$ que contiene a $H$, $N\cap H$ es un subgrupo normal de $H$ y se tiene
+    \[
+    \frac{H}{N\cap H}\simeq\frac{NH}{N}.
+    \]
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}{}{observacion_producto_subgrupos}
+En general no es verdad que si $H$ y $K$ son subgrupos de $G$ entonces $HK$ es un subgrupo de $G$. Por ejemplo, consideremos el grupo $S_{3}$ de las permutaciones de tres elementos y sean $\sigma$ y $\tau$ las permutaciones dadas por $\sigma(1)=2$, $\sigma(2)=1,\sigma(3)=3$, $\tau(1)=3$, $\tau(2)=2$ y $\tau(3)=1$. Entonces $\langle\sigma\rangle=\{1,\sigma\}$ y $\langle\tau\rangle=\{1,\tau\}$. Luego $\langle\sigma\rangle\langle\tau\rangle=\{1,\sigma,\tau,\sigma\tau\}$ y por tanto $|\langle\sigma\rangle\langle\tau\rangle|=4$ que no divide a $|S_{3}|=6$. Del Teorema de Lagrange (Teorema 4.7) deducimos que $\langle\sigma\rangle\langle\tau\rangle$ no es subgrupo de $S_{3}$.
+\end{remark}
+
+Usando el Teorema de la Correspondencia se obtiene el siguiente corolario.
+
+\begin{corollary}{}{corolario_correspondencia_homomorfismos}
+Si $f:G\to H$ es un homomorfismo de grupos entonces $K\mapsto f(K)$ define una biyección entre el conjunto de los subgrupos de $G$ que contienen a $\operatorname{Ker} f$ y el de los subgrupos de $\operatorname{Im} f$.
+\end{corollary}
+
+\begin{example}{Aplicaciones de los Teoremas de Isomorfía}{aplicaciones_isomorfia}
+\begin{enumerate}
+    \item Consideremos los grupos multiplicativos $\mathbb{C}^{*}$ y $\mathbb{R}^{*}$, y la aplicación norma $\delta:\mathbb{C}^{*}\to\mathbb{R}^{*}$ dada por $\delta(a+bi)=a^{2}+b^{2}$. Entonces $\delta$ es un homomorfismo que tiene por núcleo a la circunferencia de radio $1$ en $\mathbb{C}$, y por imagen a $\mathbb{R}^{+}$. Por tanto, el grupo cociente de $\mathbb{C}^{*}$ por la circunferencia de radio $1$ es isomorfo a $\mathbb{R}^{+}$.
+    
+    \item La aplicación $\det : \mathrm{GL}_{n}(\mathbb{R})\to\mathbb{R}^{*}$ que lleva una matriz a su determinante es un homomorfismo supravectivo de grupos con núcleo $\mathrm{SL}_{n}(\mathbb{R})$. Esto nos dice que el cociente de $\mathrm{GL}_{n}(\mathbb{R})$ por $\mathrm{SL}_{n}(\mathbb{R})$ es isomorfo a $\mathbb{R}^{*}$.
+\end{enumerate}
+\end{example}
