@@ -1,0 +1,131 @@
+\clearpage
+\section{El orden de un elemento de un grupo}
+
+\begin{definition}{Orden de un elemento}{orden_elemento}
+Sean $G$ un grupo y $a\in G$. El orden de $a$ es el orden del subgrupo $\langle a\rangle$ generado por $a$, y se denota $|a|$.
+\end{definition}
+
+De la definición de orden de un elemento y del \hyperref[thm:lagrange]{Teorema de Lagrange} deducimos el siguiente corolario.
+
+\begin{corollary}{}{corolario_orden_lagrange}
+Si $G$ es un grupo finito entonces el orden de cada uno de sus elementos divide al orden de $G$.
+\end{corollary}
+
+Consideremos ahora el homomorfismo $f:\mathbb{Z}\to G$ dado por $f(n)=a^{n}$. Entonces la imagen de $f$ es $\langle a\rangle$ y el núcleo de $f$ es un subgrupo de $\mathbb{Z}$. Por tanto $\operatorname{Ker} f=m\mathbb{Z}$ para algún entero no negativo $m$. Si $m=0$, entonces $f$ es inyectivo y $\mathbb{Z}\cong\langle a\rangle$. En caso contrario $\mathbb{Z}_{m}\cong\langle a\rangle$, con lo que $m=|a|$. Luego
+\begin{equation}
+a^{n}=1\quad\Leftrightarrow\quad|a|\text{ divide a }n 
+\tag{\star}
+\label{eq:orden_1}
+\end{equation}
+y, por tanto,
+\[
+|a|=\min\left\{n \in \Z^{+} : a^{n}=1\right\}.
+\]
+Más aún,
+\[
+a^{k}=a^{l}\quad\Leftrightarrow\quad k\equiv l\text{ mod }|a|.
+\]
+
+\begin{lemma}{Orden de potencias}{orden_potencias}
+Si $a$ tiene orden finito y $n$ es un entero positivo entonces
+\[
+|a^{n}|=\frac{|a|}{\mcd(|a|,n)}
+\]
+\end{lemma}
+
+\begin{proofbox}
+Sea $m=|a|$ y $d=\operatorname{mcd}(m,n)$, entonces $\operatorname{mcd}(\frac{m}{d},\frac{n}{d})=1$. Aplicando \eqref{eq:orden_1} tenemos que
+\[
+a^{nk} = (a^{n})^{k} = 1 \iff m | nk \iff \frac{m}{d} \Big| \frac{nk}{d} = \frac{n}{d}k \iff \frac{m}{d} \Big| k
+\]
+Esto muestra que $|a^{n}|=\frac{m}{d}$.
+\end{proofbox}
+
+Es fácil convencerse de que los subgrupos de $\mathbb{Z}$ y de $\mathbb{Z}_{n}$ son cíclicos. El siguiente resultado nos permite generalizar este hecho para grupos cíclicos cualesquiera.
+
+\begin{proposition}{Grupos cíclicos}{grupos_ciclicos}
+Sea $G$ un grupo cíclico generado por $a$.
+
+\begin{enumerate}
+    \item Si $G$ tiene orden infinito entonces $G \cong \mathbb{Z} \cong C_{\infty}$ y los subgrupos de $G$ son los de la forma $\langle a^n \rangle$ con $n \in \mathbb{N} \cup \{0\}$. Además, si $n, m \in \mathbb{N}$, entonces $\langle a^n \rangle \subseteq \langle a^m \rangle$ si y sólo si $m \mid n$.
+    
+    \item Si $G$ tiene orden $n$, entonces $G \cong \mathbb{Z}_n \cong C_n$ y $G$ tiene, para cada divisor $d$ de $n$, exactamente un subgrupo de orden $d$, a saber $\langle a^{n/d} \rangle$. Además $G / \langle a^d \rangle$ es cíclico y es el único cociente de $G$ de orden $d$.
+    
+    \item Todos los subgrupos y todos los cocientes de $G$ son cíclicos.
+\end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+\begin{enumerate}
+    \item Si $G = \langle a \rangle$ tiene orden infinito consideremos el homomorfismo $\varphi : \Z \to G$ dado por $\varphi(n) = a^n$. Que es homomorfismo es inmediato. Veamos que es inyectivo:
+    \[
+    \varphi(n) = \varphi(m) \iff a^n = a^m \iff a^{n-m} = 1 \iff n = m
+    \]
+    y que es sobreyectivo es también inmediato por ser $G$ cíclico.
+    
+    Sea $H \leq G$ un subgrupo, cualquier elemento de $H$ es de la forma $a^N$ para algún $N \in \Z$. Consideremos
+    \[
+    n = \min\left\{m \in \N : a^m \in H \right\}
+    \]
+    que existe por el principio de buena ordenación de los naturales. Es claro que $\langle a^n \rangle \subseteq H$. Si $a^m \in H$ y suponemos que $n \nmid m$ entonces $m = nq + r, 0 < r < n$, luego
+    \[
+    a^m = a^{nq}a^r \implies a^m (a^n)^{-q} = a^r \implies a^r \in H
+    \]
+    pero $a^r \in H$ contradice la minimalidad de $n$, luego ha de ser $n \mid m$, es decir, $a^m = (a^n)^q$. Esto prueba que $H \subseteq \langle a^n \rangle$, como queríamos ver.
+
+    Finalmente,
+    \[
+    \langle a^n \rangle \subseteq \langle a^m \rangle  \iff a^n = (a^m)^q = a^{mq} \iff a^{n-mq} = 1 \iff n = mq \iff m \mid n.
+    \]
+
+    \item Si $G$ tiene orden $n$, consideremos el homomorfismo $\varphi : \Z_n \to G$ dado por $\varphi([m]) = a^m$. Está bien definido puesto que $a^{m+nk} = a^m(a^n)^k = a^m 1^k = a^m$. Que es homomorfismo es inmediato. Veamos que es inyectivo:
+    \[
+    \varphi([m]) = \varphi([l]) \iff a^m = a^l \iff a^{m-l} = 1 \iff m \equiv l\ (\mathrm{mod} n) \iff [m] = [l].
+    \]
+    Que es sobreyectivo es también inmediato.
+
+    Que $\langle a^{n/d} \rangle$ es un subgrupo de orden $d$ es inmediato. Supongamos que $H \leq G$ es un subgrupo de orden $d$, entonces definiendo 
+    \[
+    N = \min\left\{m \in \{1, \dots, n - 1\} : a^m \in H \right\}
+    \]
+    podemos razonar como en el caso anterior, concluyendo que $H = \langle a^N \rangle$. Supongamos que $N < n/d \iff Nd < n$, entonces 
+    \[
+    a^{Nd} = (a^N)^d = 1
+    \]
+    al ser $H$ de orden $d$, pero esto contradice que $n$ es el orden de $G$, luego $n/d \leq N \implies N = n/d$ como se pedía.
+
+    % Falta ver que $G/\langle a^d \rangle$ es cíclico y el único de orden $d$.
+
+    \item Ya hemos visto cómo son los subgrupso de $G$ en (1), (2). Por otro lado, si $N \unlhd G$ entonces $G/N = \langle aN \rangle$, pues dado $gN \in G/N$, sabemos que 
+    \[
+    g = a^m \implies gN = a^m N = (aN)^m \in \langle aN \rangle.
+    \]
+    Luego los cocientes son todos cíclicos.
+\end{enumerate}
+
+\end{proofbox}
+
+\begin{corollary}{}{corolario_grupos_primo}
+Si $p$ es un número primo entonces todos los grupos de orden $p$ son isomorfos al grupo aditivo de $\mathbb{Z}_p$.
+\end{corollary}
+\begin{proofbox}
+Si $G$ es un grupo cualquiera de orden $p$, el orden de todos sus elementos debe dividir a $p$, por lo que todo $g \neq 1$ ha de tener orden $p$, es decir, $\langle g \rangle = G$ ya que $\langle g \rangle \subseteq G$ y ambos conjuntos tienen $p$ elementos. Por tanto, $G$ es cíclico y, por la Proposición anterior, $G \cong \Z_p$.
+\end{proofbox}
+
+\begin{theorem}{Teorema Chino de los Restos para grupos}{teorema_chino_grupos}
+Si $G$ y $H$ son dos subgrupos cíclicos de órdenes $n$ y $m$, entonces $G \times H$ es cíclico si y sólo si $\operatorname{mcd}(n, m) = 1$.
+
+Más generalmente, si $g$ y $h$ son dos elementos de un grupo $G$ de órdenes coprimos $n$ y $m$ y $gh = hg$, entonces $\langle g, h \rangle$ es cíclico de orden $nm$ y $gh$ es un generador.
+\end{theorem}
+
+\begin{proofbox}
+Por la Proposición 4.22 si $g$ y $h$ son generadores de $G$ y $H$ respectivamente entonces $a + (n) \mapsto g^a$ define un isomorfismo de grupos $(\mathbb{Z}_n, +) \rightarrow G$ y la aplicación $a + (m) \mapsto h^a$ define otro isomorfismo de grupos $(\mathbb{Z}_m, +) \rightarrow H$. Si $\operatorname{mcd}(n, m) = 1$, entonces, por el Teorema Chino de los Restos $a + (nm) \mapsto (a + (n), a + (m))$ define un isomorfismo de anillos $\mathbb{Z}/nm\mathbb{Z} \rightarrow \mathbb{Z}_n \times \mathbb{Z}_m$, por tanto también es un isomorfismo de sus grupos aditivos. Luego $a + (nm) \mapsto (g^a, h^a)$ es un isomorfismo $(\mathbb{Z}_{mn}, +) \rightarrow G \times H$. Además, como $1 + (nm)$ es un generador de $(\mathbb{Z}_{mn}, +)$, se tiene que $(g, h)$ es un generador de $G \times H$.
+
+Supongamos ahora que $g, h \in G$ tienen órdenes coprimos $n$ y $m$. Entonces la multiplicación define un homomorfismo supravectivo $M : \langle g \rangle \times \langle h \rangle \rightarrow \langle g, h \rangle$. (Observa la importancia de la hipótesis $gh = hg$ aquí.) Por el Teorema de Lagrange, el orden de $\langle g \rangle \cap \langle h \rangle$ divide a $n$ y $m$. Como $n$ y $m$ son coprimos, este orden es 1, luego $\langle g \rangle \cap \langle h \rangle = \{1\}$. Si $(x, y)$ pertenece al núcleo de $M$ entonces $x = y^{-1} = \langle g \rangle \cap \langle h \rangle = \{1\}$. Esto demuestra que $M$ es un isomorfismo. En el párrafo anterior hemos visto que $(g, h)$ es generador de $\langle g \rangle \times \langle h \rangle$, luego $gh = M(g, h)$ es generador de $\langle g, h \rangle$.
+\end{proofbox}
+
+Razonando por inducción sobre $n$ obtenemos el siguiente resultado:
+
+\begin{corollary}{}{corolario_producto_ciclico}
+Si $g_1, \ldots, g_n$ son elementos de orden finito de un grupo con $k_i = |g_i|$, $g_i g_j = g_j g_i$ y $\operatorname{mcd}(k_i, k_j) = 1$ para todo $i \neq j$, entonces $\langle g_1, \ldots, g_n \rangle$ es cíclico de orden $k_1 \ldots k_n$ y generado por $g_1 \ldots g_n$.
+\end{corollary}
