@@ -50,15 +50,29 @@ Un subgrupo $N$ de un grupo $G$ se dice que es subgrupo normal de $G$ (también 
 Si $N$ es normal en $G$, el grupo $G/N$ recién descrito se llama grupo cociente de $G$ módulo $N$.
 \end{definition}
 
+Notemos que, dados $g \in G, H \leq G$ el conjunto
+\[
+g^{-1}Hg = \{g^{-1}hg : h \in H\}
+\]
+es un subgrupo de $G$. Como $e \in H$
+\[
+e = g^{-1}eg \in g^{-1}Hg
+\]
+y para todo $a, b \in g^{-1}Hg$, $a = g^{-1}h_1g, b = g^{-1}h_2g$ con $h_1, h_2 \in H \implies h_1 h_2^{-1} \in H$, luego
+\[
+ab^{-1} = g^{-1}h_1g(g^{-1}h_2g)^{-1} = g^{-1}h1h_2^{-1}g \in g^{-1}Hg.
+\]
+
+
 \subsection{Ejemplos de subgrupos normales}
 \label{sec:ejemplos_normales}
 
 \begin{example}{}{}
 Es claro que, en un grupo abeliano, todo subgrupo es normal. Esto es claro puesto que si $N \leq G$ y $G$ es abeliano entonces
 \[
-x \in gN \iff \exists n \in N \text{ tal que } x = gn = ng \iff x \in Ng
+x \in g^{-1}Ng \iff \exists n \in N \text{ tal que } x = g^{-1}ng = g^{-1}gn = n \iff x \in N
 \]
-de donde deducimos que $gN = Ng$.
+de donde deducimos que $g^{-1}Ng = N$.
 \end{example} 
 
 \begin{example}{}{}
@@ -86,12 +100,10 @@ Si $H$ es un subgrupo de $G$ de índice 2, entonces $H$ es normal en $G$. En efe
    
 \begin{example}{}{}
 Sea $G = \mathrm{GL}_n(\mathbb{R})$ el grupo lineal general sobre $\mathbb{R}$. Usando el hecho de que, si $a,b \in G$, entonces
-    
-    \[
-    \det(ba) = \det(b)\det(a) = \det(a)\det(b) = \det(ab),
-    \]
-    
-    es fácil ver que $\mathrm{SL}_n(\mathbb{R})$ es un subgrupo normal de $G$.
+\[
+\det(ba) = \det(b)\det(a) = \det(a)\det(b) = \det(ab),
+\]
+es fácil ver que $\mathrm{SL}_n(\mathbb{R})$ es un subgrupo normal de $G$.
 \end{example} 
    
 \begin{example}{}{}

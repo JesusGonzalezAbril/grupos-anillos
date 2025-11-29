@@ -1,58 +1,48 @@
-\subsection{Conjugación y acciones de grupos en conjuntos}
+\clearpage
+\section{Conjugación y acciones de grupos en conjuntos}
 
 \begin{definition}{Conjugación}{conjugacion}
-Sea $G$ un grupo. Si $a, g \in G$, entonces se define el \emph{conjugado} de $g$ por $a$ como
-
+Sea $G$ un grupo. Si $a, g \in G$, entonces se define el conjugado de $g$ por $a$ como
 \[
 g^a = a^{-1}ga.
 \]
 
 Más generalmente, si $X$ es un subconjunto de $G$, entonces el conjugado de $X$ por $a$ es
-
 \[
-X^a = \{x^a : x \in X\}.
+X^a = \{a^{-1}xa : x \in X\}.
 \]
 
-Se dice que dos elementos o subconjuntos $x$ y $y$ de $G$ son \emph{conjugados} en $G$ si $x^a = y$ para algún $a \in G$. Por ejemplo, un subgrupo de $G$ es normal si y solo si todos sus conjugados en $G$ son iguales.
+Se dice que dos elementos o subconjuntos $x$ y $y$ de $G$ son conjugados en $G$ si $x^a = y$ para algún $a \in G$.
 \end{definition}
 
+\begin{remark}
+Notemos que un subgrupo de $G$ es normal si y solo si todos sus conjugados en $G$ son iguales.
+\end{remark}
+
 Si $a \in G$, entonces la aplicación
-
 \[
-\begin{array}{ccc}
-t_a : G & \rightarrow & G \\
-x & \mapsto & t_a(x) = x^a
-\end{array}
+\iota_a : G \to G,\quad \iota_a(x) = x^a = a^{-1}xa
 \]
-
-es un automorfismo de $G$, llamado \emph{automorfismo interno} definido por $a$, con inverso $t_{a^{-1}}$. Eso implica que dos elementos o subconjuntos conjugados de un grupos tienen propiedades similares. Por ejemplo, dos elementos conjugados de $G$ tiene el mismo orden y el conjugado de un subgrupo de $G$ es otro subgrupo de $G$ del mismo orden.
+es un automorfismo de $G$, llamado automorfismo interno definido por $a$, con inverso $\iota_{a^{-1}}$. Eso implica que dos elementos o subconjuntos conjugados de un grupos tienen propiedades similares. Por ejemplo, dos elementos conjugados de $G$ tiene el mismo orden y el conjugado de un subgrupo de $G$ es otro subgrupo de $G$ del mismo orden.
 
 Es fácil ver que
-
 \[
-g^{ab} = (g^a)^b
+g^{ab} = (ab)^{-1}gab = b^{-1}(a^{-1}ga)b = (g^a)^b
 \]
-
-para todo $g, a, b \in G$,
-
-y utilizando esto se demuestra de forma fácil que la relación ser conjugados (tanto de elementos, como de subconjuntos de $G$) es una relación de equivalencia. Las clases de equivalencia de esta relación de equivalencia en $G$ se llaman \emph{clases de conjugación} de $G$. La clase de conjugación de $G$ que contiene a $a$ se denota por $a^G$. Es decir
-
+para todo $g, a, b \in G$, y utilizando esto se demuestra de forma fácil que la relación ser conjugados (tanto de elementos, como de subconjuntos de $G$) es una relación de equivalencia. Las clases de equivalencia de esta relación de equivalencia en $G$ se llaman clases de conjugación de $G$. La clase de conjugación de $G$ que contiene a $a$ se denota por $a^G$. Es decir
 \[
 a^G = \{a^g : g \in G\}.
 \]
 
 \begin{definition}{Acción de grupo}{accion_grupo}
-Sean $G$ un grupo y $X$ un conjunto. Una \emph{acción por la izquierda} de $G$ en $X$ es una aplicación
-
+Sean $G$ un grupo y $X$ un conjunto. Una acción por la izquierda de $G$ en $X$ es una aplicación
 \[
-\begin{array}{ccc}
-\cdot : G \times X & \rightarrow & X \\
-(g, x) & \mapsto & g \cdot x
+\begin{array}{r c c c}
+    \cdot : & G \times X & \to & X\\
+            & (g, x)     & \mapsto     & g \cdot x
 \end{array}
 \]
-
 que satisface las siguientes propiedades:
-
 \begin{enumerate}
     \item $(gh) \cdot x = g \cdot (h \cdot x)$, para todo $x \in X$ y todo $g, h \in G$.
     \item $1 \cdot x = x$, para todo $x \in X$.
@@ -61,41 +51,146 @@ que satisface las siguientes propiedades:
 Análogamente se define una acción por la derecha.
 \end{definition}
 
-Vamos a ver una definición alternativa. Sea $\cdot : G \times X \rightarrow X$ una acción por la izquierda del grupo $G$ en el conjunto $X$. Entonces la aplicación $\phi : G \rightarrow S_X$ dada por $\phi(g)(x) = g \cdot x$ es un homomorfismo de grupos. Recíprocamente, si $\phi : G \rightarrow S_X$ es un homomorfismo de grupos, entonces la aplicación $\cdot : G \times X \rightarrow X$, dada por $g \cdot x = \phi(g)(x)$ es una acción por la izquierda de $G$ en $X$. Por tanto, es lo mismo hablar de una acción por la izquierda de un grupo $G$ en un conjunto $X$ que de un homomorfismo de grupos $G \rightarrow S_{X}$. 
+\begin{definition}{Órbita y estabilizador}{orbita_estabilizador}
+Sea $\cdot : G \times X \rightarrow X$ una acción por la izquierda de un grupo $G$ en un conjunto $X$. Si $x \in X$ entonces 
+\[
+G \cdot x = \{g \cdot x : g \in G\}
+\]
+se llama órbita de $x$ y 
+\[
+\operatorname{Estab}_{G}(x) = \{g \in G : g \cdot x = x\}
+\]
+se llama estabilizador de $x$ en $G$. Obsérvese que las órbitas forman una partición de $G$.
+\end{definition}
 
-Análogamente podemos identificar las acciones por la derecha de $G$ en $X$ con los antihomomorfismos de grupos $\phi : G \rightarrow S_{X}$, es decir las aplicaciones $\phi : G \rightarrow S_{X}$ que satisfacen $\phi(gh) = \phi(h)\phi(g)$, para todo $g,h \in G$. En realidad podemos ver las acciones por la izquierda y por la derecha como los mismos objetos matemáticos pues si $: G \times X \rightarrow X$ es una aplicación y definimos $* : X \times G \rightarrow G$ poniendo $x * g = g^{-1} \cdot x$ entonces - es una acción por la izquierda de $G$ en $X$ si y solo si $*$ es una acción por la derecha de $G$ en $X$. Esto mismo lo podríamos haber visto observando que si $\phi : G \rightarrow S_{X}$ es una aplicación y definimos $\psi : G \rightarrow S_{X}$ poniendo $\psi(g) = \phi(g^{-1})$, entonces $\phi$ es un homomorfismo si y solo si $\psi$ es un antihomomorfismo.
-
-Sea $: G \times X \rightarrow X$ una acción por la izquierda de un grupo $G$ en un conjunto $X$. Si $x \in X$ entonces $G \cdot x = \{g \cdot x : g \in G\}$ se llama \emph{órbita} de $x$ y $\operatorname{Estab}_{G}(x) = \{g \in G : g \cdot x = x\}$ se llama \emph{estabilizador} de $x$ en $G$. Obsérvese que las órbitas forman una partición de $G$.
-
+\begin{remark}
 En el caso de acciones por la derecha la órbita de $x$ se denota $x \cdot G$.
+\end{remark}
 
-\begin{example}{Ejemplos de acciones de grupos}{ejemplos_acciones}
+Vamos a ver una definición alternativa para las acciones. Sea $\cdot : G \times X \to X$ una acción por la izquierda del grupo $G$ en el conjunto $X$. Consideremos la aplicación
+\[
+\phi : G \to S_X, \quad \phi(g)(x) = g \cdot x,
+\]
+notemos que, fijado $g$, $g \cdot x$ es una biyección:
+\[
+g \cdot x : X \to X
+\]
+ya que tiene aplicación inversa $g^{-1} \cdot x : X \to X$. Además, $\phi$ es un homomorfismo de grupos, puesto que
+\[
+\phi(gh)(x) = (gh) \cdot x = g \cdot (h \cdot x) = \phi(g)(\phi(h)(x)) = (\phi(g) \circ \phi(h))(x) 
+\]
+(recordemos que la operación en $S_X$ es la composición de aplicaciones).
+
+Recíprocamente, si $\phi : G \to S_X$ es un homomorfismo de grupos, entonces la aplicación
+\[
+\cdot : G \times X \to X, \quad g \cdot x = \phi(g)(x)
+\]
+es una acción por la izquierda de $G$ en $X$ ya que
+\[
+(gh) \cdot x = \phi(gh)(x) = (\phi(g) \circ \phi(h))(x) = \phi(g)(\phi(h)(x)) = g \cdot (h \cdot x)
+\]
+\[
+1 \cdot x = \phi(1)(x) = Id_X(x)
+\]
+donde hemos usado que $\phi$ es un homomorfismo y, por tanto, $\phi(1) = Id_{X}$.
+
+Por tanto, es lo mismo hablar de una acción por la izquierda de un grupo $G$ en un conjunto $X$ que de un homomorfismo de grupos $G \rightarrow S_{X}$. Tomémonos un segundo para reflexionar sobre este resultado, hemos determinado que, dado un grupo cualquiera $G$ y un conjunto cualquiera $X$, podemos ver los elementos de $G$ como biyecciones en $X$ (aplicaciones que "mantienen" el conjunto subyacente invariante), es decir, todo elemento de un grupo se puede asociar con una cierta transformación sobre algún conjunto.
+
+Análogamente podemos identificar las acciones por la derecha de $G$ en $X$ con los antihomomorfismos de grupos $\phi : G \rightarrow S_{X}$, es decir las aplicaciones $\phi : G \rightarrow S_{X}$ que satisfacen
+\[
+\phi(gh) = \phi(h) \circ \phi(g),
+\]
+para todo $g,h \in G$.
+
+En realidad podemos ver las acciones por la izquierda y por la derecha como los mismos objetos matemáticos pues si $\cdot : G \times X \rightarrow X$ es una aplicación y definimos $\ast : X \times G \rightarrow G$ poniendo
+\[
+x \ast g = g^{-1} \cdot x
+\]
+entonces $\cdot$ es una acción por la izquierda de $G$ en $X$ si y solo si $\ast$ es una acción por la derecha de $G$ en $X$.
+
+Esto mismo lo podríamos haber visto observando que si $\phi : G \rightarrow S_{X}$ es una aplicación y definimos $\psi : G \rightarrow S_{X}$ poniendo $\psi(g) = \phi(g^{-1})$, entonces $\phi$ es un homomorfismo si y solo si $\psi$ es un antihomomorfismo.
+
+\subsection{Ejemplos de acciones de grupos}
+
 Sea $G$ un grupo arbitrario.
 
-\begin{enumerate}
-    \item Consideremos la acción por la izquierda de $G$ en sí mismo dada por $g \cdot x = gx$. Esta acción se llama \emph{acción por traslación a la izquierda}. Análogamente se define una acción por traslación a la derecha. Obsérvese que $\operatorname{Estab}_{G}(x) = 1$ y $G \cdot x = G$, para todo $x \in G$.
-    
-    Más generalmente, si $H$ es un subgrupo de $G$, entonces $G$ actúa por la izquierda en $G/H$ mediante la regla: $g \cdot xH = (gx)H$. Análogamente se define una acción por la derecha de $G$ en $H \backslash G$. De nuevo, todos los elementos están en la misma órbita y
-    
-    \[
-    \operatorname{Estab}_{G}(xH) = \{g \in G : x^{-1}gx \in H\} = xHx^{-1} = Hx^{-1}
-    \]
-    
-    \item La acción por conjugación de $G$ en sí mismo es la acción por la derecha dada por $x \cdot g = x^{g} = g^{-1}xg$. La órbita $x \cdot G$ es $x^{G}$, la clase de conjugación de $x$ en $G$ y el estabilizador es $\operatorname{Estab}_{G}(x) = C_{G}(x)$, el centralizador de $x$ en $G$.
-    
-    \item $G$ actúa por la derecha en el conjunto $S$ de sus subgrupos mediante la regla $H \cdot g = H^{g}$. Esta acción se llama \emph{acción por conjugación de $G$ en sus subgrupos}. El estabilizador de $H$ es $\operatorname{Estab}_{G}(H) = \{g \in G : H^{g} = H\} = N_{G}(H)$, el normalizador de $H$ en $G$. Obsérvese que $N_{G}(H)$ es el mayor subgrupo de $G$ que contiene a $H$ como subgrupo normal.
-    
-    \item Para cada entero positivo $n$, consideramos $S_{n}$ actuando por la izquierda en $\{1, 2, \ldots, n\}$ mediante: $\sigma \cdot x = \sigma(x)$. Claramente, todo elemento está en la misma órbita y $\operatorname{Estab}_{S_{n}}(i) = \{\sigma \in S_{n} : \sigma(i) = i\} \simeq S_{n-1}$.
-    
-    \item Sea $n$ un número natural y $X$ un conjunto. Entonces la siguiente fórmula define una actuación por la izquierda del grupo simétrico $S_{n}$ en $X^{n}$:
-    
-    \[
-    \sigma \cdot (x_{1}, \ldots, x_{n}) = (x_{\sigma(1)}, \ldots, x_{\sigma(n)}).
-    \]
-    
-    \item Sea $G$ un grupo actuando por la izquierda en un conjunto $X$ y sean $H$ un subgrupo de $G$ e $Y$ un subconjunto de $X$. Si para todo $h \in H$ y todo $y \in Y$ se verifica que $h \cdot y \in Y$ entonces la restricción a $H \times Y$ de la acción de $G$ en $X$ es una acción por la izquierda de $H$ en $Y$.
-\end{enumerate}
+\begin{example}{}{}
+Consideremos la acción por la izquierda de $G$ en sí mismo dada por $g \cdot x = gx$. Esta acción se llama acción por traslación a la izquierda. En ocasiones escribimos
+\[
+L_g(x) = g\cdot x = gx.
+\]
+
+Análogamente se define una acción por traslación a la derecha $R_g(x) = x \ast g = xg$. Obsérvese que $\operatorname{Estab}_{G}(x) = \left\{ e \right\}$ y, para todo $x \in G$, $G \cdot x = G$.
+
+Más generalmente, si $H$ es un subgrupo de $G$, entonces $G$ actúa por la izquierda en $G/H$ mediante la regla: $g \cdot xH = (gx)H$. Análogamente se define una acción por la derecha de $G$ en $H \backslash G$. De nuevo, todos los elementos están en la misma órbita y    
+\begin{align*}
+\operatorname{Estab}_{G}(xH) &= \{g \in G : gxH = xH\} = \{g \in G : x^{-1}gx \in H\} \\
+&= \{g \in G : g \in xHx^{-1}\} = xHx^{-1} = H^{x^{-1}}.
+\end{align*}
 \end{example}
+
+\begin{example}{}{}
+La acción por conjugación de $G$ en sí mismo es la acción por la derecha dada por $x \cdot g = x^{g} = g^{-1}xg$. Para ver que es una acción notemos que
+\[
+x^{e} = x,\quad x^{ab} = (x^{a})^{b}.
+\]
+
+La órbita $x \cdot G$ es $x^{G}$, la clase de conjugación de $x$ en $G$ y el estabilizador es $\operatorname{Estab}_{G}(x) = C_{G}(x)$, el centralizador de $x$ en $G$.
+\end{example}
+
+\begin{example}{}{}
+$G$ actúa por la derecha en el conjunto $S$ de sus subgrupos mediante la regla $H \cdot g = H^{g}$. Esta acción se llama acción por conjugación de $G$ en sus subgrupos. El estabilizador de $H$ es
+\[
+\operatorname{Estab}_{G}(H) = \{g \in G : H^{g} = H\} = N_{G}(H),
+\]
+el normalizador de $H$ en $G$. Obsérvese que $N_{G}(H)$ es el mayor subgrupo de $G$ que contiene a $H$ como subgrupo normal.
+\end{example}
+
+\begin{example}{}{}
+Para cada entero positivo $n$, consideramos $S_{n}$ (el grupo de permutaciones de orden $n$) actuando por la izquierda en $\{1, 2, \ldots, n\}$ mediante: $\sigma \cdot x = \sigma(x)$.
+
+Claramente, todo elemento está en la misma órbita ya que fijado $x$ arbitrario
+\[
+S_n \cdot x = \{\sigma(x) : \sigma \in S_n\} 
+\]
+y para cualquier otro $y$ podemos considerar la permutación dada por
+\[
+\tau(x) = y,\ \tau(y) = x,\ \tau(z) = z\quad (z \neq x,y),
+\]
+luego $y = \tau(x) \in S_n \cdot x$.
+
+Además,
+\[
+\operatorname{Estab}_{S_{n}}(i) = \{\sigma \in S_{n} : \sigma(i) = i\} \cong S_{n-1}
+\]
+ya que las permutaciones que dejan invariantes a $i$ pueden verse como permutaciones de $n-1$ elementos.
+\end{example}
+
+\begin{example}{}{}
+Sea $n$ un número natural y $X$ un conjunto. Entonces la siguiente fórmula define una actuación por la izquierda del grupo simétrico $S_{n}$ en $X^{n} = \prod_{i = 1}^{n} X$:
+\[
+\sigma \cdot (x_{1}, \ldots, x_{n}) = (x_{\sigma(1)}, \ldots, x_{\sigma(n)}).
+\]
+
+Si $X = \R$, $n = 3$ y $\sigma \in S_3$ es la biyección
+\[
+\sigma(1) = 3,\ \sigma(2) = 1,\ \sigma(3) = 2
+\]
+entonces
+\[
+\sigma \cdot (x, y, z) = (y, z, x)
+\]
+\end{example}
+
+\begin{example}{}{}
+Sea $G$ un grupo actuando por la izquierda en un conjunto $X$ y sean $H \leq G$ un subgrupo de $G$ e $Y \subseteq X$ un subconjunto de $X$. Si para todo $h \in H$ y todo $y \in Y$ se verifica que $h \cdot y \in Y$ entonces la restricción a $H \times Y$ de la acción de $G$ en $X$ es una acción por la izquierda de $H$ en $Y$.
+\end{example}
+
+\begin{proofbox}
+Supongamos que $\cdot: G \times X \to X$ es la acción de $G$ en $X$. Sea $\ast$ la restricción de $\cdot$ a $H \times Y$. Como $h \cdot y \in Y$, $\ast$ está bien definida. Que verifica las condiciones para ser una acción es inmediato.
+\end{proofbox}
+
+\subsection{Propiedades de acciones}
 
 \begin{proposition}{Propiedades de acciones}{propiedades_acciones}
 Sea $G$ un grupo actuando en un conjunto $X$ y sean $x \in X$ y $g \in G$. Entonces
@@ -105,14 +200,70 @@ Sea $G$ un grupo actuando en un conjunto $X$ y sean $x \in X$ y $g \in G$. Enton
     \item $[G : \operatorname{Estab}_{G}(x)] = |G \cdot x|$. En particular, si $G$ es finito, entonces el número de elementos de cada órbita es un divisor del orden de $G$.
     \item Si se trata de una acción por la izquierda entonces $\operatorname{Estab}_{G}(g \cdot x) = \operatorname{Estab}_{G}(x)g^{-1}$. Sin embargo, si se trata de una acción por la derecha entonces $\operatorname{Estab}(x \cdot g) = \operatorname{Estab}_{G}(x)g$.
     \item (Ecuación de Órbitas) Si $R$ es un conjunto de representantes de las órbitas de la acción de $G$ en $X$ (es decir, $R$ contiene exactamente un elemento de cada órbita) entonces
-    
     \[
     |X| = \sum_{r \in R} |G \cdot r| = \sum_{r \in R} [G : \operatorname{Estab}_{G}(r)].
     \]
 \end{enumerate}
 \end{proposition}
 
-Aplicando la Proposición 4.27 a la acción de $G$ en sí mismo y en sus subgrupos por conjugación obtenemos el siguiente corolario.
+\begin{proofbox}
+\begin{enumerate}
+    \item Para cualquier acción $e \cdot x = x$, luego $e \in \operatorname{Estab}_{G}(x)$. Si tomamos $a, b \in \operatorname{Estab}_{G}(x)$ entonces
+    \[
+    a \cdot x = x,\ b \cdot x = x \implies (ab) \cdot x = a \cdot (b \cdot x) = a \cdot x = x,
+    \]
+    luego $ab \in \operatorname{Estab}_{G}(x)$. Para ver que $a^{-1} \in \operatorname{Estab}_{G}(x)$ notemos que
+    \[
+    a^{-1} \cdot x = a^{-1} \cdot (a \cdot x) = (a^{-1}a) \cdot x = e \cdot x = x.
+    \]
+
+    \item Basta ver que existe una biyección que asigna a cada clase lateral $g\operatorname{Estab}_{G}(x)$, $g \in G$, un elemento de la órbita $G \cdot x$. Para ello, sea $N = \operatorname{Estab}_{G}(x)$
+    \[
+    \phi : G/N \to G \cdot x, \quad \phi(gN) = (g \cdot x),
+    \]
+    que está bien definida y es inyectiva ya que
+    \[
+    \phi(gN) = \phi(hN) \implies g \cdot x = h \cdot x \implies g^{-1}h \cdot x = g^{-1} \cdot (h \cdot x) = g^{-1} \cdot (g \cdot x) = e \cdot x = x,
+    \]
+    por tanto $g^{-1}h \in N$, luego $gN = hN$.
+    Por otro lado, dado $\alpha \in G \cdot x$ entonces $\alpha = g \cdot x$ con $g \in G$, luego
+    \[
+    \phi(gN) = g \cdot x = \alpha
+    \]
+    y por tanto $\phi$ es sobreyectiva.
+
+    \item Probaremos solo el caso por la izquierda. Sea $h \in \operatorname{Estab}_{G}(g \cdot x)$, entonces
+    \[
+    h \cdot (g \cdot x) = x \implies hg \cdot x = x
+    \]
+    por lo que $hg \in \operatorname{Estab}_{G}(x) \implies h = (hg)g^{-1} \in \operatorname{Estab}_{G}(x)g^{-1}$.
+
+    Por otro lado, si $h \in \operatorname{Estab}_{G}(x)g^{-1}$, entonces
+    $h = ag^{-1}$ con $a \in \operatorname{Estab}_{G}(x)$, por lo que
+    \[
+    h \cdot (g \cdot x) = ag^{-1} \cdot (g \cdot x) = a \cdot x = x
+    \]
+    con lo que concluimos que $h \in \operatorname{Estab}_{G}(g \cdot x)$.
+
+    \item Que
+    \[
+    \sum_{r \in R} |G \cdot r| = \sum_{r \in R} [G : \operatorname{Estab}_{G}(r)].
+    \]
+    es inmediato por (2).
+
+    Para ver
+    \[
+    |X| = \sum_{r \in R} |G \cdot r|.
+    \]
+    notemos que, como las órbitas forman una partición de $X$,
+    \[
+    X = \bigcup_{r \in R} \left\vert G \cdot r \right\vert
+    \]
+    siendo la unión disjunta, de lo que deducimos que $|X| = \sum_{r \in R} |G \cdot r|$.
+\end{enumerate}
+\end{proofbox}
+
+Aplicando la Proposición \ref{prop:propiedades_acciones} a la acción de $G$ en sí mismo y en sus subgrupos por conjugación obtenemos el siguiente corolario.
 
 \begin{corollary}{Propiedades de conjugación}{propiedades_conjugacion}
 Sea $G$ un grupo y sean $a, g \in G$ y $H$ un subgrupo de $H$.
@@ -136,11 +287,15 @@ Si $G$ es un $p$-grupo finito no trivial para $p$ un primo entonces $Z(G) \neq 1
 \end{proposition}
 
 \begin{proofbox}
-Utilizando la notación del Corolario 4.28 tenemos $|G| = |Z(G)| + \sum_{x \in X} [G : C_G(x)]$. Entonces $|G|$ y $[G : C_G(x)]$ son potencias de $p$ para todo $x \in X$, con lo que $|Z(G)|$ es múltiplo de $p$ y por tanto $Z(G) \neq 1$.
+Utilizando la notación del Corolario \ref{cor:propiedades_conjugacion} tenemos $|G| = |Z(G)| + \sum_{x \in X} [G : C_G(x)]$. Entonces $|G|$ y $[G : C_G(x)]$ son potencias de $p$ para todo $x \in X$, con lo que $|Z(G)|$ es múltiplo de $p$ y por tanto $Z(G) \neq 1$.
 \end{proofbox}
 
 \begin{theorem}{Estructura de $p$-grupos}{estructura_p_grupos}
-Si $G$ es un $p$-grupo finito entonces $G$ tiene una cadena de subgrupos normales $1 = G_0 \subset G_1 \subset G_2 \subset \cdots \subset G_n = G$ tales que $[G_i : G_{i-1}] = p$ para todo $i = 1, \ldots, n$.
+Si $G$ es un $p$-grupo finito entonces $G$ tiene una cadena de subgrupos normales
+\[
+1 = G_0 \subset G_1 \subset G_2 \subset \cdots \subset G_n = G
+\]
+tales que $[G_i : G_{i-1}] = p$ para todo $i = 1, \dots, n$.
 \end{theorem}
 
 \begin{theorem}{Teorema de Cauchy}{teorema_cauchy}
