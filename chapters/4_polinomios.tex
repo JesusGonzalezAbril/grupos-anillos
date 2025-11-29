@@ -5,7 +5,7 @@
 
 \emph{En el resto del capítulo usaremos la siguiente notacion: \(\mathbb{N}_{0} = \mathbb{N}\cup \{0\}\).}
 
-Sea \(A\) un anillo. En el capítulo 1 definimos el anillo de polinomios \(A[X]\) en una indeterminada con coeficientes en \(A\) como el conjunto de las expresiones del tipo
+Sea \(A\) un anillo. Anteiormente definimos el anillo de polinomios \(A[X]\) en una indeterminada con coeficientes en \(A\) como el conjunto de las expresiones del tipo
 \[
 P=P(X)=p_{0}+p_{1}X+p_{2}X^{2}+\cdots+p_{n}X^{n}
 \]
@@ -28,7 +28,7 @@ Sea \(A\) un anillo y sea \(p=\sum_{i\in\mathbb{N}_{0}}p_{i}X^{i}\in A[X]\) un p
 \gr(p)=\max\{i\in\mathbb{N}_{0}:p_{i}\neq 0\}.
 \]
 
-El coeficiente de mayor grado, \(p_{\textrm{gr}(p)}\), se conoce como el coeficiente principal de \(P\), y diremos que \(P\) es monico si su coeficiente principal es \(1\). Por convenio, consideramos que el polinomio \(0\) tiene grado \(-\infty\) y coeficiente principal \(0\). Es claro que los polinomios de grado \(0\) son precisamente los polinomios constantes no nulos. A veces llamaremos lineales a los polinomios de grado \(1\), cuadraticos a los de grado \(2\), cubicos a los de grado \(3\), etcetera.
+El coeficiente de mayor grado, \(p_{\textrm{gr}(p)}\), se conoce como el coeficiente principal de \(P\), y diremos que \(P\) es monico si su coeficiente principal es \(1\). Por convenio, consideramos que el polinomio \(0\) tiene grado \(-\infty\) y coeficiente principal \(0\). Es claro que los polinomios de grado \(0\) son precisamente los polinomios constantes no nulos. A veces llamaremos lineales a los polinomios de grado \(1\), cuadraticos a los de grado \(2\), cubicos a los de grado \(3\), etc.
 
 \begin{lemma}{}{grados_polinomios}
 Si $P$ y $Q$ son polinomios no nulos de $A[X]$ y sus términos principales son $p$ y $q$ respectivamente entonces se verifican las siguientes propiedades:
@@ -124,11 +124,11 @@ PQ = 0 \implies P = 0 ~\text{ o }~ Q = 0.
 \]
 Sean $p,q \in A$ y supongamos que $pq = 0$, sean $P = p, Q = q$ polinomios en $A[X]$ con grado 0, que claramente cumplen $PQ = pq = 0$. Como \(A[X]\) es un dominio debe ser entonces $P = 0$ o $Q = 0$, es decir, $p = 0$ o $q = 0$, luego \(A\) también es un dominio.
 
-Para el recíproco, supongamos que \(A\) es un dominio. Sean $P,Q \in A[X]$ tales que $PQ = 0$, luego $\gr(PQ) = -\infty$. Por la parte (3) del Lema \ref{lem:grados_polinomios} sabemos que
+Para el recíproco, supongamos que \(A\) es un dominio. Sean $P,Q \in A[X]$ tales que $PQ = 0$. Si llamamos $p_i,q_i$ a los coeficientes de $P,Q$ y suponemos que son polinomios no nulos de grado $n,m$ respectivamente, entonces $p_n \neq 0, q_m \neq 0$ pero
 \[
--\infty = \gr(PQ) = \gr(P) + \gr(Q)
+0 = PQ = \sum_{k = 0}^{n + m - 1}\left(\sum_{i = 0}^{k} p_i q_{k - i}\right) X^k + p_n q_m X^{n+m} \implies p_n q_m = 0 
 \]
-luego o bien \(\gr(P) = -\infty\) o \(\gr(Q) = - \infty\), es decir, $P = 0$ o $Q = 0$. Esto prueba que $A[X]$ es un dominio. 
+lo cual es imposible puesto que $A$ es un dominio. Por tanto, concluimos que $P = 0$ o $Q = 0$. Esto prueba que $A[X]$ es un dominio. 
 
 En cuanto a las unidades, es claro que $A^* \subseteq A[X]^*$ (abusamos del lenguaje identificando $A$ como subanillo de $A[X]$). Sea ahora $P \in A[X]^*$, entonces existe $Q$ tal que
 \[
@@ -513,7 +513,7 @@ Sea $D$ un dominio y sea $p\in D$.
 
 \begin{enumerate}
     \item $p$ es irreducible en $D$ si y solo si lo es en $D[X]$.
-    \item Si $p$ es primo en $D[X]$ entonces lo es en $D$.
+    \item $p$ es primo en $D$ si y solo si lo es en $D[X]$.
     \item Si ademas $D$ es un DFU entonces las condiciones siguientes son equivalentes:
     \begin{enumerate}
         \item $p$ es irreducible en $D$.
@@ -528,14 +528,13 @@ Sea $D$ un dominio y sea $p\in D$.
 \begin{proofbox}
 \begin{enumerate}
     \item Es consecuencia del Corolario \ref{cor:unidades_dominio_polinomios}.
-    \item Supongamos que $p \mid ab$ en $D$, entonces $p \mid ab$ en $D[X]$. Como $p$ es primo en $D[X]$ podemos suponer sin perder generalidad que $p \mid a$, en tal caso
+    \item Supongamos que $p$ es primo en $D[X]$ y $p \mid ab$ en $D$, entonces $p \mid ab$ en $D[X]$. Como $p$ es primo en $D[X]$ podemos suponer sin perder generalidad que $p \mid a$, en tal caso
     \[
     a = pf,\quad f \in D[X]
     \] 
     pero entonces comparando grados $0 = \gr(a) = \gr(p) + \gr(f) = \gr(f)$, luego $f \in D$ y por tanto $p \mid a$ en $D$.
-    \item Por (1) sabemos que (a) y (b) son equivalentes. Además, por la Proposición \ref{prop:primo_implica_irreducible} ser primo implica ser irreducible, luego (c) implica (a) y (d) implica (b) por otro lado, por el Lema \ref{lem:DFU_irreducible} (a) implica (c). En resumen: (a), (b), (c) son equivalentes y (d) implica (b), luego solo falta ver que (c) implica (d).
 
-    Supongamos por tanto que $p$ es primo en $D$, y veamos que lo es en $D[X]$. Para ello, sean
+    Para el recíproco, supongamos que $p$ es primo en $D$, y veamos que lo es en $D[X]$. Para ello, sean
     \[
     a=a_{0}+\cdots+a_{n}X^{n}\qquad\text{y}\qquad b=b_{0}+\cdots+b_{m}X^{m}
     \]
@@ -544,12 +543,35 @@ Sea $D$ un dominio y sea $p\in D$.
     c_{i+j}=a_{0}b_{i+j}+\cdots+a_{i-1}b_{j+1}+a_{i}b_{j}+a_{i+1}b_{j-1}+\cdots+a_{i +j}b_{0},
     \]
     y las condiciones dadas implican que $p$ divide a todos los sumandos excepto a $a_{i}b_{j}$, por lo que $p\nmid c_{i+j}$ y en consecuencia $p\nmid ab$.
+
+    \item Por (1) sabemos que (a) y (b) son equivalentes, por (2) sabemos que (c) y (d) también lo son. Además, por la Proposición \ref{prop:primo_implica_irreducible} ser primo implica ser irreducible, luego (c) implica (a) y, por otro lado, por el Lema \ref{lem:DFU_irreducible} (a) implica (c).
 \end{enumerate}
 
 \end{proofbox}
 
+Para una demostración directa de que $p$ primo en $D$ implica $p$ primo en $D[X]$ podemos razonar de la siguiente manera.
+
+Sea \( p \in D \) primo en \( D \). Tomemos \( f,g \in D[X] \) tales que  
+\[
+p \mid fg \quad \text{en } D[X].
+\]  
+
+Como \( p \) es primo en \( D \), el ideal \( (p) \) es primo en \( D \), luego \( D/(p) \) es un dominio. Sea \( \pi : D[X] \to (D/(p))[X] \) la proyección natural (reducir coeficientes módulo \( p \)).
+
+La condición \( p \mid fg \) en \( D[X] \) implica que todos los coeficientes de \( fg \) son múltiplos de \( p \), es decir,  
+\[
+\pi\big(fg\big) = \pi(f) \cdot \pi(g) = 0 \quad \text{en } (D/(p))[X].
+\]  
+Pero \( D/(p) \) es dominio, luego \( (D/(p))[X] \) también es dominio.  
+Por tanto,  
+\[
+\pi(f) = 0 \quad \text{o} \quad \pi(g) = 0.
+\]
+Si suponemos sin perder generalidad que \( \pi(f) = 0 \), entonces todos los coeficientes de \( f \) son múltiplos de \( p \), es decir, \( p \mid f \) en \( D[X] \), lo cual prueba que $p$ es primo en $D[X]$.
+
+
 \clearpage
-\subsection{Polinomios sobre dominios de factorización única}
+\section{Polinomios sobre dominios de factorización única}
 
 \emph{En el resto de la seccion $D$ sera un DFU y $K$ su cuerpo de fracciones.}
 
@@ -632,6 +654,13 @@ En consecuencia, podemos aplicar la hipotesis de induccion a $b$ y $c$, y pegand
 Por la Proposición \ref{prop:equivalencias_DFU}, solo falta demostrar que todo irreducible $f$ de $D[X]$ es primo, y por el Lema \ref{lem:primos_irreducibles_polinomios} podemos suponer que $\operatorname{gr}(f)\geq 1$. Sean pues $g,h\in D[X]$ tales que $f\mid gh$ en $D[X]$, y veamos que $f\mid g$ o $f\mid h$ en $D[X]$. Obviamente, $f\mid gh$ en $K[X]$, y como $f$ es primo en $K[X]$ por el Lema \ref{lem:irreducibles_en_cociente}, podemos asumir que $f\mid g$ en $K[X]$. Es decir, existe $G\in K[X]$ tal que $g=fG$, y si demostramos que $G\in D[X]$ habremos terminado. Para ello, tomando $a\in D$ con $aG\in D[X]$ y $\varphi(a)$ mínimo, basta ver que $\varphi(a)=0$. Supongamos que $\varphi(a)>0$ y sean $p,b\in D$ con $a=pb$ y $p$ primo. Entonces, en $D[X]$, se tiene $p\mid ag=f(aG)$. Como $p$ es primo en $D[X]$ (Lema \ref{lem:primos_irreducibles_polinomios}) y $p\nmid f$ (pues $f$ es irreducible y $\operatorname{gr}(f)\geq 1$), deducimos que $p\mid aG$ en $D[X]$. Si $g_{1}\in D[X]$ verifica $aG=pg_{1}$ entonces $bG=g_{1}\in D[X]$, contra la minimalidad de $\varphi(a)$, y esta contradiccion termina la demostracion.
 \end{proofbox}
 
+\begin{remark}
+A partir de este resultado podemos probar fácilmente que un anillo de polinomios en $n$ variables sobre un DFU es un DFU, puesto que
+\[
+D[X,Y] \cong (D[X])[Y].
+\]
+\end{remark}
+
 De la Proposición \ref{prop:equivalencias_anillos_polinomios} y el Teorema \ref{thm:D_DFU_sii_DX_DFU} se deduce que ${\mathbb{Z}}[X]$ es un DFU pero no un DIP, lo que muestra que el reciproco del Teorema \ref{thm:DIP_implica_DFU} no es cierto.
 
 \clearpage
@@ -653,10 +682,12 @@ Vamos a definir una aplicacion
 \[
 c:K[X]\to K/\sim
 \]
-Empezamos definiendo $c(p)$ para $p\in D[X]$ como la clase que contiene a un maximo comun divisor de los coeficientes de $p$, o sea, si $p=\sum_{i\geq 0}p_{i}X^{i}$ entonces
+Empezamos definiendo $c(p)$ para $p\in D[X]$ como la clase que contiene a un máximo comun divisor de los coeficientes de $p$, o sea, si $p=\sum_{i\geq 0}p_{i}X^{i}$ entonces
 \[
 c(p)=\operatorname{mcd}\{p_{i}:i\geq 0\}D^{*}.
 \]
+Por ejemplo, si $D = \Z$ y $p = 4x^2 + 8x + 4$ entonces $c(p) = 4D^*$.
+
 Para definir $c(p)$ para un elemento $p\in K[X]$ elegimos $a\in D\setminus\{0\}$ con $ap\in D[X]$ y definimos
 \[
 c(p)=a^{-1}c(ap).
@@ -680,57 +711,90 @@ Sean $D$ un DFU y $K$ su cuerpo de fracciones. Sean $a \in K$ y $p \in K[X]$.
 \end{proposition}
 
 \begin{proofbox}
-Pongamos $b = c(p)$.
+Pongamos $p = \sum_{i \geq 0} p_i X^i$.
 \begin{enumerate}
-    \item Si $a \mid p$ en $D[X]$ entonces $\forall i\geq 0,\ a \mid p_i$. Por tanto, por definición de $\mcd$, $b = ax \implies a \mid b$ en $D$. Por el contrario, si $a \mid b$ entonces $a$ es un divisor común de todos los $p_i$, por lo que divide a $p$.
+    \item Si $a \mid p$ en $D[X]$ entonces $\forall i\geq 0,\ a \mid p_i$. Por tanto, por definición de $\mcd$, $c(p) = ax \implies a \mid c(p)$ en $D$. Por el contrario, si $a \mid c(p)$ entonces $a$ es un divisor común de todos los $p_i$, por lo que divide a $p$.
 
     \item Sea $d \in D \setminus \{0\}$ tal que $dap, dp \in D[X]$, entonces
     \[
     c(ap) = d^{-1}c(dap),\quad c(p) = d^{-1}c(dp).
     \]
-    Por tanto, basta probar que
+    Por tanto, basta probar que $c(dap) = c(dp)$, lo que, en términos de los coeficientes se traduce en
     \[
-    \operatorname{mcd}(ap_0, ap_1, \ldots, ap_n) = a \operatorname{mcd}(p_0, p_1, \ldots, p_n).
+    \operatorname{mcd}(dap_0, dap_1, \ldots, dap_n) = a \operatorname{mcd}(dp_0, dp_1, \ldots, dp_n)
     \]
-    En efecto, si $d = \operatorname{mcd}(p_0, p_1, \ldots, p_n)$ entonces dado $i\geq 0$ sabemos que $d \mid p_i$, por lo que $ad \mid ap_i$ y $ad$ es divisor común de los $ap_i$. Si
+    que sabemos que se verifica ya que $dp_i \in D$.
+    En efecto, si $M = \operatorname{mcd}(dp_0, dp_1, \ldots, dp_n)$ entonces dado $i\geq 0$ sabemos que $M \mid dp_i$, por lo que $aM \mid adp_i$ y $aM$ es divisor común de los $adp_i$. Si
     \[
-    c = \operatorname{mcd}(ap_0, ap_1, \ldots, ap_n)
+    c = \operatorname{mcd}(dap_0, dap_1, \ldots, dap_n)
     \]
-    entonces $ad \mid c$. Además, como $d$ es el $mcd$ de los $p_i$ existen $a_i$ tales que
+    entonces $aM \mid c$. Además, como $M$ es el $mcd$ de los $dp_i$ existen $a_i$ tales que
     \[
-    d = a_1 p_1 + \dots + a_n p_n \implies ad = aa_1 p_1 + \dots + aa_n p_n 
+    M = a_1 d p_1 + \dots + a_n d p_n \implies aM = a a_1 d p_1 + \dots + a a_n d p_n 
     \]
-    y como $c \mid a p_i \implies c \mid a a_i p_i$, por tanto
+    y como $c \mid d a p_i \implies c \mid d a a_i p_i$, por tanto
     \[
-    c \mid \sum_i a a_i p_i = ad
+    c \Big\vert \sum_i d a a_i p_i = aM
     \]
-    y finalmente $c = ad$ como queríamos ver.
+    y finalmente $c = aM$ como queríamos ver.
 
-    \item Pendiente
+    \item Si $p \in D[X]$ es claro que $c(p) \in D$. Para la otra implicación, supongamos que $c(p) \in D$, entonces, para cualquier $a \in D$ tal que $ap \in D[X]$
+    \[
+    c(p) = a^{-1}c(ap) \in D \implies c(ap) = ac(p) \in D
+    \]
+    por lo que
+    \[
+    c(ap) = \mcd\{ap_i : i \geq 0\} = ac(p)
+    \]
+    luego existen coeficientes $b_i$ en $D$ tales que
+    \[
+    ap_i = ac(p)b_i \implies p_i = c(p)b_i \in D
+    \]
+    es decir, los coeficientes de $p$ están en $D$, luego $p \in D[X]$.
 \end{enumerate}
-\vspace{1cm}
-(3) Obviamente si p $\in$ D[X] entonces b $\in$ D. Para demostrar la otra implicación ponemos p = $\sum_{i=0}^k s_i X^i$ donde cada $s_i$ es una fracción reducida, entendiendo que si $r_i = 0$ entonces $s_i = 1$. Supongamos que p $\notin$ D[X]. Eso implica que algún $s_i$ no es unidad de D con lo que es divisible por un irreducible q y por tanto q no divide a $r_i$. Ponemos $s_i = q^{n_i} h_i$ con q no divide a $h_i$ para cada i y tomamos n = $\max(n_0, n_1, \ldots, n_k) \geq 1$ y m = $\operatorname{mcm}(s_0, \ldots, s_k)$. Entonces m = $q^n h$ con h $\in$ D y q no divide a h en D. Además $mp \in D[X] y c(mp) = mbD^*$. Pero $m s_i r_i = \frac{h r}{h_i}$ es el coeficiente de $X^i$ en $mp$, que es un elemento de D que no es múltiplo de q. Luego mb, que es el máximo común divisor de los coeficientes de mp, no es múltiplo de q en D. Pero m es un elemento de D que sí es múltiplo de q en D. Por tanto b $\notin$ D.
 \end{proofbox}
 
-Diremos que un polinomio es primitivo si c(p) = 1. Es decir p $\in$ D[X] es primitivo si los únicos divisores de p en D[X] que tienen grado 0 son las unidades de D[X]. Obsérvese que para todo 0 $\neq$ p $\in$ D[X] se tiene que p/c(p) es primitivo y de hecho c = c(p) si y solo si p = cp1 con p1 $\in$ D[X], primitivo.
+Diremos que un polinomio es primitivo si $c(p) = 1$. Es decir $p \in D[X]$ es primitivo si los únicos divisores de $p$ en $D[X]$ que tienen grado $0$ son las unidades de $D[X]$. Obsérvese que para todo $0 \neq p \in D[X]$ se tiene que $p/c(p)$ es primitivo y de hecho $c = c(p)$ si y solo si $p = cp_1$ con $p_1 \in D[X]$, primitivo.
+
+\begin{example}{}{}
+En $\Z[X]$ el polinomio $X^3 + 7X^2 + 5X + 3$ es primitivo. El polinomio
+$f = 2X^2 + 4X + 6$ no lo es puesto que $f = 2(X^2 + 2X + 3)$.
+\end{example}
 
 \begin{lemma}{Lema de Gauss}{gauss}
-Si f, g $\in$ K[X], entonces c(fg) = c(f)c(g). En particular, si f y g son primitivos entonces fg es primitivo y si además f, g $\in$ D[X] entonces se verifica el recíproco.
+Si $f, g \in K[X]$, entonces $c(fg) = c(f)c(g)$. En particular, si $f$ y $g$ son primitivos entonces $fg$ es primitivo y si además $f, g \in D[X]$ entonces se verifica el recíproco.
 \end{lemma}
 
 \begin{proofbox}
-Tenemos f = c(f)f1 y g = c(g)g1 con f1 y g1 primitivos. Por tanto fg = c(f)c(g)f1g1, luego para demostrar que c(fg) = c(f)c(g) basta probar que f1g1 es primitivo. En caso contrario c(f1g1) tendría un divisor irreducible p en D. Eso implica que p$|$f1g1. Por el Lema 3.14, p es primo en D[X] y por tanto p$|$f1 ó p$|$g1, lo que implica que p$|$c(f1) ó p$|$c(g1), en contra de que c(f1) = c(g1) = 1.
+Tenemos $f = c(f)f_1$ y $g = c(g)g_1$ con $f_1$ y $g_1$ primitivos. Por tanto $fg = c(f)c(g)f_1g_1$, luego para demostrar que $c(fg) = c(f)c(g)$ basta probar que $f_1g_1$ es primitivo. En caso contrario $c(f_1g_1)$ tendría un divisor irreducible $p$ en $D$. Eso implica que $p|f_1g_1$. Por el Lema \ref{lem:primos_irreducibles_polinomios}, $p$ es primo en $D[X]$ y, por tanto, $p|f_1$ ó $p|g_1$, lo que implica que $p|c(f_1)$ ó $p|c(g_1)$, en contra de que $c(f_1) = c(g_1) = 1$.
 \end{proofbox}
 
 \begin{proposition}{}{}
-Para un polinomio primitivo f $\in$ D[X] $\setminus$ D, las condiciones siguientes son equivalentes:
+Para un polinomio primitivo $f \in D[X] \setminus D$, las condiciones siguientes son equivalentes:
 
 \begin{enumerate}
-\item f es irreducible en D[X].
-\item f es irreducible en K[X].
-\item Si f = GH con G, H $\in$ K[X] entonces $\operatorname{gr}(G) = 0$ ó $\operatorname{gr}(H) = 0$.
+\item $f$ es irreducible en $D[X]$.
+\item $f$ es irreducible en $K[X]$.
+\item Si $f = GH$ con $G, H \in K[X]$ entonces $\operatorname{gr}(G) = 0$ ó $\operatorname{gr}(H) = 0$.
+\item Si $f = gh$ con $g, h \in D[X]$ entonces $\operatorname{gr}(g) = 0$ ó $\operatorname{gr}(h) = 0$.
 \end{enumerate}
 \end{proposition}
+
+\begin{proofbox}
+(1) $\Rightarrow$ (2): Basta aplicar el Lema \ref{lem:irreducibles_en_cociente}.
+
+(2) $\Rightarrow$ (3): Basta aplicar la Proposición \ref{prop:equivalencias_anillos_polinomios}.
+
+(3) $\Rightarrow$ (4): Es inmediato ya que $D[X] \subseteq K[X]$.
+
+(4) $\Rightarrow$ (1): Supongamos que 
+\[
+f = gh,\quad g,h \in D[X]
+\]
+por hipótesis podemos suponer sin perder generalidad que $\mathrm{gr}(g) = 0$, luego $g \in D$, y como $f$ es primitivo debe ser $g \in D^* = D^*[X]$, lo que prueba que $f$ es irreducible. 
+\end{proofbox}
+
+Del Lema \ref{lem:primos_irreducibles_polinomios} y de la proposición anterior se deduce el siguiente corolario.
 
 \begin{corollary}{}{}
 Si $D$ es un DFU y $K$ es su cuerpo de fracciones, entonces los irreducibles de $D[X]$ son los irreducibles de $D$ y los polinomios primitivos de $D[X] \setminus D$ que son irreducibles en $K[X]$.

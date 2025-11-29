@@ -1,0 +1,110 @@
+\chapter{Preorden de divisibilidad}
+
+\section{Relación de divisibilidad}
+
+Sea $A$ un anillo conmutativo. Definimos la relación  divisibilidad como:
+\[
+a \preceq b \quad \text{si y solo si} \quad a \mid b
+\]
+
+\begin{proposition}{}{}
+La relación $\preceq$ es un preorden, es decir, verifica las propiedades:
+\begin{enumerate}
+    \item Reflexiva: $a \preceq a$ para todo $a \in A$
+    \item Transitiva: Si $a \preceq b$ y $b \preceq c$, entonces $a \preceq c$
+\end{enumerate}
+\end{proposition}
+
+La relación no es antisimétrica, por lo que no es un orden parcial. De hecho $a \preceq b$ y $b \preceq a$ si y solo si $a$ y $b$ son asociados.
+
+Definamos ahora unos cuantos conceptos importantes en conjuntos con un preorden.
+
+\begin{definition}{Cota inferior}{}
+Sea \((P, \preceq)\) un conjunto preordenado y \(S \subseteq P\). Un elemento \(c \in P\) es una cota inferior de \(S\) si \(c \preceq s\) para todo \(s \in S\).
+\end{definition}
+
+\begin{definition}{Cota superior}{}
+Sea \((P, \preceq)\) un conjunto parcialmente ordenado y \(S \subseteq P\). Un elemento \(c \in P\) es una cota superior de \(S\) si \(s \preceq c\) para todo \(s \in S\).
+\end{definition}
+
+\begin{definition}{Ínfimo}{}
+Sea \((P, \preceq)\) un conjunto preordenado y \(S \subseteq P\). El ínfimo de \(S\), denotado \(\inf S\), es la mayor cota inferior de \(S\), es decir, un elemento \(i \in P\) tal que:
+\begin{enumerate}
+    \item \(i\) es cota inferior de \(S\)
+    \item Si \(c\) es cota inferior de \(S\), entonces \(c \preceq i\)
+\end{enumerate}
+\end{definition}
+
+\begin{definition}{Supremo}{}
+Sea \((P, \preceq)\) un conjunto preordenado y \(S \subseteq P\). El supremo de \(S\), denotado \(\sup S\), es la menor cota superior de \(S\), es decir, un elemento \(s \in P\) tal que:
+\begin{enumerate}
+    \item \(s\) es cota superior de \(S\)
+    \item Si \(c\) es cota superior de \(S\), entonces \(s \preceq c\)
+\end{enumerate}
+\end{definition}
+
+\section{Máximo común divisor y mínimo común múltiplo}
+
+\begin{definition}{}{}
+Sea $S \subseteq A$ un conjunto no vacío. Un máximo común divisor de $S$ es un elemento $d \in A$ tal que:
+\begin{enumerate}
+    \item $d \preceq s$ para todo $s \in S$ \quad ($d$ es cota inferior)
+    \item Si $c \preceq s$ para todo $s \in S$, entonces $c \preceq d$ \quad ($d$ es la mayor cota inferior)
+\end{enumerate}
+\end{definition}
+
+En términos del preorden de la divisibilidad, podemos expresar esto de manera mucho más simple
+\[
+\mcd(S) = \inf_{\preceq} S
+\]
+
+\begin{definition}{}{}
+Sea $S \subseteq A$ un conjunto no vacío. Un mínimo común múltiplo de $S$ es un elemento $m \in A$ tal que:
+\begin{enumerate}
+    \item $s \preceq m$ para todo $s \in S$ \quad ($m$ es cota superior)
+    \item Si $s \preceq c$ para todo $s \in S$, entonces $m \preceq c$ \quad ($m$ es la menor cota superior)
+\end{enumerate}
+\end{definition}
+
+En términos del preorden:
+\[
+\mathrm{mcm}(S) = \sup_{\preceq} S
+\]
+
+Si definimos
+\[
+a \sim b \iff a \text{ es asociado de } b
+\]
+tenemos el siguiente resultado:
+\begin{proposition}{}{}
+Si $d$ y $d'$ son ambos $\mcd$ de $S$, entonces $d \sim d'$. Análogamente, si $m$ y $m'$ son ambos $\mcm$ de $S$, entonces $m \sim m'$.
+\end{proposition}
+
+\begin{proofbox}
+Si $d$ y $d'$ son $\mcd$, entonces por definición:
+\begin{itemize}
+    \item $d \preceq s$ y $d' \preceq s$ para todo $s \in S$
+    \item Como $d$ es mcd y $d'$ es divisor común: $d' \preceq d$
+    \item Como $d'$ es mcd y $d$ es divisor común: $d \preceq d'$
+\end{itemize}
+Por tanto, $d \sim d'$. La demostración para el $\mcm$ es análoga.
+\end{proofbox}
+
+\begin{example}{}{}
+En $\mathbb{Z}$, consideremos $S = \{6, 10\}$ con el preorden $a \preceq b \iff a \mid b$.
+\begin{itemize}
+    \item $\inf S = \{2, -2\}$
+    \item $\sup S = \{30, -30\}$
+\end{itemize}
+
+Si representamos $a \preceq b$ mediante una flecha obtenemos el siguiente diagrama (ignorando asociados).
+\[
+\begin{tikzcd}
+    & 1 \arrow[d] \arrow[dl] \arrow[dr] & \\
+    \mathbf{2} \arrow[d] \arrow[drr] & 3 \arrow[dl] & 5 \arrow[d] \\
+    6 \arrow[d] \arrow[dr] & & 10 \arrow[dl] \arrow[d]\\
+    12 \arrow[dr] & \mathbf{30} \arrow[d] & 20 \arrow[dl] \\
+    & 60 &
+\end{tikzcd}
+\]
+\end{example}
