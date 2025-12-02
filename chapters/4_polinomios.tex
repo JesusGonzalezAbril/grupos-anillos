@@ -769,7 +769,7 @@ Si $f, g \in K[X]$, entonces $c(fg) = c(f)c(g)$. En particular, si $f$ y $g$ son
 Tenemos $f = c(f)f_1$ y $g = c(g)g_1$ con $f_1$ y $g_1$ primitivos. Por tanto $fg = c(f)c(g)f_1g_1$, luego para demostrar que $c(fg) = c(f)c(g)$ basta probar que $f_1g_1$ es primitivo. En caso contrario $c(f_1g_1)$ tendría un divisor irreducible $p$ en $D$. Eso implica que $p|f_1g_1$. Por el Lema \ref{lem:primos_irreducibles_polinomios}, $p$ es primo en $D[X]$ y, por tanto, $p|f_1$ ó $p|g_1$, lo que implica que $p|c(f_1)$ ó $p|c(g_1)$, en contra de que $c(f_1) = c(g_1) = 1$.
 \end{proofbox}
 
-\begin{proposition}{}{}
+\begin{proposition}{}{irreducibles_primitivos}
 Para un polinomio primitivo $f \in D[X] \setminus D$, las condiciones siguientes son equivalentes:
 
 \begin{enumerate}
@@ -799,3 +799,126 @@ Del Lema \ref{lem:primos_irreducibles_polinomios} y de la proposición anterior 
 \begin{corollary}{}{}
 Si $D$ es un DFU y $K$ es su cuerpo de fracciones, entonces los irreducibles de $D[X]$ son los irreducibles de $D$ y los polinomios primitivos de $D[X] \setminus D$ que son irreducibles en $K[X]$.
 \end{corollary}
+
+\clearpage
+\section{Factorización en el anillo de polinomios de un DFU}
+
+Nuestro siguiente objetivo es factorizar polinomios en $D[X]$ y en $K[X]$, donde $D$ sigue siendo un DFU y $K$ su cuerpo de fracciones. Para ello es necesario disponer de metodos que nos digan cuándo un polinomio es irreducible. Como se verá, pocos de los resultados prácticos que obtendremos nos dan condiciones necesarias y suficientes para que un polinomio sea irreducible. Asumiremos que disponemos de un metodo para factorizar los elementos de $D$ y, en particular, para decidir si son irreducibles o no. Esto es teóricamente posible si $D = \mathbb{Z}$ o $D = \mathbb{Z}[i]$ (y tambien lo es en la práctica en los casos que se nos presentarán), y nos permite además decidir si un polinomio de $D[X]$ es o no primitivo.
+
+En general, dado un polinomio $0 \neq f \in D[X]$, calcularemos $d = c(f)$ y obtendremos $f = df_{1}$, con $f_{1}\in D[X]$ primitivo. El polinomio constante $d$ es una unidad en $K[X]$, mientras que en $D[X]$ tiene la misma factorizacion en irreducibles que tenga como elemento de $D$. En cuanto a $f_{1}$, para decidir su irreducibilidad, la Proposicion \ref{prop:irreducibles_primitivos} nos permite considerarlo como polinomio sobre $D$ o sobre $K$ según nos convenga. Por tanto, es importante tener criterios de irreducibilidad como los que siguen para polinomios sobre cuerpos. Para polinomios de grado pequeño esto es fácil.
+
+\begin{lemma}{}{}
+Sea $K$ un cuerpo y sea $f\in K[X]$. Entonces
+
+\begin{enumerate}
+\item[(1)] Si $\operatorname{gr}(f)=1$ entonces $f$ es irreducible en $K[X]$.
+\item[(2)] Si $\operatorname{gr}(f)>1$ y $f$ tiene una raiz en $K$, entonces $f$ no es irreducible en $K[X]$.
+\item[(3)] Si $\operatorname{gr}(f)=2$ o $3$ entonces $f$ es irreducible en $K[X]$ si y solo si $f$ no tiene raíces en $K$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+Ejercicio.
+\end{proofbox}
+
+El Lema 3.22 pone de manifiesto la importancia de encontrar raíces de un polinomio para decidir si es irreducible. Cuando los coeficientes están en un DFU podemos seleccionar los "candidatos a raíces":
+
+\begin{proposition}{}{}
+Sea D un DFU con cuerpo de fracciones K, y sea f = $a_0 + a_1X + \cdots + a_nX^n \in D[X]$ con $a_n \neq 0$. Entonces todas las raíces de f en K son de la forma r/s, donde r $|$ $a_0$ y s $|$ $a_n$.
+\end{proposition}
+
+\begin{proofbox}
+Sea t = r/s una raíz de f con r, s $\in$ D primos entre sí. Multiplicando la igualdad f(t) = 0 por $s^n$ obtenemos
+
+\[a_0s^n + a_1rs^{n-1} + a_2r^2s^{n-2} + \cdots + a_{n-1}r^{n-1}s + a_nr^n = 0,\]
+
+luego r $|$ $a_0s^n$ y s $|$ $a_nr^n$. Como r y s son coprimos, deducimos que r $|$ $a_0$ y s $|$ $a_n$.
+\end{proofbox}
+
+\begin{example}{Factorizaciones de polinomios}{}
+\begin{enumerate}
+\item[(1)] La no existencia de raíces no garantiza la irreducibilidad de polinomios de grado mayor que 3. Por ejemplo, $X^4 + 2X^2 + 1 = (X^2 + 1)^2$ es reducible en $\mathbb{R}[X]$ pero no tiene raíces reales.
+
+\item[(2)] Las posibles raíces en $\mathbb{Q}$ del polinomio f = $3X^3 + X^2 + X - 2$ son $\pm2, \pm1, \pm2/3$ y $\pm1/3$, y de hecho f(2/3) = 0. Por tanto $(X - 2/3)$ $|$ f, y así $(3X - 2)$ $|$ f. Dividiendo se obtiene f = $(3X - 2)(X^2 + X + 1)$. Como ambos factores son primitivos sobre $\mathbb{Z}$ e irreducibles sobre $\mathbb{Q}$ y sobre $\mathbb{R}$, deducimos que la anterior es una factorización en irreducibles de f en cualquiera de los anillos $\mathbb{Z}[X]$, $\mathbb{Q}[X]$ o $\mathbb{R}[X]$. La factorización en $\mathbb{C}[X]$ es f = $(3X - 2)(X - \omega)(X - \zeta)$, donde $\omega = \frac{-1+\sqrt{-3}}{2}$.
+
+\item[(3)] El polinomio f = $6X^4 + 6X^2 + 18X - 30 = 2 \cdot 3 \cdot (X^4 + X^2 + 3X - 5)$ tiene al 1 por raíz, y dividiendo se tiene $X^4 + X^2 + 3X - 5 = (X - 1)(X^3 + X^2 + 2X + 5)$. El factor cúbico es primitivo y no tiene raíces en $\mathbb{Q}$ (al sustituir $\pm1$ o $\pm5$ se obtiene un entero impar), por lo que
+
+\[f = 2 \cdot 3 \cdot (X - 1)(X^3 + X^2 + 2X + 5) \quad \text{y} \quad f = 6(X - 1)(X^3 + X^2 + 2X + 5)\]
+
+son las factorizaciones de f en $\mathbb{Z}[X]$ y en $\mathbb{Q}[X]$, respectivamente (en la segunda el 6 no es un factor irreducible, sino una unidad). El polinomio cúbico no es irreducible en $\mathbb{R}[X]$ ni en $\mathbb{C}[X]$. De hecho, un análisis del crecimiento de la función polinómica f : $\mathbb{R} \to \mathbb{R}$ nos lleva a la conclusión de que f tiene una raíz real y dos complejas conjugadas.
+
+\item[(4)] El polinomio $f=X^{4}+X^{3}+2X^{2}+X+1$ no tiene raíces racionales, pero esto no implica que sea irreducible sobre $\mathbb{Q}$. De hecho, se tiene $f(i)=0$, y por tanto $(X-i)(X+i)=X^{2}+1$ divide a $f$; el otro factor es $X^{2}+X+1$, por lo que $f=(X^{2}+1)(X^{2}+X+1)$ es una factorización en irreducibles en $\mathbb{Z}[X]$, $\mathbb{Q}[X]$ o $\mathbb{R}[X]$, y $f=(X-i)(X+i)(X-\omega)(X-\overline{\omega})$ (con $\omega=\frac{-1+\sqrt{-3}}{2}$) es una factorización en $\mathbb{C}[X]$.
+
+\item[(5)] Supongamos que el polinomio sin raíces racionales $f=X^{4}-2X^{3}+6X-3$ no es irreducible en $\mathbb{Z}[X]$. Por la Proposition 3.20, existen $g,h\in\mathbb{Z}[X]$, ambos de grado $\geq 1$, tales que $f=gh$. Podemos asumir que $g$ y $h$ son monicos (¿por qué?), y por tanto no pueden tener grado 1 (¿por qué?). En consecuencia, ambos tienen grado 2 y por tanto existen $a,b,c,d\in\mathbb{Z}$ tales que $f=(X^{2}+aX+b)(X^{2}+cX+d)$. Igualando coeficientes, se obtienen las ecuaciones \[bd=-3,\quad ad+bc=6,\quad b+ac+d=0,\quad a+c=-2.\] La primera ecuacion nos da 4 opciones para los valores de $b$ y $d$. Una de ellas es $b=1$ y $d=-3$, que sustituida en la segunda ecuacion y combinada con la cuarta nos dice que $a=-2$ y $c=0$; pero estos valores no satisfacen la tercera ecuacion. De modo similar se ve que las otras opciones tampoco funcionan, lo que significa que no existen tales $a,b,c,d\in\mathbb{Z}$ y en consecuencia $f$ es irreducible en $\mathbb{Z}[X]$, y por tanto tambien en $\mathbb{Q}[X]$.
+\end{enumerate}
+\end{example}
+
+El ultimo ejemplo muestra lo penoso que puede resultar estudiar la irreducibilidad de un polinomio, incluso de grado bajo, con los metodos que hemos desarrollado hasta ahora. El resto de esta seccion lo dedicamos a presentar otros dos criterios de irreducibilidad para polinomios sobre un DFU que son a menudo utiles.
+
+En el primero de ellos usaremos el Ejemplo 3.4.(3).
+
+Un homomorfismo de anillos $\phi:A\to B$ induce otro $A[X]\to B[X]$ dado por
+
+\[f=\sum a_{i}X^{i}\mapsto\phi(f)=\sum\phi(a_{i})X^{i}.\]
+
+En general se tiene $\operatorname{gr}(\phi(f))\leq\operatorname{gr}(f)$, con igualdad si el coeficiente principal de $f$ no esta en Ker $\phi$.
+
+\begin{proposition}{Criterio de Reduccion}{}
+Sea $\phi:D\to K$ un homomorfismo de anillos, donde $D$ es un DFU y $K$ es un cuerpo, y sea $f$ un polinomio primitivo de $D[X]\setminus D$. Si $\phi(f)$ es irreducible en $K[X]$ y $\operatorname{gr}(\phi(f))=\operatorname{gr}(f)$, entonces $f$ es irreducible en $D[X]$ (o lo que es lo mismo en $K[X]$).
+\end{proposition}
+
+\begin{proofbox}
+Por la Proposicion 3.20 basta ver que, si $f=gh$ con $g,h\in D[X]$, entonces $\operatorname{gr}(g)=0$ o $\operatorname{gr}(h)=0$. Sean $a$, $b$ y $c$ los coeficientes principales de $f$, $g$ y $h$, respectivamente. Entonces $a=bc\not\in\operatorname{Ker}\phi$ y por tanto $b,c\not\in\operatorname{Ker}\phi$, por lo que $\operatorname{gr}(\phi(g))=\operatorname{gr}(g)$ y $\operatorname{gr}(\phi(h))=\operatorname{gr}(h)$. Como $K$ es un cuerpo y $\phi(f)$ es irreducible en $K[X]$, la igualdad $\phi(f)=\phi(g)\phi(h)$ implica que $\operatorname{gr}(\phi(g))=0$ o $\operatorname{gr}(\phi(h))=0$, de donde se sigue el resultado.
+\end{proofbox}
+
+Cuando consideramos la proyeccion $\mathbb{Z}\rightarrow\mathbb{Z}_{p}$, con $p$ un numero primo positivo, el homomorfismo $\mathbb{Z}[X]\rightarrow\mathbb{Z}_{p}[X]$ viene dado por
+
+\[f=\sum a_{i}X^{i}\mapsto\overline{f}=\sum\overline{a_{i}}X^{i},\]
+
+donde $\overline{a}$ es la clase de $a$ en $\mathbb{Z}_{p}$. Aplicando el Criterio de Reduccion se obtiene:
+
+\begin{corollary}{}{}
+Sea $p$ un entero primo y sea $f=a_{0}+\cdots+a_{n}X^{n}$ un polinomio primitivo de $\mathbb{Z}[X]$. Si $p\nmid a_{n}$ y $\overline{f}$ es irreducible en $\mathbb{Z}_{p}[X]$, entonces $f$ es irreducible en $\mathbb{Z}[X]$.
+\end{corollary}
+
+\begin{example}{Aplicaciones del Criterio de Reduccion}{}
+\begin{enumerate}
+\item[(1)] Reduciendo modulo 2 el polinomio $f=7X^{3}+218X^{2}+121X+625$ obtenemos el polinomio $\overline{f}=X^{3}+X+1$ de $\mathbb{Z}_{2}[X]$, que es irreducible porque no tiene raices. Por tanto $f$ es irreducible en $\mathbb{Z}[X]$ (y en $\mathbb{Q}[X]$).
+
+\item[(2)] Reduciendo $f=X^{4}+5X+1\in\mathbb{Z}[X]$ modulo 2 obtenemos $\overline{f}=X^{4}+X+1\in\mathbb{Z}_{2}[X]$. Como $\overline{f}$ no tiene raices en $\mathbb{Z}_{2}$, si no fuera irreducible se factorizaria como producto de dos polinomios irreducibles de grado 2 en $\mathbb{Z}_{2}[X]$. Pero en $\mathbb{Z}_{2}[X]$ solo hay 4 polinomios de grado 2, y de ellos solo $X^{2}+X+1$ es irreducible (¿por qué?). Como $\overline{f}$ no es el cuadrado de este, deducimos que $\overline{f}$ es irreducible en $\mathbb{Z}_{2}[X]$ y por tanto $f$ es irreducible en $\mathbb{Z}[X]$.
+
+\item[(3)] Consideremos el polinomio $f=X^{5}-X-1$ de $\mathbb{Z}[X]$. Reduciendo modulo 2 obtenemos un polinomio que es divisible por $X^{2}+X+1$, por lo que no podemos aplicar el Criterio de Reduccion. Reduciendo modulo 3 obtenemos $\overline{f}=X^{5}+2X+2\in\mathbb{Z}_{3}[X]$, que no tiene raices. Si no fuera irreducible tendria un factor irreducible de grado 2; es facil ver que los unicos irreducibles monicos de grado 2 de $\mathbb{Z}_{3}[X]$ son \[X^{2}+1,\qquad X^{2}+X-1,\qquad X^{2}-X-1.\] Comprobando que ninguno de ellos divide a $\overline{f}$ deducimos que $\overline{f}$ es irreducible en $\mathbb{Z}_{3}[X]$, y por tanto $f$ es irreducible en $\mathbb{Z}[X]$.
+
+\item[(4)] Dado el polinomio $f=X^{4}+4X+1$ en $\mathbb{Z}[X]$, se tiene $\overline{f}=(X+1)^{4}$ en $\mathbb{Z}_{2}[X]$ y $\overline{f}=(X+2)(X^{3}+X^{2}+X+2)$ en $\mathbb{Z}_{3}[X]$, con el factor cubico irreducible porque no tiene raices. Por tanto, no podemos aplicar el Criterio de Reduccion. Sin embargo, la factorizacion en $\mathbb{Z}_{3}[X]$ nos va a permitir demostrar que $f$ es irreducible en $\mathbb{Z}[X]$. En efecto, como $f$ no tiene raices en $\mathbb{Q}$, si no fuera irreducible en $\mathbb{Z}[X]$ se tendria $f=gh$ con $\operatorname{gr}(g)=\operatorname{gr}(h)=2$. Esto nos daria, en $\mathbb{Z}_{3}$, la factorizacion $\overline{f}=\overline{gh}$ con $\operatorname{gr}(\overline{g})=\operatorname{gr}(\bar{h})=2$, incompatible con la factorizacion en irreducibles (unica salvo asociados) que acabamos de obtener.
+\end{enumerate}
+\end{example}
+
+Veamos nuestro ultimo criterio de irreducibilidad:
+
+\begin{proposition}{Criterio de Eisenstein}{}
+Sea $D$ un DFU y sea $f=a_{0}+a_{1}X+\cdots+a_{n}X^{n}$ (con $a_{n}\neq 0$) un polinomio primitivo de $D[X]$. Si existe un irreducible $p\in D$ tal que
+
+\[p\mid a_{i}\mbox{ para todo }i<n,\qquad y\qquad p^{2}\nmid a_{0},\]
+
+entonces $f$ es irreducible en $D[X]$.
+\end{proposition}
+
+\begin{proofbox}
+Veamos que, si $f=gh$ en $D[X]$, entonces $\operatorname{gr}(g)=n$ o $\operatorname{gr}(h)=n$. Pongamos $g=b_{0}+\cdots+b_{m}X^{m}$ y $h=c_{0}+\cdots+c_{k}X^{k}$, con $b_{m}c_{k}\neq 0$. Como $p^{2}\nmid a_{0}=b_{0}c_{0}$, entonces $p\nmid b_{0}$ o $p\nmid c_{0}$. Supongamos que se da la segunda opción. Como $f$ es primitivo se tiene $p\nmid g$, y por tanto existe
+
+\[i=\min\{j:p\nmid b_{j}\}.\]
+
+Entonces $p$ no divide a $a_{i}=(\sum_{j=0}^{i-1}b_{j}c_{i-j})+b_{i}c_{0}$, y por tanto $i=n$, de modo que $\operatorname{gr}(g)=n$. La opción $p\nmid b_{0}$ nos llevaría a $\operatorname{gr}(h)=n$, lo que demuestra el resultado.
+\end{proofbox}
+
+\begin{example}{Aplicaciones del Criterio de Eisenstein}{}
+\begin{enumerate}
+\item[(1)] Sean $a$ un entero y $p$ un primo cuya multiplicidad en $a$ es $1$. Entonces $X^{n}-a$ es irreducible.
+
+\item[(2)] Un argumento similar al del Ejemplo 3.27.(4) nos permitiría ver que el polinomio $f=X^{4}-3X^{3}+6X-3$ es irreducible en $\mathbb{Z}[X]$. Ahora podemos asegurar lo mismo con menos trabajo aplicando el Criterio de Eisenstein con $p=3$.
+
+\item[(3)] A menudo, el Criterio de Eisenstein se combina con un automorfismo de $\mathbb{Z}[X]$ de sustitución en $X+a$ (Ejemplos 3.4). Por ejemplo, el criterio no es aplicable a $f(X)=X^{4}+4X^{3}+10X^{2}+12X+7$, pero sí se puede aplicar (con $p=2$) a $f(X-1)=X^{4}+4X^{2}+2$. Por tanto $f(X-1)$ es irreducible, y en consecuencia lo es $f(X)$.
+
+\item[(4)] Dado un entero $n\geq 3$, las raíces en $\mathbb{C}$ del polinomio $X^{n}-1$ se llaman raíces $n$-esimas de la unidad (o de $1$). Considerando la interpretación geométrica de la multiplicación en $\mathbb{C}$, es fácil ver que estas raíces son exactamente los $n$ vértices del $n$-ágono regular inscrito en el círculo unidad de $\mathbb{C}$ que tiene un vértice en la posición del $1$. Estos números complejos son útiles en muy diversas circunstancias. El polinomio $X^{n}-1$ se factoriza como \[X^{n}-1=(X-1)\Phi_{n}(X),\qquad\text{donde }\Phi_{n}(X)=X^{n-1}+X^{n-2}+\cdots+ X^{2}+X+1.\] El polinomio $\Phi_{n}(X)$ se conoce como el $n$-ésimo polinomio ciclotómico, y sus raíces son las raíces $n$-ésimas de $1$ distintas de $1$. $\Phi_{n}(X)$ no es en general irreducible sobre $\mathbb{Q}$ (por ejemplo, $\Phi_{4}(X)$ es divisible por $X+1$), pero sí lo es cuando $n=p$ es primo. Como en el apartado anterior, esto quedará demostrado si podemos aplicar el Criterio de Eisenstein a $\Phi_{p}(X+1)$. Ahora bien, $\Phi_{p}(X)=(X^{n}-1)/(X-1)$, y por tanto \[\Phi_{p}(X+1)=\frac{(X+1)^{p}-1}{X}=X^{p-1}+\binom{p}{p-1}X^{p-2}+\binom{p}{p-2}X^{p-3}+\cdots+\binom{p}{2}X+p.\] Cuando $1\leq i<p$, el primo $p$ no divide a $i!$ ni a $(p-i)!$, y por tanto sí divide a $\binom{p}{i}=\frac{p!}{i!(p-i)!}$, por lo que podemos aplicar el Criterio de Eisenstein, como queríamos.
+\end{enumerate}
+\end{example}
