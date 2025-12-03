@@ -1,0 +1,193 @@
+\chapter{Grupos Abelianos Finitos}
+
+En este capítulo vamos a describir todos los grupos abelianos finitos salvo isomorfismos. La mayoría de los grupos que aparecen en esta sección son abelianos y en general usaremos notación aditiva y los denotaremos \( A, B, A_i, B_i, \ldots \), mientras que utilizaremos siempre notación multiplicativa para grupos no necesariamente abelianos y los denotaremos \( G, H, G_i, H_i, \ldots \).
+
+Un modo habitual de estudiar un objeto matemático consiste en descomponerlo en objetos más sencillos, estudiar éstos y recomponer entonces el objeto inicial. Lo que se entiende por objeto sencillo y la manera de descomponer y recomponer un objeto dependen de cada caso. En este capítulo el objeto estudiado será un grupo abeliano finito \( A \), y los objetos sencillos serán los grupos cíclicos, que ya conocemos bien. En este contexto, el proyecto sugerido al principio del párrafo funciona porque existe un método muy efectivo para descomponer \( A \) de modo que es muy fácil conocer \( A \) a partir de sus componentes. Se trata de la suma directa de subgrupos, que analizamos en la primera sección. Al final del capítulo demostraremos el Teorema Fundamental de los Grupos Abelianos Finitos que describe todos los grupos abelianos finitos salvo isomorfismos a partir de los grupos cíclicos (nuestros objetos sencillos) y sumas directas (nuestra forma de recomponer).
+
+\section{Sumas directas}
+
+Comenzamos con una proposición que dará lugar al concepto de familia independiente de subgrupos. Si tenemos una familia \( (B_i)_{i \in I} \) de subgrupos de un grupo abeliano aditivo entonces los elementos de \( \sum_{i \in I} B_i \) tiene la forma \( \sum_{i \in I} b_i \) con \( b_i \in B_i \) para todo \( i \) y \( b_i = 0 \) para casi todo \( i \in I \), o sea el conjunto \( \{ i \in I : b_i \neq 0 \} \) es finito. Con el fin de no recargar el discurso, en el futuro cada vez que tengamos una suma \( \sum_{i \in I} b_i \), se entiende que \( b_i = 0 \) para casi todo \( i \), sin necesidad de decirlo explícitamente.
+
+\begin{proposition}{Caracterización de independencia de subgrupos}{independencia_subgrupos}
+Sean \( (B_i)_{i \in I} \) una familia de subgrupos de un grupo abeliano \( A \). Entonces las condiciones siguientes son equivalentes:
+
+\begin{enumerate}
+    \item El $0$ se expresa de manera única como suma de elementos de los \( B_i \). Es decir, si \( \sum_{i \in I} b_i = 0 \) con cada \( b_i \in B_i \), entonces se tiene \( b_i = 0 \) para todo \( i \in I \).
+    \item Cada elemento de \(\sum_{i \in I} B_i\) se expresa de manera única como suma de elementos de los \(B_i\). Es decir, si \(\sum_{i \in I} b_i = \sum_{i \in I} b'_i\) con cada \(b_i \in B_i\) y cada \(b'_i \in B_i\), entonces se tiene \(b_i = b'_i\) para todo \(i \in I\).
+    \item Para cada \(j \in I\) se verifica \(B_j \cap (\sum_{i \in I \setminus \{j\}} B_i) = 0\).
+\end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+(1) \(\Rightarrow\) (2): Supongamos que un elemento $x$ de $\sum_{i \in I} B_i$ se expresa de dos maneras como suma de elementos de los $B_i$
+\[
+x = \sum_{i \in I} b_i = \sum_{i \in I} c_i
+\]
+entonces, llamando $d_i = b_i - c_i$,
+\[
+0 = \sum_{i \in I} d_i
+\]
+por tanto, por hipótesis, $d_i = 0 \implies b_i = c_i$, lo que prueba que la expresión de $x$ es única.
+
+(2) \(\Rightarrow\) (3): Sea $j \in I$ y supongamos que existe \(x \in B_j \cap (\sum_{i \in I \setminus \{j\}} B_i)\). Entonces existen $c_j \in B_j$ y unos $b_i \in B_i, i\neq j$ tales que
+\[
+x = c_j = \sum_{i \in I \setminus\{j\}} b_i
+\]
+entonces, por hipótesis, $c_j = 0$ y $\forall i,\ b_i = 0$, lo que prueba que $x = 0$.
+
+(2) \(\Rightarrow\) (3): Supongamos que $0$ se expresa como suma de elementos de $B_i$
+\[
+0 = \sum_{i \in I} b_i.
+\]
+Entonces para cada $j \in I$ tenemos
+\[
+b_j = \sum_{i \in I \setminus \{j\}} b_i \in B_j \cap (\sum_{i \in I \setminus \{j\}} B_i) \implies b_j = 0
+\]
+por tanto, la única expresión de $0$ es $\forall i,\ b_i = 0$.
+\end{proofbox}
+
+\begin{definition}{Familia independiente y suma directa}{suma_directa}
+Si se verifican las condiciones equivalentes de la Proposición \ref{prop:independencia_subgrupos} se dice que la familia de subgrupos \((B_i)_{i \in I}\) es independiente, o que los subgrupos \(B_i\) son independientes. Su suma,
+\[
+\sum_{i \in I} B_i,
+\]
+se llama entonces la suma directa de la familia \((B_i)_{i \in I}\), y se denota por 
+\[
+\oplus_{i \in I} B_i.
+\]
+En el caso en que se trate de una familia finita \((B_1, \ldots, B_n)\) también se denota \(\oplus_{i=1}^n B_i = B_1 \oplus \cdots \oplus B_n\).
+\end{definition}
+
+Un subgrupo \(B\) de \(A\) es un sumando directo de \(A\) si existe otro subgrupo \(C\) de \(A\) tal que \(A = B \oplus C\); es decir, tal que \(A = B + C\) y \(B \cap C = 0\). En este caso se dice que \(C\) es un complemento directo de \(B\).
+
+\subsection{Ejemplos de subgrupos independientes y sumas directas}
+
+\begin{example}{}{}
+En el grupo \(A = \mathbb{Z}_6\) los subgrupos \(B = \langle 2 \rangle \) y \(C = \langle 3 \rangle\) son independientes y se tiene \(A = B \oplus C\). Más generalmente si \(g\) y \(h\) son elementos de un grupo tales que \(gh = hg\) y \(|g|\) y \(|h|\) son finitos y de orden coprimo, entonces, por el Teorema Chino de los Restos: \(\langle g,h \rangle = \langle gh \rangle\). De hecho, \(\langle gh \rangle\) es abeliano por ser cíclico y \(\langle gh \rangle = \langle g \rangle \oplus \langle h \rangle\). 
+\end{example}
+
+\begin{example}{}{}
+En el grupo multiplicativo \(\mathbb{R}^*\) se tiene \(\mathbb{R}^* = \langle -1 \rangle \oplus \mathbb{R}^+\).
+\end{example}
+
+\begin{example}{}{}
+Si \(A\) y \(B\) son grupos abelianos, entonces el grupo producto \(A \times B\) es la suma directa de los subgrupos \(A \times 0\) y \(0 \times B\).
+\end{example}
+
+\begin{example}{}{}
+El complemento directo de un sumando directo no es, en general, único. Por ejemplo, para cualquier \(a \in \mathbb{Z}\) se tiene \(\mathbb{Z} \times \mathbb{Z} = \langle(1,0)\rangle \oplus \langle(a,1)\rangle\): la intersección es claramente nula, y un elemento arbitrario \((x,y)\) de \(\mathbb{Z} \times \mathbb{Z}\) se puede expresar como \((x,y) = y(a,1) + (x - ya)(1,0)\).
+\end{example}
+
+\begin{example}{}{}
+En \(\mathbb{Q}\) no hay dos subgrupos no triviales que sean independientes. En efecto, si \(A\) y \(B\) son subgrupos no nulos y elegimos elementos no nulos \(\frac{a}{n} \in A\) y \(\frac{b}{m} \in B\), entonces
+\[
+0 = bn \frac{a}{n} - am \frac{b}{m}
+\]
+nos da una expresión no trivial del 0 como suma de elementos de \(A\) y \(B\). En \(\mathbb{Z}\) ocurre lo mismo, por un argumento similar.
+\end{example}
+
+% Notemos la similitud entre la definición de suma directa de grupos y la suma directa de espacios vectoriales. Es claro que dado un espacio vectorial $V$ podemos <<olvidar>> la multiplicación por escalares para obtener un grupo abeliano (los vectores con la operación de suma). Sin embargo, no todo grupo abeliano puede dotarse de una estructura de espacio vectorial sobre algún cuerpo.
+
+% \begin{example}{}{}
+% \end{example}
+
+\section{Grupos indescomponibles y p-grupos}
+
+\begin{definition}{Grupo indescomponible}{grupo_indescomponible}
+Un grupo abeliano no nulo se dice que es \emph{indescomponible} si no es suma directa de dos subgrupos propios. Es decir, $A$ es indescomponible si $A = X \oplus Y$ implica $X = 0$ ó $Y = 0$ (y por tanto $X = A$ ó $Y = A$).
+\end{definition}
+
+\begin{remark}
+La notación $\langle g \rangle_n$ representa un grupo cíclico generado por $g$ de orden $n$.
+\end{remark}
+
+\begin{proposition}{Existencia de descomposición en indescomponibles}{descomposicion_indescomponibles}
+Todo grupo abeliano finito y no nulo $A$ es una suma directa de subgrupos indescomponibles.
+\end{proposition}
+
+\begin{example}{Grupos indescomponibles}{ejemplos_indescomponibles}
+\begin{enumerate}
+    \item $\mathbb{Z}$ y $\mathbb{Q}$ son indescomponibles, por un argumento usado en los Ejemplos 5.3.
+    
+    \item Todo grupo de orden primo es obviamente indescomponible. Más generalmente, supongamos que $G=\langle g\rangle$ es un grupo cíclico de orden $p^{n}$ con $p$ un primo y $n\in\mathbb{N}$. Entonces los subgrupos de $G$ forman una cadena:
+    
+    \[1<\langle a^{p^{n-1}}\rangle_{p}<\langle a^{p^{n-2}}\rangle_{p^{2}}<\cdots< \langle a^{p^{2}}\rangle_{p^{n-2}}<\langle a^{p}\rangle_{p^{n-1}}<\langle a \rangle_{p^{n}}=G.\]
+    
+    Por tanto $G$ es indescomponible. Sin embargo, si $G$ es cíclico de orden $n$ pero $n$ no es una potencia de un primo entonces existen enteros coprimos $h$ y $k$ y mayores que $1$, con $n=hk$. Por tanto, $G$ tiene un grupo cíclico $H$ de orden $h$ y otro $K$ de orden $k$. Entonces $G=H\oplus K$, por tanto $G$ no es indescomponible. Esta es otra reencarnación del Teorema Chino de los Restos.
+\end{enumerate}
+\end{example}
+
+En el Ejemplo 5.7.(2) hemos caracterizado los grupos cíclicos finitos indescomponibles como aquellos cuyo orden es una potencia de un primo. El resto de la sección lo dedicamos a ver que no hay más grupos abelianos finitos indescomponibles.
+
+\begin{definition}{Exponente, grupos periódicos y p-grupos}{exponente_periodico}
+Sea $G$ un grupo no necesariamente abeliano ni finito.
+
+Si existe un entero positivo $n$ tal que $g^{n}=1$ para todo $g\in G$ entonces al menor entero que cumple esa propiedad se le llama \emph{exponente} o \emph{periodo} de $G$. Denotaremos ese número por $\operatorname{Exp}(G)$ y en el caso que no exista tal número pondremos $\operatorname{Exp}(G)=\infty$ y diremos que $G$ tiene periodo infinito.
+
+Decimos que un grupo arbitrario $G$ (no necesariamente abeliano ni finito) es \emph{periódico} o \emph{de torsión} si para todo elemento de $G$ tiene orden finito, o sea si para todo $g\in G$ se verifica que $g^{n}=1$ para algún entero positivo.
+
+Sea $p$ un número primo. Un grupo en el que todo elemento tiene orden potencia de $p$ se dice que es un \emph{$p$-grupo}.
+\end{definition}
+
+Claramente si un grupo es finito entonces tiene periodo finito y si tiene periodo finito entonces el grupo es periódico. Sin embargo los recíprocos no se verifican. Por ejemplo, una suma directa infinita de copias de $\mathbb{Z}_{2}$ es periódico pero no es finito y la suma directa de todos los grupos de la forma $\mathbb{Z}_{n}$ con $n\geq 1$ es periódico pero tiene periodo finito.
+
+También está claro que todo $p$-grupo es periódico. Sin embargo $\oplus_{n\in\mathbb{N}}\mathbb{Z}_{p^{n}}$ es un $p$-grupo de orden infinito. También está claro que si todo grupo que tenga orden potencia de $p$ es un $p$-grupo. Para el caso finito sí que se verifica el recíproco. Eso es consecuencia inmediata del Teorema de Cauchy (Teorema 4.31). Ponemos esto en un lema para uso futuro.
+
+\begin{lemma}{Caracterización de $p$-grupos finitos}{caracterizacion_p_grupos_finitos}
+Sean $G$ un grupo finito $A$ y $p$ un número primo. Entonces $G$ es un $p$-grupo si y solo si $|G|$ es una potencia de $p$.
+\end{lemma}
+
+Dados un grupo abeliano $A$ y un entero primo $p$, el \emph{subgrupo de $p$-torsión} de $A$ es
+
+\[t_{p}(A)=\{a\in A:\text{ existe }n\in\mathbb{N}\text{ tal que }p^{n}a=0\}=\{a \in A:|a|\text{ es una potencia de }p\}.\]
+
+Dejamos que el lector compruebe que ambos conjuntos son iguales y que forman un subgrupo de $A$. De hecho, si $A$ es finito, $t_{p}(A)$ es claramente el mayor $p$-\emph{subgrupo} de $A$ (es decir, el mayor subgrupo de $A$ que es un $p$-grupo).
+
+\begin{proposition}{Descomposición primaria en $p$-grupos}{descomposicion_primaria_p}
+Sea $A$ un grupo abeliano finito y sean $p_1, \ldots, p_k$ los divisores primos de $|A|$. Entonces
+
+\[ A = t_{p_1}(A) \oplus \cdots \oplus t_{p_k}(A), \]
+
+con cada $t_{p_i}(A) \neq 0$.
+\end{proposition}
+
+El siguiente corolario es inmediato:
+
+\begin{corollary}{}{corolario_indescomponible_p_grupo}
+Un grupo finito e indescomponible es un $p$-grupo para cierto primo $p$.
+\end{corollary}
+
+\begin{example}{Descomposición en suma directa de $p$-grupos}{ejemplos_descomposicion_p}
+\begin{enumerate}
+    \item Sea $n = p_1^{\alpha_1} \cdots p_k^{\alpha_k}$ una factorización prima irredundante del entero $n$. Por el Teorema Chino de los Restos, $\mathbb{Z}_n \cong \mathbb{Z}_{p_1}^{\alpha_1} \times \cdots \times \mathbb{Z}_{p_k}^{\alpha_k}$ y claramente los factores de esta descomposición van a corresponder con los factores $t_p(\mathbb{Z}_n)$ de la descomposición de la Proposición 5.10. Más concretamente, si $q_i = n/p_i^{\alpha_i}$ para cada $i = 1, \ldots, k$, entonces $\overline{q_i} = q_i + n\mathbb{Z}$ genera un grupo de orden $p_i^{\alpha_i}$, y por tanto $t_{p_i}(\mathbb{Z}_n) = \langle \overline{q_i} \rangle$.
+    
+    \item Sea $B$ un anillo commutativo. Definimos en el producto cartesiano $B^* \times B$ la siguiente operación:
+    
+    \[ (u,a)(v,b) = (uv,ub + va) \]
+    
+    Dejamos que el lector compruebe que esto define un grupo abeliano que denotamos $B^* \times B$ y que $(u,a)^n = (u^n, nu^{n-1}a)$, de lo que se deduce que $|(u,a)|$ es el mínimo común múltiplo del orden de $u$ en $(B^*,\cdot)$ y el orden de $a$ en $(B,+)$ pues, como $u$ es invertible, $nu^{n-1}a=0$ si y solo si $na=0$. Por tanto $t_{p}(B^{*}\times B)=t_{p}(B^{*})\times t_{p}(B)$ para todo primo $p$.
+\end{enumerate}
+\end{example}
+
+Sea $B$ un subgrupo del grupo abeliano $A$, y sea $a\in A$. Si $na=0$ (con $n\in\mathbb{N}$), entonces, en $A/B$, se tiene $n(a+B)=0$. Eso implica que el orden de $a+B$ divide al orden de $a$. En general estos órdenes no coinciden; por ejemplo, no lo hacen si $a$ es un elemento no nulo de $B$.
+
+\begin{lemma}{Propiedades de $p$-grupos finitos}{propiedades_p_grupos_finitos}
+Sean $A$ un $p$-grupo finito. Entonces:
+
+\begin{enumerate}
+    \item Existe $a\in A$ tal que $|a|=\operatorname{Exp}(A)$.
+    \item Si $B=\langle a\rangle$ (donde $a$ es el del apartado anterior) entonces todo elemento del cociente $A/B$ tiene un representante con el mismo orden. Es decir, para todo $\gamma\in A/B$ existe $x\in A$ tal que $x+B=\gamma$ y $|x|=|\gamma|$.
+\end{enumerate}
+\end{lemma}
+
+Ahora podemos caracterizar los grupos abelianos finitos que son indescomponibles.
+
+\begin{proposition}{Caracterización de grupos abelianos indescomponibles}{caracterizacion_indescomponibles}
+Un grupo abeliano finito es indescomponible si y solo si es un $p$-grupo cíclico.
+\end{proposition}
+
+Combinando las Proposiciones 5.6 y 5.14 se obtiene:
+
+\begin{corollary}{Descomposición en $p$-grupos cíclicos}{descomposicion_p_ciclicos}
+Todo grupo abeliano finito es suma directa de subgrupos cíclicos cada uno de los cuales tiene orden potencia de un primo.
+\end{corollary}
