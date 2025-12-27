@@ -63,12 +63,16 @@ Un subgrupo \(B\) de \(A\) es un sumando directo de \(A\) si existe otro subgrup
 \subsection{Ejemplos de subgrupos independientes y sumas directas}
 
 \begin{example}{}{}
-En el grupo \(A = \mathbb{Z}_6\) los subgrupos \(B = \langle 2 \rangle \) y \(C = \langle 3 \rangle\) son independientes y se tiene \(A = B \oplus C\). Más generalmente si \(g\) y \(h\) son elementos de un grupo tales que \(gh = hg\) y \(|g|\) y \(|h|\) son finitos y de orden coprimo, entonces, por el Teorema Chino de los Restos: \(\langle g,h \rangle = \langle gh \rangle\). De hecho, \(\langle gh \rangle\) es abeliano por ser cíclico y \(\langle gh \rangle = \langle g \rangle \oplus \langle h \rangle\). 
+En el grupo \(A = \mathbb{Z}_6\) los subgrupos \(B = \langle 2 \rangle \) y \(C = \langle 3 \rangle\) son independientes y se tiene \(A = B \oplus C\).
 \end{example}
 
-\begin{example}{}{}
-En el grupo multiplicativo \(\mathbb{R}^*\) se tiene \(\mathbb{R}^* = \langle -1 \rangle \oplus \mathbb{R}^+\).
-\end{example}
+\begin{proofbox}
+Veamos que el $0$ se expresa de manera única en $B \oplus C$ ya que
+\[
+0 = b + c = [2n] + [3m] \implies n = 3, m = 2 \implies b = 0 = c
+\]
+luego $B, C$ son independientes. Además, es claro que $B \oplus C \subseteq A$, y si $[n] \in A$ entonces $[n] = -[2n] + [3n] \in B \oplus C$, por lo que $A = B \oplus C$.
+\end{proofbox}
 
 \begin{example}{}{}
 Si \(A\) y \(B\) son grupos abelianos, entonces el grupo producto \(A \times B\) es la suma directa de los subgrupos \(A \times 0\) y \(0 \times B\).
@@ -78,7 +82,7 @@ Si \(A\) y \(B\) son grupos abelianos, entonces el grupo producto \(A \times B\)
 El complemento directo de un sumando directo no es, en general, único. Por ejemplo, para cualquier \(a \in \mathbb{Z}\) se tiene \(\mathbb{Z} \times \mathbb{Z} = \langle(1,0)\rangle \oplus \langle(a,1)\rangle\): la intersección es claramente nula, y un elemento arbitrario \((x,y)\) de \(\mathbb{Z} \times \mathbb{Z}\) se puede expresar como \((x,y) = y(a,1) + (x - ya)(1,0)\).
 \end{example}
 
-\begin{example}{}{}
+\begin{example}{}{Q_Z_indescomponibles}
 En \(\mathbb{Q}\) no hay dos subgrupos no triviales que sean independientes. En efecto, si \(A\) y \(B\) son subgrupos no nulos y elegimos elementos no nulos \(\frac{a}{n} \in A\) y \(\frac{b}{m} \in B\), entonces
 \[
 0 = bn \frac{a}{n} - am \frac{b}{m}
@@ -86,58 +90,130 @@ En \(\mathbb{Q}\) no hay dos subgrupos no triviales que sean independientes. En 
 nos da una expresión no trivial del 0 como suma de elementos de \(A\) y \(B\). En \(\mathbb{Z}\) ocurre lo mismo, por un argumento similar.
 \end{example}
 
-% Notemos la similitud entre la definición de suma directa de grupos y la suma directa de espacios vectoriales. Es claro que dado un espacio vectorial $V$ podemos <<olvidar>> la multiplicación por escalares para obtener un grupo abeliano (los vectores con la operación de suma). Sin embargo, no todo grupo abeliano puede dotarse de una estructura de espacio vectorial sobre algún cuerpo.
+Cuando sólo consideramos familias finitas, existe una estrecha relación entre los conceptos de suma directa y producto directo de grupos, que describimos a continuación dejando los detalles a cargo del lector.
 
-% \begin{example}{}{}
-% \end{example}
+Supongamos primero que \(A=B_{1}\oplus\cdots\oplus B_{n}\). Entonces, viendo cada \(B_{i}\) como grupo y considerando su producto \(B_{1}\times\cdots\times B_{n}\), la aplicación \(B_{1}\times\cdots\times B_{n}\to A\) dada por
+\[
+(b_{1},\ldots,b_{n})\mapsto b_{1}+\cdots+b_{n}
+\]
+es un isomorfismo de grupos. Es decir, si \(A\) es la suma directa de los \(B_{i}\), entonces \(A\) es isomorfo al producto directo de los \(B_{i}\).
 
-\section{Grupos indescomponibles y p-grupos}
+Recíprocamente, sean \(B_{1},\ldots,B_{n}\) grupos abelianos y sea \(A\) el grupo producto, \(A=B_{1}\times\cdots\times B_{n}\). Si denotamos por \(\hat{B}_{i}\) al subgrupo de \(A\) formado por los elementos que llevan ceros en todas las coordenadas excepto tal vez en la \(i\)-ésima (o sea \(\hat{B}_{i}=0\times\cdots\times 0\times B_{i}\times 0\times\cdots\times 0\)), entonces es elemental ver que cada \(\hat{B}_{i}\) es isomorfo a \(B_{i}\) y que \(A=\hat{B}_{1}\oplus\cdots\oplus\hat{B}_{n}\). Es decir, si \(A\) es el producto directo de los \(B_{i}\), entonces \(A\) es la suma directa de los \(\hat{B}_{i}\), que son isomorfos a los \(B_{i}\).
 
-\begin{definition}{Grupo indescomponible}{grupo_indescomponible}
-Un grupo abeliano no nulo se dice que es \emph{indescomponible} si no es suma directa de dos subgrupos propios. Es decir, $A$ es indescomponible si $A = X \oplus Y$ implica $X = 0$ ó $Y = 0$ (y por tanto $X = A$ ó $Y = A$).
+En vista de esto, a menudo identificaremos \(B_{1}\oplus\cdots\oplus B_{n}\) con \(B_{1}\times\cdots\times B_{n}\).
+
+En el caso infinito identificamos \(\oplus_{i\in I}B_{i}\) como el subgrupo de \(\prod_{i\in I}B_{i}\) formado por las \(I\)-uplas \((b_{i})_{i\in I}\) para las que \(\{i\in I:b_{i}\neq 0\}\) es finito.
+
+\begin{definition}{Suma directa de grupos (no necesariamente abelianos)}{suma_directa_general}
+Sea \( \{G_i\}_{i \in I} \) una familia de subgrupos (no necesariamente abelianos) de un grupo $G$. Si los subgrupos verifican
+\begin{enumerate}
+\item Para cada $i \in I$, $G_i$ es un subgrupo normal de $G$.
+\item Para cada $i \in I$, $G_i \cap \langle \cup_{j\neq i} G_j \rangle = \langle e \rangle$.
+\item $G = \langle \cup_{i \in I} G_i \rangle$.
+\end{enumerate}
+Decimos que $G$ es la suma directa de los $G_i$, y escribimos $G = \oplus_{i \in I} G_i$.
 \end{definition}
 
-\begin{remark}
-La notación $\langle g \rangle_n$ representa un grupo cíclico generado por $g$ de orden $n$.
-\end{remark}
+\clearpage
+\section{Grupos indescomponibles y $p$-grupos}
+
+\begin{definition}{Grupo indescomponible}{grupo_indescomponible}
+Un grupo abeliano no nulo se dice que es indescomponible si no es suma directa de dos subgrupos propios. Es decir, $A$ es indescomponible si $A = X \oplus Y$ implica $X = 0$ ó $Y = 0$ (y por tanto $X = A$ ó $Y = A$).
+\end{definition}
+
+% \begin{remark}
+% La notación $\langle g \rangle_n$ representa un grupo cíclico generado por $g$ de orden $n$.
+% \end{remark}
 
 \begin{proposition}{Existencia de descomposición en indescomponibles}{descomposicion_indescomponibles}
 Todo grupo abeliano finito y no nulo $A$ es una suma directa de subgrupos indescomponibles.
 \end{proposition}
 
-\begin{example}{Grupos indescomponibles}{ejemplos_indescomponibles}
-\begin{enumerate}
-    \item $\mathbb{Z}$ y $\mathbb{Q}$ son indescomponibles, por un argumento usado en los Ejemplos 5.3.
-    
-    \item Todo grupo de orden primo es obviamente indescomponible. Más generalmente, supongamos que $G=\langle g\rangle$ es un grupo cíclico de orden $p^{n}$ con $p$ un primo y $n\in\mathbb{N}$. Entonces los subgrupos de $G$ forman una cadena:
-    
-    \[1<\langle a^{p^{n-1}}\rangle_{p}<\langle a^{p^{n-2}}\rangle_{p^{2}}<\cdots< \langle a^{p^{2}}\rangle_{p^{n-2}}<\langle a^{p}\rangle_{p^{n-1}}<\langle a \rangle_{p^{n}}=G.\]
-    
-    Por tanto $G$ es indescomponible. Sin embargo, si $G$ es cíclico de orden $n$ pero $n$ no es una potencia de un primo entonces existen enteros coprimos $h$ y $k$ y mayores que $1$, con $n=hk$. Por tanto, $G$ tiene un grupo cíclico $H$ de orden $h$ y otro $K$ de orden $k$. Entonces $G=H\oplus K$, por tanto $G$ no es indescomponible. Esta es otra reencarnación del Teorema Chino de los Restos.
-\end{enumerate}
+\begin{proofbox}
+Podemos razonar por inducción sobre el orden de $A$. Si $A$ tiene orden $2$ solo tiene un subgrupo propio, el trivial, luego $A$ es indescomponible puesto que no se puede expresar como suma directa de subgrupos propios.
+
+Supongamos que se cumple para grupos de orden menor que $n$ y sea $A$ un grupo con orden $n$. Si $A$ es indescomponible, entonces hemos terminado. En caso contrario existen $B,C < A$ tales que $A = B \oplus C$. Como ambos grupos son propios, por hipótesis se pueden expresar como suma directa de indescomponibles, luego
+\[
+B = B_1 \oplus \dots \oplus B_k,\quad C = C_1 \oplus \dots \oplus C_l
+\]
+y por tanto
+\[
+A = B_1 \oplus \dots \oplus B_k \oplus C_1 \oplus \dots \oplus C_l
+\]
+donde todos los factores son indescomponibles.
+\end{proofbox}
+
+\begin{example}{}{}
+$\mathbb{Z}$ y $\mathbb{Q}$ son indescomponibles por el argumento usado en el Ejemplo \ref{ex:Q_Z_indescomponibles}.
 \end{example}
 
-En el Ejemplo 5.7.(2) hemos caracterizado los grupos cíclicos finitos indescomponibles como aquellos cuyo orden es una potencia de un primo. El resto de la sección lo dedicamos a ver que no hay más grupos abelianos finitos indescomponibles.
+\begin{example}{}{}
+Todo grupo de orden primo es obviamente indescomponible ya que su único subgrupo propio es el trivial. Más generalmente, supongamos que $G=\langle g\rangle$ es un grupo cíclico de orden $p^{n}$ con $p$ un primo y $n\in\mathbb{N}$. Entonces los subgrupos de $G$ forman una cadena:
+\[
+1<\langle g^{p^{n-1}}\rangle_{p}<\langle g^{p^{n-2}}\rangle_{p^{2}}<\cdots< \langle g^{p^{2}}\rangle_{p^{n-2}}<\langle g^{p}\rangle_{p^{n-1}}<\langle g \rangle_{p^{n}}=G.
+\]
+Donde $\langle a \rangle_l$ indica que el grupo cíclico es de orden $l$.
 
-\begin{definition}{Exponente, grupos periódicos y p-grupos}{exponente_periodico}
+Supongamos entonces que $G = H \oplus K$, entonces o bien $H < K$ o $K < H$, ya que todos los subgrupos de $G$ se encuentran en la cadena antes descrita .En cualquiera de los dos casos, $H \cap K \neq \{0\}$, lo que contradice que $H$ y $K$ son independientes.
+
+Sin embargo, si $G$ es cíclico de orden $n$ pero $n$ no es una potencia de un primo entonces existen enteros coprimos $h$ y $k$ y mayores que $1$, con $n=hk$. Por tanto, $G$ tiene un grupo cíclico $H$ de orden $h$ y otro $K$ de orden $k$. Entonces $G=H\oplus K$, por tanto $G$ no es indescomponible.
+
+Esta es otra reencarnación del Teorema Chino de los Restos: si $n$ se puede factorizar como producto de dos términos coprimos $n = pq$ entonces $C_n \cong C_p \oplus C_q$.
+\end{example}
+
+En el ejemplo anterior hemos caracterizado los grupos cíclicos finitos indescomponibles como aquellos cuyo orden es una potencia de un primo: todo grupo isomorfo a $C_{p^n}$ es indescomponible. El resto de la sección lo dedicamos a ver que no hay más grupos abelianos finitos indescomponibles.
+
+\begin{definition}{Exponente}{exponente}
 Sea $G$ un grupo no necesariamente abeliano ni finito.
 
-Si existe un entero positivo $n$ tal que $g^{n}=1$ para todo $g\in G$ entonces al menor entero que cumple esa propiedad se le llama \emph{exponente} o \emph{periodo} de $G$. Denotaremos ese número por $\operatorname{Exp}(G)$ y en el caso que no exista tal número pondremos $\operatorname{Exp}(G)=\infty$ y diremos que $G$ tiene periodo infinito.
-
-Decimos que un grupo arbitrario $G$ (no necesariamente abeliano ni finito) es \emph{periódico} o \emph{de torsión} si para todo elemento de $G$ tiene orden finito, o sea si para todo $g\in G$ se verifica que $g^{n}=1$ para algún entero positivo.
-
-Sea $p$ un número primo. Un grupo en el que todo elemento tiene orden potencia de $p$ se dice que es un \emph{$p$-grupo}.
+Si existe un entero positivo $n$ tal que $g^{n}=1$ para todo $g\in G$ entonces al menor entero que cumple esa propiedad se le llama exponente o periodo de $G$. Denotaremos ese número por $\Exp(G)$ y en el caso que no exista tal número pondremos $\Exp(G)=\infty$ y diremos que $G$ tiene periodo infinito.
 \end{definition}
 
-Claramente si un grupo es finito entonces tiene periodo finito y si tiene periodo finito entonces el grupo es periódico. Sin embargo los recíprocos no se verifican. Por ejemplo, una suma directa infinita de copias de $\mathbb{Z}_{2}$ es periódico pero no es finito y la suma directa de todos los grupos de la forma $\mathbb{Z}_{n}$ con $n\geq 1$ es periódico pero tiene periodo finito.
+\begin{definition}{Grupo periodico}{grupo_periodico}
+Decimos que un grupo arbitrario $G$ (no necesariamente abeliano ni finito) es periódico o de torsión si para todo elemento de $G$ tiene orden finito, o sea si para todo $g\in G$ se verifica que $g^{n}=1$ para algún entero positivo.
+\end{definition}
 
-También está claro que todo $p$-grupo es periódico. Sin embargo $\oplus_{n\in\mathbb{N}}\mathbb{Z}_{p^{n}}$ es un $p$-grupo de orden infinito. También está claro que si todo grupo que tenga orden potencia de $p$ es un $p$-grupo. Para el caso finito sí que se verifica el recíproco. Eso es consecuencia inmediata del Teorema de Cauchy (Teorema 4.31). Ponemos esto en un lema para uso futuro.
+\begin{definition}{$p$-grupo}{p_grupo}
+Sea $p$ un número primo. Un grupo en el que todo elemento tiene orden potencia de $p$ se dice que es un $p$-grupo.
+\end{definition}
+
+\begin{remark}
+Nótese que esta definición de $p$-grupo es distinta de la dada en la Sección \ref{sec:p_grupos}.
+\end{remark}
+
+Claramente si un grupo es finito entonces tiene periodo finito y si tiene periodo finito entonces el grupo es periódico. Sin embargo los recíprocos no se verifican. Por ejemplo, una suma directa infinita de copias de $\mathbb{Z}_{2}$
+\[
+\oplus_{i=1}^{\infty} \Z_2
+\]
+es periódico, ya que todo elemento cumple $a + a = 0$, pero no es finito. Por otro lado, la suma directa de todos los grupos de la forma $\mathbb{Z}_{n}$ con $n\geq 1$
+\[
+\oplus_{n=1}^{\infty} \Z_n
+\]
+es periódico, ya que los elementos son cero en casi todas sus componentes y por tanto para algún $k$ se cumple $ka = 0$, pero tiene periodo infinito, ya que fijado un $k$ siempre podemos encontrar un elemento en la suma directa tal que $ka \neq 0$.
+
+También está claro que todo $p$-grupo es periódico. Sin embargo $\oplus_{n\in\mathbb{N}}\mathbb{Z}_{p^{n}}$ es un $p$-grupo de orden infinito.
+
+Además, todo grupo que tenga orden potencia de $p$ es un $p$-grupo ya que por el Corolario \ref{cor:corolario_orden_lagrange} cualquier $g \in G$ debe cumplir
+\[
+|g| \Big \vert |G| = p^n.
+\] 
+Para el caso finito se verifica el recíproco: todo $p$-subgrupo finito tiene orden potencia de $p$. Eso es consecuencia inmediata del \hyperref[thm:teorema_cauchy]{Teorema de Cauchy}. Ponemos esto en un lema para uso futuro.
 
 \begin{lemma}{Caracterización de $p$-grupos finitos}{caracterizacion_p_grupos_finitos}
-Sean $G$ un grupo finito $A$ y $p$ un número primo. Entonces $G$ es un $p$-grupo si y solo si $|G|$ es una potencia de $p$.
+Sean $G$ un grupo finito y $p$ un número primo. Entonces $G$ es un $p$-grupo si y solo si $|G|$ es una potencia de $p$.
 \end{lemma}
 
-Dados un grupo abeliano $A$ y un entero primo $p$, el \emph{subgrupo de $p$-torsión} de $A$ es
+\begin{proofbox}
+Si $|G|$ es una potencia de $p$, por el Corolario \ref{cor:corolario_orden_lagrange} cualquier $g \in G$ debe cumplir
+\[
+|g| \Big\vert |G| = p^n
+\] 
+por lo que todos los elementos tienen orden potencia de $p$.
+
+Por el contrario, sea $G$ un $p$-grupo finito. Si $q$ no es potencia de $p$ y divide a $|G|$, por el \hyperref[thm:teorema_cauchy]{Teorema de Cauchy} existe un elemento $g$ de orden $q$, pero esto contradice el hecho de que $G$ es un $p$-grupo.
+\end{proofbox}
+
+Dados un grupo abeliano $A$ y un entero primo $p$, el subgrupo de $p$-torsión de $A$ es
 
 \[t_{p}(A)=\{a\in A:\text{ existe }n\in\mathbb{N}\text{ tal que }p^{n}a=0\}=\{a \in A:|a|\text{ es una potencia de }p\}.\]
 
