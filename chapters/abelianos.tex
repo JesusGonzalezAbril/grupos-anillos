@@ -147,7 +147,7 @@ donde todos los factores son indescomponibles.
 $\mathbb{Z}$ y $\mathbb{Q}$ son indescomponibles por el argumento usado en el Ejemplo \ref{ex:Q_Z_indescomponibles}.
 \end{example}
 
-\begin{example}{}{}
+\begin{example}{}{p_grupo_ciclico}
 Todo grupo de orden primo es obviamente indescomponible ya que su único subgrupo propio es el trivial. Más generalmente, supongamos que $G=\langle g\rangle$ es un grupo cíclico de orden $p^{n}$ con $p$ un primo y $n\in\mathbb{N}$. Entonces los subgrupos de $G$ forman una cadena:
 \[
 1<\langle g^{p^{n-1}}\rangle_{p}<\langle g^{p^{n-2}}\rangle_{p^{2}}<\cdots< \langle g^{p^{2}}\rangle_{p^{n-2}}<\langle g^{p}\rangle_{p^{n-1}}<\langle g \rangle_{p^{n}}=G.
@@ -178,7 +178,7 @@ Sea $p$ un número primo. Un grupo en el que todo elemento tiene orden potencia 
 \end{definition}
 
 \begin{remark}
-Nótese que esta definición de $p$-grupo es distinta de la dada en la Sección \ref{sec:p_grupos}.
+Nótese que esta definición de $p$-grupo es distinta de la dada en la Sección \ref{sec:p_grupos}. Sin embargo, veremos que ambas definiciones coinciden cuando el grupo es finito.
 \end{remark}
 
 Claramente si un grupo es finito entonces tiene periodo finito y si tiene periodo finito entonces el grupo es periódico. Sin embargo los recíprocos no se verifican. Por ejemplo, una suma directa infinita de copias de $\mathbb{Z}_{2}$
@@ -213,19 +213,73 @@ por lo que todos los elementos tienen orden potencia de $p$.
 Por el contrario, sea $G$ un $p$-grupo finito. Si $q$ no es potencia de $p$ y divide a $|G|$, por el \hyperref[thm:teorema_cauchy]{Teorema de Cauchy} existe un elemento $g$ de orden $q$, pero esto contradice el hecho de que $G$ es un $p$-grupo.
 \end{proofbox}
 
+\begin{definition}{Subgrupo de $p$-torsion}{p_torsion}
 Dados un grupo abeliano $A$ y un entero primo $p$, el subgrupo de $p$-torsión de $A$ es
+\[
+t_{p}(A)=\{a\in A:\text{ existe }n\in\mathbb{N}\text{ tal que }p^{n}a=0\}=\{a \in A:|a|\text{ es una potencia de }p\}.
+\]
+\end{definition}
 
-\[t_{p}(A)=\{a\in A:\text{ existe }n\in\mathbb{N}\text{ tal que }p^{n}a=0\}=\{a \in A:|a|\text{ es una potencia de }p\}.\]
+Veamos que ambos conjuntos son iguales y que forman un subgrupo de $A$.
+\begin{proposition}{}{}
+Ambas definiciones de $t_p(A)$ son equivalentes y $t_p(A) < A$.
+\end{proposition}
 
-Dejamos que el lector compruebe que ambos conjuntos son iguales y que forman un subgrupo de $A$. De hecho, si $A$ es finito, $t_{p}(A)$ es claramente el mayor $p$-\emph{subgrupo} de $A$ (es decir, el mayor subgrupo de $A$ que es un $p$-grupo).
+\begin{proofbox}
+Denotemos
+\[
+X = \{a\in A:\text{ existe }n\in\mathbb{N}\text{ tal que }p^{n}a=0\},\ Y =\{a \in A:|a|\text{ es una potencia de }p\}.
+\]
+Si $a \in Y$ entonces $|a| = p^n$, por tanto
+\[
+\langle a \rangle = \{0,a,2a,\dots,(p^{n}-1)a\}
+\]
+como $p^n a \in \langle a \rangle$ debe ser $p^n a = 0$, ya que en caso contrario se tendría
+\[
+p^n a = k a \implies (p^n - k) a = 0 
+\]
+con $0 < p^n - k < p^{n}-1$, lo cual implica que $|a| < p^n$, contradiciendo la hipótesis. De esto se deduce que $a \in X$.
 
+Por el contrario, si $a \in X$ entonces existe $n \in \N$ tal que $p^n a = 0$. De hecho, por el principio de buena ordenación podemos elegir $n$ como el menor natural tal que se verifica $p^n a = 0$. Supongamos que $|a| = k$ no es potencia de $p$, entonces $k$ es el menor natural tal que $ka = 0$ por un argumento similar al de la implicación anterior. Pero entonces $k \leq p^n$ y por el algoritmo de la división $p^n = qk + r$ y, por tanto,
+\[
+p^n a = qka + ra = q0 + ra = ra \implies ra = 0 \implies r = 0,
+\]
+luego $p^n = qk$. Si $q \neq 1$ entonces $k$ es una potencia de $p$, $k = p^m$ con $m<n$, lo cual contradice la minimalidad de $p^n$. De esto se deduce que debe ser $q=1$ y por tanto $|a| = k = p^n$.
+
+Para ver que es un subgrupo basta notar que si $a,b \in t_p(A)$ entonces existen $n,m$ tales que
+\[
+p^n a = 0 = p^m b \implies p^{n+m} (a+b) = 0
+\]
+luego $a + b \in t_p(A)$. Que existe elemento neutro e inversos es inmediato ya que
+\[
+p^n(-a) = -p^n a = 0,\ 0 \in X.
+\]
+\end{proofbox}
+
+De hecho, si $A$ es finito, $t_{p}(A)$ es claramente el mayor $p$-subgrupo de $A$ (es decir, el mayor subgrupo de $A$ que es un $p$-grupo).
 \begin{proposition}{Descomposición primaria en $p$-grupos}{descomposicion_primaria_p}
 Sea $A$ un grupo abeliano finito y sean $p_1, \ldots, p_k$ los divisores primos de $|A|$. Entonces
-
-\[ A = t_{p_1}(A) \oplus \cdots \oplus t_{p_k}(A), \]
-
+\[
+A = t_{p_1}(A) \oplus \cdots \oplus t_{p_k}(A),
+\]
 con cada $t_{p_i}(A) \neq 0$.
 \end{proposition}
+
+\begin{proofbox}
+Sea $a \in A$ y sea $|a| = n = p_1^{\alpha_1} \cdots p_k^{\alpha_k}$ (el orden de $a$ solo puede tener estos primos porque $|a|$ divide a $|A|$). Para cada $i = 1, \ldots, k$ sea $q_i = n/p_i^{\alpha_i}$. Es claro que ningún primo divide a la vez a todos los $q_i$, por lo que $\mcd(q_1, \ldots, q_k) = 1$ y por tanto existen $m_1, \ldots, m_k \in \mathbb{Z}$ tales que $m_1q_1 + \cdots + m_kq_k = 1$. Como $p_i^{\alpha_i} q_i a = na = 0$\footnote{Recordemos que si $n = |g|$ entonces $g^n = 1$, en notación aditiva $ng = 0$.}, se tiene $q_i a \in t_{p_i}(A)$, luego
+\[
+a = m_1q_1a + \cdots + m_kq_k a \in t_{p_1}(A) + \cdots + t_{p_k}(A).
+\]
+En consecuencia, $A = t_{p_1}(A) + \cdots + t_{p_k}(A)$.
+
+Para ver que la suma es directa, supongamos que $a_1 + \cdots + a_k = 0$ con cada $a_i \in t_{p_i}(A)$. Por tanto, para cada $i = 1, \ldots, k$, existe $\beta_i$ tal que $p_i^{\beta_i} a_i = 0$. Sea $m = p_1^{\beta_1} \cdots p_k^{\beta_k}$. Para cada índice $i$ ponemos $t_i = m/p_i^{\beta_i}$, de modo que $t_i a_j = 0$ cuando $i \neq j$, y así
+\[
+t_i a_i = -t_i \sum_{j\neq i} a_j = -t_i \sum_{j=1}^{k} a_j = 0
+\]
+donde hemos introducido en la suma el factor $-t_i a_i = 0$. Entonces, como $t_i a_i = 0$, $|a_i|$ divide a $t_i$ y, de igual manera, $|a_i|$ divide a $p_i^{\beta_i}$. Como estos son coprimos, se tiene $|a_i| = 1$ y por tanto $a_i = 0$. Esto prueba que la familia es independiente.
+
+Por último, de la igualdad $A = t_{p_1}(A) \oplus \cdots \oplus t_{p_k}(A)$ se deduce que $|A| = |t_{p_1}(A)| \cdots |t_{p_k}(A)|$. Como el orden de cada $t_{p_i}(A)$ es una potencia de $p_i$ (Lema \ref{lem:caracterizacion_p_grupos_finitos}) y cada $p_i$ divide a $|A|$, deducimos que ese orden es mayor que 1 y por tanto $t_{p_i}(A) \neq 0$.
+\end{proofbox}
 
 El siguiente corolario es inmediato:
 
@@ -235,12 +289,12 @@ Un grupo finito e indescomponible es un $p$-grupo para cierto primo $p$.
 
 \begin{example}{Descomposición en suma directa de $p$-grupos}{ejemplos_descomposicion_p}
 \begin{enumerate}
-    \item Sea $n = p_1^{\alpha_1} \cdots p_k^{\alpha_k}$ una factorización prima irredundante del entero $n$. Por el Teorema Chino de los Restos, $\mathbb{Z}_n \cong \mathbb{Z}_{p_1}^{\alpha_1} \times \cdots \times \mathbb{Z}_{p_k}^{\alpha_k}$ y claramente los factores de esta descomposición van a corresponder con los factores $t_p(\mathbb{Z}_n)$ de la descomposición de la Proposición 5.10. Más concretamente, si $q_i = n/p_i^{\alpha_i}$ para cada $i = 1, \ldots, k$, entonces $\overline{q_i} = q_i + n\mathbb{Z}$ genera un grupo de orden $p_i^{\alpha_i}$, y por tanto $t_{p_i}(\mathbb{Z}_n) = \langle \overline{q_i} \rangle$.
+    \item Sea $n = p_1^{\alpha_1} \cdots p_k^{\alpha_k}$ una factorización prima irredundante del entero $n$. Por el Teorema Chino de los Restos, $\mathbb{Z}_n \cong \mathbb{Z}_{p_1}^{\alpha_1} \times \cdots \times \mathbb{Z}_{p_k}^{\alpha_k}$ y claramente los factores de esta descomposición van a corresponder con los factores $t_p(\mathbb{Z}_n)$ de la descomposición de la Proposición \ref{prop:descomposicion_primaria_p}. Más concretamente, si $q_i = n/p_i^{\alpha_i}$ para cada $i = 1, \ldots, k$, entonces $\overline{q_i} = q_i + n\mathbb{Z}$ genera un grupo de orden $p_i^{\alpha_i}$, y por tanto $t_{p_i}(\mathbb{Z}_n) = \langle \overline{q_i} \rangle$.
     
     \item Sea $B$ un anillo commutativo. Definimos en el producto cartesiano $B^* \times B$ la siguiente operación:
-    
-    \[ (u,a)(v,b) = (uv,ub + va) \]
-    
+    \[
+    (u,a)(v,b) = (uv,ub + va)
+    \]
     Dejamos que el lector compruebe que esto define un grupo abeliano que denotamos $B^* \times B$ y que $(u,a)^n = (u^n, nu^{n-1}a)$, de lo que se deduce que $|(u,a)|$ es el mínimo común múltiplo del orden de $u$ en $(B^*,\cdot)$ y el orden de $a$ en $(B,+)$ pues, como $u$ es invertible, $nu^{n-1}a=0$ si y solo si $na=0$. Por tanto $t_{p}(B^{*}\times B)=t_{p}(B^{*})\times t_{p}(B)$ para todo primo $p$.
 \end{enumerate}
 \end{example}
@@ -256,14 +310,63 @@ Sean $A$ un $p$-grupo finito. Entonces:
 \end{enumerate}
 \end{lemma}
 
+\begin{proofbox}
+\begin{enumerate}
+\item Como $A$ es finito, su exponente es el mínimo común múltiplo de los órdenes de sus elementos. Como $A$ es un $p$-grupo finito, sus $k$ elementos tienen ordenes
+\[
+|a_1| = p^{n_1}, |a_2| = p^{n_2}, \dots, |a_k| = p^{n_k},
+\]
+por tanto, $\operatorname{Exp}(A)$ es una potencia de $p$. De hecho, es elemental ver que
+\[
+\Exp(A) = \mcm(p^{n_1},p^{n_2},\dots,p^{n_k}) = p^{m}
+\]
+con $m = n_i$ para algún $i\in\{1,\dots,k\}$. Por tanto, $a_i$ es el elemento buscado con $|a_i|=p^m=\Exp(A)$.
+
+\item Sea $a$ como en (1), $|a| = p^m = \operatorname{Exp}(A)$. Sea $\gamma \in A/B$ y sea $y \in A$ tal que $y + B = \gamma$. Sean $|y| = p^s$, $|\gamma| = p^k$; sabemos que $k \leq s$ por la observación de antes de la Proposición y también $s \leq m$. Si $k = s$, tomamos $x = y$ y hemos terminado. Supongamos $k < s$. Como $p^k(y+B) = p^k \gamma = 0$, se tiene $p^k y \in B = \langle a \rangle$, luego $p^k y = q a$ para algún $q \in \mathbb{Z}$. Escribimos $q = r p^t$ con $\operatorname{mcd}(p,r) = 1$, es decir, separando la parte de la factorización de $q$ que contiene los factores con $p$ del resto. Entonces
+\[
+p^{m+k-t} y = p^{m-t} p^k y = p^{m-t} q a = r p^m a = 0,
+\]
+luego $s \leq m+k-t$. Por otro lado,
+\[
+p^{m+k-t-1} y = p^{m-t-1} q a = r p^{m-1} a \neq 0,
+\]
+de donde $s = m+k-t$. Tomemos $x = y - r p^{m-s} a$. Entonces $x+B = y+B = \gamma$, y
+\[
+p^k x = p^k y - r p^{m+k-s} a = p^k y - r p^t a = 0,
+\]
+mientras que $p^{k-1} x = p^{k-1} y - r p^{m+k-1-s} a \neq 0$ (pues $p^{k-1} y \notin B$). Por tanto $|x| = p^k = |\gamma|$.
+\end{enumerate}
+\end{proofbox}
+
 Ahora podemos caracterizar los grupos abelianos finitos que son indescomponibles.
 
 \begin{proposition}{Caracterización de grupos abelianos indescomponibles}{caracterizacion_indescomponibles}
 Un grupo abeliano finito es indescomponible si y solo si es un $p$-grupo cíclico.
 \end{proposition}
 
-Combinando las Proposiciones 5.6 y 5.14 se obtiene:
+\begin{proofbox}
+($\Leftarrow$) Ya hemos visto en el Ejemplo \ref{ex:p_grupo_ciclico} que todo $p$-grupo cíclico es indescomponible.
+
+($\Rightarrow$) Sea $A$ indescomponible. Por el Corolario \ref{cor:corolario_indescomponible_p_grupo}, $A$ es un $p$-grupo para algún primo $p$. Probaremos por inducción sobre $|A|$ que $A$ es cíclico. Si $|A| = p$, entonces $A$ es cíclico por el Corolario \ref{cor:corolario_grupos_primo}.
+
+Supongamos $|A| = p^N > p$ , por el Lema \ref{lem:propiedades_p_grupos_finitos}, existe $a \in A$ con $|a| = \Exp(A) = p^m$. Sea $B = \langle a \rangle$ y $C = A/B$. Por la Proposición \ref{prop:descomposicion_indescomponibles}, $C$ se descompone en suma directa de subgrupos indescomponibles, todos de orden menor que $p^N$, luego por hipótesis de inducción son cíclicos. Es decir, existen $x_1, \dots, x_r \in A$ tales que
+\[
+C = \langle x_1 + B \rangle \oplus \cdots \oplus \langle x_r + B \rangle,
+\]
+y por la parte (2) del Lema \ref{lem:propiedades_p_grupos_finitos} podemos suponer $|x_i| = |x_i + B|$ para cada $i$. Claramente $A = B + \langle x_1 \rangle + \cdots + \langle x_r \rangle$. Veamos que esta suma es directa. Si
+\[
+b + m_1 x_1 + \cdots + m_r x_r = 0 \quad (b \in B, \; m_i \in \mathbb{Z}),
+\]
+entonces en $C$ tenemos $m_1(x_1+B) + \cdots + m_r(x_r+B) = 0$, luego cada $m_i(x_i+B) = 0$. Por tanto $|x_i+B| = |x_i|$ divide a $m_i$, así que $m_i x_i = 0$ y en consecuencia $b = 0$. Esto prueba que
+\[
+A = B \oplus \langle x_1 \rangle \oplus \cdots \oplus \langle x_r \rangle.
+\]
+Como $A$ es indescomponible y $B \neq 0$, debemos tener $r = 0$, es decir $A = B = \langle a \rangle$, luego $A$ es cíclico.
+\end{proofbox}
+
+Combinando las Proposiciones \ref{prop:descomposicion_indescomponibles} y \ref{prop:caracterizacion_indescomponibles} se obtiene:
 
 \begin{corollary}{Descomposición en $p$-grupos cíclicos}{descomposicion_p_ciclicos}
 Todo grupo abeliano finito es suma directa de subgrupos cíclicos cada uno de los cuales tiene orden potencia de un primo.
 \end{corollary}
+
