@@ -4,6 +4,8 @@ En este capítulo vamos a describir todos los grupos abelianos finitos salvo iso
 
 Un modo habitual de estudiar un objeto matemático consiste en descomponerlo en objetos más sencillos, estudiar éstos y recomponer entonces el objeto inicial. Lo que se entiende por objeto sencillo y la manera de descomponer y recomponer un objeto dependen de cada caso. En este capítulo el objeto estudiado será un grupo abeliano finito \( A \), y los objetos sencillos serán los grupos cíclicos, que ya conocemos bien. En este contexto, el proyecto sugerido al principio del párrafo funciona porque existe un método muy efectivo para descomponer \( A \) de modo que es muy fácil conocer \( A \) a partir de sus componentes. Se trata de la suma directa de subgrupos, que analizamos en la primera sección. Al final del capítulo demostraremos el Teorema Fundamental de los Grupos Abelianos Finitos que describe todos los grupos abelianos finitos salvo isomorfismos a partir de los grupos cíclicos (nuestros objetos sencillos) y sumas directas (nuestra forma de recomponer).
 
+Durante todo el capítulo usaremos la notación $\langle g \rangle_n$ para indicar que el grupo cíclico generado por $g$ tiene orden $n$. Es importante tener en cuenta que al usar esta notación estamos sobreentendiendo que se ha justificado previamente que el orden de $\langle g \rangle$ es verdaderamente $n$.
+
 \section{Sumas directas}
 
 Comenzamos con una proposición que dará lugar al concepto de familia independiente de subgrupos. Si tenemos una familia \( (B_i)_{i \in I} \) de subgrupos de un grupo abeliano aditivo entonces los elementos de \( \sum_{i \in I} B_i \) tiene la forma \( \sum_{i \in I} b_i \) con \( b_i \in B_i \) para todo \( i \) y \( b_i = 0 \) para casi todo \( i \in I \), o sea el conjunto \( \{ i \in I : b_i \neq 0 \} \) es finito. Con el fin de no recargar el discurso, en el futuro cada vez que tengamos una suma \( \sum_{i \in I} b_i \), se entiende que \( b_i = 0 \) para casi todo \( i \), sin necesidad de decirlo explícitamente.
@@ -74,6 +76,14 @@ Veamos que el $0$ se expresa de manera única en $B \oplus C$ ya que
 luego $B, C$ son independientes. Además, es claro que $B \oplus C \subseteq A$, y si $[n] \in A$ entonces $[n] = -[2n] + [3n] \in B \oplus C$, por lo que $A = B \oplus C$.
 \end{proofbox}
 
+\begin{example}{}{Suma directa en grupos multiplicativos}
+En el grupo multiplicativo $\R^*$, que es abeliano, se tiene $\R^* = \langle -1 \rangle \oplus \R^+$. Para grupos multiplicativos a veces se escribe $\otimes$ en lugar de $\oplus$.
+\end{example}
+
+\begin{proofbox}
+Obviamente, cualquier elemento de $\R^*$ se puede expresar como producto de un elemento de $\langle -1 \rangle$ y otro de $\R^+$: si $x\in\R^*$ es positivo $x = 1|x|$ y si es negativo $x = -|x|$. Por otro lado, $\langle -1 \rangle \cap \R^+ = \{1\}$, que es precisamente el grupo trivial (equivalente a $0$ en la Definición \ref{defn:suma_directa}, que está escrita para notación aditiva).
+\end{proofbox}
+
 \begin{example}{}{}
 Si \(A\) y \(B\) son grupos abelianos, entonces el grupo producto \(A \times B\) es la suma directa de los subgrupos \(A \times 0\) y \(0 \times B\).
 \end{example}
@@ -104,15 +114,15 @@ En vista de esto, a menudo identificaremos \(B_{1}\oplus\cdots\oplus B_{n}\) con
 
 En el caso infinito identificamos \(\oplus_{i\in I}B_{i}\) como el subgrupo de \(\prod_{i\in I}B_{i}\) formado por las \(I\)-uplas \((b_{i})_{i\in I}\) para las que \(\{i\in I:b_{i}\neq 0\}\) es finito.
 
-\begin{definition}{Suma directa de grupos (no necesariamente abelianos)}{suma_directa_general}
-Sea \( \{G_i\}_{i \in I} \) una familia de subgrupos (no necesariamente abelianos) de un grupo $G$. Si los subgrupos verifican
-\begin{enumerate}
-\item Para cada $i \in I$, $G_i$ es un subgrupo normal de $G$.
-\item Para cada $i \in I$, $G_i \cap \langle \cup_{j\neq i} G_j \rangle = \langle e \rangle$.
-\item $G = \langle \cup_{i \in I} G_i \rangle$.
-\end{enumerate}
-Decimos que $G$ es la suma directa de los $G_i$, y escribimos $G = \oplus_{i \in I} G_i$.
-\end{definition}
+% \begin{definition}{Suma directa de grupos (no necesariamente abelianos)}{suma_directa_general}
+% Sea \( \{G_i\}_{i \in I} \) una familia de subgrupos (no necesariamente abelianos) de un grupo $G$. Si los subgrupos verifican
+% \begin{enumerate}
+% \item Para cada $i \in I$, $G_i$ es un subgrupo normal de $G$.
+% \item Para cada $i \in I$, $G_i \cap \langle \cup_{j\neq i} G_j \rangle = \langle e \rangle$.
+% \item $G = \langle \cup_{i \in I} G_i \rangle$.
+% \end{enumerate}
+% Decimos que $G$ es la suma directa de los $G_i$, y escribimos $G = \oplus_{i \in I} G_i$.
+% \end{definition}
 
 \clearpage
 \section{Grupos indescomponibles y $p$-grupos}
@@ -120,10 +130,6 @@ Decimos que $G$ es la suma directa de los $G_i$, y escribimos $G = \oplus_{i \in
 \begin{definition}{Grupo indescomponible}{grupo_indescomponible}
 Un grupo abeliano no nulo se dice que es indescomponible si no es suma directa de dos subgrupos propios. Es decir, $A$ es indescomponible si $A = X \oplus Y$ implica $X = 0$ ó $Y = 0$ (y por tanto $X = A$ ó $Y = A$).
 \end{definition}
-
-% \begin{remark}
-% La notación $\langle g \rangle_n$ representa un grupo cíclico generado por $g$ de orden $n$.
-% \end{remark}
 
 \begin{proposition}{Existencia de descomposición en indescomponibles}{descomposicion_indescomponibles}
 Todo grupo abeliano finito y no nulo $A$ es una suma directa de subgrupos indescomponibles.
@@ -370,3 +376,222 @@ Combinando las Proposiciones \ref{prop:descomposicion_indescomponibles} y \ref{p
 Todo grupo abeliano finito es suma directa de subgrupos cíclicos cada uno de los cuales tiene orden potencia de un primo.
 \end{corollary}
 
+\clearpage
+\section{Descomposiciones primarias e invariantes}
+
+El Corolario \ref{cor:descomposicion_p_ciclicos} va a ser fundamental para clasificar los grupos abelianos finitos salvo isomorfismos. La idea es que cada clase de isomorfía de grupos abelianos finitos estará dada por una lista de números que van a representar los cardinales de los factores que aparecen en una descomposición de cualquiera de los elementos de la clase como suma directa de grupos cíclicos. Vamos a elegir dos tipos de listas de números: En la primera los números que admitimos son potencias de primos; en la segunda los números van a ser números naturales arbitrarios pero con la exigencia de que cada uno de ellos divida a los anteriores.
+
+\subsection{Descomposición primaria}
+
+\begin{definition}{Descomposición primaria}{descomposicion_primaria}
+Sea $A$ un grupo abeliano finito. Una descomposición primaria o indescomponible de $A$ es una expresión de $A$ como suma directa de subgrupos indescomponibles. Como cada uno de estos es un $p$-grupo cíclico para un primo $p$, siempre podemos reordenarlos de modo que se tenga
+\begin{gather*}
+A = \langle\alpha_{11}\rangle_{p_{1}^{\alpha_{11}}}\oplus\langle\alpha_{12}\rangle_{p_{1}^{\alpha_{12}}}\oplus\cdots\oplus\langle\alpha_{1m_{1}}\rangle_{p_{1}^{\alpha_{1m_{1}}}}\\
+\cdots \\
+\oplus\langle\alpha_{k1}\rangle_{p_{k}^{\alpha_{k1}}}\oplus\langle\alpha_{k2}\rangle_{p_{k}^{\alpha_{k2}}}\oplus\cdots\oplus\langle\alpha_{km_{k}}\rangle_{p_{k}^{\alpha_{km_{k}}}}
+\end{gather*}
+donde
+\[
+p_{1}<p_{2}<\cdots<p_{k}
+\]
+son los primos que dividen al orden de $A$ y ciertos enteros positivos $\alpha_{ij}$ con
+\[
+\alpha_{i1}\geq\alpha_{i2}\geq\cdots\geq\alpha_{im_{i}}\geq 1
+\]
+para cada $i=1,\ldots,k$.
+\end{definition}
+
+Con esta terminología, la Proposición \ref{prop:descomposicion_indescomponibles} se renuncia como:
+
+\begin{theorem}{Existencia de descomposición primaria}{existencia_descomposicion_primaria}
+Todo grupo abeliano finito tiene una descomposición primaria.
+\end{theorem}
+
+Para obtener una descomposición primaria de un grupo abeliano finito seguimos los pasos indicados en la sección anterior; es decir, dado un grupo abeliano finito $A$:
+
+\begin{enumerate}
+    \item Se calcula $t_{p}(A)$ para cada divisor primo de $|A|$; entonces $A=t_{p_{1}}(A)\oplus\cdots\oplus t_{p_{k}}(A)$ (Proposición \ref{prop:descomposicion_primaria_p}).
+    \item Para cada divisor primo $p$ de $|A|$ se calcula $a\in t_{p}(A)$ tal que $|a|$ coincida con el periodo de $t_{p}(A)$ (Lema \ref{lem:propiedades_p_grupos_finitos}) y pasamos a estudiar $t_{p}(A)/\langle a\rangle$, que tiene orden menor que el de $t_{p}(A)$. Por recurrencia vamos pasando a grupos de orden cada vez más pequeño hasta obtener un grupo cíclico. Volvemos para atrás siguiendo la demostración de la Proposición \ref{prop:caracterizacion_indescomponibles} y así obtendremos una descomposición primaria de $t_{p}(A)$, que ocupará una fila en la ordenación de los sumandos según la Definición \ref{defn:descomposicion_primaria}.
+\end{enumerate}
+
+\subsection{Ejemplos de descomposiciones primarias}
+
+\begin{example}{}{}
+Consideremos el número complejo $\omega = \frac{-1+\sqrt{-3}}{2}$ y sea $G$ el subgrupo multiplicativo de $\mathbb{C}^*$ generado por $i$ y $\omega$:
+\[
+G = \langle i, \omega \rangle.
+\]
+Observamos que $|i| = 4$ y $|\omega| = 3$, es decir, $i$ es una raíz cuarta de la unidad y $\omega$ una raíz cúbica. Por el Teorema Chino de los Restos para grupos, tenemos que
+\[
+G = \langle i \rangle_4 \otimes \langle \omega \rangle_3,
+\]
+$t_2(G) = \langle i \rangle$ y $t_3(G) = \langle \omega \rangle$. Esta es la descomposición primaria de $G$.
+
+Recordamos que al escribir $\otimes$ queremos indicar que $G = \langle i \rangle_4 \times \langle \omega \rangle_3$ y que $\langle i \rangle_4 \cap \langle \omega \rangle_3 = \{1\}$.
+\end{example}
+    
+\begin{example}{}{}
+Consideremos ahora $A = \mathbb{Z}_{560}^*$. Por el Teorema Chino de los Restos para Anillos tenemos que $\mathbb{Z}_{560} \cong \mathbb{Z}_{16} \otimes \mathbb{Z}_{5} \otimes \mathbb{Z}_{7}$ y por tanto $A \cong \mathbb{Z}_{16}^* \oplus \mathbb{Z}_{5}^* \oplus \mathbb{Z}_{7}^*$. Usando el Problema 4.5.4 deducimos que $|\mathbb{Z}_{16}^*| = \phi(16) = 8$, $|\mathbb{Z}_{5}^*| = \phi(5) = 4$ y $|\mathbb{Z}_{7}^*| = \phi(7) = 6$. Por tanto $\mathbb{Z}_{16}^*$ y $\mathbb{Z}_{5}^*$ son $2$-grupos de órdenes $8$ y $4$ respectivamente y la descomposición primaria de $\mathbb{Z}_{7}^*$ es una suma directa de un grupo de orden $2$ y otro de orden $3$. Luego $t_2(A) \cong \mathbb{Z}_{16}^* \times \mathbb{Z}_{5}^* \times t_2(\mathbb{Z}_{7}^*)$ y $t_3(A) \cong t_3(\mathbb{Z}_{7}^*) \cong C_3$.
+\end{example}
+
+\subsection{Descomposición invariante}
+
+\begin{definition}{Descomposición invariante}{descomposicion_invariante}
+Sea $A$ un grupo abeliano finito. Una descomposición invariante de $A$ es una expresión del tipo
+\[
+A = \bigoplus_{i=1}^{n} \langle a_i \rangle,
+\]
+tal que $|a_i|$ divide a $|a_{i-1}|$ para cada $i=2,\ldots,n$.
+\end{definition}
+
+Es fácil ver que el periodo de un grupo abeliano finito es igual al orden del primer sumando en una descomposición invariante suya (Problema 5.3.1).
+
+Utilizando el Teorema 5.17 podemos obtener también:
+
+\begin{theorem}{Existencia de descomposición invariante}{existencia_descomposicion_invariante}
+Todo grupo abeliano finito tiene una descomposición invariante.
+\end{theorem}
+
+\begin{proofbox}
+Sea $A$ un grupo abeliano finito. Añadiendo sumandos triviales a una descomposición primaria suya, tenemos
+\[
+A = \langle a_{11} \rangle_{p_1^{\alpha_{11}}} \oplus \langle a_{12} \rangle_{p_1^{\alpha_{12}}} \oplus \cdots \oplus \langle a_{1m_1} \rangle_{p_1^{\alpha_{1m}}} \oplus \cdots \langle a_{k_1} \rangle_{p_k^{\alpha_{k_1}}} \oplus \langle a_{k_2} \rangle_{p_k^{\alpha_{k_2}}} \oplus \cdots \oplus \langle a_{km_k} \rangle_{p_k^{\alpha_{km}}}
+\]
+para ciertos primos positivos distintos $p_1, p_2, \ldots, p_k$ y ciertos enteros $\alpha_{ij}$ que satisfacen
+\[
+\alpha_{i1} \geq \alpha_{i2} \geq \cdots \geq \alpha_{im} \geq 0 \quad \text{para todo } i = 1, \ldots, k. \tag{5.3}
+\]
+Los $\alpha_{ij}$ que valen cero se corresponden con los sumandos triviales que hemos añadido para que, en cada fila de la descomposición de $A$, a partir de la segunda, haya el mismo número de sumandos.
+
+Para obtener la descomposición invariante basta con "agrupar los sumandos por columnas", a partir de la segunda fila. Explícitamente, para cada $j = 1, \ldots, m$, sean
+\[
+b_j = a_{1j} + a_{2j} + \cdots + a_{kj} \quad \text{y} \quad d_j = p_1^{\alpha_{1j}} p_2^{\alpha_{2j}} \cdots p_k^{\alpha_{kj}}.
+\]
+
+Por el Corolario 4.25 tenemos que
+\[
+\langle b_j \rangle_{d_j} = \langle a_{1j} \rangle_{p_1^{\alpha_{1j}}} \oplus \langle a_{2j} \rangle_{p_2^{\alpha_{2j}}} \oplus \cdots \oplus \langle a_{kj} \rangle_{p_k^{\alpha_{kj}}}.
+\]
+Entonces,
+\[
+A = \langle b_1 \rangle_{d_1} \oplus \langle b_2 \rangle_{d_2} \oplus \cdots \oplus \langle b_m \rangle_{d_m},
+\]
+es una descomposición invariante, pues como consecuencia de las desigualdades (5.3) se tiene que $d_j \mid d_{j-1}$ para todo $j = 2, \ldots, n$.
+\end{proofbox}
+
+La demostración del Teorema 5.20 nos dice cómo se obtiene una descomposición invariante a partir de una descomposición primaria.
+
+\begin{definition}{Semejanza de descomposiciones}{semejanza_descomposiciones}
+Sean $A$ y $B$ dos grupos abelianos finitos.
+
+Dos descomposiciones primarias de $A$ y $B$ son \emph{semejantes} si los sumandos que intervienen son isomorfos dos a dos. Si ordenamos las descomposiciones como se ha indicado en la Definición 5.16, digamos
+
+\[
+A = (\bigoplus_{j=1}^{m_1} A_{1j}) \oplus \cdots \oplus (\bigoplus_{j=1}^{m_k} A_{kj})
+\]
+
+y
+
+\[
+B = (\bigoplus_{j=1}^{m'_1} B_{1j}) \oplus \cdots \oplus (\bigoplus_{j=1}^{m'_k} B_{kj}),
+\]
+
+es claro que éstas son semejantes si y sólo si $k = k'$, cada $m_i = m'_i$ y $|A_{ij}| = |B_{ij}|$ para cada posible par de índices.
+
+Dos descomposiciones invariantes $A = \bigoplus_{i=1}^n A_i$ y $B = \bigoplus_{i=1}^n B_i$ son \emph{semejantes} si los sumandos que intervienen son isomorfos dos a dos, lo que claramente equivale a que tengan el mismo número de sumandos ($n = n'$) y las mismas listas de órdenes ($|A_i| = |B_i|$ para todo $i = 1, \ldots, n$).
+\end{definition}
+
+Es fácil ver que, si $A$ y $B$ tienen descomposiciones primarias (o invariantes) semejantes, entonces $A$ y $B$ son isomorfos. El siguiente teorema nos dice, esencialmente, que se verifica el recíproco:
+
+\begin{theorem}{Unicidad de descomposiciones}{unicidad_descomposiciones}
+Sea $A$ un grupo abeliano finito. Entonces:
+
+\begin{enumerate}
+    \item Todas las descomposiciones primarias de $A$ son semejantes.
+    \item Todas las descomposiciones invariantes de $A$ son semejantes.
+\end{enumerate}
+\end{theorem}
+
+\begin{proofbox}
+En vista de que se puede pasar de una descomposición primaria a una invariante y viceversa, bastará con demostrar una de las dos afirmaciones. Demostraremos la primera.
+
+Sea
+
+\[
+A = (\bigoplus_{j=1}^{m_1} A_{1j}) \oplus \cdots \oplus (\bigoplus_{j=1}^{m_k} A_{kj})
+\]
+
+una descomposición primaria de $A$ con $|A_{ij}| = p_i^{\alpha_{ij}}$ para ciertos enteros primos positivos $p_1 < p_2 < \cdots < p_k$ y ciertos enteros positivos $\alpha_{ij}$ con $\alpha_{i1} \geq \alpha_{i2} \geq \cdots \geq \alpha_{im_i} \geq 1$ para cada $i = 1, \ldots, k$. Obsérvese que para cada $i = 1, \ldots, k$, se tiene
+
+\[
+\bigoplus_{j=1}^{m_i} A_{ij} = t_p(A),
+\]
+
+por lo que estos subgrupos también están determinados por $A$. En consecuencia, podemos limitarnos a demostrar la unicidad asumiendo que $A$ es un $p$-grupo finito.
+
+En esta situación, dos descomposiciones primarias de $A$ serán de la forma
+
+\[
+A = A_1 \oplus \cdots \oplus A_n = B_1 \oplus \cdots \oplus B_m,
+\]
+
+donde cada sumando es cíclico y, si ponemos $|A_i| = p^{\alpha_i}$ y $|B_i| = p^{\beta_i}$, se tiene $\alpha_1 \geq \alpha_2 \geq \cdots \geq \alpha_n$ y $\beta_1 \geq \beta_2 \geq \cdots \geq \beta_m$. Vamos a ver, por inducción en $i$, que $\alpha_i = \beta_i$ para cada $i$.
+
+Obsérvese que $p^{\alpha_1} = \operatorname{Exp}(A) = p^{\beta_1}$, lo que resuelve el caso $i = 1$. Supongamos pues que $\alpha_j = \beta_j$ para cada $j = 1, \ldots, i - 1$, y veamos que $\alpha_i = \beta_i$. Podemos suponer sin pérdida de generalidad que $\alpha_i \leq \beta_i$.
+
+Observemos lo siguiente: Sea $C$ un grupo cíclico de orden $p^r$ y sea $s \in \mathbb{N}$. Se tiene $p^s C = 0$ si y sólo si $s \geq r$. Por otra parte, si $s \leq r$, entonces $p^s C$ es cíclico de orden $p^{r-s}$ por la Proposición 4.22. En consecuencia, si ponemos $q = p^{\alpha_i}$, se tiene
+
+\[
+qA \cong qA_1 \oplus \cdots \oplus qA_{i-1} \cong (qB_1 \oplus \cdots \oplus qB_{i-1}) \oplus (qB_i \oplus \cdots \oplus qB_m).
+\]
+
+Como $qA_1 \oplus \cdots \oplus qA_{i-1}$ y $qB_1 \oplus \cdots \oplus qB_{i-1}$ tienen el mismo cardinal, deducimos que $qB_i \oplus \cdots \oplus qB_m = 0$. En particular $0 = qB_i = p^{\alpha_i} B_i$, de modo que $\alpha_i \geq \beta_i$, y por tanto $\alpha_i = \beta_i$, como queríamos ver.
+\end{proofbox}
+
+\begin{definition}{Divisores elementales y factores invariantes}{divisores_factores}
+Sea $A$ un grupo abeliano finito. Sea
+
+\[
+A = \bigoplus_{i=1}^n \langle a_i \rangle_{m_i} \tag{5.4}
+\]
+
+una descomposición primaria ordenada como en la Definición 5.16. La lista $(m_1, \ldots, m_n)$ (que no depende de la descomposición primaria elegida, por el Teorema 5.24) se conoce como la lista de los \emph{divisores elementales} de $A$.
+
+Análogamente, si (5.4) es una descomposición invariante, entonces la lista $(m_1, \ldots, m_n)$ (que tampoco depende de la descomposición invariante elegida) se conoce como la lista de los \emph{factores invariantes} de $A$.
+\end{definition}
+
+Todo lo visto en esta sección se resume en el siguiente Teorema:
+
+\begin{theorem}{Teorema de Estructura de Grupos Abelianos Finitos}{teorema_estructura_grupos_abelianos_finitos}
+\begin{enumerate}
+    \item Todo grupo abeliano finito tiene una descomposición primaria y una descomposición invariante.
+    
+    \item Las siguientes condiciones son equivalentes para dos grupos abelianos finitos:
+    \begin{enumerate}
+        \item Son isomorfos.
+        \item Tienen descomposiciones primarias semejantes.
+        \item Tienen descomposiciones invariantes semejantes.
+        \item Tienen la misma lista de divisores elementales.
+        \item Tienen la misma lista de factores invariantes.
+    \end{enumerate}
+\end{enumerate}
+\end{theorem}
+
+Por el Teorema de Estructura 5.27, todo grupo abeliano finito es suma directa de cíclicos. Esto no es cierto para grupos abelianos en general, considérese $\mathbb{Q}$; ni siquiera para grupos abelianos de torsión.
+
+El siguiente teorema que es una generalización del Teorema 5.27, sobrepasa los contenidos de esta asignatura. Necesitamos extender la noción de descomposiciones primaria e invariante y de descomposiciones semejantes. La única diferencia es que admitimos sumandos directos que sean cíclicos de orden infinito. Obsérvese que para que un grupo abeliano tenga una descomposición primaria o una descomposición invariante es necesario que sea finitamente generado pero además:
+
+\begin{theorem}{Teorema de Estructura de Grupos Abelianos Finitamente Generados}{teorema_estructura_grupos_abelianos_fg}
+\begin{enumerate}
+    \item Todo grupo abeliano finitamente generado tiene una descomposición primaria y una descomposición invariante.
+    
+    \item Las siguientes condiciones son equivalentes para dos grupos abelianos finitos:
+    \begin{enumerate}
+        \item Son isomorfos.
+        \item Tienen descomposiciones primarias semejantes.
+        \item Tienen descomposiciones invariantes semejantes.
+    \end{enumerate}
+\end{enumerate}
+\end{theorem}
+
+De esta manera asociamos a cada grupo abeliano finitamente generado una lista de divisores elementales $(k; p_{1}^{\alpha_{11}}, \ldots, p_{1}^{\alpha_{1m_{1}}}, \ldots, p_{k}^{\alpha_{k1}}, \ldots, p_{k}^{\alpha_{km_{k}}})$ y una lista de factores invariantes $(k; d_1, \ldots, d_n)$, donde la única diferencia con el caso finito es que $k$ es el número de sumandos cíclicos infinitos bien en una descomposición primaria o en una descomposición invariante.
