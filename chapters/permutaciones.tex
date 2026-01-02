@@ -1,0 +1,352 @@
+\chapter{Grupos de permutaciones}
+
+En este capítulo estudiaremos dos de las familias más importantes de grupos: los grupos simétricos o de permutaciones y los grupos alternados.  
+Recordemos que si \( A \) es un conjunto entonces \( S_A \) denota el grupo formado por las biyecciones de \( A \) en sí mismo con la composición como operación. Si \( B \) es un conjunto con el mismo cardinal que \( A \) entonces existe una biyección \( f : A \to B \) que se puede usar para dar un isomorfismo  
+\[
+S_A \quad \to \quad S_B, \qquad \sigma \quad \mapsto \quad f \sigma f^{-1}.
+\]  
+Por tanto, las propiedades de \( S_A \) sólo dependen del cardinal de \( A \). En particular, si \( n = |A| \) lo mismo nos da estudiar \( S_A \) que \( S_n = S_{N_n} \) donde \( N_n = \{1, 2, \ldots, n\} \).
+
+\section{Ciclos y trasposiciones}
+
+Describiremos a veces un elemento \( \sigma \in S_n \) dando la lista de sus imágenes en la forma  
+\[
+\begin{pmatrix}
+1 & 2 & \cdots & n \\
+\sigma(1) & \sigma(2) & \cdots & \sigma(n)
+\end{pmatrix}.
+\]
+Sin embargo pronto veremos una forma más eficiente de representar los elementos de \( S_n \).
+
+\begin{definition}{Conjunto de elementos movidos}{conjunto_movidos}
+Diremos que una permutación \( \sigma \in S_n \) fija un entero \( i \in N_n \) si \( \sigma(i) = i \); en caso contrario diremos que \( \sigma \) cambia o mueve \( i \), y denotaremos por \( M(\sigma) \) al conjunto de los enteros cambiados por \( \sigma \):
+\[
+M(\sigma) = \{i \in N_n : \sigma(i) \neq i\}.
+\]
+\end{definition}
+
+Es claro que \( M(\sigma) \) es vacío si y solo si \( \sigma = 1 \), y que \( M(\sigma) \) no puede tener exactamente un elemento.
+
+Diremos que dos permutaciones \( \sigma \) y \( \tau \) de \( S_n \) son disjuntas si lo son los conjuntos \( M(\sigma) \) y \( M(\tau) \). Es decir, si todos los elementos que cambia una de ellas son fijados por la otra.
+
+Cuando digamos que ciertas permutaciones \( \sigma_1, \ldots, \sigma_r \) son disjuntas entenderemos que lo son dos a dos.
+
+\begin{lemma}{}{}
+Una propiedad importante que usaremos con frecuencia es que $k \in M(\sigma) \implies \sigma(k)\in M(\sigma)$.
+\end{lemma}
+
+\begin{proofbox}
+En efecto, como $\sigma$ es una biyección debe existir $\sigma^{-1}$ y entonces
+\[
+k \neq \sigma^{-1}(k) \iff \sigma(k) \neq k
+\]
+de aquí se deduce que $M(\sigma) = M(\sigma^{-1})$. Finalmente, si $k \in M(\sigma)$, entonces
+\[
+\sigma^{-1}(\sigma(k)) = k \neq \sigma(k),
+\]
+lo que implica que $\sigma(k) \in M(\sigma^{-1}) = M(\sigma)$.
+\end{proofbox}
+
+\begin{lemma}{Permutaciones disjuntas}{permutaciones_disjuntas}
+Si \( \sigma \) y \( \tau \) son permutaciones disjuntas entonces \( \sigma\tau = \tau\sigma \) y \( M(\sigma\tau) = M(\sigma) \cup M(\tau) \).
+\end{lemma}
+
+\begin{proofbox}
+Sea $k \in \N_n$, como las permutaciones son disjuntas podemos distinguir tres casos:
+\begin{enumerate}
+    \item $k \notin M(\sigma)\cup M(\tau)$
+    \item $k \in M(\sigma)$
+    \item $k \in M(\tau)$
+\end{enumerate}
+El caso (1) es el más fácil, puesto que se tiene $\sigma(k) = k = \tau(k)$, luego $(\sigma\tau)(k)=k=(\tau\sigma)(k)$.
+
+En el caso (2), como las permutaciones son disjuntas
+\[
+\tau(k)=k \implies (\sigma\tau)(k)=\sigma(k)
+\]
+y por el lema anterior $\sigma(k)\in M(\sigma)$, por tanto, $\sigma(k)\notin M(\tau)$, luego $(\tau\sigma)(k)=\sigma(k)=(\sigma\tau)(k)$.
+
+Para el caso (3) razonamos como en el caso (2).
+
+Para la igualdad entre conjuntos, basta notar que por el razonamiento del caso (1)
+\[
+k \notin M(\sigma) \cup M(\tau) \implies k \notin M(\sigma\tau),
+\]
+el contrarrecíproco nos da $M(\sigma\tau) \subseteq M(\sigma) \cup M(\tau)$. Por otro lado, los argumentos de los casos (2) y (3) muestran que
+\[
+k \in M(\sigma) \implies \sigma\tau(k) = \sigma(k) \neq k,\quad k \in M(\tau) \implies \sigma\tau(k) = \tau(k) \neq k,
+\]
+luego $M(\sigma) \cup M(\tau) \subseteq M(\sigma\tau)$.
+\end{proofbox}
+
+\begin{definition}{Ciclo}{ciclo}
+La permutación \( \sigma \in S_n \) es un ciclo de longitud \( s \) (o un \( s \)-ciclo) si \( M(\sigma) \) tiene \( s \) elementos y éstos pueden ordenarse de manera que se tenga \( M(\sigma) = \{i_1, i_2, \dots, i_s\} \) y
+\[
+\sigma(i_1) = i_2, \quad \sigma(i_2) = i_3, \quad \dots \quad \sigma(i_{s-1}) = i_s, \quad \sigma(i_s) = i_1.
+\]
+Este \( s \)-ciclo \( \sigma \) se denota como
+\[
+\sigma = (i_1 \; i_2 \; i_3 \; \dots \; i_s) \quad \text{ó} \quad \sigma = (i_1, i_2, i_3, \dots, i_s).
+\]
+Los \( 2 \)-ciclos también se llaman trasposiciones.
+\end{definition}
+
+Por ejemplo, los siguientes elementos de \( S_4 \) son ciclos de longitudes 2, 3 y 4, respectivamente:
+\[
+(1 \; 4) = \begin{pmatrix}
+1 & 2 & 3 & 4 \\
+4 & 2 & 3 & 1 
+\end{pmatrix}, \quad 
+(2 \; 4 \; 3) = \begin{pmatrix}
+1 & 2 & 3 & 4 \\
+1 & 4 & 2 & 3 
+\end{pmatrix}, \quad 
+(1 \; 3 \; 4 \; 2) = \begin{pmatrix}
+1 & 2 & 3 & 4 \\
+3 & 1 & 4 & 2 
+\end{pmatrix}.
+\]
+
+\begin{example}{Acción de un ciclo}{}
+Sea $\sigma = (2\ 4\ 3) \in S_4$, entonces $\sigma$ actúa sobre los elementos de $\N_4$ de la siguiente manera:
+\[
+\sigma(1) = 1,\ \sigma(2) = 4,\ \sigma(3) = 2,\ \sigma(4) = 3.
+\]
+Por otro lado, $\tau =(2\ 3\ 4)$ actua de manera que
+\[
+\tau(1) = 1,\ \tau(2) = 3,\ \tau(3) = 4,\ \tau(4) = 2.
+\]
+\end{example}
+
+\begin{lemma}{Propiedades de los ciclos}{propiedades_ciclos}
+Sea \( \sigma = (i_1 \; \dots \; i_s) \) un ciclo de longitud \( s \) en \( S_n \).
+\begin{enumerate}
+    \item Para cada \( t \in \{1, 2, \dots, s\} \) se tiene \( \sigma = (i_t \; i_{t+1} \; \dots \; i_s \; i_1 \; \dots \; i_{t-1}) \) y \( i_t = \sigma^{t-1}(i_1) \).
+    \item El orden de \( \sigma \) (como elemento del grupo simétrico) coincide con su longitud \( s \).
+\end{enumerate}
+\end{lemma}
+
+\begin{proofbox}
+\begin{enumerate}
+    \item Sea \( \sigma' = (i_t \; i_{t+1} \; \dots \; i_s \; i_1 \; \dots \; i_{t-1}) \). Sea $k \in \N_n$ arbitrario, si para todo $l=1,\dots,s$, $k \neq i_l$ entonces $\sigma'(k)=k=\sigma(k)$.
+    
+    Por otro lado, si para cierto $l$, $k = i_l$ entonces $\sigma'(k) = \sigma(k)$ ya que $\sigma', \sigma$ actúan igual sobre estos elementos. En conclusión, $\sigma' = \sigma$.
+
+    Por otro lado, es claro que $i_1 = 1(i_1) = \sigma^0(i_1)$, si suponemos que $i_t = \sigma^{t-1}(i_1)$ para $t$ arbitrario entonces $i_{t+1} = \sigma(i_t) = \sigma(\sigma^t(i)) = \sigma^{t+1}(i_1)$ como queríamos ver.
+
+    \item El orden de \( \sigma \), $k=|\sigma|$ es el menor natural tal que $\sigma^k = 1$. Si $\sigma$ tiene longitud $s$ entonces
+    \[
+    i_s = \sigma^{s-1}(i_1) \implies i_1 = \sigma^s(i_1)
+    \]
+    luego para cualquier $i_l$
+    \[
+    \sigma^s(i_l) = \sigma^{s+l-1}(i_1)=\sigma^{l-1}(\sigma^s(i_1))=\sigma^{l-1}(i_1)=i_l
+    \]
+    lo que prueba que $\sigma^s = 1$. Como $k$ es el orden de $\sigma$ debe ser $0 < k \leq s$, supongamos que $k < s$, entonces
+    \[
+    \sigma^k = 1 \implies i_{k+1} = \sigma^k(i_1) = i_1
+    \]
+    lo cual es imposible ya que $i_{k+1}\neq i_1$ si $0<k<s$, por tanto, ha de ser $k=s$.
+\end{enumerate}
+\end{proofbox}
+
+\begin{theorem}{Factorización en ciclos disjuntos}{factorizacion_ciclos_disjuntos}
+Toda permutación \( \sigma \neq 1 \) de \( S_n \) se puede expresar de forma única (salvo el orden) como producto de ciclos disjuntos.
+\end{theorem}
+
+\begin{proofbox}
+Razonamos por inducción en \( |M(\sigma)| \). Como \( \sigma \neq 1 \), tenemos que \( |M(\sigma)| \geq 2 \), con lo que el primer caso es cuando \( M(\sigma) = \{i, j\} \) que implica que \( \sigma = (i \; j) \). Además si \( \sigma = \tau_1 \dots \tau_k \) con \( \tau_1, \dots, \tau_k \) ciclos disjuntos, del Lema \ref{lem:permutaciones_disjuntas} se deduce que \( k = 1 \), lo que demuestra la unicidad.
+
+Supongamos que $|M(\sigma)| = n$ y que la propiedad se verifica para $m < n$, es decir, para toda permutación que mueve menos elementos que \( \sigma \). Fijemos \( i \in M(\sigma) \) y definamos recursivamente 
+\[
+i_0 = i, \quad i_j = \sigma(i_{j-1}).
+\]
+Como los \( i_j \) pertenecen a $M(\sigma)$, que es finito, debe existir $k > 0$ tal que $i_0 = i_k$, veamos por qué:
+\begin{itemize}
+    \item Como $M(\sigma)$ es finito debe existir un $k > 0$ tal que $i_k = i_l$ con $l < k$. De hecho, podemos tomar $k$ como el menor natural con esta propiedad, de manera que
+    \[
+    i_0, i_1, \dots, i_{k-1}
+    \]
+    son todos distintos entre sí y $i_k = i_l$ para algún $0 \leq l \leq k-1$.
+    \item De hecho, debe ser $l = 0$. Si no fuera así, entonces $l>0$, luego
+    \[
+    i_{l-1} = \sigma^{-1}(i_l) = \sigma^{-1}(i_k) = i_{k-1}
+    \]
+    lo cual contradice que $k$ es el primer indice para el que $i_k$ coincide con alguno de los $i_j$ anteriores.
+\end{itemize}
+Entonces, \( i_0, i_1, \dots, i_{k-1} \) son distintos y \( i_0 = i_k = \sigma(i_{k-1}) \). Luego \( \tau = (i_0 \; i_1 \; \dots \; i_{k-1}) \) es un \( k \)-ciclo, donde es obvio que $k \leq n$. Definimos \( \rho \in S_n \) poniendo:
+\[
+\rho(j) = 
+\begin{cases}
+j, & \text{si } j \in \{i_0, i_1, \dots, i_{k-1}\} \text{ o } j \not\in M(\sigma); \\
+\sigma(j), & \text{en caso contrario}.
+\end{cases}
+\]
+
+Es fácil ver que \( \tau \) y \( \rho \) son disjuntas, que \( |M(\rho)| = |M(\sigma)| - k < |M(\sigma)| \) y \( \sigma = \tau\rho \). Aplicando la hipótesis de inducción deducimos que \( \rho = \rho_1 \dots \rho_l \) con \( \rho_1, \dots, \rho_l \) ciclos disjuntos dos a dos. Del Lema \ref{lem:permutaciones_disjuntas} deducimos que $M(\rho) = \bigcup_{i=1}^{l}M(\rho_i)$, luego
+\[
+M(\tau) \cap M(\rho_i) \subseteq M(\tau) \cap M(\rho) = \emptyset,
+\]
+o sea, \( \tau \) y \( \rho_i \) son disjuntos para todo \( i \). Por tanto \( \sigma = \tau\rho_1 \dots \rho_l \), un producto de ciclos disjuntos.
+
+Por otro lado, si \( \sigma = \tau_1 \dots \tau_m \) con \( \tau_1, \dots, \tau_m \) ciclos disjuntos entonces \( i \in M(\tau_j) \) para un único \( j = 1, \dots, m \). Como los \( \tau_j \) conmutan podemos suponer que \( j = 1 \). Entonces \( \tau(i_l) = \sigma(i_l) = \tau_1(i_l) \), con lo que \( \tau = \tau_1 \). Luego \( \rho = \tau_2 \dots \tau_m \). Usando la unicidad de la factorización de \( \rho \) como producto de ciclos disjuntos, se deduce la unicidad de la de \( \sigma \).
+\end{proofbox}
+
+\begin{definition}{Tipo de una permutación}{def:tipo_permutacion}
+El tipo de una permutación \( \sigma \neq 1 \) de \( S_n \) es la lista \( [s_1, \dots, s_k] \) de las longitudes de los ciclos que aparecen en su factorización en ciclos disjuntos, ordenadas en forma decreciente. Por convenio, la permutación identidad tiene tipo \( [1] \).
+\end{definition}
+
+Por ejemplo, el tipo de un \( s \)-ciclo es \( [s] \), el de la permutación \( (1 \; 2)(3 \; 4 \; 5)(6 \; 7) \in S_7 \) es \( [3, 2, 2] \), y el de la permutación de \( S_{11} \) del Ejemplo \ref{ex:factorizacion_permutacion} es \( [4, 3, 2] \).
+
+La última demostración deja claro cómo obtener la factorización de una permutación como producto de ciclos disjuntos y en consecuencia su tipo. Lo ilustramos con un ejemplo:
+
+% Pequeño ajuste en el número máximo de columnas de una matriz
+\setcounter{MaxMatrixCols}{11}
+
+\begin{example}{Factorización de una permutación como producto de ciclos disjuntos}{factorizacion_permutacion}
+Consideremos la permutación de \( S_{11} \)
+\[
+\sigma = \begin{pmatrix}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
+6 & 5 & 1 & 4 & 2 & 7 & 3 & 8 & 11 & 9 & 10
+\end{pmatrix}.
+\]
+
+Elegimos un elemento arbitrario cambiado por \( \sigma \), por ejemplo el \( 1 \), y calculamos sus imágenes sucesivas por \( \sigma \):
+
+\[
+\sigma(1) = 6, \quad \sigma^2(1) = \sigma(6) = 7, \quad \sigma^3(1) = \sigma(7) = 3, \quad \sigma^4(1) = \sigma(3) = 1.
+\]
+
+Entonces \( (1 \; 6 \; 7 \; 3) \) es uno de los factores de \( \sigma \). Elegimos ahora un elemento de \( M(\sigma) \) que no haya aparecido aún, por ejemplo el \( 2 \), y le volvemos a seguir la pista, lo que nos da un nuevo factor \( (2 \; 5) \). Empezando ahora con el \( 9 \) obtenemos un tercer ciclo \( (9 \; 11 \; 10) \) que agota el proceso (el \( 4 \) y el \( 8 \) son fijados por \( \sigma \)) y nos dice que 
+\[
+\sigma = (1 \; 6 \; 7 \; 3)(2 \; 5)(9 \; 11 \; 10).
+\]
+Por tanto \( \sigma \) tiene tipo \( [4, 3, 2] \).
+\end{example}
+\begin{remark}
+Por lo general, aunque podríamos escribir $\sigma = (1 \; 6 \; 7 \; 3)(2 \; 5)(9 \; 11 \; 10)(4)(8)$, omitimos los $1$-ciclos al factorizar una permutación. 
+\end{remark}
+
+El tipo de una permutación determina muchas de sus propiedades; por ejemplo determina su orden. Ya hemos visto que cualquier $s$-ciclo tiene orden $s$, y cuando obtenemos la factorización de una permutación cualquiera $\sigma$ en ciclos $\tau_i$, tenemos $\sigma^n = 1$ siempre que cada uno de los ciclos cumple $\tau_i^n = 1$.
+
+\begin{proposition}{Orden de una permutación}{prop:orden_permutacion}
+El orden de una permutación es el mínimo común múltiplo de las componentes de su tipo.
+\end{proposition}
+
+\begin{proofbox}
+Sea \( \sigma = \tau_1 \dots \tau_k \) la factorización de una permutación \( \sigma \) como producto de ciclos disjuntos, y sea \( s_i \) la longitud del ciclo \( \tau_i \). Sea \( m \in \mathbb{N} \). Como los \( \tau_i \) conmutan entre sí (por ser disjuntos), se tiene \( \sigma^m = \tau_1^m \dots \tau_k^m \). Por otra parte, para cada \( i \) se tiene \( M(\tau_i^m) \subseteq M(\tau_i) \) y por tanto los \( \tau_i^m \) son disjuntos. Esto implica, por la unicidad en el Teorema \ref{thm:factorizacion_ciclos_disjuntos}, que \( \sigma^m = 1 \) precisamente si cada \( \tau_i^m = 1 \) para todo \( i \), lo cual pasa si y solo si \( s_i \mid m \) para todo \( i \), o equivalentemente si \( \operatorname{mcm}(s_1, \dots, s_k) \) divide a \( m \).
+\end{proofbox}
+
+\subsection{Conjugación en \( S_n \)}
+
+A continuación vamos a describir las clases de conjugación de \( S_n \).
+
+\begin{theorem}{Clases de conjugación en \( S_n \)}{clases_conjugacion_sn}
+Dos elementos de \( S_n \) son conjugados precisamente si tienen el mismo tipo. En consecuencia, cada clase de conjugación de \( S_n \) está formada por todos los elementos de un mismo tipo.
+\end{theorem}
+
+\begin{proofbox}
+Fijemos una permutación \( \alpha \). Para un \( s \)-ciclo \( \tau = (i_1 \; i_2 \; \dots \; i_s) \), se comprueba fácilmente que
+\begin{equation}
+\alpha \tau \alpha^{-1} = \alpha (i_1 \; i_2 \; \dots \; i_s) \alpha^{-1} = (\alpha(i_1) \; \alpha(i_2) \; \dots \; \alpha(i_s)), \label{eq:s_ciclo}.
+\end{equation}
+En efecto, dado $k \in \N_n$, si $k \neq \alpha(i_l)$ entonces $\alpha^{-1}(k)\neq i_l$, por lo que $\tau(\alpha^{-1}(k))=\alpha^{-1}(k)$, es decir,
+\[
+\alpha\tau\alpha^{-1}(k)=\alpha\alpha^{-1}(k)=k.
+\]
+Por otro lado, si $k = \alpha(i_l)$ entonces
+\[
+\alpha\tau\alpha^{-1}(k)=\alpha\tau(i_l)=\alpha(i_{l+1})
+\]
+sobreentendiendo que si $l=n$ en realidad es $\alpha(i_1)$. En cualquier caso, $\alpha\tau\alpha^{-1}$ actúa igual que $(\alpha(i_1) \; \alpha(i_2) \; \dots \; \alpha(i_s))$, por lo que ambos deben ser el mismo ciclo.
+
+En particular, deducimos que \( \alpha \tau \alpha^{-1} \) es un \( s \)-ciclo. Usando la misma fórmula es fácil ver que, si dos ciclos \( \tau_1 \) y \( \tau_2 \) son disjuntos, entonces lo son \( \alpha \tau_1 \alpha^{-1} \) y \( \alpha \tau_2 \alpha^{-1} \). Como, en general, \( \alpha (\tau_1 \cdots \tau_k) \alpha^{-1} = (\alpha \tau_1 \alpha^{-1}) \cdots (\alpha \tau_k \alpha^{-1}) \), es claro que dos elementos conjugados de \( S_n \) tienen el mismo tipo.
+
+Recíprocamente, supongamos que \( \sigma \) y \( \sigma' \) tienen el mismo tipo. Entonces las descomposiciones de \( \sigma \) y \( \sigma' \) en producto de ciclos disjuntos son de la forma \( \sigma = \tau_1 \tau_2 \cdots \tau_k \) y \( \sigma' = \tau_1' \tau_2' \cdots \tau_k' \), donde \( \tau_i \) y \( \tau_i' \) tienen la misma longitud. Por tanto, si \( \tau_i = (j_1 \; j_2 \; \dots \; j_s) \) y \( \tau_i' = (j_1' \; j_2' \; \dots \; j_s') \), entonces las aplicaciones \( \alpha_i : M(\tau_i) \rightarrow M(\tau_i') \) definidas por 
+\[
+\alpha_i(j_t) = j_t'
+\]
+para todo \( t \), son biyecciones. Además, como \( |M(\sigma)| = |M(\sigma')| \), existe una biyección \( \beta : N_n \setminus M(\sigma) \rightarrow N_n \setminus M(\sigma') \). Sea ahora \( \alpha \in S_n \) la biyección que se obtiene “pegando” las \( \alpha_i \) y \( \beta \). Es decir, \( \alpha(x) = \alpha_i(x) \) si \( x \in M(\tau_i) \) y \( \alpha(x) = \beta(x) \) si \( x \notin M(\sigma) \). De \eqref{eq:s_ciclo} se deduce que \( \tau_i' = \alpha \tau_i \alpha^{-1} \) para todo \( i \) y, por tanto \( \sigma' = \alpha \sigma \alpha^{-1} \).
+\end{proofbox}
+
+El siguiente corolario se deduce fácilmente del resultado anterior
+
+\begin{corollary}{}{permutaciones_equivalentes}
+La factorización en ciclos disjuntos de \( \alpha \sigma \alpha^{-1} \) se obtiene sustituyendo, en la de \( \sigma \), cada elemento \( i \) por \( \alpha(i) \). Por tanto la factorización de \( \sigma^\alpha = \alpha^{-1} \sigma \alpha \) se obtiene sustituyendo, en la de \( \sigma \), cada elemento \( i \in N_n \) por \( \alpha^{-1}(i) \).
+\end{corollary}
+
+Por ejemplo, si \( \alpha = (1 \; 4 \; 3)(2 \; 5 \; 6) \) y \( \sigma = (1 \; 3)(2 \; 4 \; 7) \), entonces \( \alpha \sigma \alpha^{-1} = (4 \; 1)(5 \; 3 \; 7) \) y \( \sigma^\alpha = (3 \; 4)(6 \; 1 \; 7) \).
+
+\begin{example}{Clases de conjugación de \( S_3 \)}{clases_conjugacion_s3}
+Las 6 permutaciones de \( S_3 \) se dividen en una permutación de tipo \( [1] \) (la identidad), tres 2-ciclos o permutaciones de tipo \( [2] \) (a saber, \( (1 \; 2) \), \( (1 \; 3) \) y \( (2 \; 3) \)), y dos 3-ciclos o permutaciones de tipo \( [3] \) (a saber, \( (1 \; 2 \; 3) \) y \( (1 \; 3 \; 2) \)).
+\end{example}
+
+\begin{example}{Clases de conjugación de \( S_4 \)}{clases_conjugacion_s4}
+En \( S_4 \) hay más variedad, y en particular aparecen permutaciones que no son ciclos. Sus 24 permutaciones se dividen en los siguientes tipos:
+
+\begin{center}
+\begin{tabular}{c|l}
+Tipo & Permutaciones \\
+\hline
+$[1]$ & $1$ \\
+$[2]$ & $(1 \; 2), (1 \; 3), (1 \; 4), (2 \; 3), (2 \; 4), (3 \; 4)$ \\
+$[3]$ & $(1 \; 2 \; 3), (1 \; 3 \; 2), (1 \; 2 \; 4), (1 \; 4 \; 2), (1 \; 3 \; 4), (1 \; 4 \; 3), (2 \; 3 \; 4), (2 \; 4 \; 3)$ \\
+$[4]$ & $(1 \; 2 \; 3 \; 4), (1 \; 2 \; 4 \; 3), (1 \; 3 \; 2 \; 4), (1 \; 3 \; 4 \; 2), (1 \; 4 \; 2 \; 3), (1 \; 4 \; 3 \; 2)$ \\
+$[2,2]$ & $(1 \; 2)(3 \; 4), (1 \; 3)(2 \; 4), (1 \; 4)(2 \; 3)$
+\end{tabular}
+\end{center}
+
+Por tanto, cada fila de elementos a la derecha de la barra es una clase de conjugación de \( S_4 \).
+\end{example}
+
+\begin{example}{Clases de conjugación de \(S_5\) y \(S_6\)}{clases_conjugacion_s5_s6}
+Además de los ciclos, en \( S_5 \) hay permutaciones de los tipos \( [2,2] \) y \( [3,2] \); y en \( S_6 \) las hay de los tipos \( [2,2] \), \( [3,2] \), \( [2,2,2] \), \( [3,3] \) y \( [4,2] \). En estos casos, por el gran número de elementos en los grupos, es pesado construir tablas como la que acabamos de dar para \( S_4 \), pero se puede calcular cuántas permutaciones hay de cada tipo.
+\end{example}
+
+\begin{proposition}{Conjuntos generadores de \( S_n \)}{generadores_sn}
+Para \( n \geq 2 \), los siguientes son conjuntos generadores de \( S_n \):
+\begin{enumerate}
+    \item El conjunto de todos los ciclos.
+    \item El conjunto de todas las trasposiciones.
+    \item El conjunto de \( n-1 \) trasposiciones: \( \{(1 \; 2), (1 \; 3), (1 \; 4), \dots, (1 \; n-1), (1 \; n)\} \).
+    \item El conjunto de \( n-1 \) trasposiciones: \( \{(1 \; 2), (2 \; 3), (3 \; 4), \dots, (n-1 \; n)\} \).
+    \item El conjunto de una trasposición y un \( n \)-ciclo: \( \{(1 \; 2), (1 \; 2 \; 3 \; \dots \; n-1 \; n)\} \).
+\end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+\begin{enumerate}
+    \item Es una consecuencia inmediata del Teorema \ref{thm:factorizacion_ciclos_disjuntos}.
+    
+    Para demostrar el resto de apartados bastará con comprobar que los elementos del conjunto dado en cada apartado se expresan como productos de los elementos del conjunto del apartado siguiente.
+    
+    \item Cada ciclo \( \sigma = (i_1 \; i_2 \; \dots \; i_s) \) puede escribirse como producto de trasposiciones (no disjuntas):
+    \[
+    \sigma = (i_1 \; i_s)(i_1 \; i_{s-1}) \cdots (i_1 \; i_3)(i_1 \; i_2).
+    \]
+    
+    \item Es consecuencia de la igualdad \( (i \; j) = (1 \; i)(1 \; j)(1 \; i) \).
+    
+    \item Dado \( j \geq 2 \), sea \( \alpha = (2 \; 3)(3 \; 4)(4 \; 5) \cdots (j-1 \; j) \). Como $\alpha^{-1}(1)=1, \alpha^{-1}(2)=j$, por el Corolario \ref{cor:permutaciones_equivalentes} deducimos que \( (1 \; 2)^\alpha = (1 \; j) \).
+    
+    \item Sean \( \tau = (1 \; 2) \) y \( \sigma = (1 \; 2 \; \dots \; n-1 \; n) \). Como \( \sigma^{j-1}(1) = j \) y \( \sigma^{j-1}(2) = j+1 \), un argumento similar al del Corolario \ref{cor:permutaciones_equivalentes} nos permite afirmar que \( \sigma^{j-1} \tau \sigma^{1-j} = (j \; j+1) \).
+\end{enumerate}
+\end{proofbox}
+
+\begin{corollary}{Subgrupo con trasposición y \( p \)-ciclo}{cor:subgrupo_transposicion_p-ciclo}
+Sean \( p \) un número primo y \( H \) un subgrupo de \( S_p \). Si \( H \) contiene una transposición y un \( p \)-ciclo, entonces \( H = S_p \).
+\end{corollary}
+
+\begin{proofbox}
+Podemos suponer que \( H \) contiene a \( (1 \; 2) \) y un \( p \)-ciclo \( \sigma = (a_1 \; a_2 \; \dots \; a_p) \). Por el Lema \ref{lem:propiedades_ciclos}, podemos suponer que \( a_1 = 1 \). Como $p$ es primo, $\sigma^k$ es un $p$-ciclo para todo $1 \leq k < p$.
+
+Por tanto, si \( a_i = 2 \), entonces \( \sigma^{i-1} = (1 \; 2 \; b_3 \; \dots \; b_p) \), y podemos renombrar los \( b_i \) de forma que \( b_i = i \), notemos que hay que renombrar una vez que hemos asegurado que los dos primeros elementos de $\sigma$ son los mismos que aparecen en la transposición $(1 \; 2)$. Por tanto \( (1 \; 2), (1 \; 2 \; \dots \; p) \in H \). Deducimos de la Proposición \ref{prop:generadores_sn} que \( H = S_p \).
+\end{proofbox}
+
+Aunque toda permutación de \( S_n \) se puede expresar como un producto de trasposiciones, estas expresiones no tienen las buenas propiedades que vimos en las descomposiciones en ciclos disjuntos. Por una parte, no podemos esperar que una permutación arbitraria sea producto de trasposiciones disjuntas (tendría orden 2). Por otra, tampoco se tiene conmutatividad (por ejemplo, \( (1 \; 3)(1 \; 2) \neq (1 \; 2)(1 \; 3) \)) ni unicidad, ni siquiera en el número de factores; por ejemplo
+\[
+(1 \; 2 \; 3) = (1 \; 3)(1 \; 2) = (2 \; 3)(1 \; 3) = (1 \; 3)(2 \; 4)(1 \; 2)(1 \; 4) = (2 \; 3)(2 \; 3)(1 \; 3)(2 \; 4)(1 \; 2)(1 \; 4).
+\]
+Nótese que en todas estas factorizaciones de \( (1 \; 2 \; 3) \) hay un número par de trasposiciones; esto es consecuencia de un hecho general que analizaremos en la sección siguiente.
+
