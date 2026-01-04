@@ -334,14 +334,14 @@ Para \( n \geq 2 \), los siguientes son conjuntos generadores de \( S_n \):
 \end{enumerate}
 \end{proofbox}
 
-\begin{corollary}{Subgrupo con trasposición y \( p \)-ciclo}{cor:subgrupo_transposicion_p-ciclo}
-Sean \( p \) un número primo y \( H \) un subgrupo de \( S_p \). Si \( H \) contiene una transposición y un \( p \)-ciclo, entonces \( H = S_p \).
+\begin{corollary}{Subgrupo con trasposición y \( p \)-ciclo}{cor:subgrupo_trasposicion_p-ciclo}
+Sean \( p \) un número primo y \( H \) un subgrupo de \( S_p \). Si \( H \) contiene una trasposición y un \( p \)-ciclo, entonces \( H = S_p \).
 \end{corollary}
 
 \begin{proofbox}
 Podemos suponer que \( H \) contiene a \( (1 \; 2) \) y un \( p \)-ciclo \( \sigma = (a_1 \; a_2 \; \dots \; a_p) \). Por el Lema \ref{lem:propiedades_ciclos}, podemos suponer que \( a_1 = 1 \). Como $p$ es primo, $\sigma^k$ es un $p$-ciclo para todo $1 \leq k < p$.
 
-Por tanto, si \( a_i = 2 \), entonces \( \sigma^{i-1} = (1 \; 2 \; b_3 \; \dots \; b_p) \), y podemos renombrar los \( b_i \) de forma que \( b_i = i \), notemos que hay que renombrar una vez que hemos asegurado que los dos primeros elementos de $\sigma$ son los mismos que aparecen en la transposición $(1 \; 2)$. Por tanto \( (1 \; 2), (1 \; 2 \; \dots \; p) \in H \). Deducimos de la Proposición \ref{prop:generadores_sn} que \( H = S_p \).
+Por tanto, si \( a_i = 2 \), entonces \( \sigma^{i-1} = (1 \; 2 \; b_3 \; \dots \; b_p) \), y podemos renombrar los \( b_i \) de forma que \( b_i = i \), notemos que hay que renombrar una vez que hemos asegurado que los dos primeros elementos de $\sigma$ son los mismos que aparecen en la trasposición $(1 \; 2)$. Por tanto \( (1 \; 2), (1 \; 2 \; \dots \; p) \in H \). Deducimos de la Proposición \ref{prop:generadores_sn} que \( H = S_p \).
 \end{proofbox}
 
 Aunque toda permutación de \( S_n \) se puede expresar como un producto de trasposiciones, estas expresiones no tienen las buenas propiedades que vimos en las descomposiciones en ciclos disjuntos. Por una parte, no podemos esperar que una permutación arbitraria sea producto de trasposiciones disjuntas (tendría orden 2). Por otra, tampoco se tiene conmutatividad (por ejemplo, \( (1 \; 3)(1 \; 2) \neq (1 \; 2)(1 \; 3) \)) ni unicidad, ni siquiera en el número de factores; por ejemplo
@@ -350,3 +350,175 @@ Aunque toda permutación de \( S_n \) se puede expresar como un producto de tras
 \]
 Nótese que en todas estas factorizaciones de \( (1 \; 2 \; 3) \) hay un número par de trasposiciones; esto es consecuencia de un hecho general que analizaremos en la sección siguiente.
 
+\clearpage
+\section{El grupo alternado}
+
+Fijemos un entero positivo \( n \geq 2 \) y una permutación \( \sigma \in S_n \). Definamos un homomorfismo de anillos \( \bar{\sigma} : \mathbb{Z}[X_1, \dots, X_n] \to \mathbb{Z}[X_1, \dots, X_n] \) tal que \( \bar{\sigma}(X_i) = X_{\sigma(i)} \) para cada \( i \). Este homomorfismo simplemente intercambia unas indeterminadas con otras siguiendo la permutación $\sigma$, es decir, dado un polinomio \( Q \), su imagen \( \bar{\sigma}(Q) \) se obtiene sustituyendo cada \( X_i \) por \( X_{\sigma(i)} \) en la expresión de \( Q \).
+
+En lo que sigue, \( P \) designará al polinomio de \( \mathbb{Z}[X_1, \dots, X_n] \) dado por
+\[
+P = \prod_{1 \leq i < j \leq n} (X_j - X_i).
+\]
+Por ejemplo, en $\Z[X,Y,Z]$,
+\[
+P = (Z-X)(Y-X)(Z-Y).
+\]
+Si \( i \) y \( j \) son dos elementos distintos de \( N_n \), en el producto anterior aparece \( X_i - X_j \) ó \( X_j - X_i \) pero no los dos. Como \( \bar{\sigma} \) es un homomorfismo de anillos, se tiene
+\[
+\bar{\sigma}(P) = \prod_{i<j} \bar{\sigma}(X_j - X_i) = \prod_{i<j} (X_{\sigma(j)} - X_{\sigma(i)}).
+\]
+Como \( \sigma \) es una biyección, de nuevo para cada dos elementos distintos \( i \) y \( j \) de \( N_n \) en el producto anterior aparece \( X_{\sigma(i)} - X_{\sigma(j)} \) ó \( X_{\sigma(j)} - X_{\sigma(i)} \) pero no ambos. Más concretamente, si \( i < j \) entonces en \( P \) se da uno de los dos siguientes casos:
+\begin{itemize}
+    \item Que sea \( \sigma(i) < \sigma(j) \), en cuyo caso el factor \( X_{\sigma(j)} - X_{\sigma(i)} \) aparece en \( \bar{\sigma}(P) \) igual que en \( P \).
+    \item Que sea \( \sigma(i) > \sigma(j) \), en cuyo caso el factor \( X_{\sigma(j)} - X_{\sigma(i)} \) aparece en \( \bar{\sigma}(P) \) pero en \( P \) aparece su opuesto; en este caso diremos que \( \sigma \) presenta una inversión para el par \( (i,j) \).
+\end{itemize}
+Como cada inversión se traduce en un cambio de signo en \( \bar{\sigma}(P) \) con respecto a \( P \), se tiene \( \bar{\sigma}(P) = \pm P \), donde el signo es \( + \) si y solo si el número de pares \( (i,j) \) (con \( i < j \)) para los que \( \sigma \) presenta una inversión es par. Esto sugiere las definiciones que siguen.
+
+\begin{definition}{Permutación par e impar}{permutacion_par_impar}
+La permutación \( \sigma \in S_n \) es par si \( \bar{\sigma}(P) = P \); es decir, si \( \sigma \) presenta un número par de inversiones; y es impar si \( \bar{\sigma}(P) = -P \); es decir, si \( \sigma \) presenta un número impar de inversiones.
+
+El signo de \( \sigma \) se define como \( \operatorname{sgn}(\sigma) = (-1)^k \), donde \( k \) es el número de inversiones que presenta \( \sigma \). Es decir, \( \operatorname{sgn}(\sigma) = 1 \) si \( \sigma \) es par y \( \operatorname{sgn}(\sigma) = -1 \) si \( \sigma \) es impar. Por el comentario previo a esta definición se tiene \( \bar{\sigma}(P) = \operatorname{sgn}(\sigma) P \).
+\end{definition}
+
+De hecho, el uso del anillo de polinomios en varias variables no es estrictamente necesario puesto que la única información relevante que extraemos tiene que ver con los índices de las indeterminadas. Si simplemente consideramos el orden natural en $\N_n$, entonces, dados $i,j\in\N_n$ distintos, o bien $i < j$ o $j < i$. Podemos considerar por simplicidad que $i < j$, la pregunta ahora es si $\sigma$ respeta el orden de esta pareja, es decir
+\[
+\sigma(i) < \sigma(j) \text{ o bien } \sigma(i) > \sigma(j).
+\]
+Podemos estudiar el efecto de $\sigma$ sobre todas las parejas $i < j$, de lo cual deduciremos que invierte el orden en un número de parejas $N$, para determinar el orden basta ver si $N$ es par o impar. Este acercamiento a la paridad es algo más simple, aunque menos operativo a la hora de demostrar propiedades interesantes.
+
+\begin{example}{}{}
+Para estudiar el signo de $\sigma = (1\; 3\; 2\; 4) \in S_4$ notemos que cumple:
+\begin{gather*}
+\sigma(1) = 3 < 4 = \sigma(2),\quad \sigma(1) = 3 > 2 = \sigma(3),\quad \sigma(1) = 3 > 1 = \sigma(4)\\
+\sigma(2) = 4 > 2 = \sigma(3),\quad \sigma(2) = 4 > 1 = \sigma(4)\\
+\sigma(3) = 2 > 1 = \sigma(4)
+\end{gather*}
+por tanto $\sigma$ invierte el orden en $5$ casos, luego es una permutación impar.
+\end{example}
+
+\begin{proposition}{El signo es un homomorfismo}{signo_homomorfismo}
+La "aplicación signo" \( \operatorname{sgn} : S_n \to \mathbb{Z}^* = \{1, -1\} \) es un homomorfismo de grupos.
+\end{proposition}
+
+\begin{proofbox}
+Sean \( \sigma, \tau \in S_n \). Es claro que \( \overline{\sigma \circ \tau} = \bar{\sigma} \circ \bar{\tau} \), por tanto
+\[
+\operatorname{sgn}(\sigma \circ \tau) P = \overline{\sigma \circ \tau}(P) = \bar{\sigma}(\bar{\tau}(P)) = \bar{\sigma}(\operatorname{sgn}(\tau) P) = \operatorname{sgn}(\tau) \bar{\sigma}(P) = \operatorname{sgn}(\tau) \operatorname{sgn}(\sigma) P,
+\]
+usando que $\bar\sigma$ es homomorfismo de anillos, luego \( \operatorname{sgn}(\sigma \circ \tau) = \operatorname{sgn}(\sigma) \operatorname{sgn}(\tau) \).
+\end{proofbox}
+
+\begin{proposition}{Propiedades del signo}{propiedades_signo}
+En \( S_n \) se verifica:
+\begin{enumerate}
+    \item El signo de una permutación \( \sigma \) es el mismo que el de su inversa \( \sigma^{-1} \) y que el de cualquiera de sus conjugadas \( \sigma^\alpha \).
+    \item Toda trasposición es impar.
+    \item Si \( \sigma = \tau_1 \cdots \tau_r \), donde las \( \tau_i \) son trasposiciones, entonces \( \operatorname{sgn}(\sigma) = (-1)^r \).
+    \item Una permutación \( \sigma \) es par (respectivamente impar) si y solo si es producto de un número par (respectivamente impar) de trasposiciones.
+    \item Un ciclo de longitud \( s \) tiene signo \( (-1)^{s-1} \); es decir, un ciclo de longitud par es impar, y viceversa.
+    \item La paridad de una permutación coincide con la del número de componentes pares de su tipo.
+\end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+\begin{enumerate}
+    \item Basta usar que $\operatorname{sgn}$ es un homomorfismo de grupos y que los elementos de $\Z^*$ son sus propios inversos, luego $\operatorname{sgn}(\sigma^{-1}) = \operatorname{sgn}(\sigma)^{-1} = \operatorname{sgn}(\sigma)$. Para las conjugadas
+    \[
+    \operatorname{sgn}(\alpha^{-1}\sigma\alpha) = \operatorname{sgn}(\alpha^{-1})\operatorname{sgn}(\sigma)\operatorname{sgn}(\alpha) = \operatorname{sgn}(\alpha)^2\operatorname{sgn}(\sigma) = \operatorname{sgn}(\sigma)
+    \] 
+    usando de nuevo que los elementos de $\Z^*$ son sus propios inversos ($a^2 = 1$).
+
+    \item Es obvio que cualquier trasposición presenta una única inversión, por lo que debe ser impar.
+
+    \item Como $\operatorname{sgn}$ es un homomorfismo de grupos
+    \[
+    \operatorname{sgn}\sigma = \operatorname{sgn}(\tau_1) \cdots \operatorname{sgn}(\tau_r) = (-1)^r
+    \]
+    ya que $\operatorname{sgn}(\tau_i) = -1$ por (2).
+
+    \item Dada una permutación cualquiera $\sigma$ podemos factorizarla en trasposiciones por la Proposición \ref{prop:generadores_sn}. Como $\operatorname{sgn}$ es un homomorfismo, la permutación es par si y solo si tiene un numero par de trasposiciones.
+    
+    \item Si el ciclo es $\sigma = (i_1 \; \dots \; i_s)$ podemos factorizarlo como
+    \[
+    \sigma = (i_1 \; i_s)(i_1 \; i_{s-1}) \cdots (i_1 \; i_3)(i_1 \; i_2)
+    \]
+    es decir, como producto de $s-1$ trasposiciones, luego $\operatorname{sgn}(\sigma) = (-1)^{s-1}$.
+
+    \item Por (5) un $k$-ciclo es par si $k$ es impar, e impar si $k$ es par (para recordar esto basta notar que las trasposiciones son impares). Por tanto, al factorizar una permutación el signo solo depende de los ciclos pares, si hay un número par de ellos la permutación será par, en caso contrario será impar. 
+\end{enumerate}
+\end{proofbox}
+
+\begin{example}{Calculando la paridad en función del tipo}{paridad_tipo}
+De los Ejemplos \ref{ex:clases_conjugacion_s3}, \ref{ex:clases_conjugacion_s4}, \ref{ex:clases_conjugacion_s5_s6} y del último apartado de la Proposición \ref{prop:propiedades_signo} se deduce que, además de la identidad, las permutaciones pares de \( S_3 \) son las de tipo \( [3] \); las de \( S_4 \) son las de los tipos \( [3] \) ó \( [2,2] \); las de \( S_5 \) son las de los tipos \( [3] \), \( [5] \), o \( [2,2] \); y las de \( S_6 \) son las de los tipos \( [3] \), \( [5] \), \( [2,2] \), \( [4, 2]\) ó \( [3,3] \).
+\end{example}
+
+\begin{definition}{Grupo alternado}{grupo_alternado}
+El grupo alternado en \( n \) elementos, denotado por \( A_n \), es el núcleo del homomorfismo \( \operatorname{sgn} : S_n \to \mathbb{Z}^* = \{1, -1\} \). Es decir, es el subgrupo de \( S_n \) formado por las permutaciones pares.
+\end{definition}
+
+\begin{proposition}{Propiedades de \( A_n \)}{propiedades_an}
+\( A_n \) es un subgrupo normal de \( S_n \), y para \( n \geq 2 \) se tiene:
+\[
+[S_n : A_n] = 2, \quad |A_n| = \frac{n!}{2}, \quad \text{y} \quad \frac{S_n}{A_n} \simeq \{1, -1\} \simeq \mathbb{Z}_2.
+\]
+\end{proposition}
+
+\begin{proofbox}
+Al estar definido como el núcleo de un homomorfismo, \( A_n \) es normal en \( S_n \). El resto es consecuencia del Primer Teorema de Isomorfía si vemos que, para \( n \geq 2 \), el homomorfismo \( \operatorname{sgn} \) es supravectivo, para lo que basta notar que \( \operatorname{sgn}(1) = 1 \) y \( \operatorname{sgn}((1 \; 2)) = -1 \).
+\end{proofbox}
+
+Es elemental ver que \( A_2 \) es el grupo trivial y que \( A_3 \) es el subgrupo cíclico de \( S_3 \) generado por el 3-ciclo \( (1 \; 2 \; 3) \), y por tanto \( A_3 \cong C_3 \). En el caso general, tenemos dos maneras sencillas de describir conjuntos de generadores de \( A_n \).
+
+\begin{proposition}{Sistemas de generadores de \( A_n \)}{generadores_an}
+Los siguientes son sistemas de generadores de \( A_n \):
+\begin{enumerate}
+    \item El conjunto de todos los productos de dos trasposiciones (disjuntas o no).
+    \item El conjunto de todos los 3-ciclos.
+\end{enumerate}
+\end{proposition}
+
+\begin{proofbox}
+\begin{enumerate}
+    \item Por el apartado (4) de la Proposición \ref{prop:propiedades_signo}, una permutación está en $A_n$ si y solo si es producto de un número par de trasposiciones, agrupando este número par en parejas de dos trasposiciones deducimos que cualquier permutación par es producto de elementos de la forma $\tau = (a\; b)(c\; d)$.
+    
+    \item Por la misma Proposición, todos los 3-ciclos están en \( A_n \); por tanto, usando (1) para demostrar (2) solo hay que probar que cada producto de dos trasposiciones distintas (disjuntas o no) se puede escribir como producto de 3-ciclos, lo que se sigue de las igualdades
+    \[
+    (i \; j)(i \; k) = (i \; k \; j) \quad \text{e} \quad (i \; j)(k \; l) = (j \; l \; k)(i \; k \; j),
+    \]
+    donde asumimos que \( i, j, k, l \) son distintos dos a dos.
+\end{enumerate}
+\end{proofbox}
+\begin{remark}
+Observese que, como el conjunto vacío genera el subgrupo trivial, la Proposición \ref{prop:generadores_an} es válida incluso cuando \( n = 1 \) ó \( n = 2 \).
+\end{remark}
+
+A continuación describimos los subgrupos de \( A_4 \). Esto nos dará un ejemplo en el que no se verifica el recíproco del Teorema de Lagrange: \( A_4 \) tiene orden 12, pero no tiene subgrupos de orden 6.
+
+\begin{example}{Subgrupos de \( A_4 \)}{subgrupos_a4}
+En virtud del Ejemplo \ref{ex:paridad_tipo}, la siguiente es la lista completa de los elementos de \( A_4 \):
+\begin{align*}
+& 1, \quad \sigma = (1 \; 2)(3 \; 4), \quad \tau = (1 \; 3)(2 \; 4), \quad \eta = (1 \; 4)(2 \; 3), \\
+& \alpha = (1 \; 2 \; 3), \quad \beta = (1 \; 2 \; 4), \quad \gamma = (1 \; 3 \; 4), \quad \delta = (2 \; 3 \; 4), \\
+& \alpha^2 = (1 \; 3 \; 2), \quad \beta^2 = (1 \; 4 \; 2), \quad \gamma^2 = (1 \; 4 \; 3), \quad \delta^2 = (2 \; 4 \; 3).
+\end{align*}
+
+Por el Teorema de Lagrange, los subgrupos propios y no triviales de \( A_4 \) han de tener orden 2, 3, 4, ó 6. Los de orden 2 han de ser cíclicos y estar generados por elementos de orden 2, y por tanto son:
+\[
+\langle \sigma \rangle = \{1, \sigma\}, \quad \langle \tau \rangle = \{1, \tau\}, \quad \langle \eta \rangle = \{1, \eta\}.
+\]
+Como \( \sigma^\alpha = \tau \notin \langle \sigma \rangle \), deducimos que \( \langle \sigma \rangle \) no es normal en \( A_4 \), y del mismo modo se ve que no lo son \( \langle \tau \rangle \) ni \( \langle \eta \rangle \). Los subgrupos de orden 3 también deben ser cíclicos y han de estar generados por elementos de orden 3, por tanto son:
+\begin{align*}
+\langle \alpha \rangle = \langle \alpha^2 \rangle &= \{1, \alpha, \alpha^2\}, \\
+\langle \beta \rangle = \langle \beta^2 \rangle &= \{1, \beta, \beta^2\}, \\
+\langle \gamma \rangle = \langle \gamma^2 \rangle &= \{1, \gamma, \gamma^2\}, \\
+\langle \delta \rangle = \langle \delta^2 \rangle &= \{1, \delta, \delta^2\}.
+\end{align*}
+
+Un subgrupo de orden 4 no puede contener a ninguno de los elementos de orden 3; como el resto de elementos forman un subgrupo
+\[
+N = \{1, \sigma, \tau, \eta\},
+\]
+este es el único subgrupo de orden 4, que además es normal en \( S_n \) por el Teorema \ref{thm:clases_conjugacion_sn}.
+
+Por último, veamos que no hay subgrupos de orden 6. Un tal subgrupo \( H \) sería normal en \( A_4 \) por tener índice 2. Además, debería contener algún $3$-ciclo (puesto que solo hay 4 elementos que no son $3$-ciclos). Entonces, $H$ debería contener a todos los tres ciclos por ser normal y contener a uno de ellos, ya que todos los elementos con el mismo tipo son conjugados (Teorema \ref{thm:clases_conjugacion_sn}), pero esto es claramente una contradicción ya que hay 8 $3$-ciclos distinos y $H$ tiene solo 6 elementos.
+\end{example}
