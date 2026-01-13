@@ -207,13 +207,13 @@ aH & \mapsto & Ha^{-1}
 es otra biyección con lo que también $G/H$ y $H \backslash G$ tienen el mismo cardinal.
 
 \begin{proofbox}
-Veamos que $L_a(h) = ah$ es una biyección. Si $ah = bh \implies a=b$ por la propiedad cancelativa, luego es inyectiva. Si $ax \in aH$ entonces $L_a(x) = ax$, luego es sobreyectiva.
+Veamos que $L_a(h) = ah$ es una biyección. Si $ah = bh \implies a=b$ por la propiedad cancelativa, luego es inyectiva. Si $b \in aH$ entonces, por definición, $a^{-1}b\in aH$, por tanto $L_a(a^{-1}b) = aa^{-1}b = b$, luego $L_a$ es sobreyectiva.
 
 En cuanto a $\phi(aH) = Ha^{-1}$ notemos que está bien definida y es inyectiva
 \[
 \phi(aH) = \phi(bH) \iff Ha^{-1} = Hb^{-1} \iff a^{-1}b \in H \iff aH = bH.
 \]
-También es sobreyectiva, puesto que dado $Ha^{-1} \in H \backslash G$, $\phi(aH) = Ha^{-1}$.
+También es sobreyectiva, puesto que dado $Ha \in H \backslash G$, $\phi(a^{-1}H) = Ha$.
 
 \end{proofbox}
 
@@ -222,7 +222,11 @@ Denotamos con $|X|$ el cardinal de un conjunto cualquiera. En el caso en que $G$
 |aH| = |Ha| = |H| \quad \text{y} \quad |G/H| = |H \backslash G|
 \]
 
-El cardinal de $G/H$ (y $H \backslash G$) se llama índice de $H$ en $G$ y se denota $[G : H]$. Una consecuencia inmediata de estas fórmulas es el siguiente Teorema.
+El cardinal de $G/H$ (y $H \backslash G$) se llama índice de $H$ en $G$ y se denota $[G : H]$. Sabemos que $G$ es la unión disjunta de sus clases laterales por la izquierda (o por la derecha), y si $G$ es finito entonces hay exactamente $[G : H]$ clases laterales, que podemos suponer con representantes $a_i$, $i = 1,\dots, [G:H]$, luego
+\[
+G = \bigsqcup_{i=1}^{[G : H]} a_iH \implies |G| = \sum_{i=1}^{[G : H]} |a_iH| = [G : H]|H|.
+\]
+Una consecuencia inmediata de estas fórmulas es el siguiente Teorema.
 
 \begin{theorem}{Teorema de Lagrange}{lagrange}
 Si $G$ es un grupo finito y $H$ es un subgrupo de $G$ entonces $|G| = |H|[G : H]$.

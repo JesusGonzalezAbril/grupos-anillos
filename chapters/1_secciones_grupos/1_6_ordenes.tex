@@ -65,7 +65,7 @@ Sea $G$ un grupo cíclico generado por $a$.
     
     Sea $H \leq G$ un subgrupo, cualquier elemento de $H$ es de la forma $a^N$ para algún $N \in \Z$. Consideremos
     \[
-    n = \min\left\{m \in \N : a^m \in H \right\}
+    n = \min\left\{m \in \N \cup \{0\} : a^m \in H \right\}
     \]
     que existe por el principio de buena ordenación de los naturales. Es claro que $\langle a^n \rangle \subseteq H$. Si $a^m \in H$ y suponemos que $n \nmid m$ entonces $m = nq + r, 0 < r < n$, luego
     \[
@@ -84,19 +84,21 @@ Sea $G$ un grupo cíclico generado por $a$.
     \]
     Que es sobreyectivo es también inmediato.
 
-    Que $\langle a^{n/d} \rangle$ es un subgrupo de orden $d$ es inmediato. Supongamos que $H \leq G$ es un subgrupo de orden $d$, entonces definiendo 
+    Que $\langle a^{n/d} \rangle$ es un subgrupo de orden $d$ es inmediato puesto que $d$ es el menor entero positivo tal que $(a^{n/d})^d = 1$. Supongamos que $H \leq G$ es un subgrupo de orden $d$, entonces definiendo 
     \[
     N = \min\left\{m \in \{1, \dots, n - 1\} : a^m \in H \right\}
     \]
-    podemos razonar como en el caso anterior, concluyendo que $H = \langle a^N \rangle$. Supongamos que $N < n/d \iff Nd < n$, entonces 
+    podemos razonar como en el caso anterior, concluyendo que $H = \langle a^N \rangle$. Como $N$ es de orden $d$, por el Lema \ref{lem:orden_potencias} tenemos que
     \[
-    a^{Nd} = (a^N)^d = 1
+    d = |a^N| = \frac{n}{\operatorname{mcd}(n, N)} \implies \operatorname{mcd}(n, N) = \frac{n}{d}.
     \]
-    al ser $H$ de orden $d$, pero esto contradice que $n$ es el orden de $G$, luego $n/d \leq N \implies N = n/d$ como se pedía.
+    En particular, $\frac{n}{d} \mid N$, por lo que $N = \frac{n}{d}k$, lo que prueba que $a^N \in \langle a^{n/d} \rangle$. Finalmente, como ambos subgrupos tienen $d$ elementos deducimos que $H = \langle a^{n/d} \rangle$ como se pedía.
 
-    % Falta ver que $G/\langle a^d \rangle$ es cíclico y el único de orden $d$.
+    Que $G/\langle a^d \rangle$ es cíclico lo probaremos en (3). Para ver que es de orden $d$ observamos que el núcleo del homomorfismo canónico $G \to G/\langle a^d \rangle$ es $\langle a^d \rangle$, luego por el Teorema de Isomorfía,
+    \[|G/\langle a^d \rangle| = \frac{|G|}{|\langle a^d \rangle|} = \frac{n}{|a^d|} = \frac{n}{\frac{n}{\operatorname{mcd}(n, d)}} = \operatorname{mcd}(n, d) = d.\]
+    Finalmente, si $N \unlhd G$ es tal que $G/N$ tiene orden $d$, entonces el núcleo del homomorfismo canónico $G \to G/N$ es un subgrupo de orden $n/d$, luego $N = \langle a^{d} \rangle$.
 
-    \item Ya hemos visto cómo son los subgrupso de $G$ en (1), (2). Por otro lado, si $N \unlhd G$ entonces $G/N = \langle aN \rangle$, pues dado $gN \in G/N$, sabemos que 
+    \item Ya hemos visto cómo son los subgrupos de $G$ en (1), (2). Por otro lado, si $N \unlhd G$ entonces $G/N = \langle aN \rangle$, pues dado $gN \in G/N$, sabemos que 
     \[
     g = a^m \implies gN = a^m N = (aN)^m \in \langle aN \rangle.
     \]
@@ -119,9 +121,25 @@ Más generalmente, si $g$ y $h$ son dos elementos de un grupo $G$ de órdenes co
 \end{theorem}
 
 \begin{proofbox}
-Por la Proposición 4.22 si $g$ y $h$ son generadores de $G$ y $H$ respectivamente entonces $a + (n) \mapsto g^a$ define un isomorfismo de grupos $(\mathbb{Z}_n, +) \rightarrow G$ y la aplicación $a + (m) \mapsto h^a$ define otro isomorfismo de grupos $(\mathbb{Z}_m, +) \rightarrow H$. Si $\operatorname{mcd}(n, m) = 1$, entonces, por el Teorema Chino de los Restos $a + (nm) \mapsto (a + (n), a + (m))$ define un isomorfismo de anillos $\mathbb{Z}/nm\mathbb{Z} \rightarrow \mathbb{Z}_n \times \mathbb{Z}_m$, por tanto también es un isomorfismo de sus grupos aditivos. Luego $a + (nm) \mapsto (g^a, h^a)$ es un isomorfismo $(\mathbb{Z}_{mn}, +) \rightarrow G \times H$. Además, como $1 + (nm)$ es un generador de $(\mathbb{Z}_{mn}, +)$, se tiene que $(g, h)$ es un generador de $G \times H$.
+Por la Proposición \ref{prop:grupos_ciclicos} si $g$ y $h$ son generadores de $G$ y $H$ respectivamente entonces
+\[
+a + (n) \mapsto g^a
+\]
+define un isomorfismo de grupos $(\mathbb{Z}_n, +) \rightarrow G$ y la aplicación
+\[
+a + (m) \mapsto h^a
+\]
+define otro isomorfismo de grupos $(\mathbb{Z}_m, +) \rightarrow H$. Si $\mcd(n, m) = 1$, entonces,
+\[
+a + (nm) \mapsto (a + (n), a + (m))
+\]
+define un isomorfismo de grupos $\mathbb{Z}/nm\mathbb{Z} \rightarrow \mathbb{Z}_n \times \mathbb{Z}_m$. Luego $a + (nm) \mapsto (g^a, h^a)$ es el isomorfismo buscado $(\mathbb{Z}_{mn}, +) \rightarrow G \times H$. Además, como $1 + (nm)$ es un generador de $(\mathbb{Z}_{mn}, +)$, se tiene que $(g, h)$ es un generador de $G \times H$.
 
-Supongamos ahora que $g, h \in G$ tienen órdenes coprimos $n$ y $m$. Entonces la multiplicación define un homomorfismo supravectivo $M : \langle g \rangle \times \langle h \rangle \rightarrow \langle g, h \rangle$. (Observa la importancia de la hipótesis $gh = hg$ aquí.) Por el Teorema de Lagrange, el orden de $\langle g \rangle \cap \langle h \rangle$ divide a $n$ y $m$. Como $n$ y $m$ son coprimos, este orden es 1, luego $\langle g \rangle \cap \langle h \rangle = \{1\}$. Si $(x, y)$ pertenece al núcleo de $M$ entonces $x = y^{-1} = \langle g \rangle \cap \langle h \rangle = \{1\}$. Esto demuestra que $M$ es un isomorfismo. En el párrafo anterior hemos visto que $(g, h)$ es generador de $\langle g \rangle \times \langle h \rangle$, luego $gh = M(g, h)$ es generador de $\langle g, h \rangle$.
+Supongamos ahora que $g, h \in G$ tienen órdenes coprimos $n$ y $m$. Entonces la multiplicación define un homomorfismo sobreyectivo
+\[
+M : \langle g \rangle \times \langle h \rangle \rightarrow \langle g, h \rangle.
+\]
+(El homomorfismo es sobreyectivo por la hipótesis $gh = hg$ aquí.) Por el Teorema de Lagrange, el orden de $\langle g \rangle \cap \langle h \rangle$ divide a $n$ y $m$. Como $n$ y $m$ son coprimos, este orden es 1, luego $\langle g \rangle \cap \langle h \rangle = \{1\}$. Si $(x, y)$ pertenece al núcleo de $M$ entonces $xy = 1 \implies x = y^{-1} \in \langle g \rangle \cap \langle h \rangle = \{1\}$. Esto demuestra que $M$ es un isomorfismo. En el párrafo anterior hemos visto que $(g, h)$ es generador de $\langle g \rangle \times \langle h \rangle$, luego $gh = M(g, h)$ es generador de $\langle g, h \rangle$.
 \end{proofbox}
 
 Razonando por inducción sobre $n$ obtenemos el siguiente resultado:

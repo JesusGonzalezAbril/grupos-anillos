@@ -428,7 +428,7 @@ En \( S_n \) se verifica:
     \] 
     usando de nuevo que los elementos de $\Z^*$ son sus propios inversos ($a^2 = 1$).
 
-    \item Es obvio que cualquier trasposición presenta una única inversión, por lo que debe ser impar.
+    \item Solo hay que fijarse en que toda transposición tiene un número impar de inversiones.
 
     \item Como $\operatorname{sgn}$ es un homomorfismo de grupos
     \[
@@ -522,3 +522,49 @@ este es el único subgrupo de orden 4, que además es normal en \( S_n \) por el
 
 Por último, veamos que no hay subgrupos de orden 6. Un tal subgrupo \( H \) sería normal en \( A_4 \) por tener índice 2. Además, debería contener algún $3$-ciclo (puesto que solo hay 4 elementos que no son $3$-ciclos). Entonces, $H$ debería contener a todos los tres ciclos por ser normal y contener a uno de ellos, ya que todos los elementos con el mismo tipo son conjugados (Teorema \ref{thm:clases_conjugacion_sn}), pero esto es claramente una contradicción ya que hay 8 $3$-ciclos distinos y $H$ tiene solo 6 elementos.
 \end{example}
+
+\clearpage
+\section{El Teorema de Abel}
+
+\begin{definition}{Grupo simple}{def:grupo_simple}
+Un grupo no trivial \( G \) es simple si sus únicos subgrupos normales son \( \{1\} \) y \( G \).
+\end{definition}
+
+Como consecuencia inmediata de la Proposición \ref{prop:grupos_ciclicos} se tiene que un grupo abeliano es simple si y solo si tiene orden primo. Para ver esto notemos que si es abeliano y simple, entonces cualquier elemento $x\neq 1$ debe generarlo, por lo que es cíclico, como no puede tener subgrupos normales propios, debe ser de orden primo. Por otro lado, si tiene orden primo es claramente abeliano y simple, puesto que debe ser isomorfo a $\Z_p$.
+
+Obsérvese que \( A_3 \cong C_3 \) es simple, pero \( A_4 \) no lo es, como muestra el Ejemplo \ref{ex:subgrupos_a4}. El Teorema de Abel demuestra que 4 es el único número para el que pasa esto.
+
+\begin{lemma}{Subgrupo normal que contiene un $3$-ciclo}{normal_con_3-ciclo}
+Si un subgrupo normal \( H \) de \( A_n \) (\( n \geq 5 \)) contiene un $3$-ciclo, entonces \( H = A_n \).
+\end{lemma}
+
+\begin{proofbox}
+Sea \( \sigma \) un 3-ciclo en \( H \). Por la Proposición \ref{prop:generadores_an}, basta ver que cualquier otro 3-ciclo \( \sigma' \) está en \( H \). Sabemos por el Teorema \ref{thm:clases_conjugacion_sn} que existe \( \alpha \in S_n \) tal que \( \sigma' = \sigma^\alpha \), de modo que si \( \alpha \in A_n \) entonces \( \sigma' \in H \), por la normalidad de \( H \) en \( A_n \); en consecuencia, podemos suponer que \( \alpha \) es una permutación impar. Como \( \sigma \) sólo cambia 3 elementos y \( n \geq 5 \), existe una trasposición \( \beta \) disjunta con \( \sigma \), por lo que \( \sigma^\beta = \sigma \). Por tanto
+\[
+\sigma^{\beta\alpha} = (\sigma^\beta)^\alpha = \sigma^\alpha = \sigma',
+\]
+y como \( \beta\alpha \) está en \( A_n \) por ser el producto de dos permutaciones impares, la normalidad de \( H \) en \( A_n \) implica que \( \sigma' \in H \), como queríamos ver.
+
+Observese que la hipótesis \( n \geq 5 \) en el Lema anterior es superflua, pues para \( n \leq 3 \) es obvio que se verifica el Lema y para \( n = 4 \) es consecuencia del Ejemplo \ref{ex:subgrupos_a4}.
+\end{proofbox}
+
+\begin{theorem}{Teorema de Abel}{thm:abel}
+Si \( n \geq 5 \), entonces \( A_n \) es un grupo simple.
+\end{theorem}
+
+\begin{proofbox}
+Supongamos que \( H \neq \{1\} \) es un subgrupo normal de \( A_n \) y veamos que \( H = A_n \). Por el Lema \ref{lem:normal_con_3-ciclo}, bastará probar que \( H \) contiene un $3$-ciclo.
+
+Sea \( 1 \neq \sigma \in H \) tal que \( r = |M(\sigma)| \) sea mínimo, es decir, \( |M(\nu)| \leq r \) para todo \( 1 \neq \nu \in H \). Ahora veremos que debe tenerse \( r = 3 \), por lo que \( \sigma \) será un $3$-ciclo en \( H \) y habremos terminado.
+
+Desde luego, no puede ser \( r = 1 \) porque ninguna permutación cambia exactamente un elemento, ni tampoco \( r = 2 \) porque todas las permutaciones de \( H \) son pares. Supongamos pues, en busca de una contradicción, que \( r > 3 \). Se tienen entonces dos posibilidades:
+
+\begin{enumerate}
+    \item Que, en la factorización de \( \sigma \) en ciclos disjuntos, aparezca alguno de longitud \( \geq 3 \).
+    \item Que \( \sigma \) sea un producto de (al menos dos) trasposiciones disjuntas.
+\end{enumerate}
+
+\textbf{Caso 1.} \( \sigma \) debe cambiar al menos 5 elementos (si sólo cambiase 4, como en la factorización de \( \sigma \) aparece un ciclo de longitud \( \geq 3 \), \( \sigma \) sería un $4$-ciclo, lo que contradice el hecho de que \( \sigma \in A_n \)). Podemos suponer, sin pérdida de generalidad (¿por qué?), que \( 1,2,3,4,5 \in M(\sigma) \) y que alguno de los ciclos disjuntos que componen \( \sigma \) es de la forma \( (1 \; 2 \; 3 \; \dots) \) (con longitud al menos 3). Sea \( \alpha = (3 \; 4 \; 5) \). Como \( \alpha \in A_n \) y \( H \) es normal en \( A_n \), deducimos que \( \sigma^\alpha \in H \), y así \( \beta = \sigma^{-1} \sigma^\alpha \in H \). Si \( \sigma(i) = i \) entonces \( i > 5 \) y por tanto \( \alpha(i) = i \), de donde se sigue que \( \beta(i) = i \); por tanto \( M(\beta) \subseteq M(\sigma) \), y la inclusión es estricta pues \( \sigma(1) = 2 \) mientras que \( \beta(1) = 1 \). En consecuencia, \( \beta \in H \) cambia menos de \( r \) elementos, así que debe ser \( \beta = 1 \), por la elección de \( r \). Esto significa que \( \sigma^\alpha = \sigma \), y por tanto \( \alpha\sigma = \sigma\alpha \). Pero esto es falso, pues \( \alpha\sigma(2) = 4 \) y \( \sigma\alpha(2) = 3 \), de manera que la primera de las dos posibilidades consideradas nos lleva a una contradicción.
+
+\textbf{Caso 2.} Reordenando los elementos de \( N_n \) podemos asumir que \( \sigma = (1 \; 2)(3 \; 4) \cdots \) (puede haber más trasposiciones en el producto o no). Sea de nuevo \( \alpha = (3 \; 4 \; 5) \). Como antes, tomamos \( \beta = \sigma^{-1} \sigma^\alpha \in H \). Si \( i \neq 5 \) y \( \sigma(i) = i \) entonces \( i \neq 3,4,5 \) y por tanto \( \alpha(i) = i \), de donde se sigue que \( \beta(i) = i \); por tanto \( M(\beta) \subseteq M(\sigma) \cup \{5\} \). Pero el 1 y el 2 son fijados por \( \beta \) y cambiados por \( \sigma \), de modo que \( \beta \) cambia menos de \( r \) elementos y así \( \beta = 1 \), o sea \( \sigma\alpha = \alpha\sigma \). Sin embargo \( \sigma\alpha(3) = 3 \neq 5 = \alpha\sigma(3) \). En cualquier caso, pues, llegamos a la contradicción que buscábamos.
+\end{proofbox}
