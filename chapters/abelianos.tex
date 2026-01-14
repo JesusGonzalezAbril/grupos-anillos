@@ -280,9 +280,9 @@ En consecuencia, $A = t_{p_1}(A) + \cdots + t_{p_k}(A)$.
 
 Para ver que la suma es directa, supongamos que $a_1 + \cdots + a_k = 0$ con cada $a_i \in t_{p_i}(A)$. Por tanto, para cada $i = 1, \ldots, k$, existe $\beta_i$ tal que $p_i^{\beta_i} a_i = 0$. Sea $m = p_1^{\beta_1} \cdots p_k^{\beta_k}$. Para cada índice $i$ ponemos $t_i = m/p_i^{\beta_i}$, de modo que $t_i a_j = 0$ cuando $i \neq j$, y así
 \[
-t_i a_i = -t_i \sum_{j\neq i} a_j = -t_i \sum_{j=1}^{k} a_j = 0
+t_i a_i = -t_i \sum_{j\neq i} a_j = 0.
 \]
-donde hemos introducido en la suma el factor $-t_i a_i = 0$. Entonces, como $t_i a_i = 0$, $|a_i|$ divide a $t_i$ y, de igual manera, $|a_i|$ divide a $p_i^{\beta_i}$. Como estos son coprimos, se tiene $|a_i| = 1$ y por tanto $a_i = 0$. Esto prueba que la familia es independiente.
+Entonces, como $t_i a_i = 0$, $|a_i|$ divide a $t_i$ y, de igual manera, $|a_i|$ divide a $p_i^{\beta_i}$. Como estos son coprimos, se tiene $|a_i| = 1$ y por tanto $a_i = 0$. Esto prueba que la familia es independiente.
 
 Por último, de la igualdad $A = t_{p_1}(A) \oplus \cdots \oplus t_{p_k}(A)$ se deduce que $|A| = |t_{p_1}(A)| \cdots |t_{p_k}(A)|$. Como el orden de cada $t_{p_i}(A)$ es una potencia de $p_i$ (Lema \ref{lem:caracterizacion_p_grupos_finitos}) y cada $p_i$ divide a $|A|$, deducimos que ese orden es mayor que 1 y por tanto $t_{p_i}(A) \neq 0$.
 \end{proofbox}
@@ -386,9 +386,9 @@ El Corolario \ref{cor:descomposicion_p_ciclicos} va a ser fundamental para clasi
 \begin{definition}{Descomposición primaria}{descomposicion_primaria}
 Sea $A$ un grupo abeliano finito. Una descomposición primaria o indescomponible de $A$ es una expresión de $A$ como suma directa de subgrupos indescomponibles. Como cada uno de estos es un $p$-grupo cíclico para un primo $p$, siempre podemos reordenarlos de modo que se tenga
 \begin{gather*}
-A = \langle\alpha_{11}\rangle_{p_{1}^{\alpha_{11}}}\oplus\langle\alpha_{12}\rangle_{p_{1}^{\alpha_{12}}}\oplus\cdots\oplus\langle\alpha_{1m_{1}}\rangle_{p_{1}^{\alpha_{1m_{1}}}}\\
+A = \langle a_{11}\rangle_{p_{1}^{\alpha_{11}}}\oplus\langle a_{12}\rangle_{p_{1}^{\alpha_{12}}}\oplus\cdots\oplus\langle a_{1m_{1}}\rangle_{p_{1}^{\alpha_{1m_{1}}}}\\
 \cdots \\
-\oplus\langle\alpha_{k1}\rangle_{p_{k}^{\alpha_{k1}}}\oplus\langle\alpha_{k2}\rangle_{p_{k}^{\alpha_{k2}}}\oplus\cdots\oplus\langle\alpha_{km_{k}}\rangle_{p_{k}^{\alpha_{km_{k}}}}
+\oplus\langle a_{k1}\rangle_{p_{k}^{\alpha_{k1}}}\oplus\langle a_{k2}\rangle_{p_{k}^{\alpha_{k2}}}\oplus\cdots\oplus\langle a_{km_{k}}\rangle_{p_{k}^{\alpha_{km_{k}}}}
 \end{gather*}
 donde
 \[
